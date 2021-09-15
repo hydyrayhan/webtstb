@@ -1,0 +1,165 @@
+@import '../color';
+
+
+.newsSection{
+    .container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: 
+        "navbar navbar navbar"
+        "left left right"
+        "lowNews1 lowNews2 lowNews3"
+        "splide splide splide";
+        grid-gap:30px;
+        .navbar{
+            grid-area: navbar;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-areas: 
+            "left1 left1 right1";
+            grid-gap: 30px;
+            border-bottom:2px solid rgba(153,153,153,0.3);
+            .left1{
+                grid-area: left1;
+                @include center(flex-start, center);
+                
+                .h1{     
+                    font-size: 26px;
+                    font-weight: bold;
+                }
+                .img{
+                    height: 25px;
+                    width: 10px;
+                    margin-left: 10px;
+                    @include center(center,flex-end);
+                    img{
+                        width: 100%;
+                    }
+                }
+            }
+            .right1{
+                @include center(space-between, center);
+                grid-area: right1;
+                color: $gray;
+                div{
+                    cursor: pointer;
+                }
+                .active{
+                    display: flex;
+                    align-items: center;
+                    height: 50px;
+                    color: black;
+                    border-bottom: 2px solid $blue;
+                    margin-bottom: -2px;
+                }
+            }
+        }
+
+
+        .left{
+            grid-area: left;
+            img{
+                width: 100%;
+            }
+        }
+        .right{
+            grid-area: right;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .name{
+                font-size: 24px;
+                font-weight: bold;
+            }
+            .title{
+                color: $gray;
+                margin-top: 20px;
+            }
+            .bottom{
+                display: flex;
+                align-items: center;
+                .new{
+                    color: $blue;
+                    margin-right: 10px;
+                    font-weight: 600;
+                }
+                .dot{
+                    background: $gray;
+                    margin-top: 3px;
+                    width: 7px;
+                    height: 7px;
+                    border-radius: 50px;
+                }
+                .date{
+                    margin-left: 10px;
+                    color: $gray;
+                }
+            }
+        }
+        .lowNews1{
+            grid-area: lowNews1;
+        }
+        .lowNews2{
+            grid-area: lowNews2;
+        }
+        .lowNews3{
+            grid-area: lowNews3;
+        }
+        .lowNews1,.lowNews2,.lowNews3,.left{
+            border-radius: 5px;
+        }
+        .lowNews1,.lowNews2,.lowNews3{
+            img{
+                width: 100%;
+            }
+            .bottomTop{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+    
+                .name{
+                    font-weight: 600;
+                    margin-bottom: 30px;
+                    color: $black;
+                }
+                .bottom{
+                    display: flex;
+                    align-items: center;
+                    .new{
+                        color: $blue;
+                        margin-right: 10px;
+                        font-weight: bold;
+                    }
+                    .dot{
+                        background: $gray;
+                        margin-top: 3px;
+                        width: 7px;
+                        height: 7px;
+                        border-radius: 50px;
+                    }
+                    .date{
+                        margin-left: 10px;
+                        color: $gray;
+                    }
+                }
+            }
+        }
+        .splide{
+            grid-area: splide;
+            .splide__track{
+                .splide__list{
+                    // background: red;
+                    // @include center(center,center);
+                }
+            }
+            li{
+                div{
+                    img{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+     
+}

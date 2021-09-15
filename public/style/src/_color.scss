@@ -1,0 +1,17 @@
+$black : #10181F;
+$green : #1A9550;
+$blue : #2058D4;
+$gray : #999999;
+
+$font2:"Segoe UI";
+
+@mixin center($justify:center, $align:center) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+  };
+
+  @font-face{
+    src:url('/style/font/PTSerif-Bold.ttf');
+    font-family: font1;
+  }

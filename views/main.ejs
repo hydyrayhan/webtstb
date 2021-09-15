@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="/style/src/materialize/materialize.css"> -->
+  <link rel="stylesheet" href="/style/app.css">
+  <link rel="stylesheet" href="/style/src/materialize/splide.min.css">
+  <title>Document</title>
+    <style>
+      .content{
+        display: none;
+      }
+      .loader{
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background: #16191e;
+        position: absolute;
+      }
+      .loader>div{
+        height: 100px;
+        width: 100px;
+        border: 15px solid #45474b;
+        border-top-color: #2a88e6;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        border-radius: 50%;
+        animation: spin 1.5s infinite linear;
+      }
+      @keyframes spin{
+        100%{
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+</head>
+<body>
+  <div class="loader">
+    <div></div>
+  </div>
+  <div class="content">
+  <div class="container">
+    <nav>
+      <div class="left">
+        <div class="logo">
+          <img src="/pictures/logo/logo.svg" alt="">
+        </div>
+        <div class="title" data-content id='title'>Union of Industrialists and entrepreneurs of turkmenistan</div>
+      </div>
+      <div class="right">
+        <div class="language">
+          <div class='chosen-lang' href='#' data-target='dropdown1'></div>
+
+          <ul id='dropdown1' class='dropdown-content'>
+            <li class="lang-link" data-content id="TM">TM</li>
+            <li class="lang-link" data-content id="EN">EN</li>
+            <li class="lang-link" data-content id="RU">RU</li>
+          </ul>
+        </div>
+        <div class="search">
+          <div class="icon">
+            <img src="/pictures/icon/search.png" alt="">
+          </div>
+          <div class="searchText" data-content id='search'></div>
+        </div>
+        <div class="login">
+          <div class="loginText" id="login" data-content></div>
+          <div class="icon">
+            <img src="/pictures/icon/login.png" alt="">
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+  
+  <div class="nav2">
+    <div class="nagysh"></div>
+    <div class="container">
+      <div class="left">
+        <div data-content id='sppt'>SPPT</div>
+        <div data-content id='spptMember'>SPPT Membership</div>
+        <div data-content id='membership'>Membership</div>
+        <div data-content id='onlineBusiness'>Online Business</div>
+        <div data-content id='businessPlan'>Business Plans</div>
+        <div data-content id='licenses'>Licenses</div>
+        <div data-content id='consultation'>Consultation</div>
+      </div>
+      <div class="right">
+        <div class="dots"><img src="/pictures/icon/dots.png" alt=""></div>
+        <div data-content id="menu"></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="newsSection">
+    <div class="container">
+      <div class="navbar">
+        <div class="left1">
+          <div class="h1" data-content id="newsCenter">News center</div>
+          <div class="img"><img src="/pictures/icon/rightArrow.png" alt=""></div>
+        </div>
+
+        <div class="right1">
+          <div class="active" data-content id="news">News</div>
+          <div data-content id="events">Events announcements</div>
+          <div data-content id="gazet">About us</div>
+        </div>
+      </div>
+
+
+        <div class="left"><img src='/pictures/news/<%=list.list[0].pic%>' alt=""></div>
+        <!-- <div class="left"><img src="<%=host%>/news/<%= list.list[0].pic %>" alt=""></div> -->
+        <div class="right">
+          <div class="top">
+            <div class="name"><%= list.list[0].name %> </div>
+            <div class="title"><%= list.list[0].title %></div>
+          </div>
+          <div class="bottom">
+            <div class="new" data-content id="news">News</div>
+            <div class="dot"></div>
+            <div class="date"><%= list.list[0].date %> </div>
+          </div>
+        </div>
+        
+        <% for (let i = 1; i < 4; i++) {%>
+          <div class="newsContainer lowNews<%=i%>">
+            <div class="top"><img src="/pictures/news/<%= list.list[i].pic %>" alt=""></div>
+            <!-- <div class="top"><img src="<%=host%>/news/<%= list.list[i].pic %>" alt=""></div> -->
+            <div class="bottomTop">
+              <div class="name"><%= list.list[i].name %> </div>
+              <div class="bottom">
+                <div class="new" data-content id="news">News</div>
+                <div class="dot"></div>
+                <div class="date"><%= list.list[i].date %> </div>
+              </div>
+            </div>
+            
+          </div>
+        <%} %> 
+        
+        
+          <div class="splide">
+            <div class="splide__track">
+              <ul class="splide__list">
+                <%for(var i = 0; i < list.ads.length; i++){%>
+                  <li class="splide__slide"><div><img src="/pictures/reklams/<%=list.ads[i]%>" alt=""></div></li>
+                <%}%>
+              </ul>
+            </div>
+          </div>
+        
+      </div>
+    </section>
+
+  `</div>
+  <script src="/scripts/main.js"> </script>
+  <script src="/scripts/src/materialize/materialize.js"></script>
+  <!-- <script src="/scripts/src/materialize/flickity.pkgd.js"></script> -->
+  <script src="/scripts/src/jquery/jquery.min.js"></script>
+  <script src="/scripts/src/materialize/splide.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.chosen-lang');
+      var instances = M.Dropdown.init(elems,'left',);
+
+      new Splide('.splide',{
+        type:"loop",
+        perPage:1,
+        autoplay:true,
+        cover:true
+      }).mount();
+      
+      let loading = document.querySelector('.loader div');
+      // loading.style.background = 
+
+    });
+
+    
+
+  </script>
+  <script>
+    $(window).on('load',function(){
+      $('.loader').fadeOut(1000);
+      $('.content').fadeIn(1000);
+    })
+
+
+  </script>
+</body>
+</html>
