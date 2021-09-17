@@ -52,10 +52,43 @@ app.get('/',async function(req,res){
         date: "29 августа 2021"
       }
     ],
-    ads : ['kerwen1.png','kerwen2.png','kerwen3.png']
+    ads : ['kerwen1.png','kerwen2.png','kerwen3.png'],
+    ads2 : ['kerwen1.png','kerwen2.png','kerwen3.png'],
+    brands : [
+      {
+        brandlogo : "windows.png",
+        brandName : "Корпорация Microsoft"
+      },
+      {
+        brandlogo : "samsung.png",
+        brandName : "Samsung Electronics Central Asia"
+      },
+      {
+        brandlogo : "unreal.png",
+        brandName : "Epic Games Unreal Engine 5 beta"
+      },
+      {
+        brandlogo : "asus.png",
+        brandName : "ASUS Republic of Gamers"
+      },
+      {
+        brandlogo : "doner.png",
+        brandName : "Сеть ресторанов McDonalds’s"
+      }
+    ]
   } 
 
-  res.render('main',{list:mainPage,host:host})
+  var loop = 0;
+  var seeAll = false;
+  if(mainPage.brands.length<9){
+    loop = mainPage.brands.length;
+  }else{
+    loop = 9;
+    seeAll = true;
+  }
+
+
+  res.render('main',{list:mainPage,loop,host,seeAll})
 })
 
 app.get('/loading',function(req,res){
@@ -66,6 +99,6 @@ app.get('/loading',function(req,res){
 
 
 //Server Start
-app.listen("3000",function(req,res){
+app.listen("3000",function(){
   console.log('3000 server is working');
 })

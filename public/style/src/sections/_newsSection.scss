@@ -2,7 +2,7 @@
 
 
 .newsSection{
-    .container{
+    .newsSectionContainer{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-areas: 
@@ -11,6 +11,7 @@
         "lowNews1 lowNews2 lowNews3"
         "splide splide splide";
         grid-gap:30px;
+        padding-bottom: 100px;
         .navbar{
             grid-area: navbar;
             display: grid;
@@ -146,20 +147,9 @@
         }
         .splide{
             grid-area: splide;
-            .splide__track{
-                .splide__list{
-                    // background: red;
-                    // @include center(center,center);
-                }
-            }
-            li{
-                div{
-                    img{
-                        width: 100%;
-                    }
-                }
+            img{
+                width: 100%;
             }
         }
-    }
-     
+    }    
 }

@@ -8,42 +8,11 @@
   <link rel="stylesheet" href="/style/app.css">
   <link rel="stylesheet" href="/style/src/materialize/splide.min.css">
   <title>Document</title>
-    <style>
-      .content{
-        display: none;
-      }
-      .loader{
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
-        background: #16191e;
-        position: absolute;
-      }
-      .loader>div{
-        height: 100px;
-        width: 100px;
-        border: 15px solid #45474b;
-        border-top-color: #2a88e6;
-        position: absolute;
-        margin: auto;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        border-radius: 50%;
-        animation: spin 1.5s infinite linear;
-      }
-      @keyframes spin{
-        100%{
-          transform: rotate(360deg);
-        }
-      }
-    </style>
+  
+
 </head>
 <body>
-  <div class="loader">
-    <div></div>
-  </div>
+  <!-- <%- include ('src/loading.ejs') %> -->
   <div class="content">
   <div class="container">
     <nav>
@@ -101,7 +70,7 @@
   </div>
 
   <section class="newsSection">
-    <div class="container">
+    <div class="container newsSectionContainer">
       <div class="navbar">
         <div class="left1">
           <div class="h1" data-content id="newsCenter">News center</div>
@@ -156,11 +125,213 @@
               </ul>
             </div>
           </div>
-        
       </div>
     </section>
 
-  `</div>
+    <section class="swkSection">
+      <div class="container swk">
+        <div class="name" id="swk">Senagat we karhanalar</div>
+        <div class="karhanalar">
+          <div class="karhana">
+            <div class="logoContainer"><img src="/pictures/outsideIcons/home.png" alt=""> </div>
+            <div class="right">
+              <div class="karhanaName">Gurlushyk karhanasy</div>
+              <div><img src="/pictures/outsideIcons/line.png" alt=""></div>
+            </div>
+          </div>
+          <div class="karhana">
+            <div class="logoContainer"><img src="/pictures/outsideIcons/home.png" alt=""> </div>
+            <div class="right">
+              <div class="karhanaName">Gurlushyk karhanasy</div>
+              <div><img src="/pictures/outsideIcons/line.png" alt=""></div>
+            </div>
+          </div>
+          <div class="karhana">
+            <div class="logoContainer"><img src="/pictures/outsideIcons/home.png" alt=""> </div>
+            <div class="right">
+              <div class="karhanaName">Gurlushyk karhanasy</div>
+              <div><img src="/pictures/outsideIcons/line.png" alt=""></div>
+            </div>
+          </div>
+          <div class="karhana">
+            <div class="logoContainer"><img src="/pictures/outsideIcons/home.png" alt=""> </div>
+            <div class="right">
+              <div class="karhanaName"> Gurlushyk karhanasyGurlushyk</div>
+              <div><img src="/pictures/outsideIcons/line.png" alt=""></div>
+            </div>
+          </div>
+          <div class="karhana">
+            <div class="logoContainer"><img src="/pictures/outsideIcons/home.png" alt=""> </div>
+            <div class="right">
+              <div class="karhanaName"> Gurlushyk karhanasy</div>
+              <div><img src="/pictures/outsideIcons/line.png" alt=""></div>
+            </div>
+          </div>
+          <div class="karhana">
+            <div class="logoContainer"><img src="/pictures/outsideIcons/home.png" alt=""> </div>
+            <div class="right">
+              <div class="karhanaName"> Gurlushyk karhanasy</div>
+              <div><img src="/pictures/outsideIcons/line.png" alt=""></div>
+            </div>
+          </div>
+          <div class="karhana">
+            <div class="logoContainer"><img src="/pictures/outsideIcons/home.png" alt=""> </div>
+            <div class="right">
+              <div class="karhanaName"> Gurlushyk karhanasy</div>
+              <div><img src="/pictures/outsideIcons/line.png" alt=""></div>
+            </div>
+          </div>
+          <div class="karhana">
+            <div class="logoContainer"><img src="/pictures/outsideIcons/home.png" alt=""> </div>
+            <div class="right">
+              <div class="karhanaName"> Gurlushyk karhanasy</div>
+              <div><img src="/pictures/outsideIcons/line.png" alt=""></div>
+            </div>
+          </div>
+          <div class="karhana">
+            <div class="logoContainer"><img src="/pictures/outsideIcons/twoArrow.png" alt=""> </div>
+            <div class="right">
+              <div class="karhanaName"> Gurlushyk karhanasy</div>
+              <div><img src="/pictures/outsideIcons/line.png" alt=""></div>
+            </div>
+          </div>
+          <div class="karhana">
+            <div class="logoContainer"><img src="/pictures/outsideIcons/sebet.png" alt=""> </div>
+            <div class="right">
+              <div class="karhanaName"> Gurlushyk karhanasy</div>
+              <div><img src="/pictures/outsideIcons/line.png" alt=""></div>
+            </div>
+          </div>
+          <div class="karhana">
+            <div class="logoContainer"><img src="/pictures/outsideIcons/restoran.png" alt=""> </div>
+            <div class="right">
+              <div class="karhanaName"> Gurlushyk karhanasy</div>
+              <div><img src="/pictures/outsideIcons/line.png" alt=""></div>
+            </div>
+          </div>
+          <div class="karhana">
+            <div class="logoContainer"><img src="/pictures/outsideIcons/plane.png" alt=""> </div>
+            <div class="right">
+              <div class="karhanaName"> Gurlushyk karhanasy</div>
+              <div><img src="/pictures/outsideIcons/line.png" alt=""></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="brandSection">
+      <div class="container">
+        <div class="splide2">
+          <div class="splide__track">
+            <ul class="splide__list">
+              <%for(var i = 0; i < list.ads2.length; i++){%>
+                <li class="splide__slide"><div><img src="/pictures/reklams/<%=list.ads[i]%>" alt=""></div></li>
+              <%}%>
+            </ul>
+          </div>
+        </div>
+        <div class="brandHeader">
+          <div class="header" id="brandHeader">Karhanalar - Sppt agzalary</div>
+          <%if(seeAll){%>
+            <div class="seeAll" id="seeAll">Hemmesini gormek</div>
+          <%}%>
+        </div>
+        <div class="brands">
+          <%for (var i = 1; i<loop+1; i++){%>
+            <%if(i%3==0){%>
+              <div class="brand" style="margin-right:0">
+                <div class="left">
+                  <div class="brandLogo"><img src="/pictures/brands/<%=list.brands[i-1].brandlogo%>" alt=""></div>
+                  <div class="brandName"><%=list.brands[i-1].brandName%></div>
+                </div>
+                <div class="arrow"><a href=""><img src="/pictures/icon/topRight.png" alt=""></a></div>
+              </div>
+            <%}else{%>
+              <div class="brand">
+                <div class="left">
+                  <div class="brandLogo"><img src="/pictures/brands/<%=list.brands[i-1].brandlogo%>" at=""></div>
+                  <div class="brandName"><%=list.brands[i-1].brandName%></div>
+                </div>
+                <div class="arrow"><a href=""><img src="/pictures/icon/topRight.png" alt=""></a></div>
+              </div>
+            <%}%>
+          <%}%>
+        </div>
+      </div>
+    </section>
+
+    <section class="locationSection">
+      <div class="container">
+        <div class="sectionHeader" id="bolumler">Welayatdaky bolumler</div>
+        <div class="location">
+          <div class="map"><img src="/pictures/icon/map.png" alt=""></div>
+          <div class="info">
+            <div class="head">Ahal we Ashgabat</div>
+            <div class="title">Adress:</div>
+            <div class="information">Ashgabat Turkmenistan</div>
+            <div class="title">Telefonlar:</div>
+            <div class="information">+993 64 813309</div>
+            <div class="information">+993 65 399308</div>
+            <div class="title">Faks:</div>
+            <div class="information">+993 12 211212</div>
+            <div class="title">Elektron pochta:</div>
+            <div class="information">info@gmail.com</div>
+          </div>
+        </div>
+        <div class="splide3">
+            <div class="splide__track">
+              <ul class="splide__list">
+                <%for(var i = 0; i < list.ads2.length; i++){%>
+                  <li class="splide__slide"><div><img src="/pictures/reklams/<%=list.ads[i]%>" alt=""></div></li>
+                <%}%>
+              </ul>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <section>
+      <style>
+          .active:hover{
+            fill:green;
+          }
+          .ahal,.balkan,.mary,.lebap,.dashoguz{
+            width:500px;
+            fill:#C4C4C4;
+          }
+        </style>
+        <div class="ahal">
+            <svg viewBox="0 0 233 288" >
+              <path class="active" d="M18.5 8.99999L22 13.5L27 8.99999C28.5 8.83333 31.6 8.39999 32 7.99999C32.5 7.49999 40 7.99999 41 7.99999C42 7.99999 51 6.5 52 6.5H61C63 6.5 64.1667 5.5 64.5 5L72.5 2L76.5 1H81L84 2L103 5L107 7.99999L109.5 12L114 13H155.5L155 34L158.5 38.5L165.5 37L171.5 45.5L205.5 45V53.5L195.5 57L192.5 68.5L190 78.5L184 83C183.833 84.6667 183.4 88.2 183 89C182.5 90 178.5 91.5 178.5 92V96L184.5 121L194 129L204.5 143.5L205 145L200.5 147V151L201.5 155L197.5 158.5L200.463 174.795C200.566 174.753 200.854 174.785 201.5 175C202.7 175.4 206.667 176.5 208.5 177L218 179.5L226 185.5L220.5 189.5L214 182L204.5 179.5L206 184.5L229 218.5V225.5L227.5 258L232 260.5V265L226 271L231 278L227.5 286.5L226 284C224.667 284 221.7 283.8 220.5 283C219 282 217 281 217.5 280.5C217.9 280.1 219.667 278 220.5 277L219.5 265L215 262.5L219.5 253L215 233L217 229L214.5 221H202.5L176.5 222.5L159.5 198.5H154.5L148.5 193.5L138 192.5L133.5 188C133.167 187.833 132.5 187.3 132.5 186.5C132.5 185.7 129.5 181.833 128 180V170.5L126.5 169.5L119 168.5L112 162L101.5 159L99.5 161L94 162L88.5 157.5L84.5 161L81.5 162L79 161C78.3333 160.5 76.9 159.5 76.5 159.5H73.5L71 153.5C68.8333 152.833 64.4 151.5 64 151.5C63.6 151.5 60.8333 149.167 59.5 148H56L51.5 147C50.3333 146 47.9 144 47.5 144C47.1 144 39 143.333 35 143L29.5 140.5V133L25 128.5L26 125L25 124L23.5 115.5L13.5 108.5L8.5 102L1 95L3.5 83C3.83333 80.3333 4.6 74.8 5 74C5.4 73.2 6.16667 64.3333 6.5 60L9 50L11 29.5L15 27L17 10.5L18.5 8.99999Z" fill="correntColor">
+              </path>
+              </svg>
+              
+        </div>
+        <div class="balkan">
+            <svg viewBox="0 0 236 324">
+              <path class="active" d="M167.5 69H195.5C197.5 75.5 201.5 88.6 201.5 89C201.5 89.5 207.5 96.5 208 97.5C208.4 98.3 211.167 102.5 212.5 104.5L214 113L219 118C220.333 120.833 223.1 126.7 223.5 127.5C223.9 128.3 224.667 132.5 225 134.5L222.5 141.5L227.5 148L226 167L222 168.5L219 196L217.5 204.5L213.5 226V231L211 235.5C211.5 236.833 212.6 239.6 213 240C213.4 240.4 217.833 243.167 220 244.5L223.5 251L234.5 257.5C234.167 259.833 233.4 264.5 233 264.5C232.5 264.5 227.5 269 226.5 269H221.5C220.7 269 217.833 267.333 216.5 266.5L212 263.5C211.333 263.5 209.8 263.7 209 264.5C208.2 265.3 206 265.5 205 265.5C204.333 265.167 202.9 264.5 202.5 264.5C202.1 264.5 199.333 263.833 198 263.5L193 266.5L191.5 270.5L193 275.5L190 276.5L185 275.5H175.5L167.5 274L164.5 273L152.5 275L146 277L138.5 281.5L133 282.5L118 297.5L115.5 302.5L117.5 305.5C117.167 307 116.4 310 116 310C115.6 310 112.167 312.667 110.5 314H104.5C105.3 314 98.5 318.667 95 321L91 321.5L87 322.5L73 321.5L72 315.5C71.3333 311.5 69.9 303.4 69.5 303C69.1 302.6 68.3333 299.5 68 298C67.8333 296.167 67.5 292.4 67.5 292C67.5 291.6 67.8333 282.5 68 278C68.3333 276.167 69 272.4 69 272C69 271.5 70.5 266.5 70.5 265.5C70.5 264.7 71.1667 260.833 71.5 259L69 249V243.5C69 242.7 71.3333 238.167 72.5 236C73.1667 234.167 74.6 230.3 75 229.5C75.4 228.7 75.5 225.167 75.5 223.5L75 221.5C74.1667 220.833 72.3 219.3 71.5 218.5C70.7 217.7 70.5 216.5 70.5 216L67.5 214.5C66.1667 213.833 63.4 212.4 63 212C62.6 211.6 62.5 209.167 62.5 208L62 204.5L60.5 209C60.1667 208.667 59.5 207.9 59.5 207.5C59.5 207.1 58.8333 205 58.5 204H56.5C56 204 55.5 202 55 201C54.5 200 54.5 198.5 54.5 198C54.5 197.6 53.8333 196.833 53.5 196.5H51.5C50.7 196.5 49.5 196.167 49 196L48.5 194C47.8333 193.833 46.4 193.5 46 193.5H41H36C35 193.5 38.5 195 38.5 195.5C38.5 195.9 37.5 197 37 197.5L35.5 199.5V196C35 195.167 33.9 193.5 33.5 193.5C33.1 193.5 32.6667 190.833 32.5 189.5L39 180V182.5C40.1667 182.667 42.6 182.9 43 182.5C43.4 182.1 47.1667 181.667 49 181.5L51.5 183L53.5 185.5L56.5 184C57.3333 183.667 59.1 183 59.5 183C59.9 183 62 182 63 181.5C62.3333 181.167 60.9 180.5 60.5 180.5C60.1 180.5 59 179.5 58.5 179V177C58.5 176.6 57.5 175.167 57 174.5H54.5L53.5 172.5L51.5 172C51.8333 172.833 52.3 174.5 51.5 174.5C50.7 174.5 49.8333 173.833 49.5 173.5L48.5 170C48.6667 168.833 49 166.4 49 166C49 165.6 50.6667 162.5 51.5 161L52.5 158L48.5 155.5C48 155.167 46.9 154.5 46.5 154.5C46.1 154.5 46 155.5 46 156H40.5L38 154H25L24 152.5H22C21.2 152.5 21.3333 152.833 21.5 153L23 155.5L25 158.5V161H23L20 157L17 154L15 149.5C15.3333 148.333 16 145.9 16 145.5V142.5L15 141L13 137L15 126V120.5L20 113L21.5 109L20 108L19.5 106L24.5 94L25.5 91L24 87C23.3333 86.6667 21.9 85.9 21.5 85.5C21.1 85.1 20.6667 82.6667 20.5 81.5L19.5 78L18.5 74.5C18.1667 72.8333 17.5 69.3 17.5 68.5C17.5 67.5 15.5 64 15.5 63.5C15.5 63.1 12.8333 60.3333 11.5 59L8 57L5.5 55.5L7 50.5C7.5 49.6667 8.5 47.9 8.5 47.5C8.5 47.1 7.5 45.6667 7 45L4.5 42.5L1 40V38.5L13.5 27.5L28.5 14.5C34.6667 11.6667 47.3 5.9 48.5 5.5C49.7 5.1 51.6667 4.33333 52.5 4L60.5 3H69.5H75L80.5 1H88L118 21.5L124.5 29.5V37L131 44L131.5 47.5L133 52.5L145.5 68L151 72.5H153C153.8 72.5 154 73.1667 154 73.5L156.5 72.5L158.5 70.5H162.5H165L166 70H167.5V69Z" fill="correntColor"></path>
+              </svg> 
+        </div>
+        <div class="mary">
+            <svg viewBox="0 0 213 268" >
+              <path class="active" d="M27 0H35L43 9L96.5 63.5L110 81.5L132 90L155.5 118L144.5 133.5L147.5 164.5H212.5L206 178V189.5L198 202L193.5 203L190 207H184L179.5 210L178.5 216L174 214L156 219.5L153.5 221.5L133 225C132.667 226.333 132.2 229 133 229C134 229 141.5 233.5 139.5 233.5C137.9 233.5 134.5 236.5 133 238L131.5 251L123 253L117 259H114.5L112 262H107.5L102.5 259L98.5 260C96.8333 262.5 93.4 267.4 93 267C92.6 266.6 90.8333 261.5 90 259L89 258L79.5 249.5C74.8333 250 65.3 251 64.5 251C63.7 251 53.5 245.667 48.5 243L53 235L48.5 227L53.5 222L53 214.5C52 214.167 49.9 213.3 49.5 212.5C49.1 211.7 49.3333 208.833 49.5 207.5L50.5 173L28 138H32.5L39 147L48.5 142.5C46.3333 139.333 40 132.5 32 130.5C24.3866 128.597 22.5092 128.656 22.4892 128.953C22.4928 128.969 22.4964 128.985 22.5 129C22.4919 128.984 22.4882 128.968 22.4892 128.953C21.9857 126.767 21 122.191 21 121C21 119.5 18.5 115.5 19 115C19.4 114.6 22.1667 112.5 23.5 111.5L22.5 104.5L27 100.5C23 94.8333 14.9 83.4 14.5 83C14.1 82.6 9.33333 76.8333 7 74L0 48.5L3.5 46L5 38C7.16667 37.1667 11.5 35.3 11.5 34.5C11.5 33.7 14.5 20.1667 16 13.5L27 11V0Z" fill="correntColor"></path>
+              </svg>       
+        </div>
+        <div class="lebap">
+            <svg viewBox="0 0 319 280">
+              <path class="active" d="M37 19.5V4.5H42L49.5 9.5L58 10L58.5 3L60 1L62.5 0L64 1H67L69.5 0C69.5 1 69.6 3 70 3C70.4 3 79.1667 8.66667 83.5 11.5V14.5L88 18L89 30.5L90.5 34.5C91 36.3333 92 40.3 92 41.5C92 42.7 93 42.6667 93.5 42.5L96.5 49L105.5 55V61.5L109 64V71.5L110 74C109.833 74.6667 109.4 76.1 109 76.5C108.6 76.9 108.5 78 108.5 78.5C109.333 79.6667 111 82.1 111 82.5V85.5L137.5 104.5L168 126.5C170 129.167 174.1 134.8 174.5 136C174.9 137.2 188 145.5 194.5 149.5H198.5L205 147.5L214 159.5L239 173C243.667 177 253.2 185.3 254 186.5C254.8 187.7 263 191.333 267 193C267.667 193.5 269.2 194.5 270 194.5H273.5L275.5 194C275.833 193.667 277 192.8 279 192C280.6 191.2 281.667 192.333 282 193C281.667 193.667 281.4 195 283 195H287.5C287.833 195.167 288.8 195.9 290 197.5C291.5 199.5 294.5 199.5 296.5 200.5C298.5 201.5 298.5 202 304 207C305.5 207.5 307 207 309 207H312.5C313.5 207.833 315.6 209.6 316 210C316.5 210.5 318 213 318.5 213.5C319 214 318.5 215.5 318 215.5C317.5 215.5 314.5 216.5 313.5 217.5C312.5 218.5 312 220.5 312 221.5V237L316.5 243.5L315.5 245L311.5 248V250L309 250.5L298.5 251.5L297 250.5C296.167 250.167 294.4 249.5 294 249.5C293.6 249.5 293.5 248.167 293.5 247.5L288 244.5C285 243.833 278.9 242.5 278.5 242.5C278.1 242.5 275.333 239.5 274 238L271 238.5L267 243.5V252.5L261 258L239.5 257.5L224 266C224.667 268.833 226.1 274.6 226.5 275C226.9 275.4 225.333 277.833 224.5 279L160.5 280L158 249.5L169 234.5L144 204.5L123 196L94 162.5L46 114L13.5 115L10 63L1 60.5L0.5 59L0 21L37 19.5Z" fill="correntColor">   </path>
+              </svg>     
+        </div>
+        <div class="dashoguz">
+            <svg viewBox="0 0 220 214" >
+              <path class="active" d="M3.5 112.5L0.5 99.5L0 99L8 98.5L21.5 100L28.5 102L29.5 98L32 96.5V94.5C31.3333 93.8333 29.9 92.5 29.5 92.5C29.1 92.5 27.6667 87.1667 27 84.5L25.5 78C25.5 75.5 25.4 70.3 25 69.5C24.5 68.5 25.5 63 25.5 62.5C25.5 62 28 57 28 56.5C28 56.1 32 55 34 54.5C35 52.1667 37 47.4 37 47C37 46.5 42.5 42 43.5 42H54H60L68.5 40.5V37.5L71.5 36.5L72.5 31.5L74 28L71 23.5L75 21L80 19L82.5 22H87L92.5 23.5L94 26.5L96 31.5L99.5 30.5L96 25L92.5 17L87 15L83 11.5L88.5 7.5L92.5 9L104 10L105 5L106.5 3L108.5 0.5L123.5 18L134.5 19V21L139.5 25L138.5 26.5L145 34.5L164.5 34L165.5 33L168 34L173.5 38.5L176.5 41.5L173.5 42.5L172.5 44.5L175.5 51.5L172.5 53C171.7 53.4 172.167 55.5 172.5 56.5H175.5C176.5 57.1667 178.7 58.9 179.5 60.5C180.5 62.5 188 66.5 189 67.5C189.8 68.3 189.333 68.8333 189 69L179.5 65L176 66.5L182 79C180.833 80.5 178.3 83.8 177.5 85C176.7 86.2 177.833 90.5 178.5 92.5L197 103.5H219.5V117L182 118.5V142V160.5L192.5 163.5L194 191L195 214H187.5L181 205L175 207.5L172.5 202.5V181H127.5L117.5 175L90.5 170L77 175L41 177.5L37 181L27 170L30 164.5L25 148L17.5 141V132.5L3.5 112.5Z" fill="correntColor"></path>
+              </svg>                             
+        </div>
+    </section>
+
+  </div>
   <script src="/scripts/main.js"> </script>
   <script src="/scripts/src/materialize/materialize.js"></script>
   <!-- <script src="/scripts/src/materialize/flickity.pkgd.js"></script> -->
@@ -177,22 +348,21 @@
         autoplay:true,
         cover:true
       }).mount();
-      
-      let loading = document.querySelector('.loader div');
-      // loading.style.background = 
 
+      new Splide(".splide2",{
+        type:"loop",
+        perPage:1,
+        autoplay:true,
+        cover:true
+      }).mount();
+
+      new Splide(".splide3",{
+        type:"loop",
+        perPage:1,
+        autoplay:true,
+        cover:true
+      }).mount();
     });
-
-    
-
-  </script>
-  <script>
-    $(window).on('load',function(){
-      $('.loader').fadeOut(1000);
-      $('.content').fadeIn(1000);
-    })
-
-
   </script>
 </body>
 </html>

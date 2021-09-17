@@ -7,7 +7,10 @@ body{
   
   @import './src/header/nav2';
   @import './src/color';
-  @import './src/newsSection/newsSection';
+  @import './src/sections/newsSection';
+  @import './src/sections/swkSection';
+  @import './src/sections/brandSection';
+  @import './src/sections/locationSection';
   
   @mixin center($justify:center, $align:center) {
     display: flex;
