@@ -33,6 +33,16 @@
             div{
                 margin-right: 20px;
                 cursor: pointer;
+                padding: 3px 5px 5px 5px;
+                transition: 0.3s;
+                &:hover{
+                    background: rgba(243, 243, 242, 0.2);
+                }
+            }
+            #businessPlan{
+                border: 1px solid white;
+                padding: 3px 5px 5px 5px;
+                border-radius: 5px;
             }
         }
         .right{

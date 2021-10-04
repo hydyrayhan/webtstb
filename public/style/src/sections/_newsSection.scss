@@ -11,7 +11,7 @@
         "lowNews1 lowNews2 lowNews3"
         "splide splide splide";
         grid-gap:30px;
-        padding-bottom: 100px;
+        // padding-bottom: 100px;
         .navbar{
             grid-area: navbar;
             display: grid;
@@ -27,6 +27,10 @@
                 .h1{     
                     font-size: 26px;
                     font-weight: bold;
+                    a{
+                        text-decoration: none;
+                        color: $black;
+                    }
                 }
                 .img{
                     height: 25px;
@@ -70,7 +74,7 @@
             justify-content: space-between;
             .name{
                 font-size: 24px;
-                font-weight: bold;
+                font-weight: 600;
             }
             .title{
                 color: $gray;
@@ -110,6 +114,8 @@
             border-radius: 5px;
         }
         .lowNews1,.lowNews2,.lowNews3{
+            position: relative;
+            // margin-bottom: 100px;
             img{
                 width: 100%;
             }
@@ -117,35 +123,38 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-    
+                margin-top: 20px;
                 .name{
                     font-weight: 600;
                     margin-bottom: 30px;
                     color: $black;
                 }
-                .bottom{
-                    display: flex;
-                    align-items: center;
-                    .new{
-                        color: $blue;
-                        margin-right: 10px;
-                        font-weight: bold;
-                    }
-                    .dot{
-                        background: $gray;
-                        margin-top: 3px;
-                        width: 7px;
-                        height: 7px;
-                        border-radius: 50px;
-                    }
-                    .date{
-                        margin-left: 10px;
-                        color: $gray;
-                    }
+            }
+            .bottom{
+                display: flex;
+                align-items: center;
+                position: absolute;
+                bottom: 0;
+                .new{
+                    color: $blue;
+                    margin-right: 10px;
+                    font-weight: 600;
+                }
+                .dot{
+                    background: $gray;
+                    margin-top: 3px;
+                    width: 7px;
+                    height: 7px;
+                    border-radius: 50px;
+                }
+                .date{
+                    margin-left: 10px;
+                    color: $gray;
                 }
             }
         }
         .splide{
+            margin: 100px 0;
             grid-area: splide;
             img{
                 width: 100%;

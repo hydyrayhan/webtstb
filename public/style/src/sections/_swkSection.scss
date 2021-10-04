@@ -2,21 +2,38 @@
     background: #F3F3F2;
     padding-top: 50px;
     padding-bottom:100px;
-    .name{
-      font-size: 26px;
-      font-weight: bold;
-      
+    transition: 1s;
+    .bolumlerHeader{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .name{
+        font-size: 26px;
+        font-weight: bold;
+      }
+      .seeAll{
+        a{
+          text-decoration: none;
+          color:$blue;
+          font-weight: 400;
+        }
+    }
     }
     .karhanalar{
       display: flex;
-      justify-content: space-between;
+      // justify-content: space-between;
       flex-wrap: wrap;
+      a{
+        text-decoration: none;
+        width: 32%;
+        margin-right: 2%;
+        color: $black;
+      }
       .karhana{
           background: white;
           margin-top: 30px;
-          width:32%;
+          width:100%;
           border-radius: 10px;
-          display: flex;
           padding: 15px;
           box-sizing: border-box;
           display: flex;

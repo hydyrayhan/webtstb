@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section class="brandSection">
+        <div class="container">
+          <div class="splide2">
+            <div class="splide__track">
+              <ul class="splide__list">
+                <%for(var i = 0; i < list.ads2.length; i++){%>
+                  <li class="splide__slide"><div><img src="/pictures/reklams/<%=list.ads3[i]%>" alt=""></div></li>
+                <%}%>
+              </ul>
+            </div>
+          </div>
+          <div class="brandHeader">
+            <div class="header" id="brandHeader">Karhanalar - Sppt agzalary</div>
+            <div class="seeAll" id="seeAll"><a href=""> Hemmesini gormek</a></div>
+          </div>
+          <div class="brands">
+            <%for (var i = 1; i<loop+1; i++){%>
+              <%if(i%3==0){%>
+                <div class="brand" style="margin-right:0">
+                  <div class="left">
+                    <div class="brandLogo"><img src="/pictures/brands/<%=list.brands[i-1].brandlogo%>" alt=""></div>
+                    <div class="brandName" data-dynamic data-tm="<%-list.brands[i-1].brandName.TM%>" data-en="<%-list.brands[i-1].brandName.EN%>" data-ru="<%-list.brands[i-1].brandName.RU%>"><%=list.brands[i-1].brandName.RU%></div>
+                  </div>
+                  <div class="arrow"><a href=""><img src="/pictures/icon/topRight.png" alt=""></a></div>
+                </div>
+              <%}else{%>
+                <div class="brand">
+                  <div class="left">
+                    <div class="brandLogo"><img src="/pictures/brands/<%=list.brands[i-1].brandlogo%>" at=""></div>
+                    <div class="brandName" data-dynamic data-tm="<%-list.brands[i-1].brandName.TM%>" data-en="<%-list.brands[i-1].brandName.EN%>" data-ru="<%-list.brands[i-1].brandName.RU%>"><%=list.brands[i-1].brandName.RU%></div>
+                  </div>
+                  <div class="arrow"><a href=""><img src="/pictures/icon/topRight.png" alt=""></a></div>
+                </div>
+              <%}%>
+            <%}%>
+          </div>
+        </div>
+      </section>
+      
+      <script src="/scripts/src/materialize/splide.js"></script>
+      <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              new Splide(".splide2",{
+                  type:"loop",
+                  perPage:1,
+                  autoplay:true,
+                  cover:true
+                }).mount();
+    });
+      </script>
+</body>
+</html>

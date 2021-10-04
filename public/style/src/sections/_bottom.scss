@@ -1,0 +1,106 @@
+@import "../color";
+
+.bottomContainer{
+    position: relative;
+    transition: 1s;
+}
+
+.bottomSection{
+    width: 100%;
+    background: $notWhite;
+    padding: 80px 0;
+    transition: 1s;
+    margin-bottom: 0;
+    margin-top: 100px;
+
+
+    // position: absolute;
+    // top: 0;
+    
+    
+     .bottomGrid{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-areas:    
+        "phones adress email about";
+        font-size: 18px;
+        font-weight: 600;
+        color: $notBlack;
+        .phones{
+            grid-area: phones;
+        }
+        .adress{
+            padding-left: 50px;
+            grid-area: adress;
+        }
+        .email{
+            padding-left: 100px;
+            grid-area: email;
+        }
+        .about{
+            text-align: right;
+            grid-area: about;
+        }
+        .title{
+            color: gray;
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom:20px;
+        }
+    }
+}
+.bottomInformation{
+    width: 100%;
+    background: $blue;
+    color: white;
+    height: 200px;
+    display: flex;
+    align-items: center;
+
+
+    // position: absolute;
+    // top: 0;
+
+
+    transition: 1s;
+    .container{
+        display: flex;
+        align-items: center;
+    }
+    .titleCon{
+        width: 50%;
+        .big{
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+    }
+    .inputCon{
+        width: 50%;
+        padding-left:10px;
+        display: flex;
+        input[type=email]{
+            background: none;
+            outline: none;
+            border: 1px solid white;
+            padding: 14px 20px;
+            width: 60%;
+            margin-right: 8%;
+            color: white;
+            font-size: 18px;
+        }
+        input::placeholder{
+            color: white;
+            font-size: 18px;
+        }
+        input[type=submit]{
+            border:none;
+            outline: none;
+            color: $notBlack;
+            font-size: 18px;
+            width: 30%;
+            padding: 14px 20px;
+        }
+    }
+}
+

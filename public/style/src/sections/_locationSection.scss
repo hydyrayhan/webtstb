@@ -12,13 +12,20 @@
         .location{
             @include center(space-between,flex-start);
             .map{
-                width: 63%;
-                img{
-                    width: 95%;
+                width: 70%;
+                fill:#C4C4C4;
+                .tm{
+                    width: 80%;
+                    .active{
+                      fill:#2058D4;
+                    }  
+                }
+                svg{
+                    width: 100%;
                 }
             }
             .info{
-                width: 37%;
+                width: 30%;
                 padding: 20px;
                 .head{
                     font-size: 24px;

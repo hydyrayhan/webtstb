@@ -4,8 +4,11 @@
 //   return obj;
 // }
 
+
+
 const langLinks = document.querySelectorAll('.lang-link');
 const contentNodes = document.querySelectorAll('[data-content]');
+const dynamicNodes = document.querySelectorAll("[data-dynamic]");
 const navLang = document.querySelector('.chosen-lang');
 const language = document.querySelector('.language');
 const ul = document.querySelector('.language ul');
@@ -33,7 +36,7 @@ function onClicklangLinks() {
           let languagee = cookieLang.toUpperCase()
           document.cookie = `language = ${languagee}`
           document.cookie = `showLanguage = ${chosenLang}`
-  
+
           return changeUiLanguage(languagee)       
       })
   });
@@ -44,6 +47,9 @@ async function changeUiLanguage(languagee) {
   navLang.innerText = contents[languagee][languagee];
   contentNodes.forEach(node => {
     node.innerHTML = contents[languagee][node.id]
+  });
+  dynamicNodes.forEach(node => {
+    node.innerHTML = node.dataset[languagee.toLowerCase()]
   })
 }
 

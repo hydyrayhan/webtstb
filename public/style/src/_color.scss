@@ -2,17 +2,20 @@ $black : #10181F;
 $green : #1A9550;
 $blue : #2058D4;
 $gray : #999999;
+$notBlack :#323C44;
 $almostWhite : #FBFBFB;
+$notWhite : #F3F3F2;
 
 $font2:"Segoe UI";
 
 @mixin center($justify:center, $align:center) {
-    display: flex;
-    justify-content: $justify;
-    align-items: $align;
-  };
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+};
 
-  @font-face{
-    src:url('/style/font/PTSerif-Bold.ttf');
-    font-family: font1;
-  }
+@font-face{
+  src:url('/style/font/PTSerif-Bold.ttf');
+  font-family: font1;
+}
+

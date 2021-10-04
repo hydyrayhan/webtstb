@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include ('../src/header.ejs') %>
+
+    <a href="#eng" data-reload>English</a>
+    <a href="#es" data-reload>Espanol</a>
+
+    <p id="hi">welcome everyone!</p>
+
+
+
+    <div data-dil id="name">
+        <%=list.list[0].name.RU%>;
+    </div>
+    <div data-dil id="title">
+        <%=list.list[0].name.RU%>;
+    </div>
+
+    <script>
+        async function lowNews(){
+            const response = await fetch("http://localhost:3000/pressCenterData")
+            var data = await response.json();
+            console.log("Ishledim we men jsondan alyan");
+            return data;
+        }
+        var data1 = ''
+        async function change(){
+            if(data1 == ''){
+                data1 = await lowNews();
+            }
+            var a = document.querySelectorAll("[data-dil]");
+
+
+            var data = document.cookie;
+            data = data.split(";")
+            data = data.map(cookie => cookie.split('='));
+            data = data.reduce((accumulator,[key,value])=>
+            ({...accumulator, [key.trim()]: decodeURIComponent(value)}),{});
+            
+            var lang = data.language
+            for(var i = 0; i<a.length; i++){
+                a[i].textContent = data1[0][a[i].id][lang];
+            }
+        }
+        // change();
+        
+    </script>
+
+    <section class="NavbarSection">
+        <div class="container">
+            <div class="header">Press-center</div>
+            <div class="lineTop">
+                <div class="active"><a href="">News</a></div>
+                <div><a href="">Gechirilen Chareler</a></div>
+                <div><a href="">Rysgal gazati</a></div>
+            </div>
+            <hr>
+            <div class="teg">
+                <div class="title">Tegi:</div>    
+                <div class="dots">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="teg2 teg"></div>
+        </div>
+    </section>
+
+    <%- include ('../src/bottom.ejs') %>
+
+    <script>
+        // const lan = document.querySelector(".lan");
+        // console.log(lan);
+        // var data = document.cookie;
+        // data = data.split(";")
+        // data = data.map(cookie => cookie.split('='));
+        // data = data.reduce((accumulator,[key,value])=>
+        // ({...accumulator, [key.trim()]: decodeURIComponent(value)}),{});
+        
+        // var lang = data.language
+        // console.log(lang)
+    </script>
+
+<!-- Tegler -->
+    <script>
+        // async function hello(){
+        //     const response = await fetch("http://10.192.168.43:5000/?start=0&end=9")
+        //     var data = await response.json();
+        //     console.log(data);
+        // }
+        // hello()
+
+        async function tegsTake(){
+            const response = await fetch("/tegs");
+            var data = await response.json();
+            return data;
+        }
+        
+        function createElement(text,brExtra){
+            const tegs = document.querySelector(".teg");
+            const teg2 = document.querySelector(".teg2");
+            const dots = document.querySelector(".teg .dots");
+            const element = document.createElement("div");
+            const a = document.createElement("a");
+            a.setAttribute("href","#")
+            var text = document.createTextNode(text)
+            a.appendChild(text);
+            element.appendChild(a);
+            if(brExtra){
+                teg2.appendChild(element)
+            }else{
+                dots.parentNode.insertBefore(element,dots);
+            }
+        }
+        
+        async function orderElements(san){
+            var data = await tegsTake();
+            var a = true;
+            if(typeof(san)=="number"){
+                for(var i = 0; i<san; i++){
+                    createElement(data[i])
+                }
+            }else if(typeof(san)=="boolean"){
+                for(var i = 5; i<data.length; i++){
+                    createElement(data[i],"break");
+                }
+            }
+        }
+
+        orderElements(5)
+
+        const dots = document.querySelector(".teg .dots");
+        dots.addEventListener("click",async function(){
+            orderElements(true);
+            this.style.display = "none";
+        })
+    </script> 
+
+
+
+<!-- splide -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        new Splide(".splide",{
+            type:"loop",
+            perPage:1,
+            autoplay:true,
+            cover:true
+        }).mount();
+        new Splide(".splide2",{
+            type:"loop",
+            perPage:1,
+            autoplay:true,
+            cover:true
+        }).mount();
+        new Splide(".splide3",{
+            type:"loop",
+            perPage:1,
+            autoplay:true,
+            cover:true
+        }).mount();
+    });
+</script>
+
+</body>
+</html>

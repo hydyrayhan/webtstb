@@ -1,3 +1,4 @@
+
 /*!
  * Splide.js
  * Version  : 2.4.20
@@ -2000,6 +2001,7 @@ var STYLE_RESTORE_EVENTS = 'update.slide';
       Splide.on(STATUS_UPDATE_EVENTS, function () {
         return _this.update();
       }).on(STYLE_RESTORE_EVENTS, restoreStyles).on('click', function () {
+        console.log("karta basylanda eken")
         return Splide.emit('click', _this);
       }, slide);
       /*
@@ -4145,6 +4147,7 @@ var FRICTION_REDUCER = 7;
    */
 
   var Click = {
+    
     /**
      * Mount only when the drag is activated and the slide type is not "fade".
      *
@@ -4489,6 +4492,7 @@ var PATH = 'm15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4
  * @type {number}
  */
 
+
 var SIZE = 40;
 ;// CONCATENATED MODULE: ./src/js/components/arrows/index.js
 /**
@@ -4612,7 +4616,6 @@ var SIZE = 40;
   /**
    * Listen to native and custom events.
    */
-
   function bind() {
     Splide.on('click', function () {
       Splide.go('<');

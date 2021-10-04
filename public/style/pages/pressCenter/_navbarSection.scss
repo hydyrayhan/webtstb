@@ -1,0 +1,157 @@
+@import "../../src/color";
+
+.NavbarSection{
+    margin-top: 40px;
+    .container{
+        hr{
+            opacity: 30%;
+            border-top:2px solid #999999;
+        }
+        .header{
+            font-size: 26px;
+            font-weight: bold;
+        }
+        .lineTop{
+            font-weight: 600;
+            display: flex;
+            margin-top:30px;
+            div{
+                margin-right: 30px;
+                a{
+                    text-decoration: none;
+                    color: $black;
+                }
+            }
+            .active{
+                border-bottom: 2px solid $blue;
+                padding-bottom: 10px;
+                margin-bottom: -10px;
+            }
+        }
+        .teg{
+            display: flex;
+            margin-top: 20px;
+            div{
+                margin-right: 30px;
+                a{
+                    text-decoration: none;
+                    color: $black;
+                }
+            }
+            .title{
+                font-weight: 600;
+            }
+            .dots{
+                color: $black;
+                @include center();
+                cursor: pointer;
+                div{
+                    width: 4px;
+                    height: 4px;
+                    border-radius: 50%;
+                    background: #2E3A59;
+                    margin-right: 2px;
+                }
+            }
+        }
+        .teg2{
+            margin-left:65px;
+        }
+    }
+}
+
+.newsSection{
+    margin-top: 50px;
+    .container{
+        // display: flex;
+        .header{
+            font-size: 26px;
+            font-weight: 600;
+            color: $black;
+        }
+        .fullLeft0{
+            display: flex;
+        }
+        .fullLeft{
+            width: 65%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: 
+            "left left"
+            "right right"
+            "lowNews1 lowNews2";
+            grid-gap:30px;
+            margin-top: 30px;
+            .right{
+                flex-direction: row;
+                align-items: flex-end;
+                padding: 0 20px;
+                margin-top: -20px;
+                .top{
+                    width: 60%;
+                }
+                .name{
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+            }
+        }
+        .extraNews{
+            width: 35%;
+            padding-left: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            &Container{
+                position: relative;
+                display: flex;
+                align-items: center;
+                border-bottom: 2px solid rgba(153, 153, 153, 0.3);
+                padding-bottom: 20px;
+                .bottomTop{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    margin-top: 30px;
+                    .name{
+                        font-weight: 600;
+                        margin-bottom: 30px;
+                        color: $black;
+                    }
+                }
+                .bottom{
+                    display: flex;
+                    align-items: center;
+                    position: absolute;
+                    bottom: 15px;
+                    .new{
+                        color: $blue;
+                        margin-right: 10px;
+                        font-weight: 600;
+                    }
+                    .dot{
+                        background: $gray;
+                        margin-top: 3px;
+                        width: 7px;
+                        height: 7px;
+                        border-radius: 50px;
+                    }
+                    .date{
+                        margin-left: 10px;
+                        color: $gray;
+                    }
+                }
+            }
+        }
+        #newsSection{
+            margin: 50px 0 100px 0;
+            border: none;
+            border-top:2px solid rgba(153,153,153,0.3);
+        }
+        .splide{
+            img{
+                width: 100%;
+            }
+        }
+    }
+}
