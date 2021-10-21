@@ -1,0 +1,79 @@
+section.license{
+    background:#EFF0F5;
+    padding-bottom: 50px;
+    .container{
+        .header{
+            font-size: 26px;
+            font-weight: 700;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(153, 153, 153, 0.3);
+            padding-bottom: 15px;
+        }
+        .name{
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        .listContainer{
+            margin-top: 40px;
+            // margin-bottom: 50px;
+            .borderBlue{
+                border:1px solid $blue;
+            }
+            .agzalarList{
+                background: rgba(251, 251, 251, 1);
+                border-radius: 8px;
+                margin-top: 20px;
+                .main{
+                    @include center(space-between,flex-start);
+                    cursor: pointer;
+                    padding: 20px 40px; 
+                    border-radius: 8px;
+                    background-color: white;
+                    .logo{
+                        margin-right: 40px;
+                        min-width: 65px;
+                        min-height: 65px;
+                        margin-top: 10px;
+                        @include center();
+                        img{
+                            width: 100%;
+                        }
+                    }
+                    .text{
+                        margin-right: 40px;
+                        width: 100%;
+                        .listHead{
+                            font-weight: 600;
+                            color: $notBlack;
+                            margin-bottom: 5px;
+                        }
+                        .listText{
+                            color: $notBlack;
+                        }
+                        .textDots{
+                            text-overflow: ellipsis;
+                            overflow:hidden;
+                            display: -webkit-box !important;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
+                            white-space: normal;
+                        }
+                    }
+                    .icon{
+                        min-width: 12px;
+                        // margin: auto 0;
+                        margin-top: 30px;
+                        @include mobile{
+                            margin-top: 40px;
+                        }
+                        img{
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

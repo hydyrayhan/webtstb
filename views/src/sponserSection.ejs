@@ -34,6 +34,17 @@
                       </ul>
                     </div>
                 </div>
+                <div class="sponsers">
+                    <% for( var i = 0; i < list.sponserler.length; i++ ) { %>
+                        <div class="sponser">
+                            <div class="left">
+                                <div class="sponserLogo"><img src="/pictures/brands/<%=list.sponserler[i].brandlogo%>" alt="surat"></div>
+                                <div class="name"><%=list.sponserler[i].brandName%></div>
+                            </div>
+                            <div class="icon"><a href=""><img src="/pictures/icon/topRight.png" alt="icon"></a></div>
+                        </div>
+                    <% } %>
+                </div>
             </div>
             <div class="statictika">
                 <div class="card">
@@ -56,44 +67,62 @@
         </div>
     </section>
     <script>
+        var size = document.defaultView;
+        var page = 0
+        if(size.innerWidth<=1000){
+            page = 2;
+        }else{
+            page = 3;
+        }
+        size.addEventListener("resize",function(){
+            if(size.innerWidth <=1000){
+                first(2);
+            }else{
+                first(3);
+            }
+        })
         document.addEventListener('DOMContentLoaded', function() {
+            first(page);
+        })
+        function first(page){
+                new Splide(".splide4",{
+                      type:"loop",
+                      perPage:page,
+                      perMove:1,
+                      cover:true,
+                      gap:"25px",
+                      pagination:false
+                    }).mount();
     
-            new Splide(".splide4",{
-                  type:"loop",
-                  perPage:3,
-                  perMove:1,
-                  cover:true,
-                  gap:"25px",
-                  pagination:false
-                }).mount();
+                    var leftArrow = document.querySelector(".leftArrow");
+                    var leftArrowImg = document.querySelector(".leftArrow img");
+                    var rightArrowImg = document.querySelector(".rightArrow img");
+                    var rightArrow = document.querySelector(".rightArrow");
+                    var arrows = document.querySelectorAll(".splide4 .splide__arrows button")
+                    arrows.forEach(e=>{
+                        e.style.display = "none";
+                    })
+                    leftArrow.addEventListener("click",function(){
+                        arrows[0].click()
+                    })
+                    rightArrow.addEventListener("click",function(){
+                        arrows[1].click()
+                    })
+                    leftArrow.addEventListener("mouseover",function(){
+                        leftArrowImg.setAttribute("src","/pictures/icon/leftBlue.png");
+                    })
+                    leftArrow.addEventListener("mouseout",function(){
+                        leftArrowImg.setAttribute("src","/pictures/icon/left.png");
+                    })
+                    rightArrow.addEventListener("mouseover",function(){
+                        rightArrowImg.setAttribute("src","/pictures/icon/rightBlue.png");
+                    })
+                    rightArrow.addEventListener("mouseout",function(){
+                        rightArrowImg.setAttribute("src","/pictures/icon/right.png");
+                    });
+                }
 
-                var leftArrow = document.querySelector(".leftArrow");
-                var leftArrowImg = document.querySelector(".leftArrow img");
-                var rightArrowImg = document.querySelector(".rightArrow img");
-                var rightArrow = document.querySelector(".rightArrow");
-                var arrows = document.querySelectorAll(".splide4 .splide__arrows button")
-                arrows.forEach(e=>{
-                    e.style.display = "none";
-                })
-                leftArrow.addEventListener("click",function(){
-                    arrows[0].click()
-                })
-                rightArrow.addEventListener("click",function(){
-                    arrows[1].click()
-                })
-                leftArrow.addEventListener("mouseover",function(){
-                    leftArrowImg.setAttribute("src","/pictures/icon/leftBlue.png");
-                })
-                leftArrow.addEventListener("mouseout",function(){
-                    leftArrowImg.setAttribute("src","/pictures/icon/left.png");
-                })
-                rightArrow.addEventListener("mouseover",function(){
-                    rightArrowImg.setAttribute("src","/pictures/icon/rightBlue.png");
-                })
-                rightArrow.addEventListener("mouseout",function(){
-                    rightArrowImg.setAttribute("src","/pictures/icon/right.png");
-                })
-            });
+        
 
     </script>
 </body>

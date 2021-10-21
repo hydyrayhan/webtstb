@@ -2001,7 +2001,6 @@ var STYLE_RESTORE_EVENTS = 'update.slide';
       Splide.on(STATUS_UPDATE_EVENTS, function () {
         return _this.update();
       }).on(STYLE_RESTORE_EVENTS, restoreStyles).on('click', function () {
-        console.log("karta basylanda eken")
         return Splide.emit('click', _this);
       }, slide);
       /*

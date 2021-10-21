@@ -15,9 +15,10 @@
     "consultation":"Consultation",
     "menu":"Menu",
     "newsCenter":"News-center",
-    "news":"News",
-    "events":"Events announcements",
-    "gazet":"Rysgal gazeti"
+    "news":"<span></span>News",
+    "events":"<span></span>Events announcements",
+    "gazet":"<span></span>Rysgal gazeti",
+    "seeAll":"See All"
   },
   "TM":{
     "TM":"Türkmen",
@@ -35,9 +36,10 @@
     "consultation":"Taýýarlyk",
     "menu":"Menýu",
     "newsCenter":"Täzelikler merkezi",
-    "news":"Täzelikler",
-    "events":"Çäreler",
-    "gazet":"Rysgal gazeti"
+    "news":"<span></span>Täzelikler",
+    "events":"<span></span>Çäreler",
+    "gazet":"<span></span>Rysgal gazeti",
+    "seeAll":"Hemmesini gormek"
   },
   "RU":{
     "TM":"Türkmen",
@@ -55,8 +57,9 @@
     "consultation":"Консультация",
     "menu":"Меню",
     "newsCenter":"Пресс-центр",
-    "news":"Новости",
-    "events":"Анонсы мероприятий",
-    "gazet":"Rysgal gazeti"
+    "news":"<span></span>Новости",
+    "events":"<span></span>Анонсы мероприятий",
+    "gazet":"<span></span>Rysgal gazeti",
+    "seeAll":"Smotrit wse"
   }
 }

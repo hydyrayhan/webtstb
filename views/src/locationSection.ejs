@@ -5,11 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+      #active{
+        padding-bottom: 10px;
+        border-bottom: 3px solid #2058D5; ;
+      }
+    </style>
 </head>
 <body>
     <section class="locationSection">
         <div class="container">
           <div class="sectionHeader" id="bolumler">Welayatdaky bolumler</div>
+          <div class="welayatNames">
+            <div class="0" id="active">Ashgabat</div>
+            <div class="1">Ahal</div>
+            <div class="2">Mary</div>
+            <div class="4">Dashoguz</div>
+            <div class="3">Lebap</div>
+            <div class="5">Balkan</div>
+          </div>
           <div class="location">
             <div class="map">
               <div class="tm">
@@ -57,6 +71,8 @@
             </div>
         </div>
       </section>
+
+      <!-- map derdi -->
       <script>
         //map
         const tm = document.querySelectorAll('.tm svg path');
@@ -70,9 +86,46 @@
             }
             this.classList.add('active');
             info[this.id].style.display = "block"
+          });
+        };
+
+        var welayat = document.querySelectorAll(".welayatNames div");
+
+        for(var i =0; i<welayat.length; i++){
+          welayat[i].addEventListener("click",function(){
+            for(var j = 0; j<welayat.length; j++){
+              welayat[j].style.borderBottom = "none";
+            }
+            for(var j = 0; j<info.length; j++){
+              info[j].style.display = "none";
+              this.style.borderBottom = "3px solid #2058D5";
+            }
+            switch (Number(this.className)){
+              case 0 :
+                info[0].style.display="block";
+                break;
+              case(1):
+                info[0].style.display ="block";
+                break;
+              case(2):
+                info[1].style.display ="block";
+                break
+              case(3):
+                info[2].style.display ="block";
+                break
+              case(4):
+                info[3].style.display ="block";
+                break
+              case(5):
+                info[4].style.display ="block";
+                break
+            }
           })
         }
       </script>
+
+
+      <!-- splide -->
       <script>
         document.addEventListener('DOMContentLoaded', function() {
 

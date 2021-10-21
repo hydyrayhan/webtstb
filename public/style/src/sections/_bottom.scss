@@ -11,12 +11,20 @@
     padding: 80px 0;
     transition: 1s;
     margin-bottom: 0;
-    margin-top: 100px;
+    @include mobile{
+        padding: 25px 0;
+    }
 
-
-    // position: absolute;
-    // top: 0;
-    
+    .lastThreeLine{
+        text-align: right;
+        color: $gray;
+        font-weight: 600;
+        margin-top: 30px;
+        display: none;
+        @include mobile{
+            display: block;
+        }
+    }
     
      .bottomGrid{
         display: grid;
@@ -26,19 +34,37 @@
         font-size: 18px;
         font-weight: 600;
         color: $notBlack;
+        @include mobile{
+            grid-template-columns: 1fr;
+            grid-template-areas: 
+            "phones"
+            "adress"
+            "email"
+            "about";
+        }
         .phones{
             grid-area: phones;
         }
         .adress{
             padding-left: 50px;
             grid-area: adress;
+            @include mobile{
+                padding-left: 0px;
+                width: 80%;
+            }
         }
         .email{
             padding-left: 100px;
             grid-area: email;
+            @include mobile{
+                padding-left: 0px;
+            }
         }
         .about{
             text-align: right;
+            @include mobile{
+                text-align: left;
+            }
             grid-area: about;
         }
         .title{
@@ -46,6 +72,10 @@
             font-size: 18px;
             font-weight: 400;
             margin-bottom:20px;
+            @include mobile{
+                margin-bottom: 10px;
+                margin-top: 30px;
+            }
         }
     }
 }
@@ -53,10 +83,15 @@
     width: 100%;
     background: $blue;
     color: white;
-    height: 200px;
+    // height: 200px;
+    padding: 40px 30px;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
 
+    @include mobile{
+        padding:40px 30px;
+    }
 
     // position: absolute;
     // top: 0;
@@ -66,28 +101,54 @@
     .container{
         display: flex;
         align-items: center;
+        @include mobile{
+            flex-direction: column;
+        }
+    }
+    .bottomCon{
+        display: flex;  
+        justify-content: space-between;
     }
     .titleCon{
-        width: 50%;
         .big{
             font-size: 40px;
             font-weight: 700;
             margin-bottom: 20px;
         }
+        .title{
+            margin-bottom: 20px;
+        }
+        @include mobile{
+            width: 100%;
+        }
     }
     .inputCon{
-        width: 50%;
+        width: 60%;
         padding-left:10px;
         display: flex;
+        justify-content: flex-end;
+        @include mobile{
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+            padding-left: 0;
+        }
         input[type=email]{
             background: none;
             outline: none;
             border: 1px solid white;
             padding: 14px 20px;
-            width: 60%;
+            width: 50%;
             margin-right: 8%;
             color: white;
             font-size: 18px;
+            @include mobile{
+                width: 100%;
+                margin-right: 0;
+                box-sizing: border-box;
+                margin-bottom: 20px;
+            }
         }
         input::placeholder{
             color: white;
@@ -98,8 +159,10 @@
             outline: none;
             color: $notBlack;
             font-size: 18px;
-            width: 30%;
             padding: 14px 20px;
+            @include mobile{
+                width: 100%;
+            }
         }
     }
 }

@@ -49,22 +49,71 @@
     
       
       <div class="nav2">
-        <div class="nagysh"></div>
         <div class="container">
-          <div class="left">
-            <div data-content id='sppt'>SPPT</div>
-            <div data-content id='spptMember'>SPPT Membership</div>
-            <div data-content id='membership'>Membership</div>
-            <div data-content id='onlineBusiness'>Online Business</div>
-            <div data-content id='businessPlan'>Business Plans</div>
-            <div data-content id='licenses'>Licenses</div>
-            <div data-content id='consultation'>Consultation</div>
-          </div>
-          <div class="right">
-            <div class="dots"><img src="/pictures/icon/dots.png" alt=""></div>
-            <div data-content id="menu"></div>
+          
+            <div class="con">
+              <div class="left">
+                <a href="/sppt">
+                  <div data-content id='sppt'>SPPT</div>
+                </a>
+                <a href="/agzalar/-1">
+                  <div data-content id='spptMember'>SPPT Membership</div>
+                </a>
+                <a href="/membership">
+                  <div data-content id='membership'>Membership</div>
+                </a>
+                <a href="/onlineBusiness">
+                  <div data-content id='onlineBusiness'>Online Business</div>
+                </a>
+                <a href="/businessPlans">
+                  <div data-content id='businessPlan'>Business Plans</div>
+                </a>
+                <a href="/licenses">
+                  <div data-content id='licenses'>Licenses</div>
+                </a>
+                <a href="/consultation">
+                  <div data-content id='consultation'>Consultation</div>
+                </a>
+              </div>
+              <div class="right">
+                <div class="dots"><img src="/pictures/icon/dots.png" alt=""></div>
+                <div data-content id="menu"></div>
+              </div>
+            </div>
+            <div class="nagysh"></div>
           </div>
         </div>
       </div>
+
+      <script>
+        var size = document.defaultView;
+        if(size.innerWidth <=1000){
+          changeLangPlace();
+        }
+
+        size.addEventListener("resize",function(){
+          if(size.innerWidth <= 1000){
+            changeLangPlace();
+          }else{
+            reChangeLangPlace();
+          }
+        })
+
+        function changeLangPlace(){
+          const lang = document.querySelector(".language");
+          lang.parentNode.removeChild(lang);
+          const nav2 = document.querySelector(".nav2 .container");
+          const left = document.querySelector(".nav2 .left");
+          
+          left.parentNode.insertBefore(lang,left.nextSibling);
+        }
+        function reChangeLangPlace(){
+          const lang = document.querySelector(".language");
+          lang.parentNode.removeChild(lang);
+          const search = document.querySelector(".search");
+          
+          search.parentNode.insertBefore(lang,search);
+        }
+      </script>
 </body>
 </html>

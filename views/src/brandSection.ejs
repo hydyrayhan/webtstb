@@ -20,33 +20,39 @@
           </div>
           <div class="brandHeader">
             <div class="header" id="brandHeader">Karhanalar - Sppt agzalary</div>
-            <div class="seeAll" id="seeAll"><a href=""> Hemmesini gormek</a></div>
+            <div class="seeAll" ><a href="/agzalar/-1" data-content id="seeAll"> Hemmesini gormek</a></div>
           </div>
           <div class="brands">
             <%for (var i = 1; i<loop+1; i++){%>
               <%if(i%3==0){%>
-                <div class="brand" style="margin-right:0">
-                  <div class="left">
-                    <div class="brandLogo"><img src="/pictures/brands/<%=list.brands[i-1].brandlogo%>" alt=""></div>
-                    <div class="brandName" data-dynamic data-tm="<%-list.brands[i-1].brandName.TM%>" data-en="<%-list.brands[i-1].brandName.EN%>" data-ru="<%-list.brands[i-1].brandName.RU%>"><%=list.brands[i-1].brandName.RU%></div>
+                <a href="/agzalar/<%=list.brands[i-1].id%>/" class="margin">
+                  <div class="brand">
+                    <div class="left">
+                      <div class="brandLogo"><img src="/pictures/brands/<%=list.brands[i-1].brandlogo%>" alt=""></div>
+                      <div class="brandName" data-dynamic data-tm="<%-list.brands[i-1].brandName.TM%>" data-en="<%-list.brands[i-1].brandName.EN%>" data-ru="<%-list.brands[i-1].brandName.RU%>"><%=list.brands[i-1].brandName.RU%></div>
+                    </div>
+                    <div class="arrow"><img src="/pictures/icon/topRight.png" alt=""></div>
                   </div>
-                  <div class="arrow"><a href=""><img src="/pictures/icon/topRight.png" alt=""></a></div>
-                </div>
+                </a>
               <%}else{%>
-                <div class="brand">
-                  <div class="left">
-                    <div class="brandLogo"><img src="/pictures/brands/<%=list.brands[i-1].brandlogo%>" at=""></div>
-                    <div class="brandName" data-dynamic data-tm="<%-list.brands[i-1].brandName.TM%>" data-en="<%-list.brands[i-1].brandName.EN%>" data-ru="<%-list.brands[i-1].brandName.RU%>"><%=list.brands[i-1].brandName.RU%></div>
+                <a href="/agzalar/<%= list.brands[i-1].id %>">
+                  <div class="brand">
+                    <div class="left">
+                      <div class="brandLogo"><img src="/pictures/brands/<%=list.brands[i-1].brandlogo%>" at=""></div>
+                      <div class="brandName" data-dynamic data-tm="<%-list.brands[i-1].brandName.TM%>" data-en="<%-list.brands[i-1].brandName.EN%>" data-ru="<%-list.brands[i-1].brandName.RU%>"><%=list.brands[i-1].brandName.RU%></div>
+                    </div>
+                    <div class="arrow"><img src="/pictures/icon/topRight.png" alt=""></div>
                   </div>
-                  <div class="arrow"><a href=""><img src="/pictures/icon/topRight.png" alt=""></a></div>
-                </div>
+                </a>
               <%}%>
             <%}%>
           </div>
+          <div class="seeAll" ><a href="/agzalar/-1" data-content id="seeAll"> Hemmesini gormek</a></div>
         </div>
       </section>
       
       <script src="/scripts/src/materialize/splide.js"></script>
+      <!-- splide -->
       <script>
             document.addEventListener('DOMContentLoaded', function() {
               new Splide(".splide2",{
@@ -56,6 +62,15 @@
                   cover:true
                 }).mount();
     });
+      </script>
+
+      <script>
+        const brand = document.querySelectorAll(".brands a");
+        if(brand.length>3){
+          for(var i = 0; i<4; i++){
+            brand[i].className+=" four"
+          }
+        }
       </script>
 </body>
 </html>

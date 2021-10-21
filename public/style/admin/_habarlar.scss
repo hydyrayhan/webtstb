@@ -1,0 +1,167 @@
+.adminTable{
+    margin-left: 305px;
+    table{
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        margin-top: 20px;
+        tr{
+            border-bottom: 1px solid #717484;
+        }
+        td{
+            padding: 5px 10px;
+        }
+
+        input[type=checkbox] {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        font-size: 14px;
+        visibility: hidden;
+        }
+        
+        input[type=checkbox]:after {
+        content: " ";
+        display: inline-block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $adminWhite;
+        width: 16px;
+        height: 16px;
+        visibility: visible;
+        border: 1px solid #717484;
+        border-radius: 5px;
+        }
+        
+        input[type=checkbox]:checked:after {
+            content: "\2714";
+            font-weight: bold;
+            // font-family: Segoe UI;
+            // content: "\220E";
+            // border: 1px solid green;
+            // margin-bottom: 14px;
+            // // background-color: red;
+            // color: green;
+        }
+    }
+    .ql-snow .ql-stroke{
+        stroke: black;
+        color: black;
+    }
+    .ql-snow .ql-fill, .ql-snow .ql-stroke.ql-fill{
+        fill: black;
+    }
+    .ql-snow .ql-picker{
+        display: none;
+    } 
+    .ql-toolbar{
+        border: none;
+        border-bottom: 0.5px solid #717484;
+    }
+    .ql-container.ql-snow{
+        border: none;
+    }
+    .ql-toolbar.ql-snow{
+        padding: 0;
+        span{
+            border-right: 0.5px solid #717484;
+            padding: 5px;
+        }
+        .ql-formats:first-child{
+            display: none;
+        }
+    }
+    .editorCon{
+        background: $adminGray;
+        .ql-editor{
+            min-height: 300px;
+        }
+    }
+}
+.addHabar{
+    @include center(space-between,flex-start);
+    flex-wrap: wrap;
+    .box{
+        width: 48%;
+        margin-top: 50px;
+        .boxHeader{
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        .mazmun{
+            margin-top: 30px;
+            font-weight: 400;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        .editorCon{
+            margin-top: 10px;
+        }
+        .inputs{
+            margin-top: 15px;
+            @include center(flex-start);
+            .pdf{
+                display: inline-block;
+                font-size: 14px;
+                margin-right: 20px;
+                label{
+                    @include center(space-between);
+                    padding: 5px;
+                    background: #585962;
+                    cursor: pointer;
+                    margin-top: 10px;
+                    .text{
+                        margin-right: 15px;
+                        font-size: 12px;
+                    }
+                }
+            }
+            .date{
+                input{
+                    margin-top: 10px;
+                    background: $adminGray;
+                    padding: 7px 5px 5px;
+                    color: $adminWhite;
+                    border:none;
+                    font-size: 12px;
+                    cursor: pointer;
+                    outline: none;
+                }
+                input[type="date"]::-webkit-calendar-picker-indicator {
+                    cursor: pointer;
+                    filter: invert(1);
+                  }
+            }
+        }
+    }
+    .imgBox{
+        height: 100%;
+        .inputs{
+            background: $adminGray;
+            margin-top: 10px;
+            .imgLbCon{
+                width: 100%;
+                height: 335px;
+                @include center();
+                cursor: pointer;
+                img{
+                    object-fit: contain;
+                }
+            }
+        }
+    }
+    .save{
+        background: #7C7F90;
+        padding: 10px 35px;
+        margin: 50px 0;
+        border-radius: 6px;
+        font-size: 20px;
+        box-shadow: 5px 5px 10px  #202020;
+        color: white;
+        border:none;
+        outline: none;
+        cursor: pointer;
+    }
+}

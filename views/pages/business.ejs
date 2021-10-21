@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include ('../src/header.ejs') %>
+
+    <section class="agzalar">
+        <div class="container">
+            <div class="agzalarHeader" style="border: none; margin-bottom:0;">Интернет-торговля</div>
+            <div class="agzalarWelayatlar">
+                <div class="welayat active" id="0">Ashgabat</div>
+                <div class="welayat" id="1">Ahal</div>
+                <div class="welayat" id="2">Dashoguz</div>
+                <div class="welayat" id="3">Balkan</div>
+                <div class="welayat" id="4">Lebap</div>
+                <div class="welayat" id="5">Mary</div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="business">
+        <div class="container">
+            <div class="onlineHeader">Продовольствие и товары для дома</div>
+            <div class="businessCon">
+                <div class="business">
+                    <div class="img"><img src="/pictures/news/news1.png" alt=""></div>
+                    <div class="infoCon">
+                        <div class="label">Имя:</div>
+                        <div class=""></div>
+                        <div class="label">Адрес:</div>
+                        <div class=""></div>
+                        <div class="label">Телефон:</div>
+                        <div class=""></div> 
+                        <div class="label">Почта:</div>
+                        <div class=""></div>
+                        <div class="label">Веб-сайт:</div>
+                        <div class=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include ('../src/bottom.ejs') %>
+
+    <script>
+        active(3);
+    </script>
+
+
+    <!-- Which welayat -->
+    <script>
+        const welayat = document.querySelectorAll(".welayat");
+
+        var id  = -1;
+        if(id<0){
+            show(welayat[0])
+        }else{
+            show(welayat[id])
+        }
+        for(var i = 0; i<welayat.length; i++){
+            welayat[i].addEventListener("click",function(){
+                show(this);
+            })
+        }
+
+        function show(e){
+            for(var j = 0; j<welayat.length; j++){
+                welayat[j].classList.remove("active");
+                
+            }
+            e.classList.add("active");
+        }
+        
+    </script>
+</body>
+</html>

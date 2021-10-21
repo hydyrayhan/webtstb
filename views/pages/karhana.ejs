@@ -11,42 +11,46 @@
 </style>
 <body>
     <%- include ('../src/header.ejs') %>
-
     <div class="karhanaPage">
         <div class="container">
-            <div class="karhanaPage">Строительная промышленность</div>
+            <div class="karhanaPageName" data-dynamic data-ru="<%-data[id-1].name.RU%>" data-tm="<%-data[id-1].name.TM%>" data-en="<%-data[id-1].name.EN%>"><%=data[id-1].name.RU%></div>
             <div class="karhanaBody">
               <div class="leftNav">
                   <div class="navName">Отрасли и предприятия:</div>
                   <div class="sidenav">
                     <div class="subKarhana">
                       <%for(var i = 0; i<data.length; i++){%>
-                        <button  class="dropdown-btn"><%=data[i].name%> ></button>
+                        <div class="downBtn">
+                          <button  class="dropdown-btn" data-dynamic data-ru="<%-data[i].name.RU%>" data-tm="<%-data[i].name.TM%>" data-en="<%-data[i].name.EN%>"><%=data[i].name.RU%> ></button>
+                          <div class="downImg"><img src="/pictures/icon/downGray.svg" alt=""></div>
+                        </div>
                         <div class="dropdown-container">
                           <%for(var j = 0; j<data[i].sub.length;j++){%>
-                            <a href="#" class="link"><%=data[i].sub[j].name%></a>
+                            <a href="/karhana/<%=i+1%>?pudak=<%=j+1%>" class="link" data-dynamic data-ru="<%-data[i].sub[j].name.RU%>" data-tm="<%-data[i].sub[j].name.TM%>" data-en="<%-data[i].sub[j].name.EN%>"><%=data[i].sub[j].name.RU%></a>
                           <%}%>
                         </div>
                       <%}%>
                     </div>
                 </div>
               </div>
+            <div class="karhanaPageNameMobile" data-dynamic data-ru="<%-data[id-1].name.RU%>" data-tm="<%-data[id-1].name.TM%>" data-en="<%-data[id-1].name.EN%>"><%=data[id-1].name.RU%></div>
               <div class="karhanaContent">
                 <div class="pic"><img src="/pictures/news/news1.png" alt=""></div>
-                <div class="title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quis, magni voluptates maiores, veritatis autem architecto nemo hic quas eligendi fugit aspernatur natus doloribus, quia excepturi quae dolor quidem veniam minima! Ducimus ea quisquam obcaecati blanditiis asperiores quam. Doloremque, libero sed. Quod animi est obcaecati aut vitae. Quod impedit laborum doloremque ducimus itaque
-                </div>
-                <div class="karhanaInfo">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem eligendi aliquid, omnis quae reprehenderit porro sequi voluptate ullam saepe necessitatibus, quas, amet sit ab architecto illum. Quibusdam, nihil? Nemo vel minima incidunt id, saepe obcaecati. Nisi illo dolorem recusandae. Odio fuga doloribus eveniet cum doloremque mollitia, nobis cupiditate natus amet, quod blanditiis facere debitis quasi nulla sapiente laboriosam non provident vitae ipsam! Amet nobis enim, architecto excepturi quod porro iste perspiciatis et soluta sunt vero nostrum cupiditate nulla numquam, minus dicta eos ipsa. Voluptatem exercitationem suscipit reiciendis officiis magni nulla possimus, maiores magnam dolor molestias alias qui nihil laudantium veniam!
-                </div>
+                <div class="title" data-dynamic data-ru="<%-data[id-1].sub[pudak-1].title.RU%>" data-tm="<%-data[id-1].sub[pudak-1].title.TM%>" data-en="<%-data[id-1].sub[pudak-1].title.EN%>"><%=data[id-1].sub[pudak-1].title.RU%></div>
+                <div class="karhanaInfo" data-dynamic data-ru="<%-data[id-1].sub[pudak-1].text.RU%>" data-tm="<%-data[id-1].sub[pudak-1].text.TM%>" data-en="<%-data[id-1].sub[pudak-1].text.EN%>"><%=data[id-1].sub[pudak-1].text.RU%></div>
               </div>
             </div>
         </div>
     </div>
 
     <input type="hidden" class="id" value="<%=id%>">
+    <input type="hidden" class="pudak" value="<%=pudak%>">
+
     <%- include ('../src/bottom.ejs') %>
+    <!-- drop downs -->
     <script>
-      var dropdown = document.getElementsByClassName("dropdown-btn");
+      var dropdown = document.getElementsByClassName("downBtn");
+      var dropImg = document.getElementsByClassName("downBtn downImg");
       var i;
 
       for (i = 0; i < dropdown.length; i++) {
@@ -54,9 +58,11 @@
         this.classList.toggle("active");
         var dropdownContent = this.nextElementSibling;
         if (dropdownContent.style.display === "block") {
-        dropdownContent.style.display = "none";
+          this.childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/downGray.svg")
+          dropdownContent.style.display = "none";
         } else {
-        dropdownContent.style.display = "block";
+          this.childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/upBlue.svg")
+          dropdownContent.style.display = "block";
         }
         });
       }
@@ -70,21 +76,41 @@
         })
       }
 
+
       window.addEventListener("load",function(){
         const id = document.querySelector(".id");
+        const pudak = document.querySelector(".pudak");
+
         var subId = Number(id.value)-1;
-        var dropdownn = document.querySelectorAll(".dropdown-btn");
+        var dropdownn = document.querySelectorAll(".downBtn");
         dropdownn[subId].classList.add("active");
 
         var dropdownContent = dropdownn[subId].nextElementSibling;
-        dropdownContent.childNodes[1].style.color = "#2058D4";
-        console.log(dropdownContent.childNodes[1])
+        var pudakId = pudak.value*2-1
+        console.log(pudakId)
+        console.log(dropdownContent.childNodes)
+        dropdownContent.childNodes[pudakId].style.color = "#2058D4";
         if (dropdownContent.style.display === "block") {
+          this.childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/downGray.svg")
         dropdownContent.style.display = "none";
         } else {
         dropdownContent.style.display = "block";
+        dropdown[subId].childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/upBlue.svg")
         }
       })
+
+      
+      for(var i = 0; i<dropdown.length; i ++){
+        dropdown[i].addEventListener("mouseover",function(){
+          var active = this.className.split(" ")[1];
+          if(active!="active") this.childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/downBlue.svg");  
+        })
+        dropdown[i].addEventListener("mouseleave",function(){
+          var active = this.className.split(" ")[1];
+          if(active!="active") this.childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/downGray.svg");  
+        })
+      }
+      
     </script>
 </body>
 </html>

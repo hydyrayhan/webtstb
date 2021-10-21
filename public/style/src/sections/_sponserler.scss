@@ -13,14 +13,34 @@
             font-size: 26px;
             font-weight: 700;
             margin-bottom: 50px;
+            @include tablet{
+                margin-bottom: 0;
+            }
         }
         .arrows{
             @include center(space-between);
-            width: 8%;
+            width: 100px;
+            @include mobile{
+                display: none;
+            }
         }
     }
     .sponserler{
+        .splide4{
+            @include mobile{
+                display: none;
+            }
+        }
+        .sponsers{
+            display: none;
+            @include mobile{
+                display: block;
+            }
+        }
         margin-bottom: 100px;
+        @include mobile{
+            margin-bottom: 25px;
+        }
         width: 100%;
         padding: 10px;
         .sponser{
@@ -43,15 +63,28 @@
             }
             .icon{
                 height: 70px;
+                min-width: 15px ;
                 cursor: pointer;
+                @include mobile{
+                    min-width: 10px;
+                    max-width: 10px;
+                }
             }
         }
     }
     .statictika{
         margin-bottom: 100px;
         padding: 0 100px;
-        @include center(space-between);
+        @include mobile{
+            padding: 0;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+        }
+        @include center();
+        flex-wrap: wrap; 
         .card{
+            margin-top: 20px;
             max-width: 200px;
             @include center();
             flex-direction: column;

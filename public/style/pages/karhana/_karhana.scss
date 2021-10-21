@@ -1,10 +1,16 @@
 
 .karhanaPage{
+    margin-bottom: 100px;
     .container{
+        overflow-x: visible;
         .karhanaBody{
             display: flex;
+            @include mobile{
+                flex-direction: column;
+                margin-bottom: 100px;
+            }
         }
-        .navName{
+        .navName{ 
             color: $black;
             font-weight: 600;
         }
@@ -16,6 +22,19 @@
             width: 200px;
             padding-top: 20px;
         }
+        .downBtn{
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            .dropdown-btn{
+                display: flex;
+                width: auto;
+            }
+            &:hover button{
+                color: $blue;
+            }
+        }
+
 
         /* Style the sidenav links and the dropdown button */
         .sidenav a, .dropdown-btn {
@@ -27,10 +46,10 @@
             background: none;
             width: 100%;
             text-align: left;
-            cursor: pointer;
             outline: none;
             font-size: 16px;
             font-family: 'Segoe UI';
+            cursor: pointer;
         }
 
         /* On mouse-over */
@@ -46,8 +65,9 @@
 
         /* Add an active class to the active dropdown button */
         .active {
-        /* background-color: green; */
-        color: #2058D4;
+            button{
+                color: #2058D4;
+            }
         }
 
         /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
@@ -64,12 +84,24 @@
         .show {
             display: block;
         }
-        .karhanaPage{
+        .karhanaPageName,.karhanaPageNameMobile{
             margin-top: 50px;
             margin-bottom: 30px;
             margin-left: 250px;
             font-size: 26px;
             font-weight: bold;
+        }
+        .karhanaPageName{
+            @include mobile{
+                display: none;
+            }
+        }
+        .karhanaPageNameMobile{
+            display: none;
+            @include mobile{
+                display: block;
+                margin-left: 0;
+            }
         }
         .karhanaContent{
             padding-right: 5%;

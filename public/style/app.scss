@@ -1,3 +1,4 @@
+
 // Main page sections
 @import './src/header/nav2';
 @import './src/color';
@@ -16,3 +17,29 @@
 
 // Karhana pages
 @import './pages/karhana/karhana';
+
+// agzalar page
+@import "./pages/agzalar/agzalar";
+
+// sppt page
+@import "./pages/sppt/sppt";
+
+// membership page
+@import "./pages/membership/membership";
+
+// business page
+@import "./pages/business/business";
+
+// plans page
+@import "./pages/plans/plans";
+
+// lisense page
+@import "./pages/lisense/lisense";
+
+// consultation page
+@import "./pages/consultation/consultation";
+
+// admin page
+@import "./admin/leftBar";
+@import "./admin/habarlar";
+
