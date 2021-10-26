@@ -18,7 +18,6 @@ app.use('/img',express.static(__dirname+"public/pictures"));
 
 
 
-let locations;
 let languageData = '';
 app.get('/',async function(req,res){
   // backend-den maglumat chekyar;
