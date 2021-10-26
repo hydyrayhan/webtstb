@@ -9,33 +9,13 @@
 <body>
     <%- include ('../src/header.ejs') %>
 
-    <section class="license">
+    <section class="agzalar">
         <div class="container">
-            <div class="header">Лицензирование</div>
-            <div class="name">Тип лицензии</div>
+            <div class="agzalarHeader">Лицензирование</div>
 
-            <div class="listContainer">
-                <div class="agzalarList">
-                    <div class="main">
-                        <div class="logo"><img src="/pictures/brands/unreal.png" alt=""></div>
-                        <div class="text">
-                            <div class="listHead">Unity is the creator of the world's most widely-used real-time 3D (RT3D) development platform</div>
-                            <div class="listText textDots">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui faucibus enim nisi, interdum. Viverra augue enim id volutpat id. Integer et consectetur orci, aliquam. Sollicitudin diam felis proin scelerisque sit eget. Tincidunt porta a id vel porttitor pharetra non laoreet. Volutpat dictumst mauris amet, placerat a Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus quisquam recusandae dolorem numquam ullam repellat voluptatibus quidem corporis facere aliquam vero velit doloremque rerum nisi est, error quasi magnam labore architecto quam ipsa provident dolor, voluptatum sapiente! Dolor ex aperiam aliquam libero, adipisci facere aliquid aut iure magnam deleniti. Ullam officiis et ab tempora pariatur. Inventore vitae vel at tempora harum reiciendis soluta nihil magni cupiditate. Quisquam, vitae. Perspiciatis ipsam voluptas ex reprehenderit, asperiores officia necessitatibus consectetur rem beatae debitis nobis rerum id sequi itaque. Placeat ut unde atque eos tenetur assumenda quidem ab id culpa natus doloremque, commodi voluptatibus!</div>
-                        </div>
-                        <div class="icon"><img src="/pictures/icon/grayRightArrow.svg" alt=""></div>
-                    </div>
-                </div>
-                <div class="agzalarList">
-                    <div class="main">
-                        <div class="logo"><img src="/pictures/brands/unreal.png" alt=""></div>
-                        <div class="text">
-                            <div class="listHead">Unity is the creator of the world's most widely-used real-time 3D (RT3D) development platform</div>
-                            <div class="listText textDots">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dui faucibus enim nisi, interdum. Viverra augue enim id volutpat id. Integer et consectetur orci, aliquam. Sollicitudin diam felis proin scelerisque sit eget. Tincidunt porta a id vel porttitor pharetra non laoreet. Volutpat dictumst mauris amet, placerat a Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus quisquam recusandae dolorem numquam ullam repellat voluptatibus quidem corporis facere aliquam vero velit doloremque rerum nisi est, error quasi magnam labore architecto quam ipsa provident dolor, voluptatum sapiente! Dolor ex aperiam aliquam libero, adipisci facere aliquid aut iure magnam deleniti. Ullam officiis et ab tempora pariatur. Inventore vitae vel at tempora harum reiciendis soluta nihil magni cupiditate. Quisquam, vitae. Perspiciatis ipsam voluptas ex reprehenderit, asperiores officia necessitatibus consectetur rem beatae debitis nobis rerum id sequi itaque. Placeat ut unde atque eos tenetur assumenda quidem ab id culpa natus doloremque, commodi voluptatibus!</div>
-                        </div>
-                        <div class="icon"><img src="/pictures/icon/grayRightArrow.svg" alt=""></div>
-                    </div>
-                </div>
-            </div>      
+            <div class="docCon">
+                <a href="/licenses/<%= id %>"><div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, ad!</div></a>
+            </div>    
         </div>
     </section>
 
@@ -43,45 +23,5 @@
 
     <!-- 7 sany page navbardaky sholara active beryar -->
     <script>active(5)</script>
-
-
-    <!-- list achyan -->
-    <script>
-        const list = document.querySelectorAll(".agzalarList .main");
-        var bool = true;
-        for(var i = 0; i<list.length; i++){
-            list[i].addEventListener("click",function(){
-                if(this.style.backgroundColor == "white" || bool){
-                    for(var j = 0; j<list.length; j++){
-                        clothes(list[j])
-                    }
-                    open(this);
-                    bool = false;
-                }else{
-                    clothes(this);
-                }
-            })
-        }
-
-
-        function clothes(e){
-            e.childNodes[3].childNodes[3].classList.add("textDots")
-            e.parentNode.style.border = "none";
-            e.style.backgroundColor = "white";
-            var child = e.childNodes[5].childNodes[0];
-            child.setAttribute("src","/pictures/icon/grayRightArrow.svg");
-            e.childNodes[5].style.minWidth = "12px";
-        }
-        function open(e){
-            e.childNodes[3].childNodes[3].classList.remove("textDots")
-            e.style.backgroundColor = "#F3F3F2";
-            e.parentNode.style.border = "1px solid #2058D4"
-            var child = e.childNodes[5].childNodes[0];
-            child.setAttribute("src","/pictures/icon/downBlue.svg");
-            e.childNodes[5].style.minWidth = "20px";
-        }
-
-
-    </script>
 </body>
 </html>

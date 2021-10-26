@@ -15,7 +15,6 @@ app.use('/js',express.static(__dirname+"public/scripts"));
 app.use('/img',express.static(__dirname+"public/pictures"));
 
 const { render } = require("ejs");
-const { DefaultDeserializer } = require("v8");
 
 
 
@@ -26,17 +25,20 @@ app.get('/',async function(req,res){
   // backend-den maglumat chekyar;
   // let data;
   // try{
-  //   data = await axios.get(`http://10.192.168.43:5000/`);
+  //   data = await axios.get(`${host}/`);
   // }catch(error){
   //   console.log(error)
   // }
   // console.log(data.data);
+  // var mainPage = data.data;
 
  
 
   var mainPage = fs.readFileSync("./jsons/mainPage.json")
   mainPage = JSON.parse(mainPage);
+
   languageData = mainPage
+  
   var loop = 0;
   var seeAll = false;
   if(mainPage.brands.length<9){
@@ -66,14 +68,24 @@ app.get("/pressCenter",async function(req,res){
 
 //   let data3;
 //   try{
-//     data3 = await axios.get(`http://10.192.168.43:5000/pressCenter?page=${req.query.page}`);
+//     data3 = await axios.get(`${host}/pressCenter?page=${req.query.page}`);
 //   }catch(error){
 //     console.log(error)
 //   }
 //   console.log(data3,"jfldj")
 
     res.render("pages/pressCenter.ejs",{list:data,host});
-  
+})
+
+app.get("/login",function(req,res){
+  res.render("pages/login")
+})
+
+app.post("/login",function(req,res){
+  data = fs.readFileSync("./jsons/adminHabarlar.json");
+  data = JSON.parse(data);
+  res.render("admin/habarlar",{data,name:"Habarlar"});
+  // res.render("admin/habarlar",{name:"Habarlar"})
 })
 
 var data1;
@@ -109,12 +121,27 @@ app.get('/pressCenterNews',function(req,res){
 })
 
 
-app.get("/karhana/:id",function(req,res){
+let dataKarhana;
+app.get("/karhana/:id",async function(req,res){
+ // backend-den maglumat chekyar;
+
+//  if(dataKarhana == undefined){
+//    let data;
+//    try{
+//      data = await axios.get(`http://10.192.168.43:5000/industry`);
+//    }catch(error){
+//      console.log(error)
+//    }
+//    dataKarhana = data.data;
+//  }
+
+//  var data = dataKarhana;
+
   var data = fs.readFileSync("./jsons/karhana.json");
   data = JSON.parse(data);
   var id = req.params.id
   var pudak = req.query.pudak
-  res.render(`pages/karhana`,{data,id,pudak});
+  res.render(`pages/karhana`,{data,id,pudak,host});
 })
 
 app.get("/agzalar/:id",function(req,res){ 
@@ -182,7 +209,12 @@ app.get("/businessPlans",function(req,res){
 
 // licenses
 app.get("/licenses",function(req,res){
-  res.render("pages/lisense");
+  res.render("pages/lisense",{id:1});
+})
+
+//licensesMorePage
+app.get("/licenses/:id",function(req,res){
+  res.render("pages/lisenseMore")
 })
 
 // konsultasiya
@@ -196,9 +228,8 @@ app.get("/consultation",function(req,res){
 app.get("/admin",function(req,res){
   var data = fs.readFileSync("./jsons/adminHabarlar.json");
   data = JSON.parse(data);
-  var th = ["Ady","Täzelikler topary","Çap edilen senesi"]
 
-  res.render("admin/habarlar",{data,th});
+  res.render("admin/habarlar",{data});
 })
 
 app.get("/admin/:page",function(req,res){
@@ -221,9 +252,11 @@ app.get("/admin/:page",function(req,res){
 
 app.get("/admin/:page/add",function(req,res){
   var page = req.params.page;
+  console.log(page);
   if(page == 'Habarlar'){
-
     res.render("admin/toAdd/addHabarlar",{name : page+" goşmak"});
+  }else if(page == "Bildirişler"){
+    res.render("admin/toAdd/addBildirishler",{name:"Bildiriş goşmak"});
   }
 })
 

@@ -1,6 +1,7 @@
 .adminTable{
     margin-left: 305px;
     table{
+        color: $adminTableColor;
         width: 100%;
         border-collapse: collapse;
         font-size: 14px;
@@ -37,12 +38,6 @@
         input[type=checkbox]:checked:after {
             content: "\2714";
             font-weight: bold;
-            // font-family: Segoe UI;
-            // content: "\220E";
-            // border: 1px solid green;
-            // margin-bottom: 14px;
-            // // background-color: red;
-            // color: green;
         }
     }
     .ql-snow .ql-stroke{
@@ -85,10 +80,26 @@
     .box{
         width: 48%;
         margin-top: 50px;
+        font-size: 14px;
         .boxHeader{
             font-size: 25px;
             font-weight: 700;
             letter-spacing: 2px;
+        }
+        .headerCon{
+            display: flex;
+            flex-direction: column;
+            label{
+                margin: 22px 0 10px;
+            }
+            input{
+                height: 21px;
+                outline: none;
+                border: none;
+                background: $adminGray;
+                color: $adminWhite;
+                padding:3px 10px;
+            }
         }
         .mazmun{
             margin-top: 30px;
@@ -99,9 +110,26 @@
         .editorCon{
             margin-top: 10px;
         }
+    }
+    .imgBox{
+        height: 100%;
         .inputs{
+            background: $adminGray;
+            margin-top: 10px;
+            .imgLbCon{
+                width: 100%;
+                height: 335px;
+                @include center();
+                cursor: pointer;
+                img{
+                    object-fit: contain;
+                }
+            }
+        }
+        .extraInputs{
             margin-top: 15px;
             @include center(flex-start);
+            flex-wrap: wrap;
             .pdf{
                 display: inline-block;
                 font-size: 14px;
@@ -118,8 +146,77 @@
                     }
                 }
             }
-            .date{
+            .choseTeg{
+                margin-right: 30px;
+                .head{
+                    @include center(space-between);
+                    margin-bottom: 8px;
+                    div{
+                        @include center();
+                        padding:5px 4px;
+                        background: $adminGray;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        img{
+                            width: 100%;
+                        }
+                    }
+                }
                 input{
+                    background: $adminGray;
+                    border:none;
+                    color: $adminWhite;
+                    outline: none;
+                    padding:3px 7px;
+                    height: 20px;
+                }
+                .dropdown {
+                    position: relative;
+                    display: inline-block;
+                    min-width: 175px;
+                    color: $adminWhite;
+                    .dropbtn {
+                        background-color: $adminGray;
+                        color: #717484;
+                        padding: 6px 5px;
+                        font-size: 16px;
+                        border: none;
+                        cursor: pointer;
+                        // &:hover, &:focus {
+                        //   background-color: #2980B9;
+                        // }
+                    }
+                
+                    .dropdown-content {
+                        display: none;
+                        background: $adminGray;
+                        position: absolute;
+                        min-width: 175px;
+                        overflow: auto;
+                        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                        z-index: 1;
+                        div {
+                          background-color: #7C7F90;
+                          color: black;
+                          padding: 3px 7px;
+                          text-decoration: none;
+                          display: block;
+                          color: $adminWhite;
+                          margin-top: 5px;
+                          cursor: pointer;
+                        //   &:hover {background-color: #ddd;}
+                        }
+                    }
+                    .show {display: block;}
+                }
+            }
+            .date{
+                margin-right: 30px;
+                .name2{
+                    width: 160px;
+                }
+                input{
+                    width: 120px;
                     margin-top: 10px;
                     background: $adminGray;
                     padding: 7px 5px 5px;
@@ -134,21 +231,42 @@
                     filter: invert(1);
                   }
             }
-        }
-    }
-    .imgBox{
-        height: 100%;
-        .inputs{
-            background: $adminGray;
-            margin-top: 10px;
-            .imgLbCon{
-                width: 100%;
-                height: 335px;
-                @include center();
-                cursor: pointer;
-                img{
-                    object-fit: contain;
+            .bil{
+                margin-top: 15px;
+            }
+            .ishjen{
+                height: 100%;
+                height: 58px;
+                .head{
+                    margin-bottom: 13px;
                 }
+                input[type=checkbox] {
+                    width: 16px;
+                    height: 16px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    visibility: hidden;
+                    }
+                    
+                    input[type=checkbox]:after {
+                    content: " ";
+                    display: inline-block;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: $adminWhite;
+                    width: 16px;
+                    height: 16px;
+                    visibility: visible;
+                    border: 1px solid #717484;
+                    border-radius: 5px;
+                    }
+                    
+                    input[type=checkbox]:checked:after {
+                        content: "\2714";
+                        font-weight: 100;
+                        font-size: 12px;
+                    }
             }
         }
     }

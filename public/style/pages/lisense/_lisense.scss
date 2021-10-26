@@ -1,76 +1,55 @@
-section.license{
-    background:#EFF0F5;
-    padding-bottom: 50px;
+section.agzalar{
     .container{
+        .docCon{
+            width: 100%;
+            a{
+                text-decoration: none;
+                color: $black;
+                div{
+                    background: white;
+                    padding: 30px;
+                    margin-bottom: 20px;
+                }
+            }
+        } 
         .header{
-            font-size: 26px;
-            font-weight: 700;
-            margin-top: 50px;
-            margin-bottom: 30px;
-            border-bottom: 2px solid rgba(153, 153, 153, 0.3);
-            padding-bottom: 15px;
-        }
-        .name{
             font-size: 24px;
             font-weight: 600;
-            margin-bottom: 30px;
         }
-        .listContainer{
-            margin-top: 40px;
-            // margin-bottom: 50px;
-            .borderBlue{
-                border:1px solid $blue;
-            }
-            .agzalarList{
-                background: rgba(251, 251, 251, 1);
-                border-radius: 8px;
-                margin-top: 20px;
-                .main{
-                    @include center(space-between,flex-start);
-                    cursor: pointer;
-                    padding: 20px 40px; 
-                    border-radius: 8px;
-                    background-color: white;
-                    .logo{
-                        margin-right: 40px;
-                        min-width: 65px;
-                        min-height: 65px;
-                        margin-top: 10px;
-                        @include center();
-                        img{
-                            width: 100%;
+        .content{
+            font-size: 14px;
+            color: $black;
+        }
+
+        .adress{
+            color: $gray;
+            margin-bottom: 10px;
+            margin-top: 30px ;
+        }
+
+        .filesCon{
+            display: flex;
+            flex-wrap: wrap;
+            .file{
+                display: flex;
+                width: 30%;
+                @include mobile{
+                    width: 100%;
+                }
+                margin-top: 5px;
+                margin-bottom: 10px;
+                .icon{
+                    margin-right: 20px;
+                }
+                .fileRight{
+                    .name{
+                        a{
+                            color: $blue;
+                            text-decoration: none;
                         }
                     }
-                    .text{
-                        margin-right: 40px;
-                        width: 100%;
-                        .listHead{
-                            font-weight: 600;
-                            color: $notBlack;
-                            margin-bottom: 5px;
-                        }
-                        .listText{
-                            color: $notBlack;
-                        }
-                        .textDots{
-                            text-overflow: ellipsis;
-                            overflow:hidden;
-                            display: -webkit-box !important;
-                            -webkit-line-clamp: 3;
-                            -webkit-box-orient: vertical;
-                            white-space: normal;
-                        }
-                    }
-                    .icon{
-                        min-width: 12px;
-                        // margin: auto 0;
-                        margin-top: 30px;
-                        @include mobile{
-                            margin-top: 40px;
-                        }
-                        img{
-                            width: 100%;
-                        }
+                    .kb{
+                        color: $gray;
                     }
                 }
             }

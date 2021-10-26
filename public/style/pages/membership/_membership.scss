@@ -19,8 +19,13 @@
     .columns{
         @include center(space-between,flex-start);
         margin-bottom: 50px;
+        flex-wrap: wrap;
         .col{
             width: 48%;
+            @include mobile(){
+                width: 100%;
+                margin-bottom: 50px;
+            }
         }
         .name{
             font-size: 24px;

@@ -34,8 +34,10 @@
   });
   var button = document.querySelector(".ok");
   button.addEventListener("click",function(){
-      var p = document.querySelector("#editor p")
-      console.log(p.innerHTML);
+      var p = document.querySelectorAll("#editor p")
+      for(var i =0 ;i<p.length; i++){
+        console.log(p[i])
+      }
   })
 </script> 
     

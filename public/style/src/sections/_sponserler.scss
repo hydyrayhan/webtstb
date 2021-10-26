@@ -54,6 +54,8 @@
                 .sponserLogo{
                     max-width: 70px;
                     max-height: 70px;
+                    min-width: 70px;
+                    min-height: 70px;
                     margin-right: 20px;
                     @include center();
                     img{
@@ -110,4 +112,4 @@
             }
         }
     }
-}
+} 

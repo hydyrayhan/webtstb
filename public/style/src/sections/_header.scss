@@ -76,6 +76,7 @@ body{
           .icon{
             @include center;
             margin-right: 10px;
+            min-width: 14px;
             img{
               width: 100%;
             }
@@ -107,6 +108,7 @@ body{
           }
           .icon{
             @include center;
+            min-width: 12px;
             img{
               width: 100%;
             }

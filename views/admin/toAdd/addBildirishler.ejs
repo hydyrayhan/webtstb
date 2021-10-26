@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+</head>
+<body>
+    <%- include ('../admin.ejs') %>
+
+    <div class="adminContainer">
+        <div class="main">
+            <div class="pageHeader">
+                <%= name %> 
+            </div>
+        </div>
+
+        <form action="/addHabar" method="POST" id="identifier">
+            <div class="adminTable addHabar">
+                    <div class="box">
+                        <div class="boxHeader">Türkmençe giriziň</div>
+                        <div class="headerCon">
+                            <label class="mazmuny" for="">Mazmunyň headeri:</label>
+                            <input type="text" name="headerTM" class="header">
+                        </div>
+                        <div class="mazmun">Mazmuny:</div>
+                        <div class="editorCon">
+                            <div id="editor">
+                                <p></p>
+                            </div>
+                        </div>
+                    
+                    </div>
+                    <div class="box imgBox">
+                        <div class="boxHeader">Suraty giriziň</div>
+                        <div class="mazmun">Suraty giriziň:</div>
+                        <div class="inputs">
+                            <p><input type="file"  accept="image/*" name="image" id="img" onchange="loadFile(event)" style="display: none;"></p>
+                            <label class="imgLbCon" for="img"><img id="output" src="/pictures/icon/addPicture.svg" /></label>
+                        </div>
+                        <div class="headerCon">
+                            <label class="mazmuny" for="ady">Ady:</label>
+                            <input type="text" name="ady" id="ady" class="header">
+                        </div>
+                        <div class="extraInputs">
+                            <div class="pdf" style="display: none;">
+                                <div class="name">Faýl (PDF) giriziň:</div>
+                                <label for="file1">
+                                    <div class="text">Maglumat giriziň</div>
+                                    <div><img src="/pictures/icon/folder.svg" alt="fdf"></div>
+                                </label>
+                                <input id="file1" name="pdf" type="file" style="display: none;">
+                            </div>
+                            <div class="choseTeg">
+                                <div class="head">
+                                    <label for="teg">T/t-ny saýlaň</label>
+                                    <div onclick="myFunction('add')"><img src="/pictures/icon/whiteEdit.svg" alt=""></div>
+                                </div>
+                                <div class="dropdown">
+                                    <div  class="dropbtn">T/t-ny giriziň</div>
+                                    <div id="myDropdown" class="dropdown-content">
+                                        <div><input type="text"></div>
+                                        <div>Ayhan</div>
+                                        <div>Aymuhammet</div>
+                                        <div>Narly</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="date">
+                                <div class="name">B.girizilen senesi:</div>
+                                <input type="date" name="startDate">
+                            </div>
+                            <div class="date">
+                                <div class="name name2">B.tamamlanýan senesi:</div>
+                                <input type="date" name="endDate">
+                            </div>
+                            <div class="ishjen bil">
+                                <div class="head">Işjeň:</div>
+                                <input type="checkbox" checked name="bildirishIshjen" id="">
+                            </div>
+                        </div>
+                    
+    
+                    <textarea name="text" style="display: none;" id="hiddenArea" cols="30"  rows="10"></textarea>
+                    <textarea name="text2" id="hiddenArea2" style="display: none;" cols="30"  rows="10"></textarea>
+                    <textarea name="text3" id="hiddenArea3" cols="30" style="display: none;" rows="10"></textarea>
+                </div>
+                <div class="box">
+                    <div class="boxHeader">Rusça giriziň</div>
+                    <div class="headerCon">
+                        <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
+                        <input type="text" name="headerRU" id="topTa" class="header">
+                    </div>
+                    <div class="mazmun">Mazmuny:</div>
+                    <div class="editorCon">
+                        <div id="editor2">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="boxHeader">Iňlisçe giriziň</div>
+                    <div class="headerCon">
+                        <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
+                        <input type="text" name="headerEN" id="topTa" class="header">
+                    </div>
+                    <div class="mazmun">Mazmuny:</div>
+                    <div class="editorCon">
+                        <div id="editor3">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <input class="save" type="submit" value="Ýatda sakla">
+        </form>
+    </div>
+
+
+
+    <!-- picture show when i choose from file -->
+    <script>
+        var loadFile = function(event) {
+            var image = document.getElementById('output');
+            image.src = URL.createObjectURL(event.target.files[0]);
+            image.style.width = "100%";
+            image.style.height = "100%";
+        };
+    </script>
+
+    <!-- pdf name give to label value -->
+
+    <script>
+        var file = document.querySelector(".pdf input[type='file']");
+        file.addEventListener("change",function(){
+            var text = this.value.split("\\")[2];
+            this.parentNode.childNodes[3].childNodes[1].textContent = text;
+        });
+    </script>
+
+
+    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+        <!-- Initialize Quill editor -->
+        <script>
+        
+            var editor = new Quill('#editor', {
+              modules: { },
+              theme: 'snow'
+            });
+            var editor = new Quill('#editor2', {
+              modules: { },
+              theme: 'snow'
+            });
+            var editor = new Quill('#editor3', {
+              modules: { },
+              theme: 'snow'
+            });
+      
+          //   3 sany textarea girizilen maglumatlary hidden textarea girizyar
+          var idForm = document.querySelector("#identifier");
+          var hiddenText = document.querySelector("#hiddenArea");
+          var hiddenText2 = document.querySelector("#hiddenArea2");
+          var hiddenText3 = document.querySelector("#hiddenArea3");
+      
+          idForm.addEventListener("submit",function(){
+              var text = document.querySelector("#editor .ql-editor");
+              var text2 = document.querySelector("#editor2 .ql-editor");
+              var text3 = document.querySelector("#editor3 .ql-editor");
+              hiddenText.value = text.innerHTML;
+              hiddenText2.value = text2.innerHTML;
+              hiddenText3.value = text3.innerHTML;
+          })
+          </script> 
+</body>
+</html>
