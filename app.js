@@ -14,7 +14,6 @@ app.use('/font',express.static(__dirname+"public/style"));
 app.use('/js',express.static(__dirname+"public/scripts"));
 app.use('/img',express.static(__dirname+"public/pictures"));
 
-const { render } = require("ejs");
 
 
 
