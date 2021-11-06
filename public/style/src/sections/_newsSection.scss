@@ -76,6 +76,10 @@
                 }
                 grid-area: right1;
                 color: $gray;
+                a{
+                    text-decoration: none;
+                    color: $gray;
+                }
                 div{
                     padding:5px;
                     text-align: center;
@@ -96,7 +100,7 @@
                         width: 100%;
                     }
                 }
-                .active{
+                .active1{
                     display: flex;
                     align-items: center;
                     height: 38px;

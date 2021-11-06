@@ -17,8 +17,7 @@
         <div class="container">
           <div class="sectionHeader" id="bolumler">Welayatdaky bolumler</div>
           <div class="welayatNames">
-            <div class="0" id="active">Ashgabat</div>
-            <div class="1">Ahal</div>
+            <div class="0" id="active">Ashgabat we Ahal</div>
             <div class="2">Mary</div>
             <div class="4">Dashoguz</div>
             <div class="3">Lebap</div>
@@ -39,7 +38,43 @@
             </div>
             
             <div class="info">
-              <%for(var i = 0; i<5;i++){%>
+              <%for(var i = 1; i<6  ;i++){%>
+                <% if (i==1) { %>
+                  <div class="velayat" style="display: none;">
+
+                    <div class="head change" id="mapHead" data-dynamic data-tm="<%-list.location[i-1].place.TM%>" data-ru="<%-list.location[i-1].place.RU%>" data-en="<%-list.location[i-1].place.EN%>"><%=list.location[i-1].place.RU%></div>
+                    <div class="title" id="mapAdress">Adress:</div>
+                    <div class="information change" id="mapLocation" data-dynamic data-tm="<%-list.location[i-1].place.TM%>" data-ru="<%-list.location[i-1].place.RU%>" data-en="<%-list.location[i-1].place.EN%>"><%=list.location[i-1].adress.RU%></div>
+                    <div class="title" id="mapPhones">Telefonlar:</div>
+                    <%for(var j = 0; j<list.location[i-1].phone.length; j++){%>
+                      <div class="information change up"><%=list.location[i-1].phone[j]%></div>
+                    <%}%>
+                    <div class="title" id="mapFaks">Faks:</div>
+                    <%for(var j = 0; j<list.location[i-1].faks.length; j++){%>
+                      <div class="information change faks"><%=list.location[i-1].faks[j]%></div>
+                    <%}%>
+                    <div class="title" id="mapEmail">Elektron pochta:</div>
+                    <div class="information change" style="margin-bottom: 20px;"><%=list.location[i-1].email%></div>
+
+
+                    <div class="head change" id="mapHead" data-dynamic data-tm="<%-list.location[i].place.TM%>" data-ru="<%-list.location[i].place.RU%>" data-en="<%-list.location[i].place.EN%>"><%=list.location[i].place.RU%></div>
+                    <div class="title" id="mapAdress">Adress:</div>
+                    <div class="information change" id="mapLocation" data-dynamic data-tm="<%-list.location[i].place.TM%>" data-ru="<%-list.location[i].place.RU%>" data-en="<%-list.location[i].place.EN%>"><%=list.location[i].adress.RU%></div>
+                    <div class="title" id="mapPhones">Telefonlar:</div>
+                    <%for(var j = 0; j<list.location[i].phone.length; j++){%>
+                      <div class="information change up"><%=list.location[i].phone[j]%></div>
+                    <%}%>
+                    <div class="title" id="mapFaks">Faks:</div>
+                    <%for(var j = 0; j<list.location[i].faks.length; j++){%>
+                      <div class="information change faks"><%=list.location[i].faks[j]%></div>
+                    <%}%>
+                    <div class="title" id="mapEmail">Elektron pochta:</div>
+                    <div class="information change"><%=list.location[i].email%></div>
+
+                  </div>
+                  
+                  
+                <% }else{ %>
                 <div class="velayat" style="display: none;">
                   <div class="head change" id="mapHead" data-dynamic data-tm="<%-list.location[i].place.TM%>" data-ru="<%-list.location[i].place.RU%>" data-en="<%-list.location[i].place.EN%>"><%=list.location[i].place.RU%></div>
                   <div class="title" id="mapAdress">Adress:</div>
@@ -55,7 +90,7 @@
                   <div class="title" id="mapEmail">Elektron pochta:</div>
                   <div class="information change"><%=list.location[i].email%></div>
                 </div>
-              <%}%>
+              <%}}%>
             </div>
           </div>
           <div class="splide3">

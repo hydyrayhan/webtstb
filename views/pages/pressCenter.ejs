@@ -15,7 +15,7 @@
             <div class="lineTop">
                 <div class="active" data-id0 data-content id="news"><span></span> News</div>
                 <div data-id1 data-content id="events"><span></span> Events announcements</div>
-                <div data-id2 data-content id="gazet"><span></span> About us</div>
+                <a href="/gazet?page=pressCenter"><div data-id2 data-content id="gazet"><span></span> About us</div></a>
             </div>
             <div class="teg">
                 <div class="title">Tegi:</div>
@@ -246,58 +246,6 @@
         })
     </script> 
 
-<!-- new splide -->
-<script>
-    var slideIndex = 1;
-    showSlides(slideIndex);
-
-    function plusSlides(n) {
-      showSlides(slideIndex += n);
-    }
-
-    function currentSlide(n) {
-      showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-      var slides = document.getElementsByClassName("mySlides");
-      if (n > slides.length) {slideIndex = 1}
-      if (n < 1) {slideIndex = slides.length}
-      for (var i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";
-      }
-      slides[slideIndex-1].style.display = "block";
-    }
-
-
-
-
-
-    var slideIndex2 = 1;
-    showSlides2(slideIndex2);
-
-    function plusSlides2(n) {
-        
-      showSlides2(slideIndex2 += n);
-    }
-
-    function currentSlide2(n) {
-      showSlides2(slideIndex2 = n);
-    }
-
-    function showSlides2(n) {
-      
-      var slides2 = document.getElementsByClassName("mySlides2");
-      if (n > slides2.length) {slideIndex2 = 1}
-      if (n < 1) {slideIndex2 = slides2.length}
-      for (var i = 0; i < slides2.length; i++) {
-          slides2[i].style.display = "none";
-      }
-      slides2[slideIndex2-1].style.display = "block";
-    }
-</script>
-
-
 
 <!-- load more -->
 <script>
@@ -320,9 +268,20 @@
 
     var right1 = document.querySelectorAll(".lineTop div");
     var full = document.querySelectorAll(".fullHide");
+
+    var sl = "<%=sl%>"
+    
+    if(sl == 2){
+        tab = 2;
+        full[1].style.display = "block";
+        full[0].style.display = "none";
+        tab = 2;
+        right1[1].classList.add("active")
+        right1[0].classList.remove("active");
+    }
+
     for(var i = 0; i<right1.length; i++){
       right1[i].addEventListener("click",function(){
-          console.log(page);
           if(page == 2){
               var splidd = document.querySelector(".splide2");
               var spliddS = document.querySelectorAll(".splideSplide");
@@ -372,7 +331,6 @@
     
     async function setNews(times,limit,tab){
         var data = await takeData(times,limit,tab)
-
         if(times == 1){
             
             for(var i = 0; i<data.length; i++){
@@ -493,7 +451,7 @@
         }
     }
 
-    setNews(1,limit,1);
+    setNews(1,limit,tab);
     var splide2 = document.querySelectorAll(".slideshow-container");
     
     load.addEventListener("click",function(){

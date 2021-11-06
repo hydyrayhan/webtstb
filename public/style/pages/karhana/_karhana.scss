@@ -3,6 +3,59 @@
     margin-bottom: 100px;
     .container{
         overflow-x: visible;
+        .forPhone{
+            display: none;
+            @include mobile{
+                display: block;
+            }
+            
+            .ifc{
+                width: 100%;
+                height: 100vh;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 100;
+                background: #f8f8f8;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                .space{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    // background: red;
+                    height: 90vh
+                }
+            }
+            .back{
+                display: flex;
+                padding:15px 25px;
+                margin-top: 30px;
+                background: white;
+                border:1px solid $blue;
+                border-radius: 4px;
+                font-weight: 600;
+                margin-bottom: 20px;
+                .img{
+                    width: 10px;
+                    margin-right: 25px;
+                    img{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        .warning{
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .phonekategori{
+            @include center(space-between);
+            border-radius: 5px;
+            border: 1px solid $gray;
+            padding: 11px 14px;
+        }
         .karhanaBody{
             display: flex;
             @include mobile{
@@ -16,6 +69,9 @@
         }
         .leftNav{
             margin-right: 50px;
+            @include mobile{
+                display: none;
+            }
         }
         .sidenav {
             height: 100%;
@@ -37,7 +93,7 @@
 
 
         /* Style the sidenav links and the dropdown button */
-        .sidenav a, .dropdown-btn {
+        .sidenav a, .dropdown-btn, .ifc a{
             padding: 6px 8px 6px 16px;
             text-decoration: none;
             color: $notBlack;
@@ -53,7 +109,7 @@
         }
 
         /* On mouse-over */
-        .sidenav a:hover, .dropdown-btn:hover {
+        .sidenav a:hover, .dropdown-btn:hover, .ifc a:hover {
         color: $blue;
         }
 
@@ -90,6 +146,9 @@
             margin-left: 250px;
             font-size: 26px;
             font-weight: bold;
+            @include mobile{
+                margin-top: 30px;
+            }
         }
         .karhanaPageName{
             @include mobile{
@@ -126,5 +185,17 @@
                 line-height: 22px;
             }
         }
+        .tutor{
+            font-size: 26px;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+    }
+}
+
+.dropActive{
+    svg path{
+        fill: $blue;
     }
 }

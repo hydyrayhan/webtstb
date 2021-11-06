@@ -73,8 +73,38 @@
             min-height: 300px;
         }
     }
+    .submitCon{
+        display: flex;
+        flex-direction: column;
+        display: inline-block;
+    }
+    .save{
+        background: #7C7F90;
+        padding: 10px 35px;
+        margin: 15px 0 50px 0;
+        border-radius: 6px;
+        font-size: 20px;
+        box-shadow: 5px 5px 10px  #202020;
+        color: white;
+        border:none;
+        outline: none;
+        cursor: pointer;
+    }
+    .more{
+        background: #7C7F90;
+        padding: 10px 35px;
+        margin-top: 50px;
+        border-radius: 6px;
+        font-size: 20px;
+        box-shadow: 5px 5px 10px  #202020;
+        color: white;
+        border:none;
+        outline: none;
+        cursor: pointer;
+    }
 }
 .addHabar{
+
     @include center(space-between,flex-start);
     flex-wrap: wrap;
     .box{
@@ -269,17 +299,5 @@
                     }
             }
         }
-    }
-    .save{
-        background: #7C7F90;
-        padding: 10px 35px;
-        margin: 50px 0;
-        border-radius: 6px;
-        font-size: 20px;
-        box-shadow: 5px 5px 10px  #202020;
-        color: white;
-        border:none;
-        outline: none;
-        cursor: pointer;
     }
 }

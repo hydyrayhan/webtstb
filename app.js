@@ -14,6 +14,9 @@ app.use('/font',express.static(__dirname+"public/style"));
 app.use('/js',express.static(__dirname+"public/scripts"));
 app.use('/img',express.static(__dirname+"public/pictures"));
 
+const fileUpload = require("express-fileupload");
+app.use(fileUpload())
+
 
 
 
@@ -30,7 +33,7 @@ app.get('/',async function(req,res){
   // console.log(data.data);
   // var mainPage = data.data;
 
- 
+ var sl = req.query.sl;
 
   var mainPage = fs.readFileSync("./jsons/mainPage.json")
   mainPage = JSON.parse(mainPage);
@@ -55,11 +58,12 @@ app.get('/',async function(req,res){
     seeAllBolum = true; 
   }
 
-  res.render('main',{list:mainPage,loop,loop1,host,seeAll,seeAllBolum})
+  res.render('main',{list:mainPage,loop,loop1,host,seeAll,seeAllBolum,sl})
 })
 
 
 app.get("/pressCenter",async function(req,res){
+  var sl = req.query.sl;
   let data = fs.readFileSync("./jsons/pressCenter.json");
   data = JSON.parse(data);
 
@@ -72,7 +76,7 @@ app.get("/pressCenter",async function(req,res){
 //   }
 //   console.log(data3,"jfldj")
 
-    res.render("pages/pressCenter.ejs",{list:data,host});
+    res.render("pages/pressCenter.ejs",{list:data,host,sl});
 })
 
 app.get("/login",function(req,res){
@@ -185,6 +189,12 @@ app.get("/agzalar/:id",function(req,res){
 
 
 
+// Rysgal Gazeti
+app.get("/gazet",function(req,res){
+
+  var page = req.query.page;
+  res.render("pages/gazet",{page}) 
+})
 // sppt
 app.get("/sppt",function(req,res){
   res.render("pages/sppt",{}) 
@@ -241,16 +251,17 @@ app.get("/admin/:page",function(req,res){
     data = fs.readFileSync("./jsons/adminBildirishler.json");
     data = JSON.parse(data);
     res.render("admin/bildirishler",{data,name:"Bildirişler"});
-  }else if(page = "rysgal"){
+  }else if(page == "rysgal"){
     data = fs.readFileSync("./jsons/adminRysgal.json");
     data = JSON.parse(data);
     res.render("admin/gazetler",{data,name:"Gazetler"})
+  }else if(page == "tstb"){
+    res.render("admin/tstb",{name:"TSTB - biz barada"});
   }
 })
 
 app.get("/admin/:page/add",function(req,res){
   var page = req.params.page;
-  console.log(page);
   if(page == 'Habarlar'){
     res.render("admin/toAdd/addHabarlar",{name : page+" goşmak"});
   }else if(page == "Bildirişler"){
@@ -258,22 +269,43 @@ app.get("/admin/:page/add",function(req,res){
   }
 })
 
-app.post("/addHabar",function(req,res){
+app.post("/admin/:page/add",function(req,res){
   var date = req.body.date;
   var pdf = req.body.pdf;
   var img = req.body.image;
-  console.log(req.body)
+  console.log(req.body);
   data = fs.readFileSync("./jsons/adminHabarlar.json");
   data = JSON.parse(data);
   res.render("admin/habarlar",{data,name:"Habarlar"})
+})
+app.post("/suratBaryarmy",function(req,res){
+  var a = req.files
+})
+app.post("/suratBaryarmy2",function(req,res){
+  var a = req.files
 })
 
 
 
 // shablonlar
 
-app.get("/template1",function(req,res){
-  
+app.get('/template/:san',function(req,res){
+  var san = req.params.san;
+  if(san == 1){
+    res.render("templates/template1");
+  }else if(san == 2){
+    res.render("templates/template2");
+  }else if(san == 3){
+    res.render("templates/template3");
+  }else if(san == 4){
+    res.render("templates/template4")
+  }else if(san == 5){
+    res.render("templates/template6")
+  }else if(san == 6){
+    res.render("templates/template7");
+  }else if(san == 7){
+    res.render("templates/template8")
+  }
 })
 
 

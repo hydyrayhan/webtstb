@@ -18,9 +18,9 @@
             </div>
     
             <div class="right1">
-              <div class="active" data-id0 data-content id="news"><span></span> News</div>
-              <div data-id1 data-content id="events"><span></span> Events announcements</div>
-              <div data-id2 data-content id="gazet"><span></span> About us</div>
+              <div class="active1 slide" data-id0 data-content id="news"><span></span> News</div>
+              <div data-id1 data-content class="slide" id="events"><span></span> Events announcements</div>
+              <a href="/gazet"><div data-id2 data-content id="gazet"><span></span> About us</div></a>
             </div>
           </div>
             
@@ -96,11 +96,11 @@
                       </div>
 
                     </li>
-                    <li class="splide__slide">
+                    <!-- <li class="splide__slide">
 
                       barde gazetlar bolmaly nahili yagdayda bosada;
 
-                    </li>
+                    </li> -->
                   </ul>
                 </div>
               </div>
@@ -115,6 +115,7 @@
               </div>
           </div>
         </section>
+        <div><%= sl %> </div>
         <script src="/scripts/src/materialize/splide.js"></script>
         <!-- splide Banner -->
         <script>
@@ -125,26 +126,46 @@
                     autoplay:true,
                     cover:true
                   }).mount();
-                new Splide('.splide5',{
-                    perPage:1,
-                    autoplay:false,
-                    cover:true,
-                    drag:false,
-                    arrows:false
-                  }).mount();
+                var sl = '<%=sl%>';
+                if(sl == 2){
+                  new Splide('.splide5',{
+                      perPage:1,
+                      autoplay:false,
+                      cover:true,
+                      drag:false,
+                      arrows:false,
+                      start:1
+                    }).mount();
+                }else{
+                  new Splide('.splide5',{
+                      perPage:1,
+                      autoplay:false,
+                      cover:true,
+                      drag:false,
+                      arrows:false,
+                      start:0
+                    }).mount();
+                }
               });
         </script>  
 
         <!-- show news Section -->
         <script>
+          var sl = '<%=sl%>';
           var splideHide = document.querySelectorAll(".splideHide");
-          var right1 = document.querySelectorAll(".navbar .right1 div");
+          var right1 = document.querySelectorAll(".navbar .right1 .slide");
+
+          if(sl == 2){
+            right1[1].classList.add("active1");
+            right1[0].classList.remove("active1");
+          }
+
           for(var i = 0; i<right1.length; i++){
             right1[i].addEventListener("click",function(){
               for(var j = 0; j<right1.length; j++){
-                right1[j].classList.remove("active");
+                right1[j].classList.remove("active1");
               }
-              this.classList.add("active");
+              this.classList.add("active1");
 
               var splide_pagination = document.querySelectorAll(".splide__pagination__page")
               
@@ -152,12 +173,10 @@
                 splide_pagination[0].click();
               }else if(this.hasAttribute("data-id1")){
                 splide_pagination[1].click();
-              }else{
-                splide_pagination[2].click();
               }
-              
             })
           }
+
         </script>
 </body>
 </html>

@@ -16,7 +16,11 @@
             display: flex;
             margin-top:30px;
             border-bottom: 2px solid rgba(153, 153, 153, 0.3);
-            div{
+            a{
+                text-decoration: none;
+                color: black;
+            }
+            div,a{
                 padding:5px;
                 margin-right: 20px;
                 text-align: center;

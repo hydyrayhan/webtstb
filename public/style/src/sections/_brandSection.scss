@@ -11,6 +11,10 @@
             margin-top: 10px;
         }
         }
+        a{
+            color: $blue;
+            text-decoration: none;
+        }
     }
     padding-top:100px;
     @include mobile{

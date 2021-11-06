@@ -16,7 +16,7 @@
                 <%= name %> 
             </div>
         </div>
-    <form action="/addHabar" method="POST" id="identifier">
+    <form action="/admin/Habarlar/add" method="POST" id="identifier">
         <div class="adminTable addHabar">
                 <div class="box">
                     <div class="boxHeader">Türkmençe giriziň</div>
@@ -138,17 +138,11 @@
             }
         } 
 </script>
-    </script>
 
 
     <!-- picture show when i choose from file -->
     <script>
-        var loadFile = function(event) {
-            var image = document.getElementById('output');
-            image.src = URL.createObjectURL(event.target.files[0]);
-            image.style.width = "100%";
-            image.style.height = "100%";
-        };
+        sendImg("/admin/Habarlar/add")
     </script>
 
 
