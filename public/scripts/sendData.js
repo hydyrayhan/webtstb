@@ -1,35 +1,26 @@
-var img;
+var imgs = [];
 var loadFile = function(event,el) {
     var image = document.querySelectorAll('#output');
-    console.log(image[el])
+    // console.log(image[el])
 
     image[el].src = URL.createObjectURL(event.target.files[0]);
-    image[0].style.width = "100%";
-    image[0].style.height = "100%";
-    img = document.querySelector(".inputs p input");
+    image[el].style.width = "100%";
+    image[el].style.height = "100%";
+    var img = document.querySelectorAll(".inputs p input")[el];
+    imgs.push(img.files[0])
+
 };
 
 
 function sendImg(link,form){
     var file = document.querySelectorAll(".box .inputs input[type='file']");
-    
-    
-
-
-    // for(var i = 0; i<file.length;i++){
-    //     file[i].addEventListener("change",function(e){
-    //         console.log(this.parentNode.parentNode);
-    //         var image = document.querySelectorAll('#output');
-    //         var imgOne = this.parentNode.parentNode.childNodes[3].childNodes[0]
-    //         // console.log(this.parentNode.parentNode.childNodes[3])
-    //         // console.log(this.parentNode,"this")
-    //     })
-    // }
-
 
     async function send(addGalleryImage){
         var data = new FormData();
-        data.append("img",addGalleryImage);
+        for(var i =0; i < addGalleryImage.length; i ++){
+            // console.log(addGalleryImage[i])
+            data.append(`img${i}`,addGalleryImage[i]);
+        }
 
         const option = {
             method: "POST",
@@ -43,15 +34,14 @@ function sendImg(link,form){
 
     submit.addEventListener("click",async function(e){
         // e.preventDefault()
-        await send(img.files[0]);
+        await send(imgs);
     })
 
-    
 
     var more = document.querySelector(".more");
     var yene = 1;
     more.addEventListener("click",function(){
-        moreBtn(form);
+        moreBtn();
         var a = document.querySelectorAll('.ql-editor p');
         for(var i = yene*3; i<(yene+1)*3;i++){
             a[i].textContent = ''
@@ -63,22 +53,18 @@ function sendImg(link,form){
     })
 }
 let sana=1
-function moreBtn(form){
-    var formInside = document.querySelector("form .form2");
-    formInside.innerHTML += form.innerHTML;
-    // let forms=document.querySelectorAll(".form .form2 .box .inputs input[type='file']")
-    let forms=document.querySelectorAll(".box .inputs input[type='file']")
+var imgBox = 3;
+function moreBtn(){
+    var form1 = document.querySelector("form .form1")
+    var form2 = document.querySelector("form .form2")
+    form2.innerHTML += form1.innerHTML;
+    form2.childNodes[imgBox].childNodes[5].childNodes[1].childNodes[0].setAttribute("onchange",`loadFile(event,${sana})`);
+    form2.childNodes[imgBox].childNodes[5].childNodes[1].childNodes[0].setAttribute("id",`img${sana}`);
+    form2.childNodes[imgBox].childNodes[5].childNodes[3].setAttribute("for",`img${sana}`); 
+    form2.childNodes[imgBox].childNodes[5].childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/addPicture.svg")
+    form2.childNodes[imgBox].childNodes[5].childNodes[3].childNodes[0].setAttribute("style","")
 
-    // console.log(forms[sana].parentNode);
-    
-    forms[sana].parentNode.innerHTML=`<input type="file"  accept="image/*" name="image${sana}" id="img" onchange="loadFile(event,${sana})" class="1" style="display: none;">`
-    // console.log(forms[sana],"jfkdjjfdjlfd");
-
-    // console.log(forms[sana-1].parentNode.parentNode)
-    // console.log(form.childNodes[3].childNodes[5].childNodes[1])
-    // forms.childNodes[3].childNodes[5].childNodes[1].childNodes[0].classList.add("cl"+sana)
-    // form.childNodes[3].childNodes[5].classList.add("cl"+sana)
+    imgBox+=8;
     sana+=1
-
 }
 

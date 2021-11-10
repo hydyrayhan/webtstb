@@ -9,21 +9,25 @@
 </head>
 
 <body>
-    <%- include ('./admin.ejs') %>
+    <%- include ('../admin.ejs') %>
     <div class="adminContainer">
         <div class="main">
             <div class="pageHeader">
                 <%= name %> 
             </div>
         </div>
-    <form action="/admin/tstb" method="POST" id="identifier">
+    <form action="/admin/karhanalar" method="POST" id="identifier">
         <div class="adminTable">
                 <div class="formInputs addHabar form1">
                     <div class="box">
                         <div class="boxHeader">Türkmençe giriziň</div>
                         <div class="headerCon">
+                            <label class="mazmuny" for="">Kärhana ady:</label>
+                            <input type="text" name="tm" class="header" value="<%=data.tm%>">
+                        </div>
+                        <div class="headerCon">
                             <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                            <input type="text" name="headerTM" class="header">
+                            <input type="text" name="headerTM" class="header" value="<%= data.headerTM %>">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -40,15 +44,18 @@
                             <p><input type="file"  accept="image/*" name="image" id="img0" onchange="loadFile(event,0)" class="1" style="display: none;"></p>
                             <label class="imgLbCon" for="img0"><img id="output" src="/pictures/icon/addPicture.svg" /></label>
                         </div>
-                      
+                    </div>
                     
-    
                     <textarea name="text" style="display: none;" id="hiddenArea" cols="30"  rows="10"></textarea>
                     <textarea name="text2" id="hiddenArea2" style="display: none;" cols="30"  rows="10"></textarea>
                     <textarea name="text3" id="hiddenArea3" cols="30" style="display: none;" rows="10"></textarea>
-                    </div>
+
                     <div class="box">
                         <div class="boxHeader">Rusça giriziň</div>
+                        <div class="headerCon">
+                            <label class="mazmuny" for="">Kärhana ady:</label>
+                            <input type="text" name="ru" class="header">
+                        </div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
                             <input type="text" name="headerRU" id="topTa" class="header">
@@ -62,6 +69,10 @@
                     </div>
                     <div class="box">
                         <div class="boxHeader">Iňlisçe giriziň</div>
+                        <div class="headerCon">
+                            <label class="mazmuny" for="">Kärhana ady:</label>
+                            <input type="text" name="en" class="header">
+                        </div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
                             <input type="text" name="headerEN" id="topTa" class="header">
@@ -80,23 +91,48 @@
 
 
             <div class="submitCon">
-                <div class="more">Ýene maglumat goşmak</div>
                 <input class="save" type="submit" value="Ýatda sakla">
             </div>
-
-
         </div>
     </form>
     </div>
 
+    <div class="val" style="display: none;"><%= data.text %></div>
+    <div class="val2" style="display: none;"><%=data.text2%></div>
+    <div class="val3" style="display: none;"><%=data.text3%></div>
 
 
     <!-- picture show when i choose from file and send to node with fetch-->
     <script>
+        var img;
+        var loadFile = function(event,el) {
+            var image = document.querySelector('#output');
+            
+            image.src = URL.createObjectURL(event.target.files[0]);
+            image.style.width = "100%";
+            image.style.height = "100%";
+            img = document.querySelectorAll(".inputs p input");
+
+        };
         
-        var form = document.querySelector("form .form1")
-        
-        sendImg("/picture/admin/tstb",form)
+        async function send(addGalleryImage){
+            var data = new FormData();
+            addGalleryImage = addGalleryImage[0].files[0]
+            data.append(`img`,addGalleryImage);
+
+            const option = {
+                method: "POST",
+                body:data
+            }
+            
+            await fetch("/picture/admin/karhanalar",option);
+        }
+
+        var submit = document.querySelector(".save");
+
+        submit.addEventListener("click",async function(e){
+            await send(img);
+        })
 
     </script>
  
@@ -135,6 +171,23 @@
         }
     })
     </script> 
+
+    <script>
+        var text = document.querySelector("#editor .ql-editor");
+        var text2 = document.querySelector("#editor2 .ql-editor");
+        var text3 = document.querySelector("#editor3 .ql-editor");
+
+        var editText = document.querySelector(".val")
+        var editText2 = document.querySelector(".val2")
+        var editText3 = document.querySelector(".val3")
+
+        text.innerHTML = editText.textContent;
+        text2.innerHTML = editText2.textContent;
+        text3.innerHTML = editText3.textContent;
+
+
+
+    </script>
 
 </body>
 </html>

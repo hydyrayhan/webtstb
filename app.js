@@ -231,7 +231,7 @@ app.get("/consultation",function(req,res){
 })
 
 
-// admin
+// admin ==========================================================================================
 
 app.get("/admin",function(req,res){
   var data = fs.readFileSync("./jsons/adminHabarlar.json");
@@ -257,34 +257,200 @@ app.get("/admin/:page",function(req,res){
     res.render("admin/gazetler",{data,name:"Gazetler"})
   }else if(page == "tstb"){
     res.render("admin/tstb",{name:"TSTB - biz barada"});
+  }else if(page == "pudaklar"){
+    data = fs.readFileSync("./jsons/adminHabarlar.json");
+    data = JSON.parse(data);
+    res.render("admin/pudaklar",{data,name:"Pudaklar"});
+  }else if(page == "karhanalar"){
+    data = fs.readFileSync("./jsons/adminHabarlar.json");
+    data = JSON.parse(data);
+    res.render("admin/karhanalar",{data,name:"Kärhanalar"})
+  }else if(page == "agzalyk"){
+    data = {
+      headerTM:"HeaderTm",
+      headerRU:"HeaderRU",
+      headerEN:"HeaderEN",
+      text:"<strong>Hello</strong>",
+      text2:"Hello",
+      text3:"Hello"
+    }
+    res.render("admin/agzalyk",{data,name:"Agzalyk"})
+  }else if(page == "internetSowda"){
+    data = fs.readFileSync("./jsons/adminHabarlar.json");
+    data = JSON.parse(data);
+    res.render("admin/internetSowda",{data,name:"Internet Söwda"})
+  }else if(page == "plans"){
+    data = fs.readFileSync("./jsons/adminHabarlar.json");
+    data = JSON.parse(data);
+    res.render("admin/plans",{data,name:"Iş meýilnamasy"})
+  }else if(page == "ygtyyarnama"){
+    data = fs.readFileSync("./jsons/adminHabarlar.json");
+    data = JSON.parse(data);
+    res.render("admin/lisense",{data,name:"Ygtyýarnama"})
+  }else if(page == "maslahat"){
+    res.render("admin/konsultasiya",{name:"Maslahat"})
   }
 })
 
+// page post
+app.post("/admin/:page",function(req,res){
+  var page = req.params.page;
+  if(page == "tstb"){
+    res.render("admin/tstb",{name:"TSTB - biz barada"});
+  }else if(page == "pudaklar"){
+    var data;
+    data = fs.readFileSync("./jsons/adminHabarlar.json");
+    data = JSON.parse(data);
+    res.render("admin/pudaklar",{data,name:"Pudaklar"});
+  }else if(page == "karhanalar"){
+    var data;
+    console.log(req.body);
+    console.log('pudaklar',pudakId);
+    data = fs.readFileSync("./jsons/adminHabarlar.json");
+    data = JSON.parse(data);
+    res.render("admin/karhanalar",{data,name:"Kärhanalar"})
+  }else if(page == "agzalyk"){
+    var data;
+    console.log(req.body);
+    
+    data = fs.readFileSync("./jsons/adminHabarlar.json");
+    data = JSON.parse(data);
+    res.render("admin/agzalyk",{data,name:"Agzalyk"})
+  }else if(page == 'internetSowda'){
+
+  }else if(page == "plans"){
+    console.log("Plans")
+    data = fs.readFileSync("./jsons/adminHabarlar.json");
+    data = JSON.parse(data);
+    res.render("admin/plans",{data,name:"Iş meýilnamasy"})
+  }
+})
+
+// fetchden gelyan suratlar
+app.post("/picture/admin/:page",function(req,res){
+  var page = req.params.page;
+  if(page == "karhanalar"){
+    console.log(req.files);
+  }else if(page == "tstb"){
+    console.log(req.files);
+  }else if(page == "internetSowda"){
+    console.log("Ishleyar yone fetchden zat gelmeyar")
+    console.log(req.files);
+  }else if(page =="ishmeyilnamasy"){
+    console.log(req.files);
+  }
+})
+
+// page edit
+app.get("/admin/:page/edit/:id",function(req,res){
+  var page = req.params.page;
+  var id = req.params.id;
+  if(page == "pudaklar"){
+    var data = {
+      tm:"turkmen",
+      en:"English",
+      ru:"Russian"
+    }
+    res.render("admin/toAdd/addPudaklar",{data,name:"Pudaklar üýtgetmek"})
+  }else if(page == "karhanalar"){
+    var data = {
+      tm:"turkmen",
+      en:"English",
+      ru:"Russian",
+      headerTM:"HeaderTm",
+      headerEN:"HeaderEN",
+      headerRU:"HeaderRU",
+      text:"<strong style='color:red;'>Hello</strong>",
+      text2:"Jfdjkfjdkj",
+      text3:"jfdkjkfdkj"
+    }
+    res.render("admin/toAdd/addKarhanalar",{data,name:"Karhanalar üýtgetmek"});
+  }
+})
+
+// page delete
+app.get("/admin/:page/delete/:id",function(req,res){
+  var page = req.params.page;
+  console.log(req.params.id);
+  console.log(pudakId);
+  if(page == "karhanalar"){
+    var data;
+    data = fs.readFileSync("./jsons/adminHabarlar.json");
+    data = JSON.parse(data);
+    res.render("admin/karhanalar",{data,name:"Kärhanalar"})
+  }
+})
+
+// page add
 app.get("/admin/:page/add",function(req,res){
   var page = req.params.page;
   if(page == 'Habarlar'){
     res.render("admin/toAdd/addHabarlar",{name : page+" goşmak"});
   }else if(page == "Bildirişler"){
     res.render("admin/toAdd/addBildirishler",{name:"Bildiriş goşmak"});
+  }else if(page == "Pudaklar"){
+    var data = {tm:"",en:"",ru:""};
+    res.render("admin/toAdd/addPudaklar",{data,name:"Pudak goşmak"})
+  }else if(page == "Kärhanalar"){
+    var data = {
+      tm:"",
+      text:"",
+      text2:"",
+      text3:"",
+      en:"",
+      ru:"",
+      headerEN:"",
+      headerRU:"",
+      headerTM:""
+    }
+    res.render("admin/toAdd/addKarhanalar",{data,name:"Kärhana goşmak"})
+  }else if(page == "Internet Söwda"){
+    var data = ""
+    res.render("admin/toAdd/addInternetSowda",{data,name:"Internet Söwda goşmak"})
+  }else if(page == "Iş meýilnamasy"){
+    var data = {
+      tm:"",
+      text:"",
+      text2:"",
+      text3:"",
+      en:"",
+      ru:"",
+      headerEN:"",
+      headerRU:"",
+      headerTM:""
+    }
+    res.render("admin/toAdd/addPlans",{data,name:"Iş meýilnamasyny goşmak"})
+  }else if(page == "Ygtyýarnama"){
+    var data = {
+      tm:"",
+      text:"",
+      text2:"",
+      text3:"",
+      en:"",
+      ru:"",
+      headerEN:"",
+      headerRU:"",
+      headerTM:""
+    }
+    res.render("admin/toAdd/addLisense",{data,name:"Ygtyýarnama goşmak"})
   }
 })
 
-app.post("/admin/:page/add",function(req,res){
-  var date = req.body.date;
-  var pdf = req.body.pdf;
-  var img = req.body.image;
-  console.log(req.body);
+// karhanalar
+var pudakId;
+app.get("/admin/karhanalar/:id",function(req,res){
+  pudakId = req.params.id
+  var data;
   data = fs.readFileSync("./jsons/adminHabarlar.json");
   data = JSON.parse(data);
-  res.render("admin/habarlar",{data,name:"Habarlar"})
-})
-app.post("/suratBaryarmy",function(req,res){
-  var a = req.files
-})
-app.post("/suratBaryarmy2",function(req,res){
-  var a = req.files
+  res.render("admin/karhanalar",{data,name:`Kärhanalar`})
 })
 
+//internet sowda kategori add
+app.post("/internetKategori",function(req,res){
+  
+  res.redirect("/admin/Internet Söwda/add");
+})
 
 
 // shablonlar

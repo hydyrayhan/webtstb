@@ -3888,6 +3888,11 @@ section.consultation .container .text {
   padding: 5px 10px;
 }
 
+.adminTable table td a {
+  text-decoration: none;
+  color: #DDE2FF;
+}
+
 .adminTable table input[type=checkbox] {
   width: 16px;
   height: 16px;
@@ -4003,6 +4008,19 @@ section.consultation .container .text {
   cursor: pointer;
 }
 
+.addKategori {
+  background: #585962;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.addKategori img {
+  width: 10px;
+  margin-left: 5px;
+}
+
 .addHabar {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4021,6 +4039,27 @@ section.consultation .container .text {
   width: 48%;
   margin-top: 50px;
   font-size: 14px;
+}
+
+.addHabar .box .welayatSelect {
+  width: 60%;
+  background: #585962;
+  color: inherit;
+  border: none;
+  outline: none;
+  padding: 4px 10px;
+  margin-bottom: 17px;
+  font-size: 14px;
+}
+
+.addHabar .box .select {
+  width: 100%;
+}
+
+.addHabar .box .select div {
+  min-width: 40%;
+  max-width: 40%;
+  float: left;
 }
 
 .addHabar .box .boxHeader {
@@ -4067,6 +4106,119 @@ section.consultation .container .text {
   height: 100%;
 }
 
+.addHabar .imgBox .imgsCon {
+  width: 100%;
+}
+
+.addHabar .imgBox .imgsCon .noneImg {
+  background: #585962;
+  height: 190px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.addHabar .imgBox .imgsCon .noneImg img {
+  width: 25px;
+}
+
+.addHabar .imgBox .imgsCon .pdfCon {
+  -webkit-box-pack: start !important;
+      -ms-flex-pack: start !important;
+          justify-content: flex-start !important;
+}
+
+.addHabar .imgBox .imgsCon .imgCon {
+  overflow-y: auto;
+  width: 100%;
+  height: 200px;
+  background: #585962;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 10px;
+  padding-bottom: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.addHabar .imgBox .imgsCon .imgCon .pdf {
+  width: 80px !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 10px;
+}
+
+.addHabar .imgBox .imgsCon .imgCon .pdf img {
+  width: 40px;
+}
+
+.addHabar .imgBox .imgsCon .imgCon .pdf .imgDelete {
+  right: 15px;
+}
+
+.addHabar .imgBox .imgsCon .imgCon .pdf .name {
+  font-size: 10px;
+  max-width: 100%;
+  text-align: center;
+}
+
+.addHabar .imgBox .imgsCon .imgCon div {
+  max-width: 48%;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.addHabar .imgBox .imgsCon .imgCon div img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.addHabar .imgBox .imgsCon .imgCon div .imgDelete {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #C4C4C4;
+  padding: 3px;
+  border-radius: 50px;
+  width: 12px;
+  height: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.addHabar .imgBox .imgsCon .imgCon div .imgDelete img {
+  width: 100%;
+  height: 100%;
+}
+
 .addHabar .imgBox .inputs {
   background: #585962;
   margin-top: 10px;
@@ -4090,6 +4242,30 @@ section.consultation .container .text {
 .addHabar .imgBox .inputs .imgLbCon img {
   -o-object-fit: contain;
      object-fit: contain;
+}
+
+.addHabar .imgBox .suratHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 30px;
+}
+
+.addHabar .imgBox .suratHeader img {
+  width: 10px;
+}
+
+.addHabar .imgBox .suratHeader label:nth-child(2) {
+  background: #585962;
+  border-radius: 5px;
+  padding: 3px 5px;
+  cursor: pointer;
 }
 
 .addHabar .imgBox .extraInputs {
@@ -4293,5 +4469,68 @@ section.consultation .container .text {
   content: "\2714";
   font-weight: 100;
   font-size: 12px;
+}
+
+.bg {
+  width: 100%;
+  height: 100vh;
+  background: rgba(145, 145, 145, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.kategoriPopup {
+  background: #363740;
+  position: fixed;
+  z-index: 3;
+  padding: 30px 35px;
+  max-width: 380px;
+  top: calc(50% - 213px);
+  left: calc(50% - 190px);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.kategoriPopup .head {
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.kategoriPopup form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.kategoriPopup form label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.kategoriPopup form input {
+  background: #585962;
+  outline: none;
+  border: none;
+  color: inherit;
+  padding: 3px 5px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.kategoriPopup form input[type="submit"] {
+  color: inherit;
+  padding: 8px 40px;
+  width: 200px;
+  font-size: 18px;
+  margin: 10px auto 0;
+  border-radius: 6px;
 }
 /*# sourceMappingURL=app.css.map */

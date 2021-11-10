@@ -16,14 +16,14 @@
                 <%= name %> 
             </div>
         </div>
-    <form action="/admin/tstb" method="POST" id="identifier">
+    <form action="/admin/agzalyk" method="POST" id="identifier">
         <div class="adminTable">
                 <div class="formInputs addHabar form1">
                     <div class="box">
                         <div class="boxHeader">Türkmençe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                            <input type="text" name="headerTM" class="header">
+                            <input type="text" name="headerTM" class="header" value="<%= data.headerTM %>">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -33,25 +33,16 @@
                         </div>
                     
                     </div>
-                    <div class="box imgBox">
-                        <div class="boxHeader">Suraty giriziň</div>
-                        <div class="mazmun">Suraty giriziň:</div>
-                        <div class="inputs">
-                            <p><input type="file"  accept="image/*" name="image" id="img0" onchange="loadFile(event,0)" class="1" style="display: none;"></p>
-                            <label class="imgLbCon" for="img0"><img id="output" src="/pictures/icon/addPicture.svg" /></label>
-                        </div>
-                      
                     
-    
                     <textarea name="text" style="display: none;" id="hiddenArea" cols="30"  rows="10"></textarea>
                     <textarea name="text2" id="hiddenArea2" style="display: none;" cols="30"  rows="10"></textarea>
                     <textarea name="text3" id="hiddenArea3" cols="30" style="display: none;" rows="10"></textarea>
-                    </div>
+
                     <div class="box">
                         <div class="boxHeader">Rusça giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerRU" id="topTa" class="header">
+                            <input type="text" name="headerRU" id="topTa" class="header" value="<%= data.headerRU %>">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -60,11 +51,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="box">
+                    <div class="box" style="margin-right: 50px;">
                         <div class="boxHeader">Iňlisçe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerEN" id="topTa" class="header">
+                            <input type="text" name="headerEN" id="topTa" class="header" value="<%= data.headerEN %>">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -83,20 +74,35 @@
                 <div class="more">Ýene maglumat goşmak</div>
                 <input class="save" type="submit" value="Ýatda sakla">
             </div>
-
-
         </div>
     </form>
     </div>
 
+    <div class="val" style="display: none;"><%= data.text %></div>
+    <div class="val2" style="display: none;"><%=data.text2%></div>
+    <div class="val3" style="display: none;"><%=data.text3%></div>
 
 
     <!-- picture show when i choose from file and send to node with fetch-->
     <script>
-        
-        var form = document.querySelector("form .form1")
-        
-        sendImg("/picture/admin/tstb",form)
+        var val = 1;
+        var more = document.querySelector(".more");
+
+        more.addEventListener("click",function(){
+            var form1 = document.querySelector("form .form1")
+            var form2 = document.querySelector("form .form2")
+            form2.innerHTML += form1.innerHTML;
+
+            form2.childNodes[val].childNodes[3].childNodes[3].setAttribute("value","")
+            form2.childNodes[val+8].childNodes[3].childNodes[3].setAttribute("value","")
+            form2.childNodes[val+10].childNodes[3].childNodes[3].setAttribute("value","")
+            form2.childNodes[val].childNodes[7].childNodes[2].childNodes[0].childNodes[0].innerHTML=""
+            form2.childNodes[val+8].childNodes[7].childNodes[2].childNodes[0].childNodes[0].innerHTML=""
+            form2.childNodes[val+10].childNodes[7].childNodes[2].childNodes[0].childNodes[0].innerHTML=""
+            
+            val +=12;
+
+        })
 
     </script>
  
@@ -135,6 +141,25 @@
         }
     })
     </script> 
+
+
+<!-- backendden gelyanleri tagleri bilen textarea yazdyrmak ucin -->
+    <script>
+        var text = document.querySelector("#editor .ql-editor");
+        var text2 = document.querySelector("#editor2 .ql-editor");
+        var text3 = document.querySelector("#editor3 .ql-editor");
+
+        var editText = document.querySelector(".val")
+        var editText2 = document.querySelector(".val2")
+        var editText3 = document.querySelector(".val3")
+
+        text.innerHTML = editText.textContent;
+        text2.innerHTML = editText2.textContent;
+        text3.innerHTML = editText3.textContent;
+
+
+
+    </script>
 
 </body>
 </html>
