@@ -20,7 +20,7 @@
                 <img src="/pictures/icon/plus.svg" alt="plus">
             </div>
         </div>
-    <form action="/admin/" method="POST" id="identifier">
+    <form action="/admin/internetSowda" method="POST" id="identifier">
         <div class="adminTable addHabar">
             <div class="box">
                 <div class="boxHeader">Türkmençe giriziň</div>
@@ -186,7 +186,7 @@
 
         var submit = document.querySelector(".save");
         submit.addEventListener("click",async function(e){
-            e.preventDefault();
+            // e.preventDefault();
             var data = new FormData();
             for(var i = 0; i<imgs.length; i++){
                 data.append(`img${i}`,imgs[i].event)
@@ -202,18 +202,8 @@
 
     <!-- popup ishletmek -->
     <script>
-        var bg = document.querySelector(".bg");
-        var katPop = document.querySelector(".kategoriPopup");
-        var addKat = document.querySelector(".addKategori");
-
-        addKat.addEventListener("click",function(){
-            bg.style.display = "block";
-            katPop.style.display = "block";
-        })
-        bg.addEventListener("click",function(){
-            bg.style.display = "none";
-            katPop.style.display = "none";
-        })
+        dropActive(2,4);
+        popup();
     </script>
 
 

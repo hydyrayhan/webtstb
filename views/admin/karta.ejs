@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+    <style>
+        .plus{
+            background: #585962;
+            padding: 5px;
+            border-radius: 20px;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .plus img{
+            width: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include ('./admin.ejs') %>
+    <div class="adminContainer">
+        <div class="main">
+            <div class="pageHeader">
+                <%= name %>
+            </div>
+        </div>
+    <form action="/admin/partniyorlar" method="POST" id="identifier">
+        <div class="adminTable">
+                <div class="formInputs addHabar form1">
+                    <div class="box">
+                        <div class="boxHeader">Aşgabat</div>
+                       <div class="headerCon">
+                           <label for="" class="mazmuny">Türkmençe Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Rusça Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Iňlisçe Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Telefon:</label>
+                           <input type="text" name="phone">
+                           <div class="plus"><img src="/pictures/icon/plus.svg" alt=""></div>
+                           <label for="" class="mazmuny">Faks:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Email:</label>
+                           <input type="text">
+                       </div>
+                    </div>
+                    <div class="box">
+                        <div class="boxHeader">Ahal</div>
+                       <div class="headerCon">
+                           <label for="" class="mazmuny">Türkmençe Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Rusça Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Iňlisçe Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Telefon:</label>
+                           <input type="text" name="phone">
+                           <div class="plus"><img src="/pictures/icon/plus.svg" alt=""></div>
+                           <label for="" class="mazmuny">Faks:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Email:</label>
+                           <input type="text">
+                       </div>
+                    </div>
+                    <div class="box">
+                        <div class="boxHeader">Balkan</div>
+                       <div class="headerCon">
+                           <label for="" class="mazmuny">Türkmençe Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Rusça Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Iňlisçe Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Telefon:</label>
+                           <input type="text" name="phone">
+                           <div class="plus"><img src="/pictures/icon/plus.svg" alt=""></div>
+                           <label for="" class="mazmuny">Faks:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Email:</label>
+                           <input type="text">
+                       </div>
+                    </div>
+                    <div class="box">
+                        <div class="boxHeader">Mary</div>
+                       <div class="headerCon">
+                           <label for="" class="mazmuny">Türkmençe Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Rusça Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Iňlisçe Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Telefon:</label>
+                           <input type="text" name="phone">
+                           <div class="plus"><img src="/pictures/icon/plus.svg" alt=""></div>
+                           <label for="" class="mazmuny">Faks:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Email:</label>
+                           <input type="text">
+                       </div>
+                    </div>
+                    <div class="box">
+                        <div class="boxHeader">Dashoguz</div>
+                       <div class="headerCon">
+                           <label for="" class="mazmuny">Türkmençe Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Rusça Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Iňlisçe Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Telefon:</label>
+                           <input type="text" name="phone">
+                           <div class="plus"><img src="/pictures/icon/plus.svg" alt=""></div>
+                           <label for="" class="mazmuny">Faks:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Email:</label>
+                           <input type="text">
+                       </div>
+                    </div>
+                    <div class="box">
+                        <div class="boxHeader">Lebap</div>
+                       <div class="headerCon">
+                           <label for="" class="mazmuny">Türkmençe Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Rusça Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Iňlisçe Address:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Telefon:</label>
+                           <input type="text" name="phone">
+                           <div class="plus"><img src="/pictures/icon/plus.svg" alt=""></div>
+                           <label for="" class="mazmuny">Faks:</label>
+                           <input type="text">
+                           <label for="" class="mazmuny">Email:</label>
+                           <input type="text">
+                       </div>
+                    </div>
+                </div>
+                <div class="formInputs addHabar form2">
+
+                </div>
+
+
+            <div class="submitCon">
+                <input class="save" type="submit" value="Ýatda sakla">
+            </div>
+        </div>
+    </form>
+    </div>
+
+
+
+<script>
+    var plus = document.querySelector(".plus");
+    var header = document.querySelector(".headerCon");
+    plus.addEventListener("click",function(){
+        var element = document.createElement("label");
+        element.setAttribute("class","mazmun");
+        element.textContent = "Telefon:";
+        var input = document.createElement("input");
+        input.setAttribute("type","text");
+        input.setAttribute("name","phone");
+        header.insertBefore(element,plus);
+        header.insertBefore(input,plus);
+    })
+</script>   
+
+ <script>
+    dropActive(2,8)
+</script>
+
+ 
+
+</body>
+</html>
+
+

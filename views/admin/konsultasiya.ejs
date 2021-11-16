@@ -16,7 +16,7 @@
                 <%= name %> 
             </div>
         </div>
-    <form action="/admin/tstb" method="POST" id="identifier">
+    <form action="/admin/maslahat" method="POST" id="identifier">
         <div class="adminTable">
                 <div class="formInputs addHabar form1">
                     <div class="box">
@@ -96,7 +96,7 @@
         
         var form = document.querySelector("form .form1")
         
-        sendImg("/picture/admin/tstb",form)
+        sendImg("/picture/admin/maslahat",form)
 
     </script>
  
@@ -134,6 +134,7 @@
             hiddenText3[i].value = text3[i].innerHTML;
         }
     })
+    dropActive(2,7);
     </script> 
 
 </body>

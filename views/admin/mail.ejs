@@ -20,32 +20,25 @@
                     <td>Ady</td>
                     <td>Täzelikler topary</td>
                     <td>Çap edilen senesi</td>
-                    <td>Işjeň</td>
                   </tr>
                   
                 <% for( let i = 0; i < data.length; i++ ) { %>
-                    <a href="">
                         <tr>
-                            <td style="max-width: 400px;"><%= data[i].ady%></td>
+                            <td style="max-width: 400px;"><a href="/admin/partniyorlar/edit/<%= data[i].id %>"><%= data[i].ady%></a></td>
                             <td><%= data[i].topary %> </td>
                             <td><%= data[i].chapSenesi %> </td>
-                            <% if (data[i].active) { %>
-                                <td style="max-width: 0px;" class="checkbox"><input style="cursor: pointer;" type="checkbox" checked  name="" id=""></td>
-                            <% }else{%>
-                                <td style="max-width: 0px;" class="checkbox"><input style="cursor: pointer;" type="checkbox"  name="" id=""></td>
-                            <%} %>
-                            <td style="width: 20px;"><a href="#"><img style="width: 95%;" src="/pictures/icon/edit.svg" alt=""></a></td>
-                            <td style="width: 40px;"><a href="#"><img style="width: 30%;" src="/pictures/icon/delete.svg" alt=""></a></td>
+                            
+                            <td style="width: 40px;"><a href="/admin/partniyorlar/delete/<%= data[i].id %>"><img style="width: 30%;" src="/pictures/icon/delete.svg" alt=""></a></td>
                         </tr>
-                    </a>
                     <% } %>
                 </tbody>
               </table>
         </div>
     </div>
-
+    <script>linkActive(5)</script>
     <script>
-        dropActive(0,1);
-    </script>
+        var a = document.querySelector(".right");
+        a.style.display = "none";
+</script>
 </body>
 </html>

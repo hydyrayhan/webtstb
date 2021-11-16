@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+    <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
 </head>
 <body>
     <%- include ('admin.ejs') %>
@@ -25,7 +25,7 @@
                   
                 <% for( let i = 0; i < data.length; i++ ) { %>
                         <tr>
-                            <td style="max-width: 400px;"><a href="/admin/karhanalar/<%= data[i].id %>"><%= data[i].ady%></a></td>
+                            <td style="max-width: 400px;"><a href="/admin/subConstructor/<%= data[i].id %>"><%= data[i].ady%></a></td>
                             <td><%= data[i].topary %> </td>
                             <td><%= data[i].chapSenesi %> </td>
                             <% if (data[i].active) { %>
@@ -41,6 +41,7 @@
               </table>
         </div>
     </div>
-    <script>linkActive(0)</script>
+
+    <script>linkActive(3)</script>
 </body>
 </html>

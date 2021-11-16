@@ -16,7 +16,7 @@
                 <%= name %> 
             </div>
         </div>
-    <form action="/admin/karhanalar" method="POST" id="identifier">
+    <form action="/admin/ygtyyarnama" method="POST" id="identifier">
         <div class="adminTable">
                 <div class="formInputs addHabar form1">
                     <div class="box">
@@ -45,11 +45,6 @@
                             <!-- js bilen bir tag gelyar surat yok bolondo default surat gelyan -->
                             <div class="imgCon pdfCon">
                                 <!-- js bilen doldurylyar surat goyulyar -->
-                                <!-- <div class="div pdf">
-                                    <img class="img" src="/pictures/icon/pdfRed.png" alt="hjhjhj">
-                                    <div class="imgDelete" onclick="delImg()"><img src="/pictures/icon/delete.svg"  alt=""></div>
-                                    <div class="name">djfkjd kfj d.pdf</div>
-                                </div> -->
                             </div>
                         </label>
                     </div>
@@ -103,6 +98,7 @@
 
     <!-- picture show when i choose from file -->
     <script>
+        dropActive(2,6);
         var imgCount = 0;
         var delCount = 0;
         var imgs = [];
@@ -158,7 +154,7 @@
                 imgCon.style.height = "0";
                 var old = imgsCon.innerHTML;
                 imgsCon.innerHTML = `<div class="noneImg">
-                                        <img style="filter: invert(1); opacity:0.7; width:30px" src="/pictures/icon/pdf.png" alt="">
+                                        <img style="filter: invert(1); opacity:0.7; width:30px" src="/pictures/icon/pdf.svg" alt="">
                                     </div>`+old;
                 bool = true;
             }else if(imgs.length == 1 && bool){
@@ -171,9 +167,9 @@
         }
         imgLen();
 
+
         var submit = document.querySelector(".save");
         submit.addEventListener("click",async function(e){
-            e.preventDefault();
             var data = new FormData();
             for(var i = 0; i<imgs.length; i++){
                 data.append(`img${i}`,imgs[i].event)
@@ -182,7 +178,7 @@
                 method : "POST",
                 body : data
             }
-            await fetch('/picture/admin/internetSowda',option)
+            await fetch('/picture/admin/ygtyyarnama',option)
             
         })
     </script>

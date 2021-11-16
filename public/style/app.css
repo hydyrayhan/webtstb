@@ -3539,8 +3539,10 @@ section.consultation .container .text {
   }
 }
 
-.agzalar .container .imgCon div:first-child img {
-  margin-bottom: 20px;
+@media (max-width: 640px) {
+  .agzalar .container .imgCon div:first-child img {
+    margin-bottom: 20px;
+  }
 }
 
 .agzalar .container .mazmun {
@@ -3714,13 +3716,22 @@ section.consultation .container .text {
 }
 
 .adminContainer .sidenav {
-  height: 100%;
+  height: 98%;
   width: 275px;
   position: fixed;
   z-index: 1;
-  top: 0;
+  top: 2%;
   overflow-x: hidden;
-  padding-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .adminContainer .sidenav button .iconCon {
@@ -4014,11 +4025,37 @@ section.consultation .container .text {
   padding: 5px 10px;
   font-size: 14px;
   cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .addKategori img {
   width: 10px;
   margin-left: 5px;
+}
+
+.element {
+  background: #585962;
+  padding: 5px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.element img {
+  cursor: pointer;
+}
+
+.kategoriPopup2 {
+  height: auto;
+  max-height: 500px !important;
+  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 .addHabar {
@@ -4268,6 +4305,15 @@ section.consultation .container .text {
   cursor: pointer;
 }
 
+.addHabar .imgBox .logoPlace {
+  background: #585962 !important;
+  margin-top: 10px !important;
+}
+
+.addHabar .imgBox .logoPlace label {
+  margin: 0;
+}
+
 .addHabar .imgBox .extraInputs {
   margin-top: 15px;
   display: -webkit-box;
@@ -4487,6 +4533,7 @@ section.consultation .container .text {
   z-index: 3;
   padding: 30px 35px;
   max-width: 380px;
+  min-width: 380px;
   top: calc(50% - 213px);
   left: calc(50% - 190px);
   -webkit-box-sizing: border-box;
@@ -4532,5 +4579,37 @@ section.consultation .container .text {
   font-size: 18px;
   margin: 10px auto 0;
   border-radius: 6px;
+}
+
+.box .shablon {
+  width: 200px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.box .shablon .name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto 10px;
+}
+
+.box .shablon .name span {
+  margin-right: 10px;
+}
+
+.box .shablon .imgKeep {
+  background: #585962;
+  height: 200px;
+  padding: 20px 0;
+}
+
+.box .shablon .imgKeep .img {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.box .shablon .imgKeep .img img {
+  width: 100%;
 }
 /*# sourceMappingURL=app.css.map */

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+</head>
+
+<body>
+    <%- include ('../admin.ejs') %>
+    <div class="adminContainer">
+        <div class="main">
+            <div class="pageHeader">
+                <%= name %> 
+            </div>
+        </div>
+    <form action="/admin/subConstructor" method="POST" id="identifier">
+        <div class="adminTable addHabar">
+            <div class="box">
+                <div class="boxHeader">Türkmençe</div>
+                <div class="headerCon">
+                    <label class="mazmuny" for="topTa">Ady:</label>
+                    <input type="text" name="headerRU" id="topTa" class="header">
+                </div>                
+            </div>
+            <div class="box">
+                <div class="boxHeader">Rusça</div>
+                <div class="headerCon">
+                    <label class="mazmuny" for="topTa">Ady:</label>
+                    <input type="text" name="headerRU" id="topTa" class="header">
+                </div>                
+            </div>
+            <div class="box">
+                <div class="boxHeader">Iňlisçe</div>
+                <div class="headerCon">
+                    <label class="mazmuny" for="topTa">Ady:</label>
+                    <input type="text" name="headerRU" id="topTa" class="header">
+                </div>                
+            </div>
+            <div class="box">
+                <div class="boxHeader">Banner saýla</div>
+                <div class="headerCon">
+                    <label for="" class="mazmuny">Banner nomeri:</label>
+                    <select class="welayatSelect" style="width: 100%;" name="" id="">
+                        <option value="">1-nji banner</option>
+                        <option value="">2-nji banner</option>
+                        <option value="">3-nji banner</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="box" style="width: 100%; display: flex; flex-wrap: wrap;">
+                <div class="shablon">
+                    <div class="name">
+                        <span>Şablon №1</span>
+                        <input id="shablon1" name="shablon" value="1" type="radio">
+                    </div>
+                    <label for="shablon1">
+                        <div class="imgKeep">
+                            <div class="img">
+                                <img src="/pictures/news/gul.png" alt="">
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                <div class="shablon">
+                    <div class="name">
+                        <span>Şablon №2</span>
+                        <input id="shablon2" name="shablon" value="2" type="radio">
+                    </div>
+                    <label for="shablon2">
+                        <div class="imgKeep">
+                            <div class="img">
+                                <img src="/pictures/news/gul.png" alt="">
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                <div class="shablon">
+                    <div class="name">
+                        <span>Şablon №3</span>
+                        <input id="shablon3" name="shablon" value="3" type="radio">
+                    </div>
+                    <label for="shablon3">
+                        <div class="imgKeep">
+                            <div class="img">
+                                <img src="/pictures/news/gul.png" alt="">
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                <div class="shablon">
+                    <div class="name">
+                        <span>Şablon №4</span>
+                        <input id="shablon4" name="shablon" value="4" type="radio">
+                    </div>
+                    <label for="shablon4">
+                        <div class="imgKeep">
+                            <div class="img">
+                                <img src="/pictures/news/gul.png" alt="">
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                <div class="shablon">
+                    <div class="name">
+                        <span>Şablon №5</span>
+                        <input id="shablon5" name="shablon" value="5" type="radio">
+                    </div>
+                    <label for="shablon5">
+                        <div class="imgKeep">
+                            <div class="img">
+                                <img src="/pictures/news/gul.png" alt="">
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                <div class="shablon">
+                    <div class="name">
+                        <span>Şablon №6</span>
+                        <input id="shablon6" name="shablon" value="6" type="radio">
+                    </div>
+                    <label for="shablon6">
+                        <div class="imgKeep">
+                            <div class="img">
+                                <img src="/pictures/news/gul.png" alt="">
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                <div class="shablon">
+                    <div class="name">
+                        <span>Şablon №7</span>
+                        <input id="shablon7" name="shablon" value="7" type="radio">
+                    </div>
+                    <label for="shablon7">
+                        <div class="imgKeep">
+                            <div class="img">
+                                <img src="/pictures/news/gul.png" alt="">
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                
+            </div>
+
+
+            <input class="save" type="submit" value="Ýatda sakla">
+        </div>
+    </form>
+    </div>
+    
+
+    <script>
+        linkActive(3)
+    </script>
+</body>
+</html>
+
+

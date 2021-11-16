@@ -1,14 +1,12 @@
 var imgs = [];
 var loadFile = function(event,el) {
     var image = document.querySelectorAll('#output');
-    // console.log(image[el])
-
+    // console.log(event.target.files[0]);
     image[el].src = URL.createObjectURL(event.target.files[0]);
     image[el].style.width = "100%";
     image[el].style.height = "100%";
     var img = document.querySelectorAll(".inputs p input")[el];
-    imgs.push(img.files[0])
-
+    imgs.push(img.files[0]);
 };
 
 

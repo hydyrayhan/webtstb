@@ -9,21 +9,21 @@
 </head>
 
 <body>
-    <%- include ('../admin.ejs') %>
+    <%- include ('../../admin.ejs') %>
     <div class="adminContainer">
         <div class="main">
             <div class="pageHeader">
                 <%= name %> 
             </div>
         </div>
-    <form action="/admin/plans" method="POST" id="identifier">
+    <form action="/admin/subConstructor2" method="POST" id="identifier">
         <div class="adminTable">
                 <div class="formInputs addHabar form1">
                     <div class="box">
                         <div class="boxHeader">Türkmençe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                            <input type="text" name="headerTM" class="header" value="<%= data.headerTM %>">
+                            <input type="text" name="headerTM" class="header">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -34,25 +34,23 @@
                     
                     </div>
                     <div class="box imgBox">
-                        <div class="headerCon">
-                            <div class="suratHeader">
-                                <label for="">Faýl [PDF] giriziň:</label>
-                                <label for="sowdaSurat">Faýl goşmak <img src="/pictures/icon/plus.svg" alt=""></label>
-                                <input type="file" onchange="takeImg(event)" id="sowdaSurat" style="display: none;">
-                            </div>
+                        <div class="boxHeader">Suraty giriziň</div>
+                        <div class="mazmun">Suraty giriziň:</div>
+                        <div class="inputs">
+                            <p><input type="file"  accept="image/*" name="image" id="img0" onchange="loadFile(event,0)" class="1" style="display: none;"></p>
+                            <label class="imgLbCon" for="img0"><img id="output" src="/pictures/icon/addPicture.svg" /></label>
                         </div>
-                        <label for="" class="imgsCon">
-                            <!-- js bilen bir tag gelyar surat yok bolondo default surat gelyan -->
-                            <div class="imgCon pdfCon">
-                                <!-- js bilen doldurylyar surat goyulyar -->
-                            </div>
-                        </label>
-                    </div>
+                        <div class="inputs">
+                            <p><input type="file"  accept="image/*" name="image" id="img1" onchange="loadFile(event,1)" class="2" style="display: none;"></p>
+                            <label class="imgLbCon" for="img1"><img id="output" src="/pictures/icon/addPicture.svg" /></label>
+                        </div>
+                      
                     
+    
                     <textarea name="text" style="display: none;" id="hiddenArea" cols="30"  rows="10"></textarea>
                     <textarea name="text2" id="hiddenArea2" style="display: none;" cols="30"  rows="10"></textarea>
                     <textarea name="text3" id="hiddenArea3" cols="30" style="display: none;" rows="10"></textarea>
-
+                    </div>
                     <div class="box">
                         <div class="boxHeader">Rusça giriziň</div>
                         <div class="headerCon">
@@ -86,100 +84,78 @@
 
 
             <div class="submitCon">
+                <div class="more">Ýene maglumat goşmak</div>
                 <input class="save" type="submit" value="Ýatda sakla">
             </div>
+
+
         </div>
     </form>
     </div>
 
-    <div class="val" style="display: none;"><%= data.text %></div>
-    <div class="val2" style="display: none;"><%=data.text2%></div>
-    <div class="val3" style="display: none;"><%=data.text3%></div>
 
-    <!-- picture show when i choose from file -->
+
+    <!-- picture show when i choose from file and send to node with fetch-->
     <script>
-        var imgCount = 0;
-        var delCount = 0;
-        var imgs = [];
-        function takeImg(event){
-            if(event.target.files[0] != undefined){
-                var imgCon = document.querySelector(".imgCon");
-                imgCon.innerHTML += `
-                                    <div class="div pdf ${delCount}">
-                                        <img class="img" src="/pictures/icon/pdfRed.png" alt="hjhjhj">
-                                        <div class="imgDelete" onclick="delImg(${delCount})"><img src="/pictures/icon/delete.svg"  alt=""></div>
-                                        <div class="name"></div>
-                                    </div>`;
-                
-                var img = document.querySelectorAll(".imgCon .div .name");
+        var more = document.querySelector(".more");
 
-                img[imgCount].textContent = event.target.files[0].name;
-                var obj = {
-                    id:delCount,
-                    event:event.target.files[0]
-                }
-                imgCount+=1;
-                delCount+=1;
-                imgs.push(obj);
-                imgLen();
-            }
-        }
+        var sanaImg=2
+        var imgBox = 3;
+        var yene = 1;
 
-        function delImg(san){
-            var imgCon = document.querySelectorAll(".imgCon .div");
-            for(var i = 0; i<imgs.length; i++){
-                if(imgs[i].id == san){
-                    imgs.splice(i,1);
-                }
-            }
-
-            for(var i = 0; i<imgCon.length ; i++){
-                var a = imgCon[i].classList.contains(san);
-                if(a){
-                    imgCon[i].remove();
-                    break;
-                }
-            }
+        more.addEventListener("click",function(){
+            //moreBtn ichi
+            var form1 = document.querySelector("form .form1")
+            var form2 = document.querySelector("form .form2")
+            form2.innerHTML += form1.innerHTML;
             
-            imgCount-=1;
-            imgLen();
-        }
 
-        var bool = false;
-        function imgLen(){
-            if(imgs.length==0){
-                var imgsCon = document.querySelector(".imgsCon");
-                var imgCon = document.querySelector(".imgCon");
-                imgCon.style.height = "0";
-                var old = imgsCon.innerHTML;
-                imgsCon.innerHTML = `<div class="noneImg">
-                                        <img style="filter: invert(1); opacity:0.7; width:30px" src="/pictures/icon/pdf.png" alt="">
-                                    </div>`+old;
-                bool = true;
-            }else if(imgs.length == 1 && bool){
-                var imgNone = document.querySelector(".noneImg");
-                imgNone.remove();
-                var imgCon = document.querySelector(".imgCon");
-                imgCon.style.height = "200px";
-                bool = false;
+            form2.childNodes[imgBox].childNodes[5].childNodes[1].childNodes[0].setAttribute("onchange",`loadFile(event,${sanaImg})`);
+            form2.childNodes[imgBox].childNodes[5].childNodes[1].childNodes[0].setAttribute("id",`img${sanaImg}`);
+            form2.childNodes[imgBox].childNodes[5].childNodes[3].setAttribute("for",`img${sanaImg}`); 
+            form2.childNodes[imgBox].childNodes[5].childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/addPicture.svg")
+            form2.childNodes[imgBox].childNodes[5].childNodes[3].childNodes[0].setAttribute("style","")
+            
+            form2.childNodes[imgBox].childNodes[7].childNodes[1].childNodes[0].setAttribute("onchange",`loadFile(event,${sanaImg+1})`);
+            form2.childNodes[imgBox].childNodes[7].childNodes[1].childNodes[0].setAttribute("id",`img${sanaImg+1}`);
+            form2.childNodes[imgBox].childNodes[7].childNodes[3].setAttribute("for",`img${sanaImg+1}`); 
+            form2.childNodes[imgBox].childNodes[7].childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/addPicture.svg")
+            form2.childNodes[imgBox].childNodes[7].childNodes[3].childNodes[0].setAttribute("style","")
+
+            imgBox+=8;
+            sanaImg+=2
+            
+
+            var a = document.querySelectorAll('.ql-editor p');
+            for(var i = yene*3; i<(yene+1)*3;i++){
+                a[i].textContent = ''
             }
-        }
-        imgLen();
+            yene+=1;
+
+
+            file = document.querySelectorAll(".box .inputs input[type='file']");
+        });
+
 
         var submit = document.querySelector(".save");
+
         submit.addEventListener("click",async function(e){
-            // e.preventDefault();
+            // e.preventDefault()
             var data = new FormData();
-            for(var i = 0; i<imgs.length; i++){
-                data.append(`img${i}`,imgs[i].event)
+            for(var i =0; i < imgs.length; i ++){
+                data.append(`img${i}`,imgs[i]);
             }
+
             const option = {
-                method : "POST",
-                body : data
+                method: "POST",
+                body:data
             }
-            await fetch('/picture/admin/ishmeyilnamasy',option)
-            
+
+            await fetch("/picture/admin/shablon",option);
         })
+
+
+        linkActive(3);
     </script>
  
     <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
@@ -217,25 +193,6 @@
         }
     })
     </script> 
-
-
-<!-- backenden gelyan text leri textarea yerleshdiryar -->
-    <script>
-        var text = document.querySelector("#editor .ql-editor");
-        var text2 = document.querySelector("#editor2 .ql-editor");
-        var text3 = document.querySelector("#editor3 .ql-editor");
-
-        var editText = document.querySelector(".val")
-        var editText2 = document.querySelector(".val2")
-        var editText3 = document.querySelector(".val3")
-
-        text.innerHTML = editText.textContent;
-        text2.innerHTML = editText2.textContent;
-        text3.innerHTML = editText3.textContent;
-
-
-        dropActive(2,5);
-    </script>
 
 </body>
 </html>
