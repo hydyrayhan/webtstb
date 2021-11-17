@@ -461,6 +461,9 @@ app.post("/picture/admin/:page",function(req,res){
   }else if(page == 'shablon'){
     console.log("shablondan suratlar geldi");
     console.log(req.files);
+    // console.log(req.body);
+    console.log("Hello")
+    res.send("hello");
   }
 })
 

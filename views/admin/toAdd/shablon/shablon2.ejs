@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+    <style>
+        video{
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -37,8 +42,8 @@
                         <div class="boxHeader">Videony giriziň</div>
                         <div class="mazmun">Videony giriziň:</div>
                         <div class="inputs">
-                            <p><input type="file" name="image" id="img0" onchange="loadFile(event,0)" class="1" style="display: none;"></p>
-                            <label class="imgLbCon" for="img0"><img id="output" src="/pictures/icon/addPicture.svg" /></label>
+                            <p><input type="file" name="image" accept="video/mp4" id="img0" onchange="loadFile2(event,0)" class="1" style="display: none;"></p>
+                            <label class="imgLbCon" for="img0"><video  id="output" src="/pictures/icon/video.mp4"> </video></label>
                         </div>
                       
                     
@@ -93,6 +98,34 @@
 
     <!-- picture show when i choose from file and send to node with fetch-->
     <script>
+
+        var imgs = [];
+        var loadFile2 = function(event,el) {
+            var fileSize = event.target.files[0].size/1024/1024; 
+
+            if (fileSize > 50) {
+                alert('File size exceeds 50 MiB');
+            } else {
+                var image = document.querySelectorAll('#output');
+                image[el].src = URL.createObjectURL(event.target.files[0]);
+                image[el].style.width = "100%";
+                image[el].style.height = "100%";
+                var img = document.querySelectorAll(".inputs p input")[el];
+                imgs.push(img.files[0]);
+            }
+        };
+
+        // function validateSize(input) {
+        //     const fileSize = input.files[0].size / 1024 / 1024;
+        //     if (fileSize > 50) {
+        //         alert('File size exceeds 50 MiB');
+        //     } else {
+                
+        //     }
+        // }
+
+
+
         var more = document.querySelector(".more");
 
         var sanaImg=1
@@ -106,10 +139,10 @@
             form2.innerHTML += form1.innerHTML;
             
 
-            form2.childNodes[imgBox].childNodes[5].childNodes[1].childNodes[0].setAttribute("onchange",`loadFile(event,${sanaImg})`);
+            form2.childNodes[imgBox].childNodes[5].childNodes[1].childNodes[0].setAttribute("onchange",`loadFile2(event,${sanaImg})`);
             form2.childNodes[imgBox].childNodes[5].childNodes[1].childNodes[0].setAttribute("id",`img${sanaImg}`);
             form2.childNodes[imgBox].childNodes[5].childNodes[3].setAttribute("for",`img${sanaImg}`); 
-            form2.childNodes[imgBox].childNodes[5].childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/addPicture.svg")
+            form2.childNodes[imgBox].childNodes[5].childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/video.mp4")
             form2.childNodes[imgBox].childNodes[5].childNodes[3].childNodes[0].setAttribute("style","")
             
             imgBox+=8;
@@ -135,17 +168,32 @@
             for(var i =0; i < imgs.length; i ++){
                 data.append(`img${i}`,imgs[i]);
             }
-
+            
+            // var dat = ["Hello","We"]
+            // data.append(`Maglumatlar`,dat);
+            // data.append("HeaderTM",toArray(document.querySelectorAll(".header")));
             const option = {
                 method: "POST",
                 body:data
             }
 
-            await fetch("/picture/admin/shablon",option);
+            // var status = await fetch("/picture/admin/shablon",option);
+            var status = await fetch("/picture/admin/shablon",option);
+            if(status.status == 200){
+                document.forms['identifier'].submit();
+            }
         })
 
 
         linkActive(3);
+    //  function toArray(input){
+    //     let a=[]
+    //     input.forEach(element => {
+    //         a.push(element.value)
+    //     });
+    //     console.log(a)
+    //     return a
+    //  }   
     </script>
  
     <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
