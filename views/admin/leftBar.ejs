@@ -212,22 +212,6 @@
             var katPop = document.querySelector(".kategoriPopup2");
             var addKat = document.querySelector(".addKategori2");
             var element = document.querySelectorAll(".element img");
-
-            for(var i = 0; i<element.length; i++){
-                element[i].addEventListener("click",async function(){
-                    var tegName = this.parentNode.textContent;
-                    this.parentNode.style.display = "none";
-                    
-                    var a = {b:tegName}
-                    const option = {
-                        method : "POST",
-                        headers: {"Accept":"application/json","Content-type":"application/json"},
-                        body:JSON.stringify({teg:tegName})
-                    }
-
-                    await fetch("/tegDel",option);
-                })
-            }
     
             addKat.addEventListener("click",function(){
                 bg.style.display = "block";
@@ -237,6 +221,22 @@
                 bg.style.display = "none";
                 katPop.style.display = "none";
             })
+        }
+
+        async function popupDel(event,id,host){
+            
+            // this.parentNode.style.display = "none";
+            
+            const option = {
+                method : "DELETE",
+                headers: {"Accept":"application/json","Content-type":"application/json"},
+                body:JSON.stringify({teg:id})
+            }
+
+            var tag = await fetch(`${host}/news/tags?id=${id}`,option);
+            if(tag.status == 200){
+                location.reload();
+            }
         }
 </script>
 

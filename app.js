@@ -241,14 +241,22 @@ app.get("/admin",function(req,res){
 
   res.render("admin/habarlar",{data});
 })
-
-app.get("/admin/:page",function(req,res){
+let banner
+let katigoriya
+app.get("/admin/:page",async function(req,res){
   var page = req.params.page;
   var data;
   if(page == "habarlar"){
-    data = fs.readFileSync("./jsons/adminHabarlar.json");
-    data = JSON.parse(data);
-    res.render("admin/habarlar",{data,name:"Habarlar"});
+    // data = fs.readFileSync("./jsons/adminHabarlar.json");
+    // data = JSON.parse(data);
+
+    var dataa;
+    try{
+      dataa = await axios.get(`${host}/news/getAll`);
+    }catch(error){
+      console.log(error)
+    }
+    res.render("admin/habarlar",{data:dataa.data,name:"Habarlar",host:host});
   }else if(page == "bildirishler"){
     data = fs.readFileSync("./jsons/adminBildirishler.json");
     data = JSON.parse(data);
@@ -269,7 +277,7 @@ app.get("/admin/:page",function(req,res){
     res.render("admin/karhanalar",{data,name:"Kärhanalar"})
   }else if(page == "agzalyk"){
     data = {
-      headerTM:"HeaderTm",
+      headerTM:"HeaderTM",
       headerRU:"HeaderRU",
       headerEN:"HeaderEN",
       text:"<strong>Hello</strong>",
@@ -394,6 +402,7 @@ app.post("/admin/:page",function(req,res){
     console.log("sub constructordan Maglumat geldi")
     console.log(req.body);
     var nomer = req.body.shablon;
+    banner=nomer
     if(nomer == 1){
       res.render("admin/toAdd/shablon/shablon1",{name:"Sub Constructor"})
     }else if(nomer == 2){
@@ -530,10 +539,17 @@ app.get("/admin/:page/delete/:id",function(req,res){
 
 
 // page add
-app.get("/admin/:page/add",function(req,res){
+app.get("/admin/:page/add",async function(req,res){
   var page = req.params.page;
   if(page == 'Habarlar'){
-    res.render("admin/toAdd/addHabarlar",{name : page+" goşmak"});
+    var dataa;
+    try{
+      dataa = await axios.get(`${host}/news/tag`);
+      res.render("admin/toAdd/addHabarlar",{tag:dataa.data,name : page+" goşmak",host});
+    }catch(error){
+      res.send(error);
+    }
+    
   }else if(page == "Bildirişler"){
     res.render("admin/toAdd/addBildirishler",{name:"Bildiriş goşmak"});
   }else if(page == "Gazetler"){
