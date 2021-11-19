@@ -7,6 +7,7 @@ async function dataSend(data,link){
         })
     }
     var status = await fetch(link,option);
+    
     return status.json();
 }
 
@@ -16,14 +17,23 @@ async function imgSend(data,link){
         formData.append(`pic${i}`,data[i]);
     }
 
-    const option={
-        method:"POST",
-        body:formData,
-        headers:new Headers({
-            'Content-Type':"application/json"
-        }),
-        mode:'no-cors'
-    }
-    var status = await fetch(link,option);
-    return status.json();
+    // const option={
+    //     method:"POST",
+    //     body:formData,
+    //     headers:new Headers({
+    //         'Content-Type':"application/json"
+    //     }),
+    //     mode:'no-cors',
+
+    // }
+    // var status = await fetch(link,option);
+    // var status = []
+    var status = await axios({
+        method: 'post',
+        url: link,
+        data: formData
+    });
+    
+    return status;
+    
 }

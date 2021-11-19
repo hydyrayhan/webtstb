@@ -241,14 +241,17 @@ app.get("/admin",function(req,res){
 
   res.render("admin/habarlar",{data});
 })
+
+
+
+
+
 let banner
 let katigoriya
 app.get("/admin/:page",async function(req,res){
   var page = req.params.page;
   var data;
   if(page == "habarlar"){
-    // data = fs.readFileSync("./jsons/adminHabarlar.json");
-    // data = JSON.parse(data);
 
     var dataa;
     try{
@@ -331,6 +334,70 @@ app.get("/admin/:page",async function(req,res){
     res.render("admin/karta",{name:"Karta"});
   }
 })
+
+// page edit
+app.get("/admin/:page/edit/:id",async function(req,res){
+  var page = req.params.page;
+  var id = req.params.id;
+  if(page == "habarlar"){
+    var dataa;
+    try{
+      dataa = await axios.get(`${host}/news/getOne?id=${id}`);
+    }catch(error){
+      console.log(error)
+    }
+    
+    res.render("admin/toEdit/editHabarlar",{data:dataa.data[0],tags:dataa.data[1],name:"Habarlar",host:host});
+  }
+  else if(page == "pudaklar"){
+    var data = {
+      tm:"turkmen",
+      en:"English",
+      ru:"Russian"
+    }
+    res.render("admin/toAdd/addPudaklar",{data,name:"Pudaklar üýtgetmek"})
+  }else if(page == "karhanalar"){
+    var data = {
+      tm:"turkmen",
+      en:"English",
+      ru:"Russian",
+      headerTM:"HeaderTm",
+      headerEN:"HeaderEN",
+      headerRU:"HeaderRU",
+      text:"<strong style='color:red;'>Hello</strong>",
+      text2:"Jfdjkfjdkj",
+      text3:"jfdkjkfdkj"
+    }
+    res.render("admin/toAdd/addKarhanalar",{data,name:"Karhanalar üýtgetmek"});
+  }
+})
+
+// page delete
+app.get("/admin/:page/delete/:id",async function(req,res){
+  var page = req.params.page;
+  var id = req.params.id;
+  if(page == 'habarlar'){
+    var dataa;
+    try{
+      await axios.delete(`${host}/news?id=${id}`);
+    }catch(error){
+      console.log(error)
+    }
+
+    res.redirect("/admin/habarlar")
+  }else if(page == "karhanalar"){
+    var data;
+    data = fs.readFileSync("./jsons/adminHabarlar.json");
+    data = JSON.parse(data);
+    res.render("admin/karhanalar",{data,name:"Kärhanalar"})
+  }
+})
+
+
+
+
+
+
 
 // page post
 app.post("/admin/:page",function(req,res){
@@ -482,32 +549,6 @@ app.post("/tegDel",function(req,res){
   console.log(req.body);
 })
 
-// page edit
-app.get("/admin/:page/edit/:id",function(req,res){
-  var page = req.params.page;
-  var id = req.params.id;
-  if(page == "pudaklar"){
-    var data = {
-      tm:"turkmen",
-      en:"English",
-      ru:"Russian"
-    }
-    res.render("admin/toAdd/addPudaklar",{data,name:"Pudaklar üýtgetmek"})
-  }else if(page == "karhanalar"){
-    var data = {
-      tm:"turkmen",
-      en:"English",
-      ru:"Russian",
-      headerTM:"HeaderTm",
-      headerEN:"HeaderEN",
-      headerRU:"HeaderRU",
-      text:"<strong style='color:red;'>Hello</strong>",
-      text2:"Jfdjkfjdkj",
-      text3:"jfdkjkfdkj"
-    }
-    res.render("admin/toAdd/addKarhanalar",{data,name:"Karhanalar üýtgetmek"});
-  }
-})
 
 
 
@@ -517,18 +558,7 @@ app.get("/admin/:page/edit/:id",function(req,res){
 
 
 
-// page delete
-app.get("/admin/:page/delete/:id",function(req,res){
-  var page = req.params.page;
-  console.log(req.params.id);
-  console.log(pudakId);
-  if(page == "karhanalar"){
-    var data;
-    data = fs.readFileSync("./jsons/adminHabarlar.json");
-    data = JSON.parse(data);
-    res.render("admin/karhanalar",{data,name:"Kärhanalar"})
-  }
-})
+
 
 
 

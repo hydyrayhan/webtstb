@@ -50,7 +50,7 @@
                     <div class="boxHeader">Türkmençe giriziň</div>
                     <div class="headerCon">
                         <label class="mazmuny" for="a">Mazmunyň headeri:</label>
-                        <input type="text" name="headerTM" id="a" required class="header">
+                        <input type="text" name="headerTM" id="a" required class="header" value="<%= data.header.TM %>">
                     </div>
                     <div class="mazmun">Mazmuny:</div>
                     <div class="editorCon">
@@ -65,15 +65,15 @@
                     <div class="mazmun">Suraty giriziň:</div>
                     <div class="inputs">
                         <p><input type="file" accept="image/*" name="image" id="img" onchange="loadFile(event)" style="display: none;"></p>
-                        <label class="imgLbCon" for="img"><img id="output" src="/pictures/icon/addPicture.svg" /></label>
+                        <label class="imgLbCon" for="img"><img id="output" width="100%" height="100%" src="<%= host %>/news/<%= data.pic %>" /></label>
                     </div>
                     <div class="headerCon">
                         <label class="mazmuny" for="ady">Ady:</label>
-                        <input type="text" name="ady" id="ady" class="header" required>
+                        <input type="text" name="ady" id="ady" class="header" required value="<%= data.name %>">
                     </div>
                     <div class="headerCon">
                         <label class="mazmuny" for="topTa">Täzelikler topary:</label>
-                        <input type="text" name="tazeliklerTopary" id="topTa" class="header" required>
+                        <input type="text" name="tazeliklerTopary" id="topTa" class="header" required value="<%= data.topar %>">
                     </div>
                     <div class="extraInputs" style="justify-content: space-between;">
                         
@@ -81,21 +81,25 @@
                                 <div  style="float: none; min-width: 100%;">
                                     T/t-ny saýlan:
                                 </div>
-                                <select name="" id="teg" required class="welayatSelect" style="margin-top: 10px; margin-bottom: 0; width: auto; padding:7px 5px 5px">
+                                <select name="" id="teg" class="welayatSelect" style="margin-top: 10px; margin-bottom: 0; width: auto; padding:7px 5px 5px">
                                     <option value="" style="display: none;">Teg Saýlaň</option>
-                                    <% for( let i = 0; i < tag.length; i++ ) { %>
-                                        <option value="<%= tag[i].TM %>"><%= tag[i].TM %> </option>
+                                    <% for( let i = 0; i < tags.length; i++ ) { %>
+                                        <option value="<%= tags[i].TM %>"><%= tags[i].TM %> </option>
                                     <% } %>
                                 </select>
                             </div>
                             
                         <div class="date">
                             <div class="name">M.girizilen senesi:</div>
-                            <input type="date" name="date" required>
+                            <input type="date" name="date" required value="<%= data.date %>">
                         </div>
                         <div class="ishjen">
                             <div class="head">Işjeň:</div>
-                            <input type="checkbox" checked name="habarIshjen" id="">
+                            <% if (data.active=="true") { %>
+                                <input type="checkbox" checked name="habarIshjen" id="">
+                            <% }else{ %>
+                                <input type="checkbox"  name="habarIshjen" id="">
+                            <% } %> 
                         </div>
                     </div>
 
@@ -111,7 +115,7 @@
                 <div class="boxHeader">Rusça giriziň</div>
                 <div class="headerCon">
                     <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                    <input type="text" name="headerRU" id="topTa" class="header" required>
+                    <input type="text" name="headerRU" id="topTa" class="header" required value="<%= data.header.RU %>">
                 </div>
                 <div class="mazmun">Mazmuny:</div>
                 <div class="editorCon">
@@ -124,7 +128,7 @@
                 <div class="boxHeader">Iňlisçe giriziň</div>
                 <div class="headerCon">
                     <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                    <input type="text" name="headerEN" id="topTa" class="header" required>
+                    <input type="text" name="headerEN" id="topTa" class="header" required value="<%= data.header.EN %>">
                 </div>
                 <div class="mazmun">Mazmuny:</div>
                 <div class="editorCon">
@@ -155,17 +159,30 @@
     <div class="bg2 bg" style="display: none;"></div>
     <div class="kategoriPopup2 kategoriPopup" style="display: none;">
         <div class="head">Teg pozmak</div>
-        <% for( let i = 0; i < tag.length; i++ ) { %>
-            <div  class="element" ><%= tag[i].TM%><img onclick="popupDel(this,'<%= tag[i].id %>','<%= host %>')" src="/pictures/icon/minus.svg" alt=""></div>
+        <% for( let i = 0; i < tags.length; i++ ) { %>
+            <div  class="element" ><%= tags[i].TM%><img onclick="popupDel(this,'<%= tags[i].id %>','<%= host %>')" src="/pictures/icon/minus.svg" alt=""></div>
         <% } %>
     </div>
+
+    <div class="txt" style="display: none;"><%= data.body.TM %></div>
+    <div class="txt" style="display: none;"><%= data.body.RU %></div>
+    <div class="txt" style="display: none;"><%= data.body.EN %></div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/scripts/js/component/fileSend.js"></script>
 
     <!-- selectden saylanany ashakda gorkezmek -->
     <script>
-        var tegs = [];
+        var tegs = "<%=data.tags%>";
+        tegs = tegs.split(",");
+
+        for(var i =0; i<tegs.length;i++){
+            var choosen = document.querySelector(".choosenTeg");
+            choosen.innerHTML+=`
+                    <div><span>${tegs[i]}</span><img onclick="delArrTeg('${tegs[i]}',this)" src="/pictures/icon/minus.svg" alt=""></div>
+                `
+        }
+
         var teg = document.querySelector("#teg");
         teg.addEventListener("change",function(){
             var choosen = document.querySelector(".choosenTeg");
@@ -198,7 +215,7 @@
     <!-- formdan maglumatlary yygnamak -->
     <script>
         var form = document.querySelector("#identifier");
-
+        var id = '<%=data.id%>'
         var img;
         var loadFile = function(event,el) {
             var image = document.querySelector('#output');
@@ -228,24 +245,29 @@
                 name:inputs[3].value,
                 topar:inputs[4].value
             }
+            
             for(var i = 0; i<tegs.length; i++){
                 data.tag[i] = tegs[i];
             }
 
             var arr = [];
             arr.push(img);
-            if(img == undefined){
-                alert("Surat giriziň");
+            
+            var res = await dataSend(data,`${link}/news/edit?id=${id}`);
+            if(tegs.length == 0){
+                alert("Teg saýlaň!!!");
             }else{
-                var res = await dataSend(data,`${link}/news/addNews`)
-                
-                if(typeof(res.newsId)=="number"){
-                    var res2 = await imgSend(arr,`${link}/news/addPicture?id=${res.newsId}`);
-                    if(res2.status == 200){
-                        location.replace("/admin/habarlar")
-                    }
+                if(arr[0] == undefined){
+                    location.replace("/admin/habarlar");
                 }else{
-                    console.log("Ishlemedi");
+                    if(typeof(res.newsId)=="number"){
+                        var res2 = await imgSend(arr,`${link}/news/addPicture?id=${res.newsId}`);
+                        if(res2.status == 200){
+                            location.replace("/admin/habarlar")
+                        }
+                    }else{
+                        console.log("Ishlemedi");
+                    }
                 }
             }
         })
@@ -269,7 +291,6 @@
                 en
             }
             
-
             var status =await fileSend(data,`${link}/news/tags`);
             if(status.status == 200){
                 location.reload();
@@ -278,21 +299,21 @@
     </script>
 
     <!-- drop active etmek ucin -->
-        <script>
-            dropActive(0,1);
-        </script>
-
+    <script>
+        dropActive(0,1);
+    </script>
+  
     <!-- pop up ishletmek uchin gerek -->
     <script>
         popup();
         popup2();
     </script>
 
+
     <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
  
     <!-- Initialize Quill editor -->
     <script>
-        
       var editor = new Quill('#editor', {
         modules: { },
         theme: 'snow'
@@ -305,6 +326,18 @@
         modules: { },
         theme: 'snow'
       });
+
+
+    //   3 sany textarea girizilen maglumatlary hidden textarea girizyar
+    var txt = document.querySelectorAll('.txt');
+    
+    var text = document.querySelector("#editor .ql-editor");
+    var text2 = document.querySelector("#editor2 .ql-editor");
+    var text3 = document.querySelector("#editor3 .ql-editor");
+    text.innerHTML = txt[0].textContent;
+    text2.innerHTML = txt[1].textContent;
+    text3.innerHTML = txt[2].textContent;
+        
     </script> 
 
 </body>
