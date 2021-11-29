@@ -9,14 +9,12 @@ var loadFile = function(event,el) {
     imgs.push(img.files[0]);
 };
 
-
 function sendImg(link,form){
     var file = document.querySelectorAll(".box .inputs input[type='file']");
 
     async function send(addGalleryImage){
         var data = new FormData();
         for(var i =0; i < addGalleryImage.length; i ++){
-            // console.log(addGalleryImage[i])
             data.append(`img${i}`,addGalleryImage[i]);
         }
 

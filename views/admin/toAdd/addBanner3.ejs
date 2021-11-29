@@ -64,35 +64,40 @@
 
 
     <script>
-        var img;
+          var img;
         var loadFile = function(event,el) {
             var image = document.querySelector('#output');
             
             image.src = URL.createObjectURL(event.target.files[0]);
             image.style.width = "100%";
             image.style.height = "100%";
-            img = document.querySelectorAll(".inputs p input");
-
+            img=event.target.files[0];
         };
         
-        async function send(addGalleryImage){
-            var data = new FormData();
-            addGalleryImage = addGalleryImage[0].files[0]
-            data.append(`img`,addGalleryImage);
-
-            const option = {
-                method: "POST",
-                body:data
+        var oneTime = true;
+        var form = document.querySelector("#identifier");
+        form.addEventListener("submit",async function(e){
+            e.preventDefault();
+            if(oneTime){
+                var inputs = document.querySelectorAll('#identifier input');
+                var data = {
+                    name : inputs[0].value,
+                    link : inputs[1].value,
+                    active: inputs[2].checked
+                }
+                oneTime = false;
+                var arr = []
+                arr.push(img)
+                var data = await dataSend(data,'<%=host%>/banners/addBanner?id=3');
+                if(typeof(data.index)=='string'){
+                    var data = await imgSend(arr,'<%=host%>/banners/uploadPic?index='+data.index+'&id=3');
+                    if(data.status == 200){
+                        location.replace("/admin/banner3");
+                    }
+                }
             }
-            
-            await fetch("/picture/admin/banner3",option);
-        }
-
-        var submit = document.querySelector(".save");
-
-        submit.addEventListener("click",async function(e){
-            await send(img);
-        })
+        });
+        
         dropActive(1,3);
     </script>
 </body>

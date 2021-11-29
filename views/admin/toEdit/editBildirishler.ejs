@@ -65,7 +65,7 @@
                     <div class="mazmun">Suraty giriziň:</div>
                     <div class="inputs">
                         <p><input type="file" accept="image/*" name="image" id="img" onchange="loadFile(event)" style="display: none;"></p>
-                        <label class="imgLbCon" for="img"><img id="output" width="100%" height="100%" src="<%= host %>/news/<%= data.pic %>" /></label>
+                        <label class="imgLbCon" for="img"><img id="output" width="100%" height="100%" src="<%= host %>/events/<%= data.pic %>" /></label>
                     </div>
                     <div class="headerCon">
                         <label class="mazmuny" for="ady">Ady:</label>
@@ -255,20 +255,20 @@
     
                 var arr = [];
                 arr.push(img);
-                
-                var res = await dataSend(data,`${link}/news/edit?id=${id}`);
-                
+    
+                var res = await dataSend(data,`${link}/events/edit?id=${id}`);
                 if(tegs.length == 0){
                     alert("Teg saýlaň!!!");
                     oneTime = true;
                 }else{
                     if(arr[0] == undefined){
-                        location.replace("/admin/habarlar");
+                        console.log("IShledi");
+                        location.replace("/admin/bildirishler");
                     }else{
                         if(typeof(res.newsId)=="string"){
-                            var res2 = await imgSend(arr,`${link}/news/addPicture?id=${res.newsId}`);
+                            var res2 = await imgSend(arr,`${link}/events/addPicture?id=${res.newsId}`);
                             if(res2.status == 200){
-                                location.replace("/admin/habarlar")
+                                location.replace("/admin/bildirishler")
                             }
                         }else{
                             console.log("Ishlemedi");
@@ -297,7 +297,8 @@
                 en
             }
             
-            var status =await dataSend(data,`${link}/news/tags`);
+            var status = await dataSend(data,`${link}/news/tags`);
+            console.log(status);
             if(status.status == 200){
                 location.reload();
             }
@@ -306,7 +307,7 @@
 
     <!-- drop active etmek ucin -->
     <script>
-        dropActive(0,1);
+        dropActive(0,2);
     </script>
   
     <!-- pop up ishletmek uchin gerek -->

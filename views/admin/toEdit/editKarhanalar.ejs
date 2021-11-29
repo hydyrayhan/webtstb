@@ -97,6 +97,9 @@
     </form>
     </div>
 
+    <div class="val" style="display: none;"><%= data.text %></div>
+    <div class="val2" style="display: none;"><%=data.text2%></div>
+    <div class="val3" style="display: none;"><%=data.text3%></div>
 
 
     <!-- picture show when i choose from file and send to node with fetch-->
@@ -109,10 +112,9 @@
             image.src = URL.createObjectURL(event.target.files[0]);
             image.style.width = "100%";
             image.style.height = "100%";
-            // img = document.querySelectorAll(".inputs p input");
-            img = event.target.files[0]
-        };
+            img = event.target.files[0];
 
+        };
     </script>
  
     <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
@@ -133,14 +135,24 @@
         theme: 'snow'
       });
 
-
     </script> 
 
     <script>
         linkActive(0)
+        var text = document.querySelector("#editor .ql-editor");
+        var text2 = document.querySelector("#editor2 .ql-editor");
+        var text3 = document.querySelector("#editor3 .ql-editor");
+
+        var editText = document.querySelector(".val")
+        var editText2 = document.querySelector(".val2")
+        var editText3 = document.querySelector(".val3")
+
+        text.innerHTML = editText.textContent;
+        text2.innerHTML = editText2.textContent;
+        text3.innerHTML = editText3.textContent;
     </script>
 
-<!-- formdan maglumat jemlemek -->
+    <!-- formdan maglumat jemlemek -->
     <script>
         var submit = document.querySelector('#identifier');
         submit.addEventListener("submit",function(e){
@@ -164,6 +176,7 @@
             console.log(data); 
         })
     </script>
+
 </body>
 </html>
 

@@ -6,6 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+    <style>
+        .choosenTeg{
+            margin-top: 20px;
+            width: 50%;
+        }
+        .choosenTeg div{
+            margin-top: 10px;
+            background: #585962;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .choosenTeg div img{
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -26,13 +44,13 @@
                 </div>
             </div>
         </div>
-    <form action="/admin/bildirishler" method="POST" id="identifier">
+    <form action="" method="POST" id="identifier">
         <div class="adminTable addHabar">
                 <div class="box">
                     <div class="boxHeader">Türkmençe giriziň</div>
                     <div class="headerCon">
-                        <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                        <input type="text" name="headerTM" class="header">
+                        <label class="mazmuny" for="a">Mazmunyň headeri:</label>
+                        <input type="text" name="headerTM" id="a" required class="header">
                     </div>
                     <div class="mazmun">Mazmuny:</div>
                     <div class="editorCon">
@@ -46,16 +64,16 @@
                     <div class="boxHeader">Suraty giriziň</div>
                     <div class="mazmun">Suraty giriziň:</div>
                     <div class="inputs">
-                        <p><input type="file"  accept="image/*" name="image" id="img" onchange="loadFile(event)" style="display: none;"></p>
+                        <p><input type="file" accept="image/*" name="image" id="img" onchange="loadFile(event)" style="display: none;"></p>
                         <label class="imgLbCon" for="img"><img id="output" src="/pictures/icon/addPicture.svg" /></label>
                     </div>
                     <div class="headerCon">
                         <label class="mazmuny" for="ady">Ady:</label>
-                        <input type="text" name="ady" id="ady" class="header">
+                        <input type="text" name="ady" id="ady" class="header" required>
                     </div>
                     <div class="headerCon">
                         <label class="mazmuny" for="topTa">Täzelikler topary:</label>
-                        <input type="text" name="tazeliklerTopary" id="topTa" class="header">
+                        <input type="text" name="tazeliklerTopary" id="topTa" class="header" required>
                     </div>
                     <div class="extraInputs" style="justify-content: space-between;">
                         
@@ -63,36 +81,37 @@
                                 <div  style="float: none; min-width: 100%;">
                                     T/t-ny saýlan:
                                 </div>
-                                <select name="" id="" class="welayatSelect" style="margin-top: 10px; margin-bottom: 0; width: auto; padding:7px 5px 5px">
-                                    <option value="">Ashgabat</option>
-                                    <option value="">Ahal</option>
-                                    <option value="">Balkan</option>
-                                    <option value="">Lebap</option>
-                                    <option value="">Mary</option>
-                                    <option value="">Daşoguz</option>
+                                <select name="" id="teg" required class="welayatSelect" style="margin-top: 10px; margin-bottom: 0; width: auto; padding:7px 5px 5px">
+                                    <option value="" style="display: none;">Teg Saýlaň</option>
+                                    <% for( let i = 0; i < tag.length; i++ ) { %>
+                                        <option value="<%= tag[i].TM %>"><%= tag[i].TM %> </option>
+                                    <% } %>
                                 </select>
                             </div>
                             
                         <div class="date">
                             <div class="name">M.girizilen senesi:</div>
-                            <input type="date" name="date">
+                            <input type="date" name="date" required>
                         </div>
                         <div class="ishjen">
                             <div class="head">Işjeň:</div>
                             <input type="checkbox" checked name="habarIshjen" id="">
                         </div>
                     </div>
+
+                    <div class="choosenTeg">
+                    </div>
                 
 
                 <textarea name="text" style="display: none;" id="hiddenArea" cols="30"  rows="10"></textarea>
-                <textarea name="text2" id="hiddenArea2" style="display: none;" cols="30"  rows="10"></textarea>
-                <textarea name="text3" id="hiddenArea3" cols="30" style="display: none;" rows="10"></textarea>
+                <textarea name="text2" id="hiddenArea" style="display: none;" cols="30"  rows="10"></textarea>
+                <textarea name="text3" id="hiddenArea" cols="30" style="display: none;" rows="10"></textarea>
             </div>
             <div class="box">
                 <div class="boxHeader">Rusça giriziň</div>
                 <div class="headerCon">
                     <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                    <input type="text" name="headerRU" id="topTa" class="header">
+                    <input type="text" name="headerRU" id="topTa" class="header" required>
                 </div>
                 <div class="mazmun">Mazmuny:</div>
                 <div class="editorCon">
@@ -105,7 +124,7 @@
                 <div class="boxHeader">Iňlisçe giriziň</div>
                 <div class="headerCon">
                     <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                    <input type="text" name="headerEN" id="topTa" class="header">
+                    <input type="text" name="headerEN" id="topTa" class="header" required>
                 </div>
                 <div class="mazmun">Mazmuny:</div>
                 <div class="editorCon">
@@ -122,68 +141,153 @@
     <div class="bg" style="display: none;"></div>
     <div class="kategoriPopup" style="display: none;">
         <div class="head">Täze giriziljek tegiň adyny giriziň </div>
-        <form action="/internetKategori" method="POST" class="kategori">
+        <form action="" method="POST" class="kategori">
             <label for="tm">Turkmençe</label>
-            <input autocomplete="off" type="text" name="tm" id="tm">
+            <input autocomplete="off"  type="text" name="tm" id="tm" required>
             <label for="ru">Rusça</label>
-            <input autocomplete="off" type="text" id="ru" name="ru">
+            <input autocomplete="off"  type="text" id="ru" name="ru" required>
             <label for="en">Iňlisçe</label>
-            <input autocomplete="off" type="text" id="en" name="en">
-            <input type="submit" value="Ýatda sakla">
+            <input autocomplete="off" type="text" id="en" name="en" required>
+            <input class="tegSubmit" type="submit" value="Ýatda sakla">
         </form>
     </div>
 
     <div class="bg2 bg" style="display: none;"></div>
     <div class="kategoriPopup2 kategoriPopup" style="display: none;">
         <div class="head">Teg pozmak</div>
-        <div class="element">Sport<img src="/pictures/icon/minus.svg" alt=""></div>
-        <div class="element">Sport we shm<img src="/pictures/icon/minus.svg" alt=""></div>
-        <div class="element">Sportlar<img src="/pictures/icon/minus.svg" alt=""></div>
+        <% for( let i = 0; i < tag.length; i++ ) { %>
+            <div  class="element" ><%= tag[i].TM%><img onclick="popupDel(this,'<%= tag[i].id %>','<%= host %>')" src="/pictures/icon/minus.svg" alt=""></div>
+        <% } %>
     </div>
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/scripts/js/component/fileSend.js"></script>
 
+    <!-- selectden saylanany ashakda gorkezmek -->
     <script>
-        dropActive(0,2);
+        var tegs = [];
+        var teg = document.querySelector("#teg");
+        teg.addEventListener("change",function(){
+            var choosen = document.querySelector(".choosenTeg");
+            var goshma = false;
+            for(var i = 0; i<tegs.length;i++){
+                if(tegs[i] == teg.value){
+                    goshma = true;
+                    break;
+                }
+            }
+            if(!goshma){
+                tegs.push(teg.value);
+                choosen.innerHTML+=`
+                    <div><span>${teg.value}</span><img onclick="delArrTeg('${teg.value}',this)" src="/pictures/icon/minus.svg" alt=""></div>
+                `
+            }
+        })
+
+        function delArrTeg(teg,thiss){
+            for(var i = 0; i<tegs.length; i++){
+                if(teg == tegs[i]){
+                    tegs.splice(i,1);
+                }
+            }
+            thiss.parentNode.style.display = "none";
+        }
+
     </script>
 
-    <!-- picture show when i choose from file and send to node with fetch-->
+    <!-- formdan maglumatlary yygnamak -->
     <script>
+        var form = document.querySelector("#identifier");
+
         var img;
         var loadFile = function(event,el) {
             var image = document.querySelector('#output');
-            
             image.src = URL.createObjectURL(event.target.files[0]);
             image.style.width = "100%";
             image.style.height = "100%";
-            img = document.querySelectorAll(".inputs p input");
-        };
-        
-        async function send(addGalleryImage){
-            var data = new FormData();
-            addGalleryImage = addGalleryImage[0].files[0]
-            data.append(`img`,addGalleryImage);
+            img = document.querySelector(".inputs p input");
+            img = img.files[0];
+        }; 
 
-            const option = {
-                method: "POST",
-                body:data
+        form.addEventListener("submit",async function(e){
+            e.preventDefault();
+            var inputs = document.querySelectorAll("#identifier input");
+            var area = document.querySelector(".editorCon #editor .ql-editor");
+            var area2 = document.querySelector(".editorCon #editor2 .ql-editor");
+            var area3 = document.querySelector(".editorCon #editor3 .ql-editor");
+            var data = {
+                text:area.innerHTML,
+                text2: area2.innerHTML,
+                text3:area3.innerHTML,
+                tag:[],
+                tmheader:inputs[0].value,
+                ruheader:inputs[7].value,
+                enheader:inputs[9].value,
+                date:inputs[5].value,
+                active:inputs[6].checked,
+                name:inputs[3].value,
+                topar:inputs[4].value
             }
-            
-            await fetch("/picture/admin/bildirishler",option);
-        }
+            for(var i = 0; i<tegs.length; i++){
+                data.tag[i] = tegs[i];
+            }
+            // console.log(data);
 
-        var submit = document.querySelector(".save");
-
-        submit.addEventListener("click",async function(e){
-            await send(img);
+            var arr = [];
+            arr.push(img);
+            if(img == undefined){
+                alert("Surat giriziň");
+            }else{
+                var res = await dataSend(data,`${link}/events/addEvent`)
+                
+                if(typeof(res.newsId)=="number"){
+                    var res2 = await imgSend(arr,`${link}/events/addPicture?id=${res.newsId}`);
+                    if(res2.status == 200){
+                        location.replace("/admin/bildirishler")
+                    }
+                }else{
+                    console.log("Ishlemedi");
+                }
+            }
         })
 
     </script>
 
-<script>
-    popup();
-    popup2();
-</script>
+    <!-- Teg goshmak -->
+    <script>
+        var link = "<%=host%>"
+        var tegSubmit = document.querySelector(".kategori");
+        
+        tegSubmit.addEventListener("submit",async function(e){
+            e.preventDefault();
+            var tm = document.querySelector("form.kategori #tm").value;
+            var ru = document.querySelector("form.kategori #ru").value;
+            var en = document.querySelector("form.kategori #en").value;
+            
+            var data={
+                tm,
+                ru,
+                en
+            }
+            
 
+            var status =await dataSend(data,`${link}/news/tags`);
+            if(status.status == 200){
+                location.reload();
+            }
+        })
+    </script>
+
+    <!-- drop active etmek ucin -->
+        <script>
+            dropActive(0,2);
+        </script>
+
+    <!-- pop up ishletmek uchin gerek -->
+    <script>
+        popup();
+        popup2();
+    </script>
 
     <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
  
@@ -202,21 +306,6 @@
         modules: { },
         theme: 'snow'
       });
-
-    //   3 sany textarea girizilen maglumatlary hidden textarea girizyar
-    var idForm = document.querySelector("#identifier");
-    var hiddenText = document.querySelector("#hiddenArea");
-    var hiddenText2 = document.querySelector("#hiddenArea2");
-    var hiddenText3 = document.querySelector("#hiddenArea3");
-
-    idForm.addEventListener("submit",function(){
-        var text = document.querySelector("#editor .ql-editor");
-        var text2 = document.querySelector("#editor2 .ql-editor");
-        var text3 = document.querySelector("#editor3 .ql-editor");
-        hiddenText.value = text.innerHTML;
-        hiddenText2.value = text2.innerHTML;
-        hiddenText3.value = text3.innerHTML;
-    })
     </script> 
 
 </body>

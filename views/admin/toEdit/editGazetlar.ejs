@@ -22,15 +22,15 @@
                     <div class="box imgBox">
                         <div class="headerCon">
                             <label class="mazmuny" for="">Turkmençe ady:</label>
-                            <input type="text" name="tm" class="header"  required>
+                            <input type="text" name="tm" class="header" value="<%= data.name.tm %>">
                         </div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Rusça ady:</label>
-                            <input type="text" name="tm" class="header" required>
+                            <input type="text" name="tm" class="header" value="<%= data.name.ru %>">
                         </div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Iňlisçe headeri:</label>
-                            <input type="text" name="headerTM" class="header" required>
+                            <input type="text" name="headerTM" class="header" value="<%= data.name.en %>">
                         </div>
 
                         <div  style="display: flex; justify-content: space-between;">
@@ -52,7 +52,7 @@
                             <div class="extraInputs" style="align-items: normal; margin-top: 52px;">
                                 <div class="date" style="margin-right: 10px;">
                                     <div class="name">M.girizilen senesi:</div>
-                                    <input type="date" name="date" required>
+                                    <input type="date" name="date" value='<%= data.date %>' >
                                 </div>
                                 <div class="ishjen">
                                     <div class="head">Işjeň:</div>
@@ -84,12 +84,13 @@
     </div>
 
     <script>
+        var host = "<%=host%>";
+        var idGazet = '<%=data.id%>'
         var form = document.querySelector("#identifier");
         var done = true;
         form.addEventListener("submit",async function(e){
             e.preventDefault();
             if(done){
-                done = false;
                 var inputs = document.querySelectorAll("#identifier input");
                 var data = {
                     tm:inputs[0].value,
@@ -98,37 +99,62 @@
                     active:inputs[5].checked,
                     date:inputs[4].value
                 }
-
-                if(logos.length !== 0 && imgs.length !== 0){
-                    var id = await dataSend(data,'<%=host%>/newspapers/add');
-                    if(typeof(id.id) == "number"){
+                
+                var id = await dataSend(data,'<%=host%>/newspapers/edit?id='+idGazet);
+                var bool = {
+                    pic : false,
+                    file : false
+                }
+                if(typeof(id.id)=="string"){
+                    if(logos.length !== 0){
                         var data = await imgSend(logos,'<%=host%>/newspapers/addPic?id='+id.id);
                         if(data.status == 200){
-                            var data = await imgSend(imgs,'<%=host%>/newspapers/addFile?id='+id.id);
-                            if(data.status == 200){
-                                location.replace("/admin/rysgal");
-                            }
+                            bool.pic = true;
                         }
                     }
-                }else{
-                    alert("Surat yada File bosh geldi");
-                    done = true;
+                    if(imgs[0] !== 'hello'){
+                        var data = await imgSend(imgs,'<%=host%>/newspapers/addFile?id='+id.id);
+                        if(data.status == 200){
+                            bool.file = true;
+                        }
+                    } 
+
+                    location.replace('/admin/rysgal');
                 }
+                done = false;
             }
         });
     </script>
 
     <script>
+        function first(){
+            imgLen();
+            var file = '<%=data.filename%>'
+            var imgCon = document.querySelector(".imgCon");
+                imgCon.innerHTML = `
+                                    <div class="div pdf 0">
+                                        <img class="img" src="/pictures/icon/pdfRed.png" alt="hjhjhj">
+                                        <div class="name">${file}</div>
+                                    </div>`;
+            imgs[0] = "hello";
+            imgLen();
+
+            var image = document.querySelector('#output');
+            image.setAttribute('src', `${host}/newspapers/pic/<%=data.logo%>`);
+            image.style.width = "100%";
+            image.style.height = "100%";
+        }
+
         var imgCount = 0;
         var delCount = 0;
         var imgs = [];
+        first();
         function takeImg(event){
             if(event.target.files[0] != undefined){
                 var imgCon = document.querySelector(".imgCon");
                 imgCon.innerHTML = `
                                     <div class="div pdf ${delCount}">
                                         <img class="img" src="/pictures/icon/pdfRed.png" alt="hjhjhj">
-                                        <div class="imgDelete" onclick="delImg(${delCount})"><img src="/pictures/icon/delete.svg"  alt=""></div>
                                         <div class="name"></div>
                                     </div>`;
                 
@@ -166,20 +192,17 @@
                 bool = false;
             }
         }
-        imgLen();
     
         var logos = [];
     
 
-        // var img;
         var loadFil = function(event,el) {
             var image = document.querySelector('#output');
             
             image.src = URL.createObjectURL(event.target.files[0]);
             image.style.width = "100%";
             image.style.height = "100%";
-            logos.push(event.target.files[0]);
-
+            logos.push( event.target.files[0]);
         };
     </script>
 

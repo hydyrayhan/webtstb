@@ -170,8 +170,9 @@
         </div>
     </div>
 
-    <script src="/scripts/sendData.js"></script>
+    <!-- <script src="/scripts/sendData.js"></script> -->
 
+    <!-- drop down function -->
     <script>
         var dropdown = document.getElementsByClassName("dropdown-btn");
         var i;
@@ -187,10 +188,9 @@
                 }
             });
         }
-  
     </script>
 
-
+<!-- Pop up functions -->
 <script>
         function popup(){
             var bg = document.querySelector(".bg");
@@ -224,9 +224,6 @@
         }
 
         async function popupDel(event,id,host){
-            
-            // this.parentNode.style.display = "none";
-            
             const option = {
                 method : "DELETE",
                 headers: {"Accept":"application/json","Content-type":"application/json"},
@@ -239,6 +236,9 @@
             }
         }
 </script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/scripts/js/component/fileSend.js"></script>
 
 <!-- active -->
 <script>

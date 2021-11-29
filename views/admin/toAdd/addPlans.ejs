@@ -23,7 +23,7 @@
                         <div class="boxHeader">Türkmençe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                            <input type="text" name="headerTM" class="header" value="<%= data.headerTM %>">
+                            <input type="text" name="headerTM" class="header" required>
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -38,9 +38,10 @@
                             <div class="suratHeader">
                                 <label for="">Faýl [PDF] giriziň:</label>
                                 <label for="sowdaSurat">Faýl goşmak <img src="/pictures/icon/plus.svg" alt=""></label>
-                                <input type="file" onchange="takeImg(event)" id="sowdaSurat" style="display: none;">
+                                <input type="file" accept=".pdf" onchange="takeImg(event)" id="sowdaSurat" style="display: none;">
                             </div>
                         </div>
+                        <!-- accept=".pdf" -->
                         <label for="" class="imgsCon">
                             <!-- js bilen bir tag gelyar surat yok bolondo default surat gelyan -->
                             <div class="imgCon pdfCon">
@@ -49,15 +50,12 @@
                         </label>
                     </div>
                     
-                    <textarea name="text" style="display: none;" id="hiddenArea" cols="30"  rows="10"></textarea>
-                    <textarea name="text2" id="hiddenArea2" style="display: none;" cols="30"  rows="10"></textarea>
-                    <textarea name="text3" id="hiddenArea3" cols="30" style="display: none;" rows="10"></textarea>
-
+         
                     <div class="box">
                         <div class="boxHeader">Rusça giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerRU" id="topTa" class="header">
+                            <input type="text" name="headerRU" id="topTa" class="header" required>
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -70,7 +68,7 @@
                         <div class="boxHeader">Iňlisçe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerEN" id="topTa" class="header">
+                            <input type="text" name="headerEN" id="topTa" class="header" required>
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -92,9 +90,6 @@
     </form>
     </div>
 
-    <div class="val" style="display: none;"><%= data.text %></div>
-    <div class="val2" style="display: none;"><%=data.text2%></div>
-    <div class="val3" style="display: none;"><%=data.text3%></div>
 
     <!-- picture show when i choose from file -->
     <script>
@@ -153,7 +148,7 @@
                 imgCon.style.height = "0";
                 var old = imgsCon.innerHTML;
                 imgsCon.innerHTML = `<div class="noneImg">
-                                        <img style="filter: invert(1); opacity:0.7; width:30px" src="/pictures/icon/pdf.png" alt="">
+                                        <img style="filter: invert(1); opacity:0.7; width:30px" src="/pictures/icon/pdf.svg" alt="">
                                     </div>`+old;
                 bool = true;
             }else if(imgs.length == 1 && bool){
@@ -166,19 +161,41 @@
         }
         imgLen();
 
-        var submit = document.querySelector(".save");
-        submit.addEventListener("click",async function(e){
-            // e.preventDefault();
-            var data = new FormData();
-            for(var i = 0; i<imgs.length; i++){
-                data.append(`img${i}`,imgs[i].event)
+        var oneTime = true;
+        var submit = document.querySelector("#identifier");
+        submit.addEventListener("submit",async function(e){
+            e.preventDefault();
+            if(oneTime){
+                oneTime = false
+                var inputs = document.querySelectorAll("#identifier input");
+                var area = document.querySelector(".editorCon #editor .ql-editor");
+                var area2 = document.querySelector(".editorCon #editor2 .ql-editor");
+                var area3 = document.querySelector(".editorCon #editor3 .ql-editor");
+                var data = {
+                    tmheader:inputs[0].value,
+                    ruheader:inputs[3].value,
+                    enheader:inputs[5].value,
+                    text:area.innerHTML,
+                    text2:area2.innerHTML,
+                    text3:area3.innerHTML
+                }
+                
+                var arr = []
+                for(var i = 0; i<imgs.length; i++){
+                    arr.push(imgs[i].event);
+                }
+                var res = await dataSend(data,'<%=host%>/menu/addBussiness');
+                if(typeof(res.id) == 'number'){
+                    if(arr.length>0){
+                        var data = await imgSend(arr,'<%=host%>/menu/addBussinessFile?id='+res.id);
+                        if(data.status == 200){
+                            location.replace('/admin/plans');
+                        }
+                    }else{
+                        location.replace('/admin/plans')
+                    }
+                }
             }
-            const option = {
-                method : "POST",
-                body : data
-            }
-            await fetch('/picture/admin/ishmeyilnamasy',option)
-            
         })
     </script>
  
@@ -200,40 +217,12 @@
         theme: 'snow'
       });
 
-    //   3 sany textarea girizilen maglumatlary hidden textarea girizyar
-    
-    var idForm = document.querySelector("#identifier");
-    idForm.addEventListener("submit",function(){
-        var hiddenText = document.querySelectorAll("#hiddenArea");
-        var hiddenText2 = document.querySelectorAll("#hiddenArea2");
-        var hiddenText3 = document.querySelectorAll("#hiddenArea3");
-        var text = document.querySelectorAll("#editor .ql-editor");
-        var text2 = document.querySelectorAll("#editor2 .ql-editor");
-        var text3 = document.querySelectorAll("#editor3 .ql-editor");
-        for(var i = 0; i<hiddenText.length; i++){
-            hiddenText[i].value = text[i].innerHTML;
-            hiddenText2[i].value = text2[i].innerHTML;
-            hiddenText3[i].value = text3[i].innerHTML;
-        }
-    })
+
     </script> 
 
 
 <!-- backenden gelyan text leri textarea yerleshdiryar -->
     <script>
-        var text = document.querySelector("#editor .ql-editor");
-        var text2 = document.querySelector("#editor2 .ql-editor");
-        var text3 = document.querySelector("#editor3 .ql-editor");
-
-        var editText = document.querySelector(".val")
-        var editText2 = document.querySelector(".val2")
-        var editText3 = document.querySelector(".val3")
-
-        text.innerHTML = editText.textContent;
-        text2.innerHTML = editText2.textContent;
-        text3.innerHTML = editText3.textContent;
-
-
         dropActive(2,5);
     </script>
 

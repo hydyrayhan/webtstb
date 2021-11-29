@@ -18,26 +18,37 @@
                 <tbody>
                   <tr>
                     <td>Ady</td>
-                    <td>Çap edilen senesi</td>
                     <td>Işjeň</td>
                   </tr>
-                  <% for( let i = 0; i < data.length; i++ ) { %>
-                    <tr>
-                        <td style="width: 600px;"><%= data[i].ady%></td>
-                        <td><%= data[i].chapSenesi %> </td>
-                        <% if (data[i].active) { %>
-                            <td style="max-width: 0px;" class="checkbox"><input style="cursor: pointer;" type="checkbox" checked  name="" id=""></td>
-                        <% }else{%>
-                            <td style="max-width: 0px;" class="checkbox"><input style="cursor: pointer;" type="checkbox"  name="" id=""></td>
-                        <%} %>
-                        <td style="width: 20px;"><a href="#"><img style="width: 95%;" src="/pictures/icon/edit.svg" alt=""></a></td>
-                        <td style="width: 40px;"><a href="#"><img style="width: 30%;" src="/pictures/icon/delete.svg" alt=""></a></td>
-                        </tr>
-                    <% } %>
+                  <% if (data != null) { %>
+                    <% for( let i = 0; i < data.length; i++ ) { %>
+                      <tr>
+                          <td style="width: 600px;"><%= data[i].name%></td>
+                          <% if (data[i].active) { %>
+                              <td style="max-width: 0px;" class="checkbox"><input style="cursor: pointer;" type="checkbox" checked  name="" id="<%=i%>"></td>
+                          <% }else{%>
+                              <td style="max-width: 0px;" class="checkbox"><input style="cursor: pointer;" type="checkbox"  name="" id="<%=i%>"></td>
+                          <%} %>
+                          <td style="width: 20px;"><a href="/admin/banner1/edit/<%=i%>"><img style="width: 95%;" src="/pictures/icon/edit.svg" alt=""></a></td>
+                          <td style="width: 40px;"><a href="/admin/banner1/delete/<%=i%>"><img style="width: 30%;" src="/pictures/icon/delete.svg" alt=""></a></td>
+                          </tr>
+                      <% } %>
+                  <% } %>
                 </tbody>
               </table>
         </div>
     </div>
+
+    <!-- check box ucin -->
+
+    <script>
+        var check = document.querySelectorAll("input[type=checkbox]");
+        for(var i = 0; i<check.length; i++){
+            check[i].addEventListener("click",async function(){
+                await checkSend(this.id,"<%=host%>/banners/isActiveBanner?id="+1,this.checked);
+            })
+        }
+    </script>
     <script>
         dropActive(1,1);
     </script>

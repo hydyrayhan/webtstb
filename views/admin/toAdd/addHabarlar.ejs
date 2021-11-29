@@ -35,11 +35,11 @@
             </div>
             <div style="display: flex;">
                 <div class="addKategori" style="margin-right: 20px;">
-                    Teg goşmak
+                    Kategoriýa goşmak
                     <img src="/pictures/icon/plus.svg" alt="plus">
                 </div>
                 <div class="addKategori2 addKategori">
-                    Teg pozmak
+                    Kategoriýa pozmak
                     <img src="/pictures/icon/minus.svg" alt="plus">
                 </div>
             </div>
@@ -209,43 +209,48 @@
             img = img.files[0];
         }; 
 
+        var oneTime = true;
         form.addEventListener("submit",async function(e){
             e.preventDefault();
-            var inputs = document.querySelectorAll("#identifier input");
-            var area = document.querySelector(".editorCon #editor .ql-editor");
-            var area2 = document.querySelector(".editorCon #editor2 .ql-editor");
-            var area3 = document.querySelector(".editorCon #editor3 .ql-editor");
-            var data = {
-                text:area.innerHTML,
-                text2: area2.innerHTML,
-                text3:area3.innerHTML,
-                tag:[],
-                headerTM:inputs[0].value,
-                headerRU:inputs[7].value,
-                headerEN:inputs[9].value,
-                date:inputs[5].value,
-                active:inputs[6].checked,
-                name:inputs[3].value,
-                topar:inputs[4].value
-            }
-            for(var i = 0; i<tegs.length; i++){
-                data.tag[i] = tegs[i];
-            }
-
-            var arr = [];
-            arr.push(img);
-            if(img == undefined){
-                alert("Surat giriziň");
-            }else{
-                var res = await dataSend(data,`${link}/news/addNews`)
-                
-                if(typeof(res.newsId)=="number"){
-                    var res2 = await imgSend(arr,`${link}/news/addPicture?id=${res.newsId}`);
-                    if(res2.status == 200){
-                        location.replace("/admin/habarlar")
-                    }
+            if(oneTime){
+                oneTime = false;
+                var inputs = document.querySelectorAll("#identifier input");
+                var area = document.querySelector(".editorCon #editor .ql-editor");
+                var area2 = document.querySelector(".editorCon #editor2 .ql-editor");
+                var area3 = document.querySelector(".editorCon #editor3 .ql-editor");
+                var data = {
+                    text:area.innerHTML,
+                    text2: area2.innerHTML,
+                    text3:area3.innerHTML,
+                    tag:[],
+                    headerTM:inputs[0].value,
+                    headerRU:inputs[7].value,
+                    headerEN:inputs[9].value,
+                    date:inputs[5].value,
+                    active:inputs[6].checked,
+                    name:inputs[3].value,
+                    topar:inputs[4].value
+                }
+                for(var i = 0; i<tegs.length; i++){
+                    data.tag[i] = tegs[i];
+                }
+    
+                var arr = [];
+                arr.push(img);
+                if(img == undefined){
+                    alert("Surat giriziň");
+                    oneTime = true
                 }else{
-                    console.log("Ishlemedi");
+                    var res = await dataSend(data,`${link}/news/addNews`)
+                    
+                    if(typeof(res.newsId)=="number"){
+                        var res2 = await imgSend(arr,`${link}/news/addPicture?id=${res.newsId}`);
+                        if(res2.status == 200){
+                            location.replace("/admin/habarlar")
+                        }
+                    }else{
+                        console.log("Ishlemedi");
+                    }
                 }
             }
         })
@@ -270,7 +275,7 @@
             }
             
 
-            var status =await fileSend(data,`${link}/news/tags`);
+            var status =await dataSend(data,`${link}/news/tags`);
             if(status.status == 200){
                 location.reload();
             }
@@ -278,9 +283,9 @@
     </script>
 
     <!-- drop active etmek ucin -->
-        <script>
-            dropActive(0,1);
-        </script>
+    <script>
+        dropActive(0,1);
+    </script>
 
     <!-- pop up ishletmek uchin gerek -->
     <script>

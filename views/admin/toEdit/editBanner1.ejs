@@ -33,17 +33,21 @@
                 <div class="boxHeader">Maglumat giriziň</div>
                 <div class="headerCon">
                     <label class="mazmuny" for="topTa">Ady:</label>
-                    <input type="text" name="headerRU" id="topTa" class="header" required>
+                    <input type="text" name="headerRU" id="topTa" class="header" value="<%= data.name %>">
                 </div>                
                 <div class="headerCon" style="display: flex; flex-direction: row;">
                     <div style="display: flex; flex-direction: column; width: 100%;">
                         <label class="mazmuny" for="topT">Salgylanmasy:</label>
-                        <input type="text" name="headerRU" id="topT" class="header" required>
+                        <input type="text" name="headerRU" id="topT" class="header" value="<%= data.link %>">
                     </div>
                     <div class="extraInputs">
                         <div class="ishjen" style="padding-top: 5px; margin-left: 30px;">
                             <div class="head" style="margin-bottom: 10px;">Işjeň:</div>
-                            <input type="checkbox" checked name="habarIshjen" id="">
+                            <%if(data.active == true){%>
+                                <input type="checkbox" checked name="habarIshjen" id="">
+                            <% }else{ %>
+                                <input type="checkbox" name="habarIshjen" id="">
+                            <% } %>  
                         </div>
                     </div>
                 </div>
@@ -51,7 +55,7 @@
                 <div class="mazmun">Suraty giriziň:</div>
                 <div class="inputs" style="width: 50%;">
                     <p><input type="file"  accept="image/*" name="image" id="img0" onchange="loadFile(event,0)" class="1" style="display: none;"></p>
-                    <label class="imgLbCon" style="height: 140px;" for="img0"><img id="output" height="40px" src="/pictures/icon/banner.svg" /></label>
+                    <label class="imgLbCon" style="height: 140px;" for="img0"><img id="output" width="100%"  src="<%=host%>/banners/<%=data.pic%>" /></label>
                 </div>
             </div>
             <div class="box">
@@ -71,7 +75,7 @@
             image.src = URL.createObjectURL(event.target.files[0]);
             image.style.width = "100%";
             image.style.height = "100%";
-            img=event.target.files[0]
+            img=event.target.files[0];
 
         };
 
@@ -81,20 +85,27 @@
             e.preventDefault();
             if(oneTime){
                 var inputs = document.querySelectorAll('#identifier input');
-                var arr = [];
-                arr.push(img);
                 var data = {
                     name : inputs[0].value,
-                    link : inputs[1].value,
+                    web : inputs[1].value,
                     active: inputs[2].checked
                 }
+                
                 oneTime = false;
-                var data = await dataSend(data,'<%=host%>/banners/addBanner?id=1');
-                if(typeof(data.index)=='string'){
-                    var data = await imgSend(arr,'<%=host%>/banners/uploadPic?index='+data.index+'&id=1');
-                    if(data.status == 200){
+                var arr = [];
+                arr.push(img);
+
+                var data = await dataSend(data,'<%=host%>/banners/editBanner?id=1&index=<%=index%>');
+                if(typeof(data.status)=='string'){
+                    if(img.length == 0){
                         location.replace("/admin/banner1");
+                    }else{
+                        var data = await imgSend(arr,'<%=host%>/banners/uploadPic?index=<%=index%>&id=1');
+                        if(data.status == 200){
+                            location.replace("/admin/banner1");
+                        }
                     }
+
                 }
             }
         })

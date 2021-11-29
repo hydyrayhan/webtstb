@@ -7,9 +7,47 @@
     <link rel="stylesheet" href="/style/app.css">
     <link rel="stylesheet" href="/style/src/materialize/splide.min.css">
     <title>Document</title>
+    <style>
+      .dropbtn {
+        color: #999999;
+        /* padding: 16px; */
+        background: white;
+        font-size: 14px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 100;
+        right: 0;
+      }
+
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        width: auto !important;
+      }
+
+      .dropdown a:hover {background-color: #ddd;}
+
+      .show {display: block;}
+    </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" style="overflow-x: visible;">
         <nav>
             <a href="/">
                 <div class="left">
@@ -36,14 +74,15 @@
               </div>
               <div class="searchText" data-content id='search'></div>
             </div>
-            <a href="/login">
-              <div class="login">
-                <div class="loginText" id="login" data-content></div>
-                <div class="icon">
-                  <img src="/pictures/icon/login.png" alt="">
-                </div>
+
+            <div class="dropdown">
+              <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+              <div id="myDropdown" class="dropdown-content">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
               </div>
-            </a>
+            </div>
           </div>
         </nav>
       </div>
@@ -117,5 +156,26 @@
           search.parentNode.insertBefore(lang,search);
         }
       </script>
+
+
+  <script>
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+  </script>
 </body>
 </html>

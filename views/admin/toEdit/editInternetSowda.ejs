@@ -32,24 +32,24 @@
                 <div class="boxHeader">Türkmençe giriziň</div>
                 <div class="headerCon">
                     <label for="">Ady:</label>
-                    <input type="text" required>
+                    <input type="text" value="<%= data.name.tm %>">
                     <label for="">Address:</label>
-                    <input type="text" required>
+                    <input type="text" value="<%= data.address.tm %>">
                 </div>
                 <br><br>
                 <div class="boxHeader">Rusça giriziň</div>
                 <div class="headerCon">
                     <label for="">Ady:</label>
-                    <input type="text" required>
+                    <input type="text" value="<%= data.name.ru %>">
                     <label for="">Address:</label>
-                    <input type="text" required>
+                    <input type="text" value="<%= data.address.ru %>">
                 </div><br><br>
                 <div class="boxHeader">Iňlisçe giriziň</div>
                 <div class="headerCon">
                     <label for="">Ady:</label>
-                    <input type="text" required>
+                    <input type="text" value="<%= data.name.en %>">
                     <label for="">Address:</label>
-                    <input type="text" required>
+                    <input type="text" value="<%= data.address.en %>">
                 </div>
             </div>
 
@@ -94,11 +94,11 @@
                         </select>
                     </label>
                     <label style="margin-top:0;" for="">Telefon:</label>
-                    <input type="text" required>
+                    <input type="text" value="<%= data.number %>">
                     <label for="">Email:</label>
-                    <input type="email" required>
+                    <input type="email" value="<%= data.email %>">
                     <label for="">Web-saýt:</label>
-                    <input type="text" required>
+                    <input type="text" value="<%= data.website %>">
                 </div>
             </div>
             <input class="save" type="submit" value="Ýatda sakla">
@@ -128,6 +128,9 @@
     </div>
    
 
+    <!-- commerce/id/name -->
+
+
     <!-- picture show when i choose from file -->
     <script>
         var imgCount = 0;
@@ -153,14 +156,41 @@
                 imgLen();
             }
         }
-
         
+        function firstWork(){
+            var pic = '<%=data.pic%>'
+            
+            pic = pic.split(',');
+            var imgCon = document.querySelector(".imgCon");
+            for(var i = 0; i<pic.length; i++){
+                imgCon.innerHTML += `<div class="div ${delCount}">
+                                        <img class="img" src="<%=host%>/commerce/<%=id%>/${pic[i]}" alt="">
+                                        <div class="imgDelete" onclick="delImg(${delCount})"><img src="/pictures/icon/delete.svg"  alt=""></div>
+                                    </div>`;
+                var obj = {
+                    id:delCount,
+                    event:''
+                }
+                delCount+=1;
+                imgCount+=1;
+                imgs.push(obj)
+            }
+            imgLen();
+        }
+        firstWork();
 
-        function delImg(san){
+        async function delImg(san){
             var imgCon = document.querySelectorAll(".imgCon .div");
             for(var i = 0; i<imgs.length; i++){
                 if(imgs[i].id == san){
+                    if(imgs[i].event == ''){
+                        const option = {
+                            method: 'delete'
+                        }
+                        var res = await fetch('<%=host%>/commerce/pic?id=<%=id%>&index='+i,option);
+                    }
                     imgs.splice(i,1);
+                    break;
                 }
             }
 
@@ -222,17 +252,19 @@
                 
                 var arr = [];
                 for(var i = 0; i<imgs.length; i++){
-                    arr.push(imgs[i].event);
+                    if(imgs[i].event!=''){
+                        arr.push(imgs[i].event);
+                    }
                 }
                 console.log(data);
                 console.log(arr);
 
-                var id = await dataSend(data,'<%=host%>/commerce/');
-                if(typeof(id.id) == 'number'){
+                var id = await dataSend(data,'<%=host%>/commerce/edit?id=<%=id%>');
+                if(typeof(id.id) == 'string'){
                     if(arr.length == 0){
                         location.replace("/admin/internetSowda");
                     }else{
-                        var data = await imgSend(arr,'<%=host%>/commerce/addPic?id='+id.id);
+                        var data = await imgSend(arr,'<%=host%>/commerce/addPic?id='+'<%=id%>');
                         if(data.status == 200){
                             location.replace("/admin/internetSowda");
                         }
@@ -288,7 +320,27 @@
         </script>
 
 
-
+    <!-- select one welayat -->
+    <script>
+        var welayat = document.querySelectorAll(".welayatSelect")[0];
+        var kategori = document.querySelectorAll(".welayatSelect")[1];
+       
+        
+        for(var i = 0; i<welayat.length; i++){
+            var a = welayat[i].textContent
+            if(a == '<%=data.welayat%>'){
+                welayat[i].setAttribute('selected','selected');
+                break
+            }
+        }
+        for(var i = 0; i<kategori.length; i++){
+            var a = kategori[i].getAttribute('value');
+            if(a == '<%=data.commerceId%>'){
+                kategori[i].setAttribute('selected','selected');
+                break
+            }
+        }
+    </script>
 </body>
 </html>
 

@@ -41,11 +41,11 @@
                         <div class="boxHeader">Türkmençe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Ady:</label>
-                            <input type="text" name="headerTM" class="header" required>
+                            <input type="text" name="headerTM" class="header" required value="<%= data.name %>">
                         </div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Address:</label>
-                            <input type="text" name="headerTM" class="header" required>
+                            <input type="text" name="headerTM" class="header" required value="<%= data.address.tm %>">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -76,7 +76,7 @@
                             <div style="width: 40%; margin-left:20px; margin-top: 50px;">
                                 <label for="logo" style="margin-bottom:0;">Logo giriziň:</label>
                                 <label for="logo" class="suratHeader logoPlace">
-                                    <label for="logo" style="padding-left:5px">Logo</label>
+                                    <label for="logo" style="padding-left:5px"><%= data.pic %> </label>
                                     <label for="logo"><img src="/pictures/icon/folder.svg" style="width: 15px;" alt=""></label>
                                     <input type="file" onchange="takeLogo(event)" id="logo" style="display: none;">
                                 </label>
@@ -90,7 +90,7 @@
                                 <div>
                                     Welaýat saýlan:
                                 </div>
-                                <select name="" id="" class="welayatSelect" required>
+                                <select name="" id="" class="welayatSelect wlt">
                                     <option value="Ashgabat">Aşgabat</option>
                                     <option value="Ahal">Ahal</option>
                                     <option value="Balkan">Balkan</option>
@@ -99,7 +99,7 @@
                                     <option value="Dashoguz">Daşoguz</option>
                                 </select>
                             </label>
-                            <label style="margin-top: 4px;" for="" class="select" required>
+                            <label style="margin-top: 4px;" for="" class="select" >
                                 <div>
                                     Kategoriýa saýlaň:
                                 </div>
@@ -117,11 +117,11 @@
                                 
                             </div>
                             <label style="margin-top:0;" for="">Web-saýt:</label>
-                            <input type="text" required>
+                            <input type="text" value="<%= data.link %>" required>
                             <label for="">Email:</label>
-                            <input type="email" required>
+                            <input type="email" value="<%= data.email %>" required>
                             <label  for="">Instegram:</label>
-                            <input type="text" required>
+                            <input type="text" value="<%= data.extra %>" required>
                         </div>
                     </div>
                     
@@ -134,7 +134,7 @@
                         <div class="boxHeader">Rusça giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Address:</label>
-                            <input type="text" name="headerRU" id="topTa" class="header" required>
+                            <input type="text" name="headerRU" id="topTa" class="header" value="<%= data.address.ru %>" required>
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -149,7 +149,7 @@
                         <div class="boxHeader">Iňlisçe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Address:</label>
-                            <input type="text" name="headerEN" id="topTa" class="header" required>
+                            <input type="text" name="headerEN" id="topTa" class="header" value="<%= data.address.en %>" required>
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -171,39 +171,68 @@
     </form>
     </div>
 
+    <div style="display: none;">
+        <div class="val"><%= data.body.tm %></div>
+        <div class="val2"><%= data.body.ru %></div>
+        <div class="val3"><%= data.body.en %></div>
+    </div>
 
-    <!-- selectden saylanany ashakda gorkezmek -->
-    <script>
-        var tegs = [];
-        var teg = document.querySelectorAll(".welayatSelect")[1];
-        teg.addEventListener("change",function(){
-            var choosen = document.querySelector(".choosenTeg");
-            var goshma = false;
-            for(var i = 0; i<tegs.length;i++){
-                if(tegs[i] == teg.value){
-                    goshma = true;
-                    break;
-                }
-            }
-            if(!goshma){
-                tegs.push(teg.value);
-                choosen.innerHTML+=`
-                    <div><span>${teg.value}</span><img onclick="delArrTeg('${teg.value}',this)" src="/pictures/icon/minus.svg" alt=""></div>
-                `
-            }
-        })
 
-        function delArrTeg(teg,thiss){
-            for(var i = 0; i<tegs.length; i++){
-                if(teg == tegs[i]){
-                    tegs.splice(i,1);
-                }
+ <!-- selectden saylanany ashakda gorkezmek -->
+ <script>
+    var tegs = "<%=data.category%>";
+    tegs = tegs.split(",");
+
+    for(var i =0; i<tegs.length;i++){
+        var choosen = document.querySelector(".choosenTeg");
+        choosen.innerHTML+=`
+                <div><span>${tegs[i]}</span><img onclick="delArrTeg('${tegs[i]}',this)" src="/pictures/icon/minus.svg" alt=""></div>
+            `
+    }
+
+    var teg = document.querySelector(".welayatSelect");
+    teg.addEventListener("change",function(){
+        var choosen = document.querySelector(".choosenTeg");
+        var goshma = false;
+        for(var i = 0; i<tegs.length;i++){
+            if(tegs[i] == teg.value){
+                goshma = true;
+                break;
             }
-            thiss.parentNode.style.display = "none";
         }
+        if(!goshma){
+            tegs.push(teg.value);
+            choosen.innerHTML+=`
+                <div><span>${teg.value}</span><img onclick="delArrTeg('${teg.value}',this)" src="/pictures/icon/minus.svg" alt=""></div>
+            `
+        }
+    })
 
-    </script>
+    function delArrTeg(teg,thiss){
+        for(var i = 0; i<tegs.length; i++){
+            if(teg == tegs[i]){
+                tegs.splice(i,1);
+            }
+        }
+        thiss.parentNode.style.display = "none";
+    }
+
+</script>
    
+
+<!-- select one welayat -->
+    <script>
+        var welayat = document.querySelectorAll(".wlt option");
+       
+        for(var i = 0; i<welayat.length; i++){
+            var a = welayat[i].textContent
+            if(a == '<%=data.welayat%>'){
+                welayat[i].setAttribute('selected','selected');
+                break
+            }
+        }
+    </script>
+
 
 
  <!-- picture show when i choose from file -->
@@ -211,6 +240,32 @@
     var imgCount = 0;
     var delCount = 0;
     var imgs = [];
+
+    function fileAdd(){
+        var imgCon = document.querySelector(".imgCon");
+        imgCon.style.height = "100px";
+        
+        var file = '<%=data.files%>'
+        file = file.split(',');
+        if(file[0] == ''){
+            file = [];
+        }
+        var imgCon = document.querySelector(".imgCon");
+        for(var i = 0; i<file.length; i++){
+            imgCon.innerHTML += `
+                                <div class="div pdf ${delCount}">
+                                    <img class="img" src="/pictures/icon/pdfRed.png" alt="hjhjhj">
+                                    <div class="imgDelete" onclick="delImg(${delCount})"><img src="/pictures/icon/delete.svg"  alt=""></div>
+                                    <div class="name">${file[i]}</div>
+                                </div>`;
+            imgs.push({id:delCount});
+            delCount+=1;
+            imgCount+=1;
+        }
+        imgLen();
+    }
+    fileAdd();
+
     function takeImg(event){
         if(event.target.files[0] != undefined){
             var imgCon = document.querySelector(".imgCon");
@@ -236,7 +291,14 @@
         }
     }
 
-    function delImg(san){
+    async function delImg(san){
+        const option={
+            method:"DELETE"
+        }
+        
+        var status = await fetch('<%=host%>/members/deleteFile?id=<%=id%>&index='+san,option);
+        console.log(status.status);
+
         var imgCon = document.querySelectorAll(".imgCon .div");
         for(var i = 0; i<imgs.length; i++){
             if(imgs[i].id == san){
@@ -275,7 +337,6 @@
             bool = false;
         }
     }
-    imgLen();
 
     var logo;
     function takeLogo(e){
@@ -291,20 +352,6 @@
 <!-- formdan maglumat jemlemek -->
 <script>
     var oneTime = true;
-    var data = {
-        text : '',
-        text2 : '',
-        text3 : '',
-        name : '',
-        tmAddress : '',
-        web : '',
-        email : '',
-        extra : '',
-        ruAddress : '',
-        enAddress : '',
-        welayat : '',
-        member : ''
-    }
     var form = document.querySelector("#identifier");
     form.addEventListener("submit",async function(e){
         e.preventDefault();
@@ -315,46 +362,54 @@
             var area = document.querySelector(".editorCon #editor .ql-editor");
             var area2 = document.querySelector(".editorCon #editor2 .ql-editor");
             var area3 = document.querySelector(".editorCon #editor3 .ql-editor");
-            data = {
+            var data = {
                 text:area.innerHTML,
                 text2: area2.innerHTML,
-                text3: area3.innerHTML,
+                text3:area3.innerHTML,
                 name : inputs[0].value,
-                tmAddress : inputs[1].value,
+                tmAdress : inputs[1].value,
                 web : inputs[5].value,
                 email : inputs[6].value,
                 extra : inputs[7].value,
                 ruAddress : inputs[8].value,
                 enAddress : inputs[10].value,
                 welayat : welayat[0].value,
-                member : tegs
+                kategori : welayat[1].value
             }
-            
             var arr = [];
             for(var i =0; i<imgs.length; i++){
-                arr.push(imgs[i].event);
+                if(imgs[i].event !== undefined){
+                    arr.push(imgs[i].event);
+                }
             }
             var logoArr = [];
             logoArr.push(logo);
-            
-            if(imgs.length == 0 || logo.length == 0){
-                alert("Surat ýada PDF giriziň");
-                oneTime = true
-            }else{
-                var res = await dataSend(data,`<%=host%>/members/add`)
-                if(typeof(res.id)=="number"){
-                    var res2 = await imgSend(logoArr,`<%=host%>/members/addPic?id=${res.id}`);
+            var res = await dataSend(data,`<%=host%>/members/edit?id=<%=id%>`);
+            console.log(res.status);
+            if(res.status == 'success'){
+                var bool = false;
+                var bool2 = false;
+                if(logoArr.length > 0){
+                    var res2 = await imgSend(logoArr,`<%=host%>/members/addPic?id=<%=id%>`);
+                    // console.log("ishledim")
                     if(res2.status == 200){
-                        var res2 = await imgSend(arr,`<%=host%>/members/addFile?id=${res.id}`);
-                        if(res2.status == 200){
-                            location.replace("/admin/kompaniyalar");
-                        }
+                        bool = true;
                     }
                 }else{
-                    console.log("Ishlemedi");
+                    bool = true
+                }
+                if(bool && arr.length>0){
+                    var res2 = await imgSend(arr,`<%=host%>/members/addFile?id=<%=id%>`);
+                    if(res2.status == 200){
+                        bool2 = true
+                    }
+                }else{
+                    bool2 = true
+                }
+                if( bool && bool2){
+                    location.replace("/admin/kompaniyalar");
                 }
             }
-
         }
     })
 </script>
@@ -378,37 +433,23 @@
         theme: 'snow'
       });
 
-    //   3 sany textarea girizilen maglumatlary hidden textarea girizyar
-    
-    // var idForm = document.querySelector("#identifier");
-    // idForm.addEventListener("submit",function(){
-    //     var hiddenText = document.querySelectorAll("#hiddenArea");
-    //     var hiddenText2 = document.querySelectorAll("#hiddenArea2");
-    //     var hiddenText3 = document.querySelectorAll("#hiddenArea3");
-    //     var text = document.querySelectorAll("#editor .ql-editor");
-    //     var text2 = document.querySelectorAll("#editor2 .ql-editor");
-    //     var text3 = document.querySelectorAll("#editor3 .ql-editor");
-    //     for(var i = 0; i<hiddenText.length; i++){
-    //         hiddenText[i].value = text[i].innerHTML;
-    //         hiddenText2[i].value = text2[i].innerHTML;
-    //         hiddenText3[i].value = text3[i].innerHTML;
-    //     }
-    // })
+
     </script> 
 
     <script>
-        // var text = document.querySelector("#editor .ql-editor");
-        // var text2 = document.querySelector("#editor2 .ql-editor");
-        // var text3 = document.querySelector("#editor3 .ql-editor");
+        var text = document.querySelector("#editor .ql-editor");
+        var text2 = document.querySelector("#editor2 .ql-editor");
+        var text3 = document.querySelector("#editor3 .ql-editor");
 
-        // var editText = document.querySelector(".val")
-        // var editText2 = document.querySelector(".val2")
-        // var editText3 = document.querySelector(".val3")
+        var editText = document.querySelector(".val")
+        var editText2 = document.querySelector(".val2")
+        var editText3 = document.querySelector(".val3")
 
-        // text.innerHTML = editText.textContent;
-        // text2.innerHTML = editText2.textContent;
-        // text3.innerHTML = editText3.textContent;
+        text.innerHTML = editText.textContent;
+        text2.innerHTML = editText2.textContent;
+        text3.innerHTML = editText3.textContent;
     </script>
+
 
 </body>
 </html>

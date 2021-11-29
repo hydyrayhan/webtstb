@@ -16,14 +16,14 @@
                 <%= name %> 
             </div>
         </div>
-    <form action="/admin/subConstructor2" method="POST" id="identifier">
+    <form  method="POST" id="identifier">
         <div class="adminTable">
                 <div class="formInputs addHabar form1">
                     <div class="box">
                         <div class="boxHeader">Türkmençe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                            <input type="text" name="headerTM" class="header">
+                            <input type="text" name="headerTM" class="header tm">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -47,15 +47,12 @@
                       
                     
     
-                    <textarea name="text" style="display: none;" id="hiddenArea" cols="30"  rows="10"></textarea>
-                    <textarea name="text2" id="hiddenArea2" style="display: none;" cols="30"  rows="10"></textarea>
-                    <textarea name="text3" id="hiddenArea3" cols="30" style="display: none;" rows="10"></textarea>
-                    </div>
+                   </div>
                     <div class="box">
                         <div class="boxHeader">Rusça giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerRU" id="topTa" class="header">
+                            <input type="text" name="headerRU" id="topTa" class="header ru">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -67,8 +64,8 @@
                     <div class="box">
                         <div class="boxHeader">Iňlisçe giriziň</div>
                         <div class="headerCon">
-                            <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerEN" id="topTa" class="header">
+                            <label class="mazmuny" for="topTas">Mazmunyň headeri:</label>
+                            <input type="text" name="headerEN" id="topTas" class="header en">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -95,63 +92,160 @@
 
 
 
-    <!-- picture show when i choose from file and send to node with fetch-->
+
+
+
+<!-- surat take -->
     <script>
-        var more = document.querySelector(".more");
+        var imgs = [];
+        var loadFile = function(event,el) {
+            var image = document.querySelectorAll('#output');
+            image[el].src = URL.createObjectURL(event.target.files[0]);
+            image[el].style.width = "100%";
+            image[el].style.height = "100%";
+            var obj = {
+                id:el,
+                file:event.target.files[0]
+            }
 
-        var sanaImg=2
-        var imgBox = 3;
-        var yene = 1;
+            // suratlary arr salyar we eger on bar bolsa onda salanok(id gora);
+            var bool = true;
+            if(imgs.length == 0){
+                imgs.push(obj);
+            }else{
+                for(var i = 0; i<imgs.length;i++){
+                    if(imgs[i].id == el){
+                        imgs.splice(i,1,obj);
+                        bool = false;
+                        break;                        
+                    }
+                }
+                if(bool){
+                    imgs.push(obj);
+                }
+            }
+        };
+    </script>
 
-        more.addEventListener("click",function(){
-            //moreBtn ichi
-            var form1 = document.querySelector("form .form1")
-            var form2 = document.querySelector("form .form2")
+
+    <script>
+        var form2 = document.querySelector("form .form2");
+        var form1 = document.querySelector("form .form1");
+
+        var moreBtn = document.querySelector(".more");
+        var suratId = 2;
+        var suratPlace = 3;
+        var tmheader = [];
+        var ruheader = [];
+        var enheader = [];
+        var squllSan = 3;
+        var cssSana = 0;
+        moreBtn.addEventListener("click",function(){
+            var tm = document.querySelectorAll(".tm");
+            var ru = document.querySelectorAll('.ru');
+            var en = document.querySelectorAll('.en');
+            for(var i = 1; i<tm.length; i++){
+                tmheader.push(tm[i].value);
+                ruheader.push(ru[i].value);
+                enheader.push(en[i].value);
+            }
+            console.log(tmheader);
             form2.innerHTML += form1.innerHTML;
-            
 
-            form2.childNodes[imgBox].childNodes[5].childNodes[1].childNodes[0].setAttribute("onchange",`loadFile(event,${sanaImg})`);
-            form2.childNodes[imgBox].childNodes[5].childNodes[1].childNodes[0].setAttribute("id",`img${sanaImg}`);
-            form2.childNodes[imgBox].childNodes[5].childNodes[3].setAttribute("for",`img${sanaImg}`); 
-            form2.childNodes[imgBox].childNodes[5].childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/addPicture.svg")
-            form2.childNodes[imgBox].childNodes[5].childNodes[3].childNodes[0].setAttribute("style","")
-            
-            form2.childNodes[imgBox].childNodes[7].childNodes[1].childNodes[0].setAttribute("onchange",`loadFile(event,${sanaImg+1})`);
-            form2.childNodes[imgBox].childNodes[7].childNodes[1].childNodes[0].setAttribute("id",`img${sanaImg+1}`);
-            form2.childNodes[imgBox].childNodes[7].childNodes[3].setAttribute("for",`img${sanaImg+1}`); 
-            form2.childNodes[imgBox].childNodes[7].childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/addPicture.svg")
-            form2.childNodes[imgBox].childNodes[7].childNodes[3].childNodes[0].setAttribute("style","")
+            // more button basylanda surat ishlar yaly edyar;
+            form2.childNodes[suratPlace].childNodes[5].childNodes[3].setAttribute('for','img'+suratId);
+            form2.childNodes[suratPlace].childNodes[5].childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/addPicture.svg")
+            form2.childNodes[suratPlace].childNodes[5].childNodes[3].childNodes[0].setAttribute("style","")
+            form2.childNodes[suratPlace].childNodes[5].childNodes[1].childNodes[0].setAttribute("id",'img'+suratId);
+            form2.childNodes[suratPlace].childNodes[5].childNodes[1].childNodes[0].setAttribute("onchange",'loadFile(event,'+suratId+')');
+            suratId+=1;
 
-            imgBox+=8;
-            sanaImg+=2
-            
+            form2.childNodes[suratPlace].childNodes[7].childNodes[3].setAttribute('for','img'+suratId);
+            form2.childNodes[suratPlace].childNodes[7].childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/addPicture.svg")
+            form2.childNodes[suratPlace].childNodes[7].childNodes[3].childNodes[0].setAttribute("style","")
+            form2.childNodes[suratPlace].childNodes[7].childNodes[1].childNodes[0].setAttribute("id",'img'+suratId);
+            form2.childNodes[suratPlace].childNodes[7].childNodes[1].childNodes[0].setAttribute("onchange",'loadFile(event,'+suratId+')');
+            suratId+=1;
+            suratPlace +=8;
 
-            var a = document.querySelectorAll('.ql-editor p');
-            for(var i = yene*3; i<(yene+1)*3;i++){
-                a[i].textContent = ''
-            }
-            yene+=1;
-
-
-            file = document.querySelectorAll(".box .inputs input[type='file']");
-        });
-
-
-        var submit = document.querySelector(".save");
-
-        submit.addEventListener("click",async function(e){
-            // e.preventDefault()
-            var data = new FormData();
-            for(var i =0; i < imgs.length; i ++){
-                data.append(`img${i}`,imgs[i]);
+            // header valuelaryny goyup beryar;
+            var tm = document.querySelectorAll(".tm");
+            var ru = document.querySelectorAll('.ru');
+            var en = document.querySelectorAll('.en');
+            for(var i = 1; i<tm.length-1; i++){
+                tm[i].value = tmheader[i-1];
+                ru[i].value = ruheader[i-1];
+                en[i].value = enheader[i-1];
             }
 
-            const option = {
-                method: "POST",
-                body:data
-            }
 
-            await fetch("/picture/admin/shablon",option);
+            //quill ishletmek uchin
+            var editor1 = document.querySelectorAll('.editorCon');
+            editor1[squllSan].innerHTML = `<div id="editor${squllSan}" class="editorr">
+                                            <p></p>
+                                        </div>`
+            editor1[squllSan+1].innerHTML = `<div id="editor${squllSan+1}" class="editorr">
+                                            <p></p>
+                                        </div>`
+            editor1[squllSan+2].innerHTML = `<div id="editor${squllSan+2}" class='editorr'>
+                                            <p></p>
+                                        </div>`
+
+
+            var edit = document.querySelectorAll(".editorr");
+            for(var i =0; i<cssSana; i++){
+                editor1[3+i].childNodes[0].remove();
+                
+            }
+            cssSana+=3;
+
+            var edit = document.querySelectorAll(".editorr");
+            for(var i = 0; i<edit.length; i++){
+                var editor = new Quill(edit[i], {
+                    modules: { },
+                    theme: 'snow'
+                });
+            }
+            squllSan+=3;
+        })
+
+
+    </script>
+
+<!-- formdan maglumat jemlemek -->
+    <script>
+        var submit = document.querySelector("#identifier");
+
+        submit.addEventListener("submit",async function(e){
+            e.preventDefault()
+            var inputs = document.querySelectorAll("#identifier input");
+            var data = {
+                tmheader:[],
+                ruheader:[],
+                enheader:[],
+                text:[],
+                text2:[],
+                text3:[]
+            }
+            var tm = document.querySelectorAll('.tm');
+            var ru = document.querySelectorAll('.ru');
+            var en = document.querySelectorAll('.en');
+            var text = document.querySelectorAll(".ql-editor");
+
+            var a = 0;
+            for(var i = 0; i<tm.length;i++){
+                data.tmheader.push(tm[i].value);
+                data.ruheader.push(ru[i].value);
+                data.enheader.push(en[i].value);
+                data.text.push(text[a].innerHTML);
+                data.text2.push(text[a+1].innerHTML);
+                data.text3.push(text[a+2].innerHTML);
+                a+=3;
+            }
+            
+            console.log(data);
+            console.log(imgs)
+
         })
 
 
@@ -175,23 +269,6 @@
         modules: { },
         theme: 'snow'
       });
-
-    //   3 sany textarea girizilen maglumatlary hidden textarea girizyar
-    
-    var idForm = document.querySelector("#identifier");
-    idForm.addEventListener("submit",function(){
-        var hiddenText = document.querySelectorAll("#hiddenArea");
-        var hiddenText2 = document.querySelectorAll("#hiddenArea2");
-        var hiddenText3 = document.querySelectorAll("#hiddenArea3");
-        var text = document.querySelectorAll("#editor .ql-editor");
-        var text2 = document.querySelectorAll("#editor2 .ql-editor");
-        var text3 = document.querySelectorAll("#editor3 .ql-editor");
-        for(var i = 0; i<hiddenText.length; i++){
-            hiddenText[i].value = text[i].innerHTML;
-            hiddenText2[i].value = text2[i].innerHTML;
-            hiddenText3[i].value = text3[i].innerHTML;
-        }
-    })
     </script> 
 
 </body>

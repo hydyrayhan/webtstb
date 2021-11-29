@@ -16,14 +16,14 @@
                 <%= name %> 
             </div>
         </div>
-    <form action="/admin/ygtyyarnama" method="POST" id="identifier">
+    <form action="/admin/plans" method="POST" id="identifier">
         <div class="adminTable">
                 <div class="formInputs addHabar form1">
                     <div class="box">
                         <div class="boxHeader">Türkmençe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                            <input type="text" name="headerTM" class="header">
+                            <input type="text" name="headerTM" class="header" value="<%= data.header.tm %>" required>
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -38,7 +38,7 @@
                             <div class="suratHeader">
                                 <label for="">Faýl [PDF] giriziň:</label>
                                 <label for="sowdaSurat">Faýl goşmak <img src="/pictures/icon/plus.svg" alt=""></label>
-                                <input type="file" onchange="takeImg(event)" id="sowdaSurat" style="display: none;">
+                                <input type="file" accept=".pdf" onchange="takeImg(event)" id="sowdaSurat" style="display: none;">
                             </div>
                         </div>
                         <label for="" class="imgsCon">
@@ -53,7 +53,7 @@
                         <div class="boxHeader">Rusça giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerRU" id="topTa" class="header">
+                            <input type="text" name="headerRU" id="topTa" class="header" value="<%= data.header.ru %>" required>
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -66,7 +66,7 @@
                         <div class="boxHeader">Iňlisçe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerEN" id="topTa" class="header">
+                            <input type="text" name="headerEN" id="topTa" class="header" value="<%= data.header.en %>" required>
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -88,7 +88,9 @@
     </form>
     </div>
 
-    
+    <div class="val" style="display: none;"><%= data.body.tm %></div>
+    <div class="val2" style="display: none;"><%=data.body.ru%></div>
+    <div class="val3" style="display: none;"><%=data.body.en%></div>
 
     <!-- picture show when i choose from file -->
     <script>
@@ -118,15 +120,52 @@
                 imgLen();
             }
         }
+        function firstWork(){
+            var pic = '<%=data.files%>'
+            
+            pic = pic.split(',');
+            var imgCon = document.querySelector(".imgCon");
+            for(var i = 0; i<pic.length; i++){
+                imgCon.innerHTML += `
+                                    <div class="div pdf ${delCount}">
+                                        <img class="img" src="/pictures/icon/pdfRed.png" alt="hjhjhj">
+                                        <div class="imgDelete" onclick="delImg(${delCount})"><img src="/pictures/icon/delete.svg"  alt=""></div>
+                                        <div class="name">${pic[delCount]}</div>
+                                    </div>`;
+                var obj = {
+                    id:delCount,
+                    event:''
+                }
+                delCount+=1;
+                imgCount+=1;
+                imgs.push(obj)
+            }
+            imgLen();
+        }
+        firstWork();
 
-        function delImg(san){
+        async function delImg(san){
             var imgCon = document.querySelectorAll(".imgCon .div");
+            for(var i = 0; i<imgs.length; i++){
+                if(imgs[i].id == san){
+                    if(imgs[i].event == ''){
+                        const option = {
+                            method: 'delete'
+                        }
+                        var res = await fetch('<%=host%>/menu/deleteBussinessFile?id=<%=data.id%>&index='+i,option);
+                    }
+                    imgs.splice(i,1);
+                    break;
+                }
+            }
+            
+            // var imgCon = document.querySelectorAll(".imgCon .div");
             for(var i = 0; i<imgs.length; i++){
                 if(imgs[i].id == san){
                     imgs.splice(i,1);
                 }
             }
-
+            
             for(var i = 0; i<imgCon.length ; i++){
                 var a = imgCon[i].classList.contains(san);
                 if(a){
@@ -159,7 +198,6 @@
             }
         }
         imgLen();
-
         var oneTime = true;
         var submit = document.querySelector("#identifier");
         submit.addEventListener("submit",async function(e){
@@ -178,22 +216,27 @@
                     text2:area2.innerHTML,
                     text3:area3.innerHTML
                 }
-                console.log(data);
                 var arr = []
                 for(var i = 0; i<imgs.length; i++){
-                    arr.push(imgs[i].event);
-                }
-                console.log(arr)
-                var res = await dataSend(data,'<%=host%>/menu/addLicense');
-                if(typeof(res.id) == 'number'){
-                    if(arr.length>0){
-                        var data = await imgSend(arr,'<%=host%>/menu/addLicenseFile?id='+res.id);
-                        if(data.status == 200){
-                            location.replace('/admin/ygtyyarnama');
-                        }
-                    }else{
-                        location.replace('/admin/ygtyyarnama')
+                    if(imgs[i].event !== ''){
+                        arr.push(imgs[i].event);
                     }
+                }
+                if(imgs.length !== 0){
+                    var res = await dataSend(data,'<%=host%>/menu/editBussiness?id=<%=data.id%>');
+                    if(typeof(res.id) == 'number'){
+                        if(arr.length>0){
+                            var data = await imgSend(arr,'<%=host%>/menu/addBussinessFile?id='+res.id);
+                            if(data.status == 200){
+                                location.replace('/admin/plans');
+                            }
+                        }else{
+                            location.replace('/admin/plans')
+                        }
+                    }
+                }else{
+                    alert('Surat ýok')
+                    oneTime=true;
                 }
             }
             
@@ -218,11 +261,42 @@
         theme: 'snow'
       });
 
+    //   3 sany textarea girizilen maglumatlary hidden textarea girizyar
+    
+    var idForm = document.querySelector("#identifier");
+    idForm.addEventListener("submit",function(){
+        var hiddenText = document.querySelectorAll("#hiddenArea");
+        var hiddenText2 = document.querySelectorAll("#hiddenArea2");
+        var hiddenText3 = document.querySelectorAll("#hiddenArea3");
+        var text = document.querySelectorAll("#editor .ql-editor");
+        var text2 = document.querySelectorAll("#editor2 .ql-editor");
+        var text3 = document.querySelectorAll("#editor3 .ql-editor");
+        for(var i = 0; i<hiddenText.length; i++){
+            hiddenText[i].value = text[i].innerHTML;
+            hiddenText2[i].value = text2[i].innerHTML;
+            hiddenText3[i].value = text3[i].innerHTML;
+        }
+    })
     </script> 
 
-<script>
-    dropActive(2,6);
-</script>
+
+<!-- backenden gelyan text leri textarea yerleshdiryar -->
+    <script>
+        var text = document.querySelector("#editor .ql-editor");
+        var text2 = document.querySelector("#editor2 .ql-editor");
+        var text3 = document.querySelector("#editor3 .ql-editor");
+
+        var editText = document.querySelector(".val")
+        var editText2 = document.querySelector(".val2")
+        var editText3 = document.querySelector(".val3")
+
+        text.innerHTML = editText.textContent;
+        text2.innerHTML = editText2.textContent;
+        text3.innerHTML = editText3.textContent;
+
+
+        dropActive(2,5);
+    </script>
 
 </body>
 </html>
