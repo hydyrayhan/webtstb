@@ -18,17 +18,13 @@
                 <tbody>
                   <tr>
                     <td>Ady</td>
-                    <td>Täzelikler topary</td>
-                    <td>Çap edilen senesi</td>
                   </tr>
                   
                 <% for( let i = 0; i < data.length; i++ ) { %>
                         <tr>
-                            <td style="max-width: 400px;"><a href="/admin/partniyorlar/edit/<%= data[i].id %>"><%= data[i].ady%></a></td>
-                            <td><%= data[i].topary %> </td>
-                            <td><%= data[i].chapSenesi %> </td>
+                            <td style="max-width: 400px;"><%= data[i].email%></td>
                             
-                            <td style="width: 40px;"><a href="/admin/partniyorlar/delete/<%= data[i].id %>"><img style="width: 30%;" src="/pictures/icon/delete.svg" alt=""></a></td>
+                            <td style="width: 40px;"><a href="/admin/mail/delete/<%= data[i].id %>"><img style="width: 30%;" src="/pictures/icon/delete.svg" alt=""></a></td>
                         </tr>
                     <% } %>
                 </tbody>

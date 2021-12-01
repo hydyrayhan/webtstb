@@ -8,21 +8,20 @@
     <link rel="stylesheet" href="/style/src/materialize/splide.min.css">
     <title>Document</title>
     <style>
-      .dropbtn {
+      .dropbtn3 {
         color: #999999;
-        /* padding: 16px; */
-        background: white;
+        background: none;
         font-size: 14px;
         border: none;
         cursor: pointer;
       }
 
-      .dropdown {
+      .dropdown3 {
         position: relative;
         display: inline-block;
       }
 
-      .dropdown-content {
+      .dropdown-content3 {
         display: none;
         position: absolute;
         background-color: #f1f1f1;
@@ -33,7 +32,7 @@
         right: 0;
       }
 
-      .dropdown-content a {
+      .dropdown-content3 .dil {
         color: black;
         padding: 12px 16px;
         text-decoration: none;
@@ -41,7 +40,7 @@
         width: auto !important;
       }
 
-      .dropdown a:hover {background-color: #ddd;}
+      .dropdown3 .dil:hover {background-color: #ddd;}
 
       .show {display: block;}
     </style>
@@ -59,7 +58,7 @@
             </a>
             
           <div class="right">
-            <div class="language">
+            <!-- <div class="language">
               <div class='chosen-lang' href='#' data-target='dropdown1'></div>
     
               <ul id='dropdown1' class='dropdown-content'>
@@ -67,7 +66,7 @@
                 <li class="lang-link" data-content id="EN">EN</li>
                 <li class="lang-link" data-content id="RU">RU</li>
               </ul>
-            </div>
+            </div> -->
             <div class="search">
               <div class="icon">
                 <img src="/pictures/icon/search.png" alt="">
@@ -75,12 +74,12 @@
               <div class="searchText" data-content id='search'></div>
             </div>
 
-            <div class="dropdown">
-              <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-              <div id="myDropdown" class="dropdown-content">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
+            <div class="dropdown3 language">
+              <button onclick="myFunction()" class="dropbtn3 chosen-lang"></button>
+              <div id="myDropdown3" class="dropdown-content3">
+                <div class="dil lang-link" data-content id="TM">TM</div>
+                <div class="dil lang-link" data-content id="EN">EN</div>
+                <div class="dil lang-link" data-content id="RU">RU</div>
               </div>
             </div>
           </div>
@@ -130,13 +129,26 @@
         var size = document.defaultView;
         if(size.innerWidth <=1000){
           changeLangPlace();
+          var a = document.querySelector('.dropdown-content3');
+          var b = document.querySelector(".dropbtn3")
+          a.style.left = '0'
+          b.style.color = 'white'
         }
 
         size.addEventListener("resize",function(){
           if(size.innerWidth <= 1000){
             changeLangPlace();
+            var a = document.querySelector('.dropdown-content3');
+            var b = document.querySelector(".dropbtn3")
+            a.style.left = '0'
+            b.style.color = 'white'
           }else{
             reChangeLangPlace();
+            var a = document.querySelector('.dropdown-content3');
+            var b = document.querySelector(".dropbtn3")
+            a.style.right = '0'
+            a.style.left = 'auto'
+            b.style.color = 'gray'
           }
         })
 
@@ -145,28 +157,26 @@
           lang.parentNode.removeChild(lang);
           const nav2 = document.querySelector(".nav2 .container");
           const left = document.querySelector(".nav2 .left");
-          
           left.parentNode.insertBefore(lang,left.nextSibling);
         }
         function reChangeLangPlace(){
           const lang = document.querySelector(".language");
           lang.parentNode.removeChild(lang);
           const search = document.querySelector(".search");
-          
-          search.parentNode.insertBefore(lang,search);
+          search.parentNode.insertBefore(lang,search.nextSibling);
         }
       </script>
 
 
   <script>
     function myFunction() {
-      document.getElementById("myDropdown").classList.toggle("show");
+      document.getElementById("myDropdown3").classList.toggle("show");
     }
 
     // Close the dropdown if the user clicks outside of it
     window.onclick = function(event) {
-      if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
+      if (!event.target.matches('.dropbtn3')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content3");
         var i;
         for (i = 0; i < dropdowns.length; i++) {
           var openDropdown = dropdowns[i];

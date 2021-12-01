@@ -21,8 +21,8 @@ async function changeLanguage(){
   const contentNodes = document.querySelectorAll('[data-content]');
   const dynamicNodes = document.querySelectorAll("[data-dynamic]");
   const navLang = document.querySelector('.chosen-lang');
-  const language = document.querySelector('.language');
-  const ul = document.querySelector('.language ul');
+  // const language = document.querySelector('.language');
+  // const ul = document.querySelector('.language ul');
 
 
 

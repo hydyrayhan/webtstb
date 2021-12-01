@@ -36,12 +36,8 @@
                         <div class="boxHeader">Suraty giriziň</div>
                         <div class="mazmun">Suraty giriziň:</div>
                         <div class="inputs">
-                            <p><input type="file"  accept="image/*" name="image" id="img0" onchange="loadFile(event,0)" class="1" style="display: none;"></p>
+                            <p><input type="file"  accept="image/*" name="image" id="img0" onchange="loadFile2(event,0)" class="1" style="display: none;"></p>
                             <label class="imgLbCon" for="img0"><img id="output" src="/pictures/icon/addPicture.svg" /></label>
-                        </div>
-                        <div class="inputs">
-                            <p><input type="file"  accept="image/*" name="image" id="img1" onchange="loadFile(event,1)" class="2" style="display: none;"></p>
-                            <label class="imgLbCon" for="img1"><img id="output" src="/pictures/icon/addPicture.svg" /></label>
                         </div>
                    </div>
                     <div class="box">
@@ -94,12 +90,8 @@
                             <div class="boxHeader">Suraty giriziň</div>
                             <div class="mazmun">Suraty giriziň:</div>
                             <div class="inputs">
-                                <p><input type="file"  accept="image/*" name="image" id="img<%=i*2-2%>" onchange="loadFile(event,'<%=i*2-2%>')" class="1" style="display: none;"></p>
-                                <label class="imgLbCon" for="img<%=i*2-2%>"><img id="output" width="100%" height="335px" src="<%=host%>/constructor/<%= id %>/<%= data.pic[i-2] %>" /></label>
-                            </div>
-                            <div class="inputs">
-                                <p><input type="file"  accept="image/*" name="image" id="img<%=i*2-1%>" onchange="loadFile(event,'<%=i*2-1%>')" class="2" style="display: none;"></p>
-                                <label class="imgLbCon" for="img<%=i*2-1%>"><img id="output" width="100%" height="335px" src="<%=host%>/constructor/<%= id %>/<%= data.pic[i-1] %> " /></label>
+                                <p><input type="file"  accept="image/*" name="image" id="img<%=i-1%>" onchange="loadFile2(event,'<%=i-1%>')" class="1" style="display: none;"></p>
+                                <label class="imgLbCon" for="img<%=i-1%>"><img id="output" width="100%" height="335px" src="<%=host%>/constructor/<%= id %>/<%= data.pic[i-2] %>" /></label>
                             </div>
                        </div>
                         <div class="box">
@@ -130,11 +122,9 @@
                         </div>
                         <% } %>
                     </div>
-
                     <div style="display: none;" class="hide"></div>
                     <div style="display: none;" class="hide2"></div>
                     <div style="display: none;" class="hide3"></div>
-
 
                     <div class="addHabar bash">
                         <div class="box">
@@ -170,6 +160,7 @@
                             </div>
                         </div>
                     </div>
+                
 
 
             <div class="submitCon">
@@ -200,7 +191,6 @@
 
 
 
-
 <!-- surat take -->
     <script>
         var imgs = [];
@@ -214,13 +204,13 @@
             imgs.push(obj);
         }
 
-        var loadFile = function(event,el) {
+        var loadFile2 = function(event,el) {
             var image = document.querySelectorAll('#output');
             image[el].src = URL.createObjectURL(event.target.files[0]);
             image[el].style.width = "100%";
             image[el].style.height = "100%";
             var obj = {
-                id:el-2,
+                id:el-1,
                 file:event.target.files[0]
             }
 
@@ -230,7 +220,7 @@
                 imgs.push(obj);
             }else{
                 for(var i = 0; i<imgs.length;i++){
-                    if(imgs[i].id == el-2){
+                    if(imgs[i].id == el-1){
                         imgs.splice(i,1,obj);
                         bool = false;
                         break;                        
@@ -252,8 +242,8 @@
         var moreBtn = document.querySelector(".more");
         var pic = '<%=data.pic%>'
         pic = pic.split(',');
-        var suratId = 2+pic.length;
-        var suratPlace = 3+((pic.length/2)*8);
+        var suratId = 1+pic.length;
+        var suratPlace = 3+(pic.length*8);
         var tmheader = [];
         var ruheader = [];
         var enheader = [];
@@ -275,15 +265,7 @@
             form2.childNodes[suratPlace].childNodes[5].childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/addPicture.svg")
             form2.childNodes[suratPlace].childNodes[5].childNodes[3].childNodes[0].setAttribute("style","")
             form2.childNodes[suratPlace].childNodes[5].childNodes[1].childNodes[0].setAttribute("id",'img'+suratId);
-            form2.childNodes[suratPlace].childNodes[5].childNodes[1].childNodes[0].setAttribute("onchange",'loadFile(event,'+suratId+')');
-            suratId+=1;
-
-            form2.childNodes[suratPlace].childNodes[7].childNodes[3].setAttribute('for','img'+suratId);
-            form2.childNodes[suratPlace].childNodes[7].childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/addPicture.svg")
-            form2.childNodes[suratPlace].childNodes[7].childNodes[3].childNodes[0].setAttribute("style","")
-            form2.childNodes[suratPlace].childNodes[7].childNodes[1].childNodes[0].setAttribute("id",'img'+suratId);
-            form2.childNodes[suratPlace].childNodes[7].childNodes[1].childNodes[0].setAttribute("onchange",'loadFile(event,'+suratId+')');
-            suratId+=1;
+            form2.childNodes[suratPlace].childNodes[5].childNodes[1].childNodes[0].setAttribute("onchange",'loadFile2(event,'+suratId+')');
             suratPlace +=8;
 
             // header valuelaryny goyup beryar;
@@ -339,8 +321,6 @@
                 var inputs = document.querySelectorAll("#identifier input");
                 var bash = document.querySelectorAll(".bash input");
                 var select = document.querySelector('.welayatSelect');
-
-
                 var data = {
                     tm:bash[0].value,
                     ru:bash[1].value,
@@ -402,28 +382,25 @@
                 }
                 
                 console.log(arr);
-                if(yekeSurat){
-                    alert("Bir surat yok");
-                    oneTime=true;
-                }else{
-                    if(headFull){
-                        var res = await dataSend(data,'<%=host%>/constructor/subCategory/edit?id=<%=id%>');
-            
-                        if(typeof(res.id) == 'number'){
-                            if(suratUytgedi){
-                                var data = await imgSend(arr,'<%=host%>/constructor/addPic?id=<%=id%>');
-                                if(data.status == 200){
-                                    location.replace('/admin/subConstructor/'+res.id);
-                                }
-                            }else{
+               
+                if(headFull){
+                    var res = await dataSend(data,'<%=host%>/constructor/subCategory/edit?id=<%=id%>');
+        
+                    if(typeof(res.id) == 'number'){
+                        if(suratUytgedi){
+                            var data = await imgSend(arr,'<%=host%>/constructor/addVideo?id=<%=id%>');
+                            if(data.status == 200){
                                 location.replace('/admin/subConstructor/'+res.id);
                             }
+                        }else{
+                            location.replace('/admin/subConstructor/'+res.id);
                         }
-                    }else{
-                        alert('headerlerin biri bosh');
-                        oneTime=true
                     }
+                }else{
+                    alert('headerlerin biri bosh');
+                    oneTime=true
                 }
+                
             }
         })
         linkActive(3);

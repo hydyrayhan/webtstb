@@ -214,6 +214,21 @@ app.get("/consultation",function(req,res){
 })
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // admin ==========================================================================================
 
 app.get("/admin",async function(req,res){
@@ -369,9 +384,13 @@ app.get("/admin/:page",async function(req,res){
     
     res.render("admin/banner3",{data:data.data.banner, name:"3-nji banner", host});
   }else if(page == "mail"){
-    data = fs.readFileSync("./jsons/adminHabarlar.json");
-    data = JSON.parse(data);
-    res.render("admin/mail",{data,name:"Mail subcribers"});
+    try{
+      data = await axios.get(`${host}/mail/`);
+    }catch(error){
+      console.log(error)
+    }
+    console.log(data.data);
+    res.render("admin/mail",{data:data.data,name:"Mail subcribers"});
   }else if (page == "constructor"){
     try{
       data = await axios.get(`${host}/constructor/`);
@@ -402,17 +421,17 @@ app.post("/admin/:page",function(req,res){
     if(nomer == 1){
       res.render("admin/toAdd/shablon/shablon1",{data:req.body,name:"Sub Constructor",id:constructorId,host});
     }else if(nomer == 2){
-      res.render("admin/toAdd/shablon/shablon2",{data:req.body,name:"Sub Constructor"})
+      res.render("admin/toAdd/shablon/shablon2",{data:req.body,name:"Sub Constructor",host,id:constructorId});
     }else if(nomer == 3){
-      res.render("admin/toAdd/shablon/shablon3",{data:req.body,name:"Sub Constructor"})
+      res.render("admin/toAdd/shablon/shablon3",{data:req.body,name:"Sub Constructor",host,id:constructorId});
     }else if(nomer == 4){
-      res.render("admin/toAdd/shablon/shablon4",{data:req.body,name:"Sub Constructor"})
+      res.render("admin/toAdd/shablon/shablon4",{data:req.body,name:"Sub Constructor",host,id:constructorId})
     }else if(nomer == 5){
-      res.render("admin/toAdd/shablon/shablon5",{data:req.body,name:"Sub Constructor"})
+      res.render("admin/toAdd/shablon/shablon5",{data:req.body,name:"Sub Constructor",host,id:constructorId})
     }else if(nomer == 6){
-      res.render("admin/toAdd/shablon/shablon6",{data:req.body,name:"Sub Constructor"})
+      res.render("admin/toAdd/shablon/shablon6",{data:req.body,name:"Sub Constructor",host,id:constructorId})
     }else if(nomer == 7){
-      res.render("admin/toAdd/shablon/shablon7",{data:req.body,name:"Sub Constructor"})
+      res.render("admin/toAdd/shablon/shablon7",{data:req.body,name:"Sub Constructor",host,id:constructorId})
     }
   }else if(page == "subConstructor2"){
     console.log("Shablondan Maglumat geldi"+constructorId);
@@ -420,21 +439,6 @@ app.post("/admin/:page",function(req,res){
     res.redirect(`/admin/subConstructor/${constructorId}`)
   }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -496,24 +500,6 @@ app.get("/admin/:page/add",async function(req,res){
     res.render("admin/toAdd/addSubConstructor",{name:"Sub constructor goşmak"})
   }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -645,23 +631,23 @@ app.get("/admin/:page/edit/:id",async function(req,res){
       res.render('admin/toEdit/shablon/shablon1',{data:data.data,host,name,id})
     }else if(sh == 2){
       res.render('admin/toEdit/shablon/shablon2',{data:data.data,host,name,id})
+    }else if(sh == 3){
+      res.render('admin/toEdit/shablon/shablon3',{name,data:data.data,host,id})
+    }else if(sh == 4){
+      res.render('admin/toEdit/shablon/shablon4',{name,data:data.data,host,id})
+    }else if(sh == 5){
+      res.render('admin/toEdit/shablon/shablon5',{name,data:data.data,host,id})
+    }else if(sh == 6){
+      res.render('admin/toEdit/shablon/shablon6',{name,data:data.data,host,id})
+    }else if(sh == 7){
+      res.render('admin/toEdit/shablon/shablon7',{name,data:data.data,host,id})
     }
   }
 })
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 // page delete
@@ -779,14 +765,15 @@ app.get("/admin/:page/delete/:id",async function(req,res){
       console.log(e);
     }
     res.redirect('/admin/subConstructor/'+constructorId);
+  }else if(page == 'mail'){
+    try{
+      await axios.delete(`${host}/mail?id=${id}`);
+    }catch(e){
+      console.log(e);
+    }
+    res.redirect('/admin/mail');
   }
 })
-
-
-
-
-
-
 
 
 // karhanalar
@@ -822,16 +809,10 @@ app.get("/admin/subConstructor/:id",async function(req,res){
 
 
 
-//internet sowda kategori add
-app.post("/internetKategori",function(req,res){
-  
-  res.redirect("/admin/Internet Söwda/add");
-})
-
-
-
-
-
+// //internet sowda kategori add
+// app.post("/internetKategori",function(req,res){
+//   res.redirect("/admin/Internet Söwda/add");
+// })
 
 
 
@@ -860,12 +841,6 @@ app.get('/template/:san',function(req,res){
 
 
 
-// example
-
-app.get("/text",function(req,res){
-
-  res.render("textEditor");
-})
 
 //Server Start
 app.listen("3000",function(){
