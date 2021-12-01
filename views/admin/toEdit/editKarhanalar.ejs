@@ -23,11 +23,11 @@
                         <div class="boxHeader">Türkmençe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Kärhana ady:</label>
-                            <input type="text" name="tm" class="header">
+                            <input type="text" name="tm" class="header" value="<%=data.name.tm%>">
                         </div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                            <input type="text" name="headerTM" class="header">
+                            <input type="text" name="headerTM" class="header" value="<%=data.title.tm%>">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -42,7 +42,7 @@
                         <div class="mazmun">Suraty giriziň:</div>
                         <div class="inputs">
                             <p><input type="file"  accept="image/*" name="image" id="img0" onchange="loadFile(event,0)" class="1" style="display: none;"></p>
-                            <label class="imgLbCon" for="img0"><img id="output" src="/pictures/icon/addPicture.svg" /></label>
+                            <label class="imgLbCon" for="img0"><img id="output" width="100%" src="<%= host %>/industry/<%= data.pic %>"/></label>
                         </div>
                     </div>
                     
@@ -54,11 +54,11 @@
                         <div class="boxHeader">Rusça giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Kärhana ady:</label>
-                            <input type="text" name="ru" class="header">
+                            <input type="text" name="ru" class="header" value="<%=data.name.ru%>">
                         </div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerRU" id="topTa" class="header">
+                            <input type="text" name="headerRU" id="topTa" class="header" value="<%=data.title.ru%>">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -71,11 +71,11 @@
                         <div class="boxHeader">Iňlisçe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Kärhana ady:</label>
-                            <input type="text" name="en" class="header">
+                            <input type="text" name="en" class="header" value="<%=data.name.en%>">
                         </div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerEN" id="topTa" class="header">
+                            <input type="text" name="headerEN" id="topTa" class="header" value="<%=data.title.en%>">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -97,9 +97,9 @@
     </form>
     </div>
 
-    <div class="val" style="display: none;"><%= data.text %></div>
-    <div class="val2" style="display: none;"><%=data.text2%></div>
-    <div class="val3" style="display: none;"><%=data.text3%></div>
+    <div class="val" style="display: none;"><%= data.text.tm %></div>
+    <div class="val2" style="display: none;"><%=data.text.ru%></div>
+    <div class="val3" style="display: none;"><%=data.text.en%></div>
 
 
     <!-- picture show when i choose from file and send to node with fetch-->
@@ -154,26 +154,47 @@
 
     <!-- formdan maglumat jemlemek -->
     <script>
+        var oneTime = true;
         var submit = document.querySelector('#identifier');
-        submit.addEventListener("submit",function(e){
+        submit.addEventListener("submit",async function(e){
             e.preventDefault();
-            var inputs = document.querySelectorAll('#identifier input');
-            var text = document.querySelector("#editor .ql-editor");
-            var text2 = document.querySelector("#editor2 .ql-editor");
-            var text3 = document.querySelector("#editor3 .ql-editor");
-            var data = {
-                tmname:inputs[0].value,
-                tmheader:inputs[1].value,
-                runame:inputs[4].value,
-                ruheader:inputs[5].value,
-                enname:inputs[7].value,
-                enheader:inputs[8].value,
-                text:text.innerHTML,
-                text2:text2.innerHTML,
-                text3:text3.innerHTML
-            }        
-            console.log(img)   
-            console.log(data); 
+            if(oneTime){
+                oneTime = false;
+                var inputs = document.querySelectorAll('#identifier input');
+                var text = document.querySelector("#editor .ql-editor");
+                var text2 = document.querySelector("#editor2 .ql-editor");
+                var text3 = document.querySelector("#editor3 .ql-editor");
+                var data = {
+                    tm:inputs[0].value,
+                    tmheader:inputs[1].value,
+                    ru:inputs[4].value,
+                    ruheader:inputs[5].value,
+                    en:inputs[7].value,
+                    enheader:inputs[8].value,
+                    text:text.innerHTML,
+                    text2:text2.innerHTML,
+                    text3:text3.innerHTML
+                }        
+                
+                
+                var arr = [];
+                if(img != undefined){
+                    arr.push(img);
+                }
+
+                var res = await dataSend(data,'<%=host%>/industry/subCategory/edit?id=<%=id%>&index=<%=index%>');
+                
+                if(typeof(res.id) == 'number'){
+                    if(arr.length == 0){
+                        location.replace('/admin/karhanalar/<%=id%>')
+                    }else{
+                        var data = await imgSend(arr,'<%=host%>/industry/addPic?id='+res.id+'&index='+res.index);
+                        if(data.status == 200){
+                            location.replace('/admin/karhanalar/<%=id%>')
+                        }
+                    }
+                }
+            }
         })
     </script>
 

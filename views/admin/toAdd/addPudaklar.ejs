@@ -54,17 +54,22 @@
     <script>linkActive(0)</script>
     <script>
         var submit = document.querySelector('#identifier');
-        submit.addEventListener("submit",function(e){
+        submit.addEventListener("submit",async function(e){
             e.preventDefault();
             var inputs = document.querySelectorAll('#identifier input');
-            console.log(inputs);
             var data = {
                 tm:inputs[0].value,
                 ru:inputs[1].value,
                 en:inputs[2].value
             }
             
-            console.log(data);
+            
+
+            var res = await dataSend(data,'<%=host%>/industry');
+            console.log(res);
+            if(typeof(res.status) == 'number'){
+                location.replace("/admin/pudaklar")
+            }
         })
     </script>
 </body>

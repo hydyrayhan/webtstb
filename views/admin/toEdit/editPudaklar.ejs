@@ -32,19 +32,19 @@
             <div class="box">
                 <div class="boxHeader">Türkmençe ady:</div>
                 <div class="headerCon">
-                    <input type="text" name="tm" class="header" required value="<%= data.tm %>">
+                    <input type="text" name="tm" class="header" required value="<%= data.name.TM %>">
                 </div>                
             </div>
             <div class="box">
                 <div class="boxHeader">Rusça ady:</div>
                 <div class="headerCon">
-                    <input type="text" name="ru" id="topTa" class="header" required value="<%= data.ru %>">
+                    <input type="text" name="ru" id="topTa" class="header" required value="<%= data.name.RU %>">
                 </div>
             </div>
             <div class="box">
                 <div class="boxHeader">Iňlisçe ady:</div>
                 <div class="headerCon">
-                    <input type="text" name="en" id="topTa" class="header" required value="<%= data.en %>">
+                    <input type="text" name="en" id="topTa" class="header" required value="<%= data.name.EN %>">
                 </div>
             </div>
             <input class="save" type="submit" value="Ýatda sakla">
@@ -54,17 +54,20 @@
     <script>linkActive(0)</script>
     <script>
         var submit = document.querySelector('#identifier');
-        submit.addEventListener("submit",function(e){
+        submit.addEventListener("submit",async function(e){
             e.preventDefault();
             var inputs = document.querySelectorAll('#identifier input');
-            console.log(inputs);
             var data = {
                 tm:inputs[0].value,
                 ru:inputs[1].value,
                 en:inputs[2].value
             }
             
-            console.log(data);
+            var res = await dataSend(data,'<%=host%>/industry/edit?id=<%=data.id%>');
+            if(res.status == 200){
+                location.replace('/admin/pudaklar')
+            }
+                
         })
     </script>
 </body>

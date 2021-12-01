@@ -57,7 +57,7 @@
     <script>
         var submit = document.querySelector('#identifier');
         var oneTime = true;
-        submit.addEventListener("submit",function(e){
+        submit.addEventListener("submit",async function(e){
             e.preventDefault();
             if(oneTime){
                 oneTime = false;
@@ -67,7 +67,12 @@
                     ru:inputs[1].value,
                     en:inputs[2].value
                 }
-                console.log(data);
+                
+
+                var res = await dataSend(data,'<%=host%>/constructor');
+                if(res.status == 200){
+                    location.replace('/admin/constructor')
+                }
             }
         })
     </script>

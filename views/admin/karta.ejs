@@ -40,120 +40,120 @@
                         <div class="boxHeader">Aşgabat</div>
                        <div class="headerCon">
                            <label for="" class="mazmuny">Türkmençe Address:</label>
-                           <input type="text" value="<%= data.ashgabat.tmAddress %>">
+                           <input type="text" value="<%= data.ashgabat.tmAddress %>" required>
                            <label for="" class="mazmuny">Rusça Address:</label>
-                           <input type="text" value="<%= data.ashgabat.ruAddress %>">
+                           <input type="text" value="<%= data.ashgabat.ruAddress %>" required>
                            <label for="" class="mazmuny">Iňlisçe Address:</label>
-                           <input type="text" value="<%= data.ashgabat.enAddress %>">
+                           <input type="text" value="<%= data.ashgabat.enAddress %>" required>
                            <% for( let i = 0; i < data.ashgabat.phone.length; i++ ) { %>
                             <label for="" class="mazmuny">Telefon:</label>
                             <input type="text" id="ag" name="phone" value="<%= data.ashgabat.phone[i] %>">
                             <% } %>
                             <div class="plus"  onclick="plus(0)"><img src="/pictures/icon/plus.svg" alt=""></div>
                            <label for="" class="mazmuny">Faks:</label>
-                           <input type="text" value="<%= data.ashgabat.faks %>">
+                           <input type="text" class="faks" value="<%= data.ashgabat.faks %>" required>
                            <label for="" class="mazmuny">Email:</label>
-                           <input type="text" value="<%= data.ashgabat.email %>">
+                           <input type="text" class="email" value="<%= data.ashgabat.email %>" required>
                        </div>
                     </div>
                     <div class="box">
                         <div class="boxHeader">Ahal</div>
                        <div class="headerCon">
                            <label for="" class="mazmuny">Türkmençe Address:</label>
-                           <input type="text" value="<%= data.ahal.tmAddress %>">
+                           <input type="text" value="<%= data.ahal.tmAddress %>" required>
                            <label for="" class="mazmuny">Rusça Address:</label>
-                           <input type="text" value="<%= data.ahal.ruAddress %>">
+                           <input type="text" value="<%= data.ahal.ruAddress %>" required>
                            <label for="" class="mazmuny">Iňlisçe Address:</label>
-                           <input type="text" value="<%= data.ahal.enAddress %>">
+                           <input type="text" value="<%= data.ahal.enAddress %>" required>
                            <% for( let i = 0; i < data.ahal.phone.length; i++ ) { %>
                             <label for="" class="mazmuny">Telefon:</label>
                             <input type="text" id="ah" name="phone" value="<%= data.ahal.phone[i] %>">
                             <% } %>
                            <div class="plus"  onclick="plus(1)"><img src="/pictures/icon/plus.svg" alt=""></div>
                            <label for="" class="mazmuny">Faks:</label>
-                           <input type="text" value="<%= data.ahal.faks %>">
+                           <input type="text" class="faks" value="<%= data.ahal.faks %>" required>
                            <label for="" class="mazmuny">Email:</label>
-                           <input type="text" value="<%= data.ahal.email %>">
+                           <input type="text" class="email" value="<%= data.ahal.email %>" required>
                        </div>
                     </div>
                     <div class="box">
                         <div class="boxHeader">Balkan</div>
                        <div class="headerCon">
                            <label for="" class="mazmuny">Türkmençe Address:</label>
-                           <input type="text" value="<%= data.balkan.tmAddress %>">
+                           <input type="text" value="<%= data.balkan.tmAddress %>" required>
                            <label for="" class="mazmuny">Rusça Address:</label>
-                           <input type="text" value="<%= data.balkan.ruAddress %>">
+                           <input type="text" value="<%= data.balkan.ruAddress %>" required>
                            <label for="" class="mazmuny">Iňlisçe Address:</label>
-                           <input type="text" value="<%= data.balkan.enAddress %>">
+                           <input type="text" value="<%= data.balkan.enAddress %>" required>
                            <% for( let i = 0; i < data.balkan.phone.length; i++ ) { %>
                             <label for="" class="mazmuny">Telefon:</label>
                             <input type="text" id="bk" name="phone" value="<%= data.balkan.phone[i] %>">
                             <% } %>
                             <div class="plus"  onclick="plus(2)"><img src="/pictures/icon/plus.svg" alt=""></div>
                            <label for="" class="mazmuny">Faks:</label>
-                           <input type="text" value="<%= data.balkan.faks %>">
+                           <input type="text" class="faks" value="<%= data.balkan.faks %>" required>
                            <label for="" class="mazmuny">Email:</label>
-                           <input type="text" value="<%= data.balkan.email %>">
+                           <input type="text" class="email" value="<%= data.balkan.email %>" required>
                        </div>
                     </div>
                     <div class="box">
                         <div class="boxHeader">Mary</div>
                        <div class="headerCon">
                            <label for="" class="mazmuny">Türkmençe Address:</label>
-                           <input type="text" value="<%= data.mary.tmAddress %>">
+                           <input type="text" value="<%= data.mary.tmAddress %>" required>
                            <label for="" class="mazmuny">Rusça Address:</label>
-                           <input type="text" value="<%= data.mary.ruAddress %>">
+                           <input type="text" value="<%= data.mary.ruAddress %>" required>
                            <label for="" class="mazmuny">Iňlisçe Address:</label>
-                           <input type="text" value="<%= data.mary.enAddress %>">
+                           <input type="text" value="<%= data.mary.enAddress %>" required>
                            <% for( let i = 0; i < data.mary.phone.length; i++ ) { %>
                             <label for="" class="mazmuny">Telefon:</label>
                             <input type="text" id="mr" name="phone" value="<%= data.mary.phone[i] %>">
                             <% } %>
                            <div class="plus"  onclick="plus(3)"><img src="/pictures/icon/plus.svg" alt=""></div>
                            <label for="" class="mazmuny">Faks:</label>
-                           <input type="text" value="<%= data.mary.faks %>">
+                           <input type="text" class="faks" value="<%= data.mary.faks %>" required>
                            <label for="" class="mazmuny">Email:</label>
-                           <input type="text" value="<%= data.mary.email %>">
+                           <input type="text" class="email" value="<%= data.mary.email %>" required>
                        </div>
                     </div>
                     <div class="box">
                         <div class="boxHeader">Dashoguz</div>
                        <div class="headerCon">
                            <label for="" class="mazmuny">Türkmençe Address:</label>
-                           <input type="text" value="<%= data.dashoguz.tmAddress %>" >
+                           <input type="text" value="<%= data.dashoguz.tmAddress %>" required>
                            <label for="" class="mazmuny">Rusça Address:</label>
-                           <input type="text" value="<%= data.dashoguz.ruAddress %>">
+                           <input type="text" value="<%= data.dashoguz.ruAddress %>" required>
                            <label for="" class="mazmuny">Iňlisçe Address:</label>
-                           <input type="text" value="<%= data.dashoguz.enAddress %>">
+                           <input type="text" value="<%= data.dashoguz.enAddress %>" required>
                            <% for( let i = 0; i < data.dashoguz.phone.length; i++ ) { %>
                             <label for="" class="mazmuny">Telefon:</label>
                             <input type="text" id="dz" name="phone" value="<%= data.dashoguz.phone[i] %>">
                             <% } %>
                            <div class="plus"  onclick="plus(4)"><img src="/pictures/icon/plus.svg" alt=""></div>
                            <label for="" class="mazmuny">Faks:</label>
-                           <input type="text" value="<%= data.dashoguz.faks %>">
+                           <input type="text" class="faks" value="<%= data.dashoguz.faks %>" required>
                            <label for="" class="mazmuny">Email:</label>
-                           <input type="text" value="<%= data.dashoguz.email %>">
+                           <input type="text" class="email" value="<%= data.dashoguz.email %>" required>
                        </div>
                     </div>
                     <div class="box">
                         <div class="boxHeader">Lebap</div>
                        <div class="headerCon">
                            <label for="" class="mazmuny">Türkmençe Address:</label>
-                           <input type="text" value="<%= data.lebap.tmAddress %>">
+                           <input type="text" value="<%= data.lebap.tmAddress %>" required>
                            <label for="" class="mazmuny">Rusça Address:</label>
-                           <input type="text" value="<%= data.lebap.ruAddress %>">
+                           <input type="text" value="<%= data.lebap.ruAddress %>" required>
                            <label for="" class="mazmuny">Iňlisçe Address:</label>
-                           <input type="text" value="<%= data.lebap.enAddress %>">
+                           <input type="text" value="<%= data.lebap.enAddress %>" required>
                            <% for( let i = 0; i < data.lebap.phone.length; i++ ) { %>
                             <label for="" class="mazmuny">Telefon:</label>
                             <input type="text" id="lb" name="phone" value="<%= data.lebap.phone[i] %>">
                             <% } %>
                            <div class="plus"  onclick="plus(5)"><img src="/pictures/icon/plus.svg" alt=""></div>
                            <label for="" class="mazmuny">Faks:</label>
-                           <input type="text" value="<%= data.lebap.faks %>">
+                           <input type="text" class="faks" value="<%= data.lebap.faks %>" required>
                            <label for="" class="mazmuny">Email:</label>
-                           <input type="text" value="<%= data.lebap.email %>">
+                           <input type="text" class="email" value="<%= data.lebap.email %>" required>
                        </div>
                     </div>
                 </div>
@@ -211,53 +211,55 @@
     submit.addEventListener('submit',async function(e){
         e.preventDefault();
         var inputs = document.querySelectorAll("#identifier input");
+        var faks = document.querySelectorAll(".faks")
+        var email = document.querySelectorAll(".email")
         var data = {
             ashgabat:{
                 tmAddress:inputs[0].value,
                 ruAddress:inputs[1].value,
                 enAddress:inputs[2].value,
-                faks:inputs[4].value,
-                email:inputs[5].value,
+                faks:faks[0].value,
+                email:email[0].value,
                 phone:[]
             },
             ahal:{
                 tmAddress:inputs[6].value,
                 ruAddress:inputs[7].value,
                 enAddress:inputs[8].value,
-                faks:inputs[10].value,
-                email:inputs[11].value,
+                faks:faks[1].value,
+                email:email[1].value,
                 phone:[]
             },
             balkan:{
                 tmAddress:inputs[12].value,
                 ruAddress:inputs[13].value,
                 enAddress:inputs[14].value,
-                faks:inputs[16].value,
-                email:inputs[17].value,
+                faks:faks[2].value,
+                email:email[2].value,
                 phone:[]
             },
             mary:{
                 tmAddress:inputs[18].value,
                 ruAddress:inputs[19].value,
                 enAddress:inputs[20].value,
-                faks:inputs[22].value,
-                email:inputs[23].value,
+                faks:faks[3].value,
+                email:email[3].value,
                 phone:[]
             },
             dashoguz:{
                 tmAddress:inputs[24].value,
                 ruAddress:inputs[25].value,
                 enAddress:inputs[26].value,
-                faks:inputs[28].value,
-                email:inputs[29].value,
+                faks:faks[4].value,
+                email:email[4].value,
                 phone:[]
             },
             lebap:{
                 tmAddress:inputs[30].value,
                 ruAddress:inputs[31].value,
                 enAddress:inputs[32].value,
-                faks:inputs[34].value,
-                email:inputs[35].value,
+                faks:faks[5].value,
+                email:email[5].value,
                 phone:[]
             }
         }
@@ -298,9 +300,10 @@
                 data.lebap.phone.push(lb[i].value);
             }
         }
-        console.log(data);
         var res = await dataSend(data,'<%=host%>/province/editProvince');
-        // console.log(res);
+        if(res.status == 200){
+            location.reload();
+        }
     })
 </script>
 

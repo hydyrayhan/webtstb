@@ -32,19 +32,19 @@
             <div class="box">
                 <div class="boxHeader">Türkmençe ady:</div>
                 <div class="headerCon">
-                    <input type="text" name="tm" class="header">
+                    <input type="text" name="tm" class="header" value="<%=data.name.TM%>">
                 </div>                
             </div>
             <div class="box">
                 <div class="boxHeader">Rusça ady:</div>
                 <div class="headerCon">
-                    <input type="text" name="ru" id="topTa" class="header">
+                    <input type="text" name="ru" id="topTa" class="header" value="<%=data.name.RU%>">
                 </div>
             </div>
             <div class="box">
                 <div class="boxHeader">Iňlisçe ady:</div>
                 <div class="headerCon">
-                    <input type="text" name="en" id="topTa" class="header">
+                    <input type="text" name="en" id="topTa" class="header" value="<%=data.name.EN%>">
                 </div>
             </div>
             <input class="save" type="submit" value="Ýatda sakla">
@@ -57,7 +57,7 @@
     <script>
         var submit = document.querySelector('#identifier');
         var oneTime = true;
-        submit.addEventListener("submit",function(e){
+        submit.addEventListener("submit",async function(e){
             e.preventDefault();
             if(oneTime){
                 oneTime = false;
@@ -67,7 +67,11 @@
                     ru:inputs[1].value,
                     en:inputs[2].value
                 }
-                console.log(data);
+                
+                var res = await dataSend(data,'<%=host%>/constructor/edit?id=<%=id%>');
+                if(res.status == 200){
+                    location.replace('/admin/constructor')
+                }
             }
         })
     </script>

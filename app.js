@@ -249,7 +249,6 @@ let katigoriya
 app.get("/admin/:page",async function(req,res){
   var page = req.params.page;
   var data;
-
   if(page == "habarlar"){
     try{
       data = await axios.get(`${host}/news/getAll`);
@@ -257,18 +256,14 @@ app.get("/admin/:page",async function(req,res){
       console.log(error)
     }
     res.render("admin/habarlar",{data:data.data,name:"Habarlar",host:host});
-  }
-  
-  else if(page == "bildirishler"){
+  }else if(page == "bildirishler"){
     try{
       data = await axios.get(`${host}/events/getAll`);
     }catch(error){
       console.log(error)
     }
     res.render("admin/bildirishler",{data:data.data,name:"Bildirişler",host});
-  }
-  
-  else if(page == "rysgal"){
+  }else if(page == "rysgal"){
     try{
       data = await axios.get(`${host}/newspapers/`);
     }catch(error){
@@ -285,13 +280,13 @@ app.get("/admin/:page",async function(req,res){
     console.log(data.data);
     res.render("admin/tstb",{data:data.data,name:"TSTB - biz barada",host});
   }else if(page == "pudaklar"){
-    data = fs.readFileSync("./jsons/adminHabarlar.json");
-    data = JSON.parse(data);
-    res.render("admin/pudaklar",{data,name:"Pudaklar"});
-  }else if(page == "karhanalar"){
-    data = fs.readFileSync("./jsons/adminHabarlar.json");
-    data = JSON.parse(data);
-    res.render("admin/karhanalar",{data,name:"Kärhanalar"})
+    try{
+      data = await axios.get(`${host}/industry`);
+    }catch(e){
+      console.log(e);
+    }
+    console.log(data.data);
+    res.render("admin/pudaklar",{data:data.data,name:"Pudaklar"});
   }else if(page == "agzalyk"){
     try{
       data = await axios.get(`${host}/menu/getMembership`);
@@ -332,8 +327,7 @@ app.get("/admin/:page",async function(req,res){
     }
     console.log(data.data)
     res.render("admin/konsultasiya",{data:data.data,name:"Maslahat",host})
-  }
-  else if(page == "kompaniyalar"){
+  }else if(page == "kompaniyalar"){
     try{
       data = await axios.get(`${host}/members/`);
     }catch(error){
@@ -379,9 +373,13 @@ app.get("/admin/:page",async function(req,res){
     data = JSON.parse(data);
     res.render("admin/mail",{data,name:"Mail subcribers"});
   }else if (page == "constructor"){
-    data = fs.readFileSync("./jsons/adminHabarlar.json");
-    data = JSON.parse(data);
-    res.render("admin/constructor",{data,name:"Constructor kategoriýalar"});
+    try{
+      data = await axios.get(`${host}/constructor/`);
+    }catch(error){
+      console.log(error)
+    }
+    console.log(data.data);
+    res.render("admin/constructor",{data:data.data,name:"Constructor kategoriýalar"});
   }else if(page == "karta"){
     try{
       data = await axios.get(`${host}/province/getProvince`);
@@ -394,6 +392,34 @@ app.get("/admin/:page",async function(req,res){
 })
 
 
+// page post
+app.post("/admin/:page",function(req,res){
+  var page = req.params.page;
+  if(page == "subConstructor"){
+    var nomer = req.body.shablon;
+    console.log(req.body);
+    banner=nomer
+    if(nomer == 1){
+      res.render("admin/toAdd/shablon/shablon1",{data:req.body,name:"Sub Constructor",id:constructorId,host});
+    }else if(nomer == 2){
+      res.render("admin/toAdd/shablon/shablon2",{data:req.body,name:"Sub Constructor"})
+    }else if(nomer == 3){
+      res.render("admin/toAdd/shablon/shablon3",{data:req.body,name:"Sub Constructor"})
+    }else if(nomer == 4){
+      res.render("admin/toAdd/shablon/shablon4",{data:req.body,name:"Sub Constructor"})
+    }else if(nomer == 5){
+      res.render("admin/toAdd/shablon/shablon5",{data:req.body,name:"Sub Constructor"})
+    }else if(nomer == 6){
+      res.render("admin/toAdd/shablon/shablon6",{data:req.body,name:"Sub Constructor"})
+    }else if(nomer == 7){
+      res.render("admin/toAdd/shablon/shablon7",{data:req.body,name:"Sub Constructor"})
+    }
+  }else if(page == "subConstructor2"){
+    console.log("Shablondan Maglumat geldi"+constructorId);
+    console.log(req.body);
+    res.redirect(`/admin/subConstructor/${constructorId}`)
+  }
+})
 
 
 
@@ -438,21 +464,9 @@ app.get("/admin/:page/add",async function(req,res){
   }else if(page == "Gazetler"){
     res.render("admin/toAdd/addGazetler",{name:"Gazet goşmak",host})
   }else if(page == "Pudaklar"){
-    var data = {tm:"",en:"",ru:""};
-    res.render("admin/toAdd/addPudaklar",{data,name:"Pudak goşmak"})
+    res.render("admin/toAdd/addPudaklar",{name:"Pudak goşmak",host})
   }else if(page == "Kärhanalar"){
-    var data = {
-      tm:"",
-      text:"",
-      text2:"",
-      text3:"",
-      en:"",
-      ru:"",
-      headerEN:"",
-      headerRU:"",
-      headerTM:""
-    }
-    res.render("admin/toAdd/addKarhanalar",{data,name:"Kärhana goşmak"})
+    res.render("admin/toAdd/addKarhanalar",{name:"Kärhana goşmak",host,id:pudakId})
   }else if(page == "Internet Söwda"){
     try{
       data = await axios.get(`${host}/commerce/getCategorySimple`);
@@ -464,17 +478,6 @@ app.get("/admin/:page/add",async function(req,res){
   }else if(page == "Iş meýilnamasy"){
     res.render("admin/toAdd/addPlans",{name:"Iş meýilnamasyny goşmak",host})
   }else if(page == "Ygtyýarnama"){
-    var data = {
-      tm:"",
-      text:"",
-      text2:"",
-      text3:"",
-      en:"",
-      ru:"",
-      headerEN:"",
-      headerRU:"",
-      headerTM:""
-    }
     res.render("admin/toAdd/addLisense",{name:"Ygtyýarnama goşmak",host})
   }else if(page == "TSTB agzalary"){
     res.render('admin/toAdd/addKompaniyalar',{name:"TSTB agza goşmak",host});
@@ -487,19 +490,9 @@ app.get("/admin/:page/add",async function(req,res){
   }else if(page == "3-nji banner"){
     res.render("admin/toAdd/addBanner3",{name:"3-nji bannere goşmak",host})
   }else if(page == "Constructor kategoriýalar"){
-    var data = {
-      tm:"",
-      text:"",
-      text2:"",
-      text3:"",
-      en:"",
-      ru:"",
-      headerEN:"",
-      headerRU:"",
-      headerTM:""
-    }
-    res.render("admin/toAdd/addConstructorKategori",{data,name:"Constructor kategoriýa goşmak"})
+    res.render("admin/toAdd/addConstructorKategori",{host,name:"Constructor kategoriýa goşmak"})
   }else if(page == "Sub constructorlar"){
+    console.log(constructorId)
     res.render("admin/toAdd/addSubConstructor",{name:"Sub constructor goşmak"})
   }
 })
@@ -536,16 +529,14 @@ app.get("/admin/:page/edit/:id",async function(req,res){
       console.log(error)
     }
     res.render("admin/toEdit/editHabarlar",{data:data.data[0],tags:data.data[1],name:"Habarlar üýtgetmek",host:host});
-  }
-  else if(page == 'bildirishler'){
+  }else if(page == 'bildirishler'){
     try{
       data = await axios.get(`${host}/events/getOne?id=${id}`);
     }catch(error){
       console.log(error)
     }
     res.render("admin/toEdit/editBildirishler",{data:data.data[0],tags:data.data[1],name:"Bildiriş üýtgetmek",host:host});
-  }
-  else if(page == 'gazetlar'){
+  }else if(page == 'gazetlar'){
     try{
       data = await axios.get(`${host}/newspapers/getOne?id=${id}`);
     }catch(error){
@@ -553,8 +544,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     }
     console.log(data);
     res.render("admin/toEdit/editGazetlar",{data:data.data,name:"Gazet üýtgetmek",host:host});
-  }
-  else if (page == 'banner1'){
+  }else if (page == 'banner1'){
     try{
       data = await axios.get(`${host}/banners/getOneBanner?id=1&index=${id}`);
     }catch(error){
@@ -562,8 +552,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     }
     console.log(data.data);
     res.render("admin/toEdit/editBanner1",{data:data.data,index:req.params.id,name:"1-nji banneri üýtgetmek",host:host});
-  }
-  else if (page == 'banner2'){
+  }else if (page == 'banner2'){
     try{
       data = await axios.get(`${host}/banners/getOneBanner?index=${id}&id=2`);
     }catch(error){
@@ -571,8 +560,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     }
     console.log(data.data);
     res.render("admin/toEdit/editBanner2",{data:data.data,index:req.params.id,name:"2-nji banneri üýtgetmek",host});
-  }
-  else if (page == 'banner3'){
+  }else if (page == 'banner3'){
     try{
       data = await axios.get(`${host}/banners/getOneBanner?index=${id}&id=3`);
     }catch(error){
@@ -580,8 +568,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     }
     console.log(data.data);
     res.render("admin/toEdit/editBanner3",{data:data.data,index:req.params.id,name:"3-nji banneri üýtgetmek",host});
-  }
-  else if(page == 'kompaniyalar'){
+  }else if(page == 'kompaniyalar'){
     try{
       data = await axios.get(`${host}/members/getOne?id=${id}`);
     }catch(error){
@@ -589,8 +576,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     }
     console.log(data.data);
     res.render("admin/toEdit/editKompaniyalar",{data:data.data,id:req.params.id,name:"Kompaniýa üýtgetmek",host});
-  }
-  else if(page == 'internetSowda'){
+  }else if(page == 'internetSowda'){
     try{
       data = await axios.get(`${host}/commerce/getOne?id=${id}`);
     }catch(error){
@@ -598,8 +584,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     }
     console.log(data.data);
     res.render("admin/toEdit/editInternetSowda",{data:data.data[0],tag:data.data[1],id:req.params.id,name:"Internet Söwdany üýtgetmek",host});
-  }
-  else if(page == 'ishMeyilnamasy'){
+  }else if(page == 'ishMeyilnamasy'){
     try{
       data = await axios.get(`${host}/menu/getOneBussiness?id=${id}`);
     }catch(e){
@@ -607,8 +592,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     }
     console.log(data.data);
     res.render('admin/toEdit/editPlans',{data:data.data,name:"Iş meýilnamasyny üýtgetmek",host});
-  }
-  else if(page == 'ygtyyarnama'){
+  }else if(page == 'ygtyyarnama'){
     try{
       data = await axios.get(`${host}/menu/getOneLicense?id=${id}`);
     }catch(e){
@@ -616,27 +600,22 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     }
     console.log(data.data);
     res.render('admin/toEdit/editLisense',{data:data.data,name:"Ygtyýarnama üýtgetmek",host});
-  }
-  else if(page == "pudaklar"){
-    var data = {
-      tm:"turkmen",
-      en:"English",
-      ru:"Russian"
+  }else if(page == "pudaklar"){
+    try{
+      data = await axios.get(`${host}/industry/getOne?id=${id}`);
+    }catch(e){
+      console.log(e);
     }
-    res.render("admin/toEdit/editPudaklar",{data,name:"Pudaklar üýtgetmek"})
+    console.log(data.data);
+    res.render("admin/toEdit/editPudaklar",{data:data.data,host,name:"Pudaklar üýtgetmek"});
   }else if(page == "karhanalar"){
-    var data = {
-      tm:"turkmen",
-      en:"English",
-      ru:"Russian",
-      headerTM:"HeaderTm",
-      headerEN:"HeaderEN",
-      headerRU:"HeaderRU",
-      text:"<strong style='color:red;'>Hello</strong>",
-      text2:"Jfdjkfjdkj",
-      text3:"jfdkjkfdkj"
+    try{
+      data = await axios.get(`${host}/industry/subCategory?index=${id}&id=${pudakId}`);
+    }catch(e){
+      console.log(e);
     }
-    res.render("admin/toEdit/editKarhanalar",{data,name:"Karhanalar üýtgetmek"});
+    console.log(data.data);
+    res.render("admin/toEdit/editKarhanalar",{data:data.data,name:"Karhanalar üýtgetmek",host,index:id,id:pudakId});
   }else if(page == 'partniyorlar'){
     try{
       data = await axios.get(`${host}/sponsor/getOne?id=${id}`);
@@ -646,7 +625,27 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     console.log(data.data);
     res.render('admin/toEdit/editPartniyorlar',{data:data.data,host,name:'Partniýorlar üýtgetmek'})
   }else if(page == 'constructorKategori'){
-    res.render('admin/toEdit/editConstructorKategori',{name:'Constructor kategory üýtgetmek'})
+    try{
+      data = await axios.get(`${host}/constructor/getOneSimple?id=${id}`);
+    }catch(e){
+      console.log(e);
+    }
+    console.log(data.data);
+    res.render('admin/toEdit/editConstructorKategori',{data:data.data,host,name:'Constructor kategory üýtgetmek',id})
+  }else if(page == 'subConstructor'){
+    try{
+      data = await axios.get(`${host}/constructor/subCategory/getOne?id=${id}`);
+    }catch(e){
+      console.log(e);
+    }
+    console.log(data.data);
+    var sh = Number(data.data.page);
+    var name = 'Constructor kategory üýtgetmek'
+    if(sh == 1){
+      res.render('admin/toEdit/shablon/shablon1',{data:data.data,host,name,id})
+    }else if(sh == 2){
+      res.render('admin/toEdit/shablon/shablon2',{data:data.data,host,name,id})
+    }
   }
 })
 
@@ -752,139 +751,36 @@ app.get("/admin/:page/delete/:id",async function(req,res){
       console.log(e);
     }
     res.redirect('/admin/partniyorlar');
-  }
-  else if(page == "karhanalar"){
-    var data;
-    data = fs.readFileSync("./jsons/adminHabarlar.json");
-    data = JSON.parse(data);
-    res.render("admin/karhanalar",{data,name:"Kärhanalar"})
-  }
-})
-
-
-
-
-
-
-
-// page post
-app.post("/admin/:page",function(req,res){
-  var page = req.params.page;
-  if(page == "tstb"){
-    res.redirect("/admin/tstb");
-  }else if(page == "pudaklar"){
-    
-    res.redirect("/admin/pudaklar");
+  }else if(page == 'pudaklar'){
+    try{
+      await axios.delete(`${host}/industry?id=${id}`)
+    }catch(e){
+      console.log(e);
+    }
+    res.redirect('/admin/pudaklar');
   }else if(page == "karhanalar"){
-    console.log(req.body);
-    console.log('pudaklar',pudakId);
-    res.redirect("/admin/karhanalar")
-  }else if(page == "agzalyk"){
-    var data;
-    console.log(req.body);
-    
-    res.redirect("/admin/agzalyk")
-  }else if(page == 'internetSowda'){
-    console.log(req.body);
-    console.log("Internet sowda")
-    res.redirect("/admin/internetSowda")
-  }else if(page == "plans"){
-    console.log("Plans")
-    res.redirect("/admin/plans")
-  }else if(page == "ygtyyarnama"){
-    console.log("ygtyyarnama")
-    res.redirect("/admin/lisense")
-  }else if(page == 'maslahat'){
-    console.log("Maslahata post geldi");
-    res.redirect("/admin/konsultasiya")
-  }else if(page == "kompaniyalar"){
-    console.log(req.body)
-    console.log("Kompaniyalar post geldi");
-    res.redirect("/admin/kompaniyalar")
-  }else if(page == "partniyorlar"){
-    console.log("partniyorlardan post geldi");
-    console.log(req.body);
-    res.redirect("/admin/partniyorlar");
-  }else if(page == "banner1"){
-    console.log("Banner 1dan sowgat geldi");
-    console.log(req.body);
-    res.redirect("/admin/banner1");
-  }else if(page == "banner2"){
-    console.log("Banner 2dan sowgat geldi");
-    console.log(req.body);
-    res.redirect("/admin/banner2");
-  }else if(page == "banner3"){
-    console.log("Banner 3dan sowgat geldi");
-    console.log(req.body);
-    res.redirect("/admin/banner3");
-  }else if(page == "habarlar"){
-    console.log("Habarlardan post geldi");
-    console.log(req.body);
-    res.redirect("/admin/habarlar");
-  }else if(page == "bildirishler"){
-    console.log("Bildirishlere post geldi");
-    console.log(req.body);
-    res.redirect("/admin/bildirishler")
-  }else if(page == "gazetler"){
-    console.log("Gazetlerden post geldi");
-    console.log(req.body);
-    res.redirect("/admin/rysgal");
-  }else if(page == "constructorKategori"){
-    console.log("constructor kategri goshdy");
-    console.log(req.body);
-    res.redirect("/admin/constructor")
-  }else if(page == "subConstructor"){
-    console.log("sub constructordan Maglumat geldi")
-    var nomer = req.body.shablon;
-    console.log(req.body);
-    banner=nomer
-    var data = {
-      tm:req.body.tm,
-      ru:req.body.ru,
-      en:req.body.en,
-      shablon:req.body.shablon,
-      banner:req.body.banner
+    try{
+      await axios.delete(`${host}/industry/subCategory?index=${id}&id=${pudakId}`)
+    }catch(e){
+      console.log(e);
     }
-    if(nomer == 1){
-      res.render("admin/toAdd/shablon/shablon1",{data,name:"Sub Constructor"})
-    }else if(nomer == 2){
-      res.render("admin/toAdd/shablon/shablon2",{data,name:"Sub Constructor"})
-    }else if(nomer == 3){
-      res.render("admin/toAdd/shablon/shablon3",{data,name:"Sub Constructor"})
-    }else if(nomer == 4){
-      res.render("admin/toAdd/shablon/shablon4",{data,name:"Sub Constructor"})
-    }else if(nomer == 5){
-      res.render("admin/toAdd/shablon/shablon5",{data,name:"Sub Constructor"})
-    }else if(nomer == 6){
-      res.render("admin/toAdd/shablon/shablon6",{data,name:"Sub Constructor"})
-    }else if(nomer == 7){
-      res.render("admin/toAdd/shablon/shablon7",{data,name:"Sub Constructor"})
+    res.redirect('/admin/karhanalar/'+pudakId);
+  }else if(page == 'constructorKategori'){
+    try{
+      await axios.delete(`${host}/constructor?id=${id}`)
+    }catch(e){
+      console.log(e);
     }
-  }else if(page == "subConstructor2"){
-    console.log("Shablondan Maglumat geldi"+constructorId);
-    console.log(req.body);
-    res.redirect(`/admin/subConstructor/${constructorId}`)
+    res.redirect('/admin/constructor')
+  }else if(page == 'subConstructor'){
+    try{
+      await axios.delete(`${host}/constructor/subCategory?id=${id}`);
+    }catch(e){
+      console.log(e);
+    }
+    res.redirect('/admin/subConstructor/'+constructorId);
   }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -895,25 +791,31 @@ app.post("/admin/:page",function(req,res){
 
 // karhanalar
 var pudakId;
-app.get("/admin/karhanalar/:id",function(req,res){
+app.get("/admin/karhanalar/:id",async function(req,res){
   pudakId = req.params.id
-  console.log(pudakId);
   var data;
-  data = fs.readFileSync("./jsons/adminHabarlar.json");
-  data = JSON.parse(data);
-  res.render("admin/karhanalar",{data,name:`Kärhanalar`})
+  try{
+    data = await axios.get(`${host}/industry/getOne?id=${pudakId}`);
+  }catch(error){
+    console.log(error)
+  }
+  console.log(data.data)
+  res.render("admin/karhanalar",{data:data.data,name:`Kärhanalar`})
 })
 
 
 // sub Constructorlar ucin
 var constructorId;
-app.get("/admin/subConstructor/:id",function(req,res){
+app.get("/admin/subConstructor/:id",async function(req,res){
   constructorId = req.params.id;
-  console.log(constructorId);
   var data;
-  data = fs.readFileSync("./jsons/adminHabarlar.json");
-  data = JSON.parse(data);
-  res.render("admin/subConstructor",{data,name:`Sub constructorlar`})
+  try{
+    data = await axios.get(`${host}/constructor/getOne?id=${constructorId}`)
+  }catch(e){
+    console.log(e);
+  }
+  console.log(data.data);
+  res.render("admin/subConstructor",{data:data.data.constructors,name:`Sub constructorlar`})
 })
 
 

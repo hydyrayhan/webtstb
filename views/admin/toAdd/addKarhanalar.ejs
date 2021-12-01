@@ -23,11 +23,11 @@
                         <div class="boxHeader">Türkmençe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Kärhana ady:</label>
-                            <input type="text" name="tm" class="header">
+                            <input type="text" name="tm" class="header" required>
                         </div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                            <input type="text" name="headerTM" class="header">
+                            <input type="text" name="headerTM" class="header" required>
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -54,11 +54,11 @@
                         <div class="boxHeader">Rusça giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Kärhana ady:</label>
-                            <input type="text" name="ru" class="header">
+                            <input type="text" name="ru" class="header" required>
                         </div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerRU" id="topTa" class="header">
+                            <input type="text" name="headerRU" id="topTa" class="header" required>
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -71,11 +71,11 @@
                         <div class="boxHeader">Iňlisçe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Kärhana ady:</label>
-                            <input type="text" name="en" class="header">
+                            <input type="text" name="en" class="header" required>
                         </div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerEN" id="topTa" class="header">
+                            <input type="text" name="headerEN" id="topTa" class="header" required>
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -142,26 +142,45 @@
 
 <!-- formdan maglumat jemlemek -->
     <script>
+        var oneTime = true;
         var submit = document.querySelector('#identifier');
-        submit.addEventListener("submit",function(e){
+        submit.addEventListener("submit",async function(e){
             e.preventDefault();
-            var inputs = document.querySelectorAll('#identifier input');
-            var text = document.querySelector("#editor .ql-editor");
-            var text2 = document.querySelector("#editor2 .ql-editor");
-            var text3 = document.querySelector("#editor3 .ql-editor");
-            var data = {
-                tmname:inputs[0].value,
-                tmheader:inputs[1].value,
-                runame:inputs[4].value,
-                ruheader:inputs[5].value,
-                enname:inputs[7].value,
-                enheader:inputs[8].value,
-                text:text.innerHTML,
-                text2:text2.innerHTML,
-                text3:text3.innerHTML
-            }        
-            console.log(img)   
-            console.log(data); 
+            if(oneTime){
+                oneTime = false;
+                var inputs = document.querySelectorAll('#identifier input');
+                var text = document.querySelector("#editor .ql-editor");
+                var text2 = document.querySelector("#editor2 .ql-editor");
+                var text3 = document.querySelector("#editor3 .ql-editor");
+                var data = {
+                    tm:inputs[0].value,
+                    tmheader:inputs[1].value,
+                    ru:inputs[4].value,
+                    ruheader:inputs[5].value,
+                    en:inputs[7].value,
+                    enheader:inputs[8].value,
+                    text:text.innerHTML,
+                    text2:text2.innerHTML,
+                    text3:text3.innerHTML
+                }        
+
+                var arr = [];
+                if(img != undefined){
+                    arr.push(img);
+                }
+                if(arr.length==0){
+                    alert("Surat goshmaly!!!");
+                    oneTime = true;
+                }else{
+                    var res = await dataSend(data,'<%=host%>/industry/subCategory?id=<%=id%>');
+                    if(typeof(res.id) == 'number'){
+                        var data = await imgSend(arr,'<%=host%>/industry/addPic?id='+res.id+'&index='+res.index);
+                        if(data.status == 200){
+                            location.replace('/admin/karhanalar/<%=id%>')
+                        }
+                    }
+                }
+            }
         })
     </script>
 </body>

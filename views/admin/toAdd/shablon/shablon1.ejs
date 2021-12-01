@@ -145,10 +145,11 @@
             var ru = document.querySelectorAll('.ru');
             var en = document.querySelectorAll('.en');
             for(var i = 1; i<tm.length; i++){
-                tmheader.push(tm[i].value);
-                ruheader.push(ru[i].value);
-                enheader.push(en[i].value);
+                tmheader[i-1] = tm[i].value;
+                ruheader[i-1] = ru[i].value;
+                enheader[i-1] = en[i].value;
             }
+            
             console.log(tmheader);
             form2.innerHTML += form1.innerHTML;
 
@@ -220,12 +221,18 @@
             e.preventDefault()
             var inputs = document.querySelectorAll("#identifier input");
             var data = {
+                tm:'<%=data.tm%>',
+                ru:'<%=data.ru%>',
+                en:'<%=data.en%>',
+                banner:'<%=data.banner%>',
+                shablon:'<%=data.shablon%>',
                 tmheader:[],
                 ruheader:[],
                 enheader:[],
                 text:[],
                 text2:[],
-                text3:[]
+                text3:[],
+                category:'<%=id%>'
             }
             var tm = document.querySelectorAll('.tm');
             var ru = document.querySelectorAll('.ru');
@@ -244,11 +251,24 @@
             }
             
             console.log(data);
-            console.log(imgs)
-
+            console.log(imgs);
+            var arr = [];
+            for(var i = 0; i<imgs.length; i++){
+                arr.push(imgs[i].file);
+            }
+            var res = await dataSend(data,'<%=host%>/constructor/subCategory');
+            console.log(res);
+            if(typeof(res.id) == 'number'){
+                if(arr.length>0){
+                    var data = await imgSend(arr,'<%=host%>/constructor/addPic?id='+res.id);
+                    if(data.status == 200){
+                        location.replace('/admin/subConstructor/<%=id%>');
+                    }
+                }else{
+                    location.replace('/admin/subConstructor/<%=id%>');
+                }
+            }
         })
-
-
         linkActive(3);
     </script>
  
@@ -256,7 +276,6 @@
  
     <!-- Initialize Quill editor  3sany text area hidden inpuda hem salyar-->
     <script>
-        
       var editor = new Quill('#editor', {
         modules: { },
         theme: 'snow'
