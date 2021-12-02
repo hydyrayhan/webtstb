@@ -150,7 +150,6 @@
                 enheader[i-1] = en[i].value;
             }
             
-            console.log(tmheader);
             form2.innerHTML += form1.innerHTML;
 
             // more button basylanda surat ishlar yaly edyar;
@@ -216,60 +215,71 @@
 <!-- formdan maglumat jemlemek -->
     <script>
         var submit = document.querySelector("#identifier");
-
+        var oneTime = true;
         submit.addEventListener("submit",async function(e){
             e.preventDefault()
-            var inputs = document.querySelectorAll("#identifier input");
-            var data = {
-                tm:'<%=data.tm%>',
-                ru:'<%=data.ru%>',
-                en:'<%=data.en%>',
-                banner:'<%=data.banner%>',
-                shablon:'<%=data.shablon%>',
-                tmheader:[],
-                ruheader:[],
-                enheader:[],
-                text:[],
-                text2:[],
-                text3:[],
-                category:'<%=id%>'
-            }
-            var tm = document.querySelectorAll('.tm');
-            var ru = document.querySelectorAll('.ru');
-            var en = document.querySelectorAll('.en');
-            var text = document.querySelectorAll(".ql-editor");
+            if(oneTime){
+                var inputs = document.querySelectorAll("#identifier input");
+                var data = {
+                    tm:'<%=data.tm%>',
+                    ru:'<%=data.ru%>',
+                    en:'<%=data.en%>',
+                    banner:'<%=data.banner%>',
+                    shablon:'<%=data.shablon%>',
+                    tmheader:[],
+                    ruheader:[],
+                    enheader:[],
+                    text:[],
+                    text2:[],
+                    text3:[],
+                    category:'<%=id%>'
+                }
+                var tm = document.querySelectorAll('.tm');
+                var ru = document.querySelectorAll('.ru');
+                var en = document.querySelectorAll('.en');
+                var text = document.querySelectorAll(".ql-editor");
 
-            var a = 0;
-            for(var i = 0; i<tm.length;i++){
-                data.tmheader.push(tm[i].value);
-                data.ruheader.push(ru[i].value);
-                data.enheader.push(en[i].value);
-                data.text.push(text[a].innerHTML);
-                data.text2.push(text[a+1].innerHTML);
-                data.text3.push(text[a+2].innerHTML);
-                a+=3;
-            }
-            
-            console.log(data);
-            console.log(imgs);
-            var arr = [];
-            for(var i = 0; i<imgs.length; i++){
-                arr.push(imgs[i].file);
-            }
-            var res = await dataSend(data,'<%=host%>/constructor/subCategory');
-            console.log(res);
-            if(typeof(res.id) == 'number'){
-                if(arr.length>0){
-                    var data = await imgSend(arr,'<%=host%>/constructor/addPic?id='+res.id);
-                    if(data.status == 200){
-                        location.replace('/admin/subConstructor/<%=id%>');
+                var a = 0;
+                for(var i = 0; i<tm.length;i++){
+                    data.tmheader.push(tm[i].value);
+                    data.ruheader.push(ru[i].value);
+                    data.enheader.push(en[i].value);
+                    data.text.push(text[a].innerHTML);
+                    data.text2.push(text[a+1].innerHTML);
+                    data.text3.push(text[a+2].innerHTML);
+                    a+=3;
+                }
+                
+                var arr = [];
+                for(var i = 0; i<imgs.length; i++){
+                    arr.push(imgs[i].file);
+                }
+                var hemmeSurat = false;
+                if(arr.length==tm.length*2){
+                    hemmeSurat = true;
+                }
+
+                if(hemmeSurat){
+                    var res = await dataSend(data,'<%=host%>/constructor/subCategory');
+                    console.log(res);
+                    if(typeof(res.id) == 'number'){
+                        if(arr.length>0){
+                            var data = await imgSend(arr,'<%=host%>/constructor/addPic?id='+res.id);
+                            if(data.status == 200){
+                                location.replace('/admin/subConstructor/<%=id%>');
+                            }
+                        }else{
+                            location.replace('/admin/subConstructor/<%=id%>');
+                        }
                     }
                 }else{
-                    location.replace('/admin/subConstructor/<%=id%>');
+                    alert("Yok surat bar!!");
+                    oneTime = true;
                 }
+                    
             }
         })
-        linkActive(3);
+        linkActive(2);
     </script>
  
     <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>

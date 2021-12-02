@@ -32,29 +32,29 @@
 
                       <div class="splideHide" style="display: block;">
                         <div class="newsSplide">
-                          <div class="left"><img src='/pictures/news/news1.png' alt=""></div>
+                          <div class="left"><img src='<%= host %>/news/<%= list.list[0].pic %>' alt=""></div>
                           <div class="right">
                             <div class="top">
-                              <div class="name" data-dynamic data-ru="<%-list.list[0].name.RU%>" data-tm="<%-list.list[0].name.TM%>" data-en="<%-list.list[0].name.EN%>" id="name"><%=list.list[0].name.RU%></div>
-                              <div class="title" data-dynamic data-ru="<%-list.list[0].title.RU%>" data-tm="<%-list.list[0].title.TM%>" data-en="<%-list.list[0].title.EN%>" id="title"><%=list.list[0].title.RU%></div>
+                              <a href="news/<%= list.list[0].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%-list.list[0].header.RU%>" data-tm="<%-list.list[0].header.TM%>" data-en="<%-list.list[0].header.EN%>" id="name"><%=list.list[0].header.RU%></div></a>
+                              <div class="title" data-dynamic data-ru="<%-list.list[0].body.RU%>" data-tm="<%-list.list[0].body.TM%>" data-en="<%-list.list[0].body.EN%>" id="title"><%=list.list[0].body.RU%></div>
                             </div>
                             <div class="bottom">
                               <div class="new" data-content id="news">News</div>
                               <div class="dot"></div>
-                              <div class="date" data-dynamic data-ru="<%-list.list[0].date.RU%>" data-tm="<%-list.list[0].date.TM%>" data-en="<%-list.list[0].date.EN%>" id="date"><%=list.list[0].date.RU%></div>
+                              <div class="date" data-dynamic data-ru="<%-list.list[0].date%>" data-tm="<%-list.list[0].date%>" data-en="<%-list.list[0].date%>" id="date"><%=list.list[0].date%></div>
                             </div>
                           </div>
                           
                           <% for (let i = 1; i < 4; i++) {%>
                             <div class="newsContainer lowNews<%=i%>">
-                              <div class="top"><img src="/pictures/news/news2.png" alt=""></div>
+                              <div class="top"><img src="<%= host %>/news/<%= list.list[i].pic %>" alt=""></div>
                               <div class="bottomTop">
-                                <div class="name" data-dynamic data-ru="<%-list.list[i].name.RU%>" data-tm="<%-list.list[i].name.TM%>" data-en="<%-list.list[i].name.EN%>" id="name"><%=list.list[i].name.RU%></div>
+                                <a href="news/<%= list.list[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%-list.list[i].header.RU%>" data-tm="<%-list.list[i].header.TM%>" data-en="<%-list.list[i].header.EN%>" id="name"><%=list.list[i].header.RU%></div></a>
                               </div>
                               <div class="bottom">
                                 <div class="new" data-content id="news">News</div>
                                 <div class="dot"></div>
-                                <div class="date" data-dynamic data-ru="<%-list.list[i].date.RU%>" data-tm="<%-list.list[i].date.TM%>" data-en="<%-list.list[i].date.EN%>" id="date"><%=list.list[i].date%></div>
+                                <div class="date" data-dynamic data-ru="<%-list.list[i].date%>" data-tm="<%-list.list[i].date%>" data-en="<%-list.list[i].date%>" id="date"><%=list.list[i].date%></div>
                               </div>
                             </div>
                           <%} %> 
@@ -66,29 +66,29 @@
 
                       <div class="splideHide" style="display: block;">
                         <div class="newsSplide2">
-                          <div class="left"><img src='/pictures/news/news2.png' alt=""></div>
+                          <div class="left"><img src='<%= host %>/events/<%= list.list2[0].pic %>' alt=""></div>
                           <div class="right">
                             <div class="top">
-                              <div class="name" data-dynamic data-ru="<%-list.list2[0].name.RU%>" data-tm="<%-list.list2[0].name.TM%>" data-en="<%-list.list2[0].name.EN%>" id="name"><%=list.list2[0].name.RU%></div>
-                              <div class="title" data-dynamic data-ru="<%-list.list2[0].title.RU%>" data-tm="<%-list.list2[0].title.TM%>" data-en="<%-list.list2[0].title.EN%>" id="title"><%=list.list2[0].title.RU%></div>
+                              <a href="news/<%= list.list2[0].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%-list.list2[0].header.RU%>" data-tm="<%-list.list2[0].header.TM%>" data-en="<%-list.list2[0].header.EN%>" id="name"><%=list.list2[0].header.RU%></div></a>
+                              <div class="title" data-dynamic data-ru="<%-list.list2[0].body.RU%>" data-tm="<%-list.list2[0].body.TM%>" data-en="<%-list.list2[0].body.EN%>" id="title"><%=list.list2[0].body.RU%></div>
                             </div>
                             <div class="bottom">
                               <div class="new" data-content id="news">News</div>
                               <div class="dot"></div>
-                              <div class="date" data-dynamic data-ru="<%-list.list2[0].date.RU%>" data-tm="<%-list.list2[0].date.TM%>" data-en="<%-list.list2[0].date.EN%>" id="date"><%=list.list2[0].date.RU%></div>
+                              <div class="date" data-dynamic data-ru="<%-list.list2[0].date%>" data-tm="<%-list.list2[0].date%>" data-en="<%-list.list2[0].date%>" id="date"><%=list.list2[0].date%></div>
                             </div>
                           </div>
                           
                           <% for (let i = 1; i < 4; i++) {%>
                             <div class="newsContainer lowNews<%=i%>">
-                              <div class="top"><img src="/pictures/news/news3.png" alt=""></div>
+                              <div class="top"><img src="<%= host %>/events/<%= list.list2[i].pic %>" alt=""></div>
                               <div class="bottomTop">
-                                <div class="name" data-dynamic data-ru="<%-list.list2[i].name.RU%>" data-tm="<%-list.list2[i].name.TM%>" data-en="<%-list.list2[i].name.EN%>" id="name"><%=list.list2[i].name.RU%></div>
+                                <a href="news/<%= list.list2[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%-list.list2[i].header.RU%>" data-tm="<%-list.list2[i].header.TM%>" data-en="<%-list.list2[i].header.EN%>" id="name"><%=list.list2[i].header.RU%></div></a>
                               </div>
                               <div class="bottom">
                                 <div class="new" data-content id="news">News</div>
                                 <div class="dot"></div>
-                                <div class="date" data-dynamic data-ru="<%-list.list2[i].date.RU%>" data-tm="<%-list.list2[i].date.TM%>" data-en="<%-list.list2[i].date.EN%>" id="date"><%=list.list2[i].date%></div>
+                                <div class="date" data-dynamic data-ru="<%-list.list2[i].date%>" data-tm="<%-list.list2[i].date%>" data-en="<%-list.list2[i].date%>" id="date"><%=list.list2[i].date%></div>
                               </div>
                             </div>
                           <%} %> 
@@ -108,7 +108,7 @@
                 <div class="splide__track">
                   <ul class="splide__list">
                     <%for(var i = 0; i < list.banner[0].banner.length; i++){%>
-                      <li class="splide__slide"><a href="/>"><div><img src="/pictures/reklams/kerwen3.png" alt=""></div></a></li>
+                      <li class="splide__slide"><a href="//<%=list.banner[0].banner[i].link%>"><div><img src="<%= host %>/banners/<%=list.banner[0].banner[i].pic%>" alt=""></div></a></li>
                     <%}%>
                   </ul>
                 </div>

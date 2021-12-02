@@ -13,10 +13,10 @@
         <div class="container">
             <div class="header">Login</div>
             <div class="title">Войдите и начните управлять своими кандидатами!</div>
-            <form action="/login" method="post">
-                <input type="text" placeholder="Login" name="login">
+            <form action="/login" id="a" method="post">
+                <input type="text" placeholder="Login" name="login" required>
                 <div class="password">
-                    <input type="password" placeholder="Password" name="password">
+                    <input type="password" placeholder="Password" name="password" required>
                     <div class="eye"><img src="/pictures/icon/eye.svg" alt=""></div>
                 </div>
                 <div class="forget"><a href="">Забыл пароль?</a></div>
@@ -27,7 +27,24 @@
     </section>
 
     <%- include ('../src/bottom.ejs') %>
+    <script src="/scripts/js/component/fileSend.js"></script>
+    <script>
+        var submit = document.querySelector("#a");
+        submit.addEventListener("submit",async function(e){
+            e.preventDefault();
+            var inputs = document.querySelectorAll('#a input');
+            var data = {
+                name:inputs[0].value,
+                pass:inputs[1].value
+            }
 
+            var res = await dataSend(data,`<%=host%>/login`);
+            if(res.status == 200){
+                sessionStorage.setItem('tstbAdmin','Ok');
+                location.replace('/admin/habarlar');
+            }
+        })
+    </script>
     <script>
         const eye = document.querySelector(".eye");
         const pass = document.querySelector("input[type='password']");

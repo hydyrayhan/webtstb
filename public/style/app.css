@@ -365,6 +365,12 @@
 }
 
 .newsSection .newsSectionContainer .right .title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  white-space: normal;
   color: #999999;
   margin-top: 20px;
 }
@@ -1364,6 +1370,7 @@
 
 @media (max-width: 640px) {
   .bottomSection .bottomGrid .about {
+    display: none;
     text-align: left;
   }
 }
@@ -2292,10 +2299,15 @@ body {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   overflow: hidden;
+}
+
+@media (max-width: 1000px) {
+  .allNewsSection .container .lowNewsContainer {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
 }
 
 .allNewsSection .container .lowNewsContainer .lineLast {

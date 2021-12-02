@@ -116,14 +116,7 @@
                 </a>
     
                 
-                <a href="/admin/kompaniyalar" class="yeke">
-                    <div class="iconCon" style="margin-right: 15px;">
-                        <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 6.57143C15 6.32516 14.8946 6.08897 14.7071 5.91483C14.5196 5.74069 14.2652 5.64286 14 5.64286H11V1.92857C11 1.6823 10.8946 1.44611 10.7071 1.27197C10.5196 1.09783 10.2652 1 10 1H2C1.73478 1 1.48043 1.09783 1.29289 1.27197C1.10536 1.44611 1 1.6823 1 1.92857V14H15V6.57143ZM2 1.92857H10V13.0714H2V1.92857ZM11 13.0714V6.57143H14V13.0714H11Z" fill="#60626E" />
-                        </svg>       
-                    </div>
-                    <span>Kompaniýalar</span>
-                </a>
+          
                
                 <a href="/admin/partniyorlar" class="yeke">
                     <div class="iconCon" style="margin-right: 15px;">
@@ -148,6 +141,15 @@
                     </div>
                     <span>Constructor</span>
                 </a>
+
+                <a href="/admin/parol" class="yeke">
+                    <div class="iconCon" style="margin-right: 15px;">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 1C3.6916 1 1 3.31809 1 6.16742C1 7.84643 1.92799 9.39582 3.49807 10.3658C3.28023 11.4366 2.79205 12.188 2.7867 12.1961L2.253 13L3.17867 12.8752C3.2853 12.8608 5.76871 12.5147 7.53877 11.3141C8.99236 11.2028 10.3424 10.6421 11.3511 9.72848C12.4144 8.76526 13 7.50062 13 6.16748C13 3.31809 10.3084 1 7 1ZM7.37919 10.454L7.26627 10.4608L7.17237 10.5271C6.14305 11.2542 4.76506 11.6576 3.89819 11.8548C4.08004 11.4274 4.27115 10.8591 4.36654 10.2031L4.41112 9.89641L4.14986 9.75241C2.69512 8.9508 1.82659 7.61071 1.82659 6.16742C1.82659 3.79741 4.14738 1.86917 7 1.86917C9.85262 1.86917 12.1734 3.79735 12.1734 6.16742C12.1734 8.40884 10.0675 10.2917 7.37919 10.454Z" fill="#60626E" />
+                        </svg>
+                    </div>
+                    <span>Parol</span>
+                </a>
             </div>
             <div>
                 <a href="#" class="yeke">
@@ -169,6 +171,14 @@
             </div>
         </div>
     </div>
+
+
+    <script>
+        var session=sessionStorage.getItem("tstbAdmin")
+        if(session==null){
+            window.location.replace("/admin")
+        }
+    </script>
 
     <!-- <script src="/scripts/sendData.js"></script> -->
 

@@ -124,7 +124,7 @@
             console.log(imgs);
         };
 
-        linkActive(3);
+        linkActive(2);
     </script>
 
 
@@ -272,11 +272,8 @@
                 arr.push(imgs[i].file);
             }
 
-            console.log(data);
-            console.log(arr);
 
             var res = await dataSend(data,'<%=host%>/constructor/subCategory');
-            console.log(res);
             if(typeof(res.id) == 'number'){
                 if(arr.length>0){
                     var data = await imgSend(arr,'<%=host%>/constructor/addPic?id='+res.id);

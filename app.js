@@ -4,9 +4,7 @@ const bodyParser = require("body-parser");
 const fs = require("fs")
 require("dotenv").config({path:"./config/config.env"});
 const host = process.env.HOST;
-// const host = 'http://192.168.43.233:5000'
 const app = express();
-// app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.set("view engine","ejs");
@@ -28,13 +26,18 @@ let languageData = '';
 app.get('/',async function(req,res){
  var sl = req.query.sl;
 
-  var mainPage = fs.readFileSync("./jsons/mainPage.json")
-  mainPage = JSON.parse(mainPage);
-
-  languageData = mainPage
+  try{
+    mainPage = await axios.get(`${host}/`);
+  }catch(error){
+    console.log(error)
+  }
+  console.log(mainPage.data);
+  mainPage = mainPage.data;
+  languageData = mainPage.data
   
   var loop = 0;
   var seeAll = false;
+  console.log
   if(mainPage.brands.length<9){
     loop = mainPage.brands.length;
   }else{
@@ -51,58 +54,68 @@ app.get('/',async function(req,res){
     seeAllBolum = true; 
   }
 
-  res.render('main',{list:mainPage,loop,loop1,host,seeAll,seeAllBolum,sl})
+  var location = [];
+  location[0] = mainPage.location.place.ashgabat;
+  location[1] = mainPage.location.place.ahal;
+  location[2] = mainPage.location.place.balkan;
+  location[3] = mainPage.location.place.mary;
+  location[4] = mainPage.location.place.dashoguz;
+  location[5] = mainPage.location.place.lebap;
+  location[6] = ['Balkan','Mary','Daşoguz','Lebap'];
+  location[7] = ['Балкан','Мары','Дашогуз','Лебап'];
+  location[8] = ['Balkan','Mary','Dashoguz','Lebap'];
+
+  res.render('main',{list:mainPage,loop,loop1,host,seeAll,seeAllBolum,sl,location})
 })
 
 
 app.get("/pressCenter",async function(req,res){
   var sl = req.query.sl;
-  let data = fs.readFileSync("./jsons/pressCenter.json");
-  data = JSON.parse(data);
-
-    res.render("pages/pressCenter.ejs",{list:data,host,sl});
-})
-
-app.get("/login",function(req,res){
-  res.render("pages/login")
-})
-
-app.post("/login",function(req,res){
-  data = fs.readFileSync("./jsons/adminHabarlar.json");
-  data = JSON.parse(data);
-  res.render("admin/habarlar",{data,name:"Habarlar"});
-})
-
-var data1;
-var data2;
-var dataNews;
-
-app.get('/pressCenterNews',function(req,res){
-  if(req.query.tab == 1){
-    if(data1 == undefined ){
-      data1 = fs.readFileSync("./jsons/pressCenter.json");
-      dataNews = data1;
-    }else{
-      dataNews = data1;
-    }
-  }else{
-    if(data2 == undefined){
-      data2 = fs.readFileSync("./jsons/pressCenter2.json");
-      dataNews = data2;
-    }else{
-      dataNews = data2;
-    }
-  }
-  dataNews = JSON.parse(dataNews);
-  dataNews = dataNews.list;
-
-  var senData = [];
-  var page = req.query.page;
-  for(var i = (page-1)*9; i<page*9; i++){
-    senData.push(dataNews[i])
-  }
   
-  res.json(senData)
+  var data;
+  try{
+    data = await axios.get(`${host}/news`);
+  }catch(error){
+    console.log(error)
+  }
+  console.log(data.data);
+    res.render("pages/pressCenter.ejs",{list:data.data,host,sl});
+})
+
+
+
+
+app.get('/pressCenterNews',async function(req,res){
+  var tab = req.query.tab;
+  var page = req.query.page;
+  var limit = req.query.limit;
+  var data;
+  
+  if(tab == 1){
+    try{
+      data = await axios.get(`${host}/news/loadMore?page=${page}&limit=${limit}`);
+    }catch(error){
+      console.log(error)
+    }
+  }else if(tab ==2){
+    try{
+      data = await axios.get(`${host}/events/loadMore?page=${page}&limit=${limit}`);
+    }catch(error){
+      console.log(error)
+    }
+  }
+
+  console.log(data.data);
+  for(var i = 0; i<data.data.length; i++){
+    if(tab == 1){
+      data.data[i].tab = 'news';
+    }else if(tab == 2){
+      data.data[i].tab = 'events';
+    }
+  }
+
+
+  res.json(data.data)
 })
 
 
@@ -173,10 +186,17 @@ app.get("/agzalar/:id",function(req,res){
 
 
 // Rysgal Gazeti
-app.get("/gazet",function(req,res){
+app.get("/gazet",async function(req,res){
 
+  var data;
+  try{
+    data = await axios.get(`${host}/newspapers/`);
+  }catch(error){
+    console.log(error)
+  }
   var page = req.query.page;
-  res.render("pages/gazet",{page}) 
+  console.log(data.data);
+  res.render("pages/gazet",{data:data.data,page,host}) 
 })
 // sppt
 app.get("/sppt",function(req,res){
@@ -213,6 +233,10 @@ app.get("/consultation",function(req,res){
   res.render("pages/konsultasiya");
 })
 
+// news
+app.get('/news/:id',function(req,res){
+  res.render("page/news");
+})
 
 
 
@@ -231,16 +255,33 @@ app.get("/consultation",function(req,res){
 
 // admin ==========================================================================================
 
-app.get("/admin",async function(req,res){
+app.get("/admin",function(req,res){
+  res.render("pages/login",{host})
+})
+
+app.post("/login",async function(req,res){
+  
+  var name = req.body.login;
+  var pass = req.body.password;
+  console.log(name,pass,269)
   var data;
   try{
-    data = await axios.get(`${host}/news/getAll`);
+    data = await axios({
+      method: 'post',
+      url: `${host}/login`,
+      data: {name,pass}
+    });
   }catch(error){
     console.log(error)
   }
-  res.render("admin/habarlar",{data:data.data,name:"Habarlar",host:host});
-})
 
+  console.log(data.data);
+  if(data.data.status == 200){
+    res.redirect("admin/habarlar");
+  }else{
+    res.redirect("admin");
+  }
+})
 
 
 
@@ -813,6 +854,7 @@ app.get("/admin/subConstructor/:id",async function(req,res){
 // app.post("/internetKategori",function(req,res){
 //   res.redirect("/admin/Internet Söwda/add");
 // })
+
 
 
 

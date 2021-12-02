@@ -13,7 +13,10 @@
             width: 100%;
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            // justify-content: space-between;
+            @include tablet{
+              justify-content: space-between;
+            }
             overflow: hidden;
             .lineLast{
               margin-right: 0 !important;

@@ -33,42 +33,18 @@
           </div>
 
           <div class="gazetlar">
-               <div class="list">
-                   <div class="img">
-                       <img src="/pictures/news/gazet.png" alt="">
-                   </div>
-                   <div class="pdf">
-                       <div class="name"><a href="" download>Rysgal gazeti fdsfdsfdsdfsdfd№48 (580)</a></div>
-                       <div class="date">31 августа 2021</div>
-                   </div>
-               </div>
-               <div class="list">
-                   <div class="img">
-                       <img src="/pictures/news/gazet.png" alt="">
-                   </div>
-                   <div class="pdf">
-                       <div class="name"><a href="" download>Rysgal gazeti №48 (580)</a></div>
-                       <div class="date">31 августа 2021</div>
-                   </div>
-               </div>
-               <div class="list">
-                   <div class="img">
-                       <img src="/pictures/news/gazet.png" alt="">
-                   </div>
-                   <div class="pdf">
-                       <div class="name"><a href="" download>Rysgal gazeti №48 (580)</a></div>
-                       <div class="date">31 августа 2021</div>
-                   </div>
-               </div>
-               <div class="list">
-                   <div class="img">
-                       <img src="/pictures/news/gazet.png" alt="">
-                   </div>
-                   <div class="pdf">
-                       <div class="name"><a href="" download>Rysgal gazeti №48 (580)</a></div>
-                       <div class="date">31 августа 2021</div>
-                   </div>
-               </div>
+                <% for( let i = 0; i < data.length; i++ ) { %>
+                    <div class="list">
+                        <div class="img">
+                            <img src="<%=host%>/newspapers/pic/<%= data[i].logo %>" alt="">
+                        </div>
+                        <div class="pdf">
+                            <%= host %> 
+                            <div class="name"><a href="//<%= host %>/newspapers/download?file=<%= data[i].filename %>" data-dynamic data-ru="<%-data[i].name.ru%>" data-tm="<%-data[i].name.tm%>" data-en="<%-data[i].name.en%>" download><%= data[i].name.tm %></a></div>
+                            <div class="date"><%= data[i].date %></div>
+                        </div>
+                    </div>
+                <% } %>
           </div>
         </div>
     </section>

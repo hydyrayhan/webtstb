@@ -210,7 +210,6 @@
                     a+=3;
                 }
                 
-                console.log(data);
                 var res = await dataSend(data,'<%=host%>/constructor/subCategory');
                 if(typeof(res.id) == 'number'){
                     location.replace('/admin/subConstructor/<%=id%>');

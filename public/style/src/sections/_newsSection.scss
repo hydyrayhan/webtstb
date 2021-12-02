@@ -129,6 +129,12 @@
                 font-weight: 600;
             }
             .title{
+                text-overflow: ellipsis;
+                overflow: hidden;
+                display: -webkit-box !important;
+                -webkit-line-clamp: 3;;
+                -webkit-box-orient: vertical;
+                white-space: normal;
                 color: $gray;
                 margin-top: 20px;
             }

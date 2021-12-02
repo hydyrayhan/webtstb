@@ -372,7 +372,6 @@
                 var arr = [];
                 var suratUytgedi = false;
                 var yekeSurat = false;
-                console.log(imgs);
                 for(var i = 0; i<data.tmheader.length; i++){
                     arr.push(imgs[i].file);
                     if(imgs[i].file !== ''){
@@ -380,7 +379,6 @@
                     }
                 }
                 
-                console.log(arr);
                 
                 if(headFull){
                     var res = await dataSend(data,'<%=host%>/constructor/subCategory/edit?id=<%=id%>');
@@ -402,7 +400,7 @@
                 
             }
         })
-        linkActive(3);
+        linkActive(2);
     </script>
  
     <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
