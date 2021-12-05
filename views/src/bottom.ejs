@@ -30,32 +30,58 @@
                     <div class="emailCon"> info@tstb.gow.tm</div>
                 </div>
                 <div class="about">
-                    <div class="title">About us</div>
-                    <div class="title" style="margin-bottom: 0; font-size:16px">jsfljdlksj</div>
-                    <div class="title" style="margin-bottom: 0; font-size:16px">jsfljdlksj</div>
+                    <div class="title" id="spptBarada" data-content>O CPPT</div>
+                    <div class="title" style="margin-bottom: 0; font-size:16px" id="dontKnow" data-content>konfidension</div>
+                    <div class="title" style="margin-bottom: 0; font-size:16px" id="jogap" data-content>Obratnaya swyaz</div>
                 </div>
             </div>
             <div class="lastThreeLine">
-                <div>O CPPT</div>
-                <div>konfidension</div>
-                <div>Obratnaya swyaz</div>
+                <div id="spptBarada" data-content>O CPPT</div>
+                <div id="dontKnow" data-content>konfidension</div>
+                <div id="jogap" data-content>Obratnaya swyaz</div>
+            </div>
+            <div class="followers">
+                <div class="title" id="watched" data-content>Followers</div>
+                <div class="followCounts">
+                    <div class="day">101 <span data-content id="gunlik">a day</span></div>
+                    <div>|</div>
+                    <div class="month">1232 <span data-content id="aylyk">a month</span></div>
+                    <div>|</div>
+                    <div class="year">12345 <span id="yyllyk" data-content>a year</span></div>
+                </div>
             </div>
         </div>
     </div>
     <div class="bottomInformation" >
         <div class="container bottomCon">
             <div class="titleCon">
-                <div class="big">Yazylyshyk</div>
-                <div class="title">Oz email inizi girizin tazelikler ucin</div>
+                <div class="big" id="follow" data-content>Yazylyshyk</div>
+                <div class="title" id="followDefinition" data-content>Oz email inizi girizin tazelikler ucin</div>
             </div>
+            
             <div class="inputCon">
-                <input type="email" placeholder="Email Address">
-                <input type="submit" value="Goshulmak">
+                <input type="email" id="pocta" data-content  placeholder="Email Address">
+                <input class="submit" type="submit" value="Goshulmak">
             </div>
         </div>
     </div>
 </div>
 
+
+    <script src="/scripts/js/component/fileSend.js"></script>
+    <script>
+        var submit = document.querySelector(".submit");
+        submit.addEventListener('click',async function(){
+            var input = document.querySelector('.inputCon input[type=email]');
+            var data = {
+                name:input.value
+            } 
+            var status = await mail(`<%=host%>/mail`,data);
+            if(status.status == 200){
+                alert("Siz goshuldynyz");
+            }
+        });
+    </script>
 
     <script src="/scripts/main.js"></script>
     <script src="/scripts/src/materialize/splide.js"></script>

@@ -33,12 +33,12 @@
                 <div class="boxHeader">Maglumat giriziň</div>
                 <div class="headerCon">
                     <label class="mazmuny" for="topTa">Ady:</label>
-                    <input type="text" name="headerRU" id="topTa" class="header">
+                    <input type="text" name="headerRU" id="topTa" class="header" required>
                 </div>                
                 <div class="headerCon" style="display: flex; flex-direction: row;">
                     <div style="display: flex; flex-direction: column; width: 100%;">
                         <label class="mazmuny" for="topTa">Salgylanmasy:</label>
-                        <input type="text" name="headerRU" id="topTa" class="header">
+                        <input type="text" name="headerRU" id="topTa" class="header" required>
                     </div>
                     <div class="extraInputs">
                         <div class="ishjen" style="padding-top: 5px; margin-left: 30px;">
@@ -87,11 +87,16 @@
                 oneTime = false;
                 var arr = [];
                 arr.push(img);
-                var data = await dataSend(data,'<%=host%>/banners/addBanner?id=2');
-                if(typeof(data.index)=='string'){
-                    var data = await imgSend(arr,'<%=host%>/banners/uploadPic?index='+data.index+'&id=2');
-                    if(data.status == 200){
-                        location.replace("/admin/banner2");
+                if(arr[0] == undefined){
+                    alert("Surat girizin");
+                    oneTime = true
+                }else{
+                    var data = await dataSend(data,'<%=host%>/banners/addBanner?id=2');
+                    if(typeof(data.index)=='string'){
+                        var data = await imgSend(arr,'<%=host%>/banners/uploadPic?index='+data.index+'&id=2');
+                        if(data.status == 200){
+                            location.replace("/admin/banner2");
+                        }
                     }
                 }
             }

@@ -92,6 +92,10 @@
     <div class="val2" style="display: none;"><%=data.body.ru%></div>
     <div class="val3" style="display: none;"><%=data.body.en%></div>
 
+    <% for(var i =0 ; i<data.files.length; i++) {%>
+        <div class="fileTake" style="display: none;"><%= data.files[i].filename %></div>
+    <% } %>
+
     <!-- picture show when i choose from file -->
     <script>
         var imgCount = 0;
@@ -121,10 +125,13 @@
             }
         }
         function firstWork(){
-            var pic = '<%=data.files%>'
-            
-            pic = pic.split(',');
             var imgCon = document.querySelector(".imgCon");
+            var fileTake = document.querySelectorAll(".fileTake");
+            console.log(fileTake);
+            var pic = [];
+            for(var i = 0; i<fileTake.length;i++){
+                pic.push(fileTake[i].textContent);
+            }
             for(var i = 0; i<pic.length; i++){
                 imgCon.innerHTML += `
                                     <div class="div pdf ${delCount}">

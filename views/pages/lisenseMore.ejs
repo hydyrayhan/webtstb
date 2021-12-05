@@ -13,38 +13,19 @@
         <div class="container" style="background-color: white;">
             <div class="agzalarHeader">Лицензирование</div>
 
-            <div class="header">Туристические лицензии</div>
-            <div class="content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum, numquam ea iusto ducimus ab, dolorem recusandae est quos, exercitationem alias repellat neque quis. Maiores nostrum ea numquam neque pariatur voluptate!</div>
+            <div class="header" data-dynamic data-tm="<%- data.header.tm %>" data-ru="<%- data.header.ru %>" data-en="<%- data.header.en %>"><%= data.header.tm %> </div>
+            <div class="content" data-dynamic data-tm="<%- data.body.tm %>" data-ru="<%- data.body.ru %>" data-en="<%- data.body.en %> "><%= data.body.tm %> </div>
             <div class="adress">Flayllar download etmek uchin</div>
             <div class="filesCon">
-                <div class="file">
-                    <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
-                    <div class="fileRight">
-                        <div class="name"><a href="" download>Gowy dokumentler</a></div>
-                        <div class="kb">123kb </div>
+                <% for( let i = 0; i < data.files.length; i++ ) { %>
+                    <div class="file">
+                        <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
+                        <div class="fileRight">
+                            <div class="name"><a href="" download><%=data.files[i].filename%></a></div>
+                            <div class="kb"><%= data.files[i].size %> </div>
+                        </div>
                     </div>
-                </div>
-                <div class="file">
-                    <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
-                    <div class="fileRight">
-                        <div class="name"><a href="" download>Gowy dokumentler</a></div>
-                        <div class="kb">123kb </div>
-                    </div>
-                </div>
-                <div class="file">
-                    <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
-                    <div class="fileRight">
-                        <div class="name"><a href="" download>Gowy dokumentler</a></div>
-                        <div class="kb">123kb </div>
-                    </div>
-                </div>
-                <div class="file">
-                    <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
-                    <div class="fileRight">
-                        <div class="name"><a href="" download>Gowy dokumentler</a></div>
-                        <div class="kb">123kb </div>
-                    </div>
-                </div>
+                <% } %>
             </div>
         </div>
     </section>

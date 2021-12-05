@@ -177,7 +177,9 @@
         <div class="val3"><%= data.body.en %></div>
     </div>
 
-
+    <% for(var i =0 ; i<data.files.length; i++) {%>
+        <div class="fileTake" style="display: none;"><%= data.files[i].filename %></div>
+    <% } %>  
  <!-- selectden saylanany ashakda gorkezmek -->
  <script>
     var tegs = "<%=data.category%>";
@@ -244,11 +246,10 @@
     function fileAdd(){
         var imgCon = document.querySelector(".imgCon");
         imgCon.style.height = "100px";
-        
-        var file = '<%=data.files%>'
-        file = file.split(',');
-        if(file[0] == ''){
-            file = [];
+        var fileTake = document.querySelectorAll(".fileTake");
+        var file = [];
+        for(var i = 0; i<fileTake.length;i++){
+            file.push(fileTake[i].textContent);
         }
         var imgCon = document.querySelector(".imgCon");
         for(var i = 0; i<file.length; i++){
@@ -383,7 +384,10 @@
                 }
             }
             var logoArr = [];
-            logoArr.push(logo);
+            if(logo !== undefined){
+                logoArr.push(logo);
+            }
+            
             var res = await dataSend(data,`<%=host%>/members/edit?id=<%=id%>`);
             console.log(res.status);
             if(res.status == 'success'){
@@ -391,7 +395,6 @@
                 var bool2 = false;
                 if(logoArr.length > 0){
                     var res2 = await imgSend(logoArr,`<%=host%>/members/addPic?id=<%=id%>`);
-                    // console.log("ishledim")
                     if(res2.status == 200){
                         bool = true;
                     }

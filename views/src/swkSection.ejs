@@ -16,7 +16,7 @@
           <div class="karhanalar">
             <%for(var i = 1; i<loop1+1; i++){%>
               <%if(i%3 == 0){%>
-                <a href="/karhana/<%=i%>?pudak=1" style="margin-right:0;">
+                <a href="/karhana/<%= i %>?id=<%=list.karhanalar[i-1].id%>&pudak=1" style="margin-right:0;">
                   <div class="karhana">
                     <div class="logoContainer"><img src="/pictures/icon/company1.png" alt=""></div>
                     <div class="right">
@@ -26,7 +26,7 @@
                   </div>
                 </a>
               <%}else{%>
-                <a href="/karhana/<%=i%>?pudak=1">
+                <a href="/karhana/<%= i %>?id=<%=list.karhanalar[i-1].id%>&pudak=1">
                   <div class="karhana">
                     <div class="logoContainer"><img src="/pictures/icon/company1.png" alt=""> </div>
                     <div class="right">

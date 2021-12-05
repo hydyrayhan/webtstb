@@ -78,7 +78,7 @@
                                 <label for="logo" class="suratHeader logoPlace">
                                     <label for="logo" style="padding-left:5px">Logo</label>
                                     <label for="logo"><img src="/pictures/icon/folder.svg" style="width: 15px;" alt=""></label>
-                                    <input type="file" onchange="takeLogo(event)" id="logo" style="display: none;">
+                                    <input type="file" accept="image/jpg,image/png" onchange="takeLogo(event)" id="logo" style="display: none;">
                                 </label>
                             </div>
                         </div>
@@ -336,7 +336,7 @@
             }
             var logoArr = [];
             logoArr.push(logo);
-            
+            console.log(logoArr);
             if(imgs.length == 0 || logo.length == 0){
                 alert("Surat ýada PDF giriziň");
                 oneTime = true

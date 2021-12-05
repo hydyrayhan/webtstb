@@ -89,11 +89,16 @@
                     active: inputs[2].checked
                 }
                 oneTime = false;
-                var data = await dataSend(data,'<%=host%>/banners/addBanner?id=1');
-                if(typeof(data.index)=='string'){
-                    var data = await imgSend(arr,'<%=host%>/banners/uploadPic?index='+data.index+'&id=1');
-                    if(data.status == 200){
-                        location.replace("/admin/banner1");
+                if(arr[0] == undefined){
+                    alert("Surat goshmaly");
+                    oneTime = true;
+                }else{
+                    var data = await dataSend(data,'<%=host%>/banners/addBanner?id=1');
+                    if(typeof(data.index)=='string'){
+                        var data = await imgSend(arr,'<%=host%>/banners/uploadPic?index='+data.index+'&id=1');
+                        if(data.status == 200){
+                            location.replace("/admin/banner1");
+                        }
                     }
                 }
             }

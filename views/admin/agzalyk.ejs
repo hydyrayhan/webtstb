@@ -16,14 +16,14 @@
                 <%= name %> 
             </div>
         </div>
-    <form action="/admin/agzalyk" method="POST" id="identifier">
+    <form  method="POST" id="identifier">
         <div class="adminTable">
                 <div class="formInputs addHabar form1" style="display: none;">
                     <div class="box">
                         <div class="boxHeader">Türkmençe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                            <input type="text" name="headerTM" class="headertm">
+                            <input type="text" name="headerTM" class="header tm">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -31,14 +31,13 @@
                                 <p></p>
                             </div>
                         </div>
-                    
                     </div>
                     
                     <div class="box">
                         <div class="boxHeader">Rusça giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerRU" id="topTa" class="headerru">
+                            <input type="text" name="headerRU" id="topTa" class="header ru">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -47,11 +46,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="box" style="margin-right: 50px;">
+                    <div class="box">
                         <div class="boxHeader">Iňlisçe giriziň</div>
                         <div class="headerCon">
-                            <label class="mazmuny" for="headeren">Mazmunyň headeri:</label>
-                            <input type="text" name="headerEN" id="headeren" class="headeren">
+                            <label class="mazmuny" for="topTas">Mazmunyň headeri:</label>
+                            <input type="text" name="headerEN" id="topTas" class="header en">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -60,184 +59,118 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="formInputs addHabar form2">
-                
+                    <div class="box"></div>
                 </div>
 
+
+
+                <div class="formInputs addHabar form2">
+
+                    <% for( let i = 2; i <= data.header.tm.length+1; i++ ) { %>
+                        <div class="box">
+                            <div class="boxHeader">Türkmençe giriziň</div>
+                            <div class="headerCon">
+                                <label class="mazmuny" for="">Mazmunyň headeri:</label>
+                                <input type="text" name="headerTM" class="header tm" value="<%= data.header.tm[i-2] %>">
+                            </div>
+                            <div class="mazmun">Mazmuny:</div>
+                            <div class="editorCon">
+                                <div id="editor">
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="boxHeader">Rusça giriziň</div>
+                            <div class="headerCon">
+                                <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
+                                <input type="text" name="headerRU" id="topTa" class="header ru" value="<%= data.header.ru[i-2] %>">
+                            </div>
+                            <div class="mazmun">Mazmuny:</div>
+                            <div class="editorCon">
+                                <div id="editor2">
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="boxHeader">Iňlisçe giriziň</div>
+                            <div class="headerCon">
+                                <label class="mazmuny" for="topTas">Mazmunyň headeri:</label>
+                                <input type="text" name="headerEN" id="topTas" class="header en" value="<%= data.header.en[i-2] %>">
+                            </div>
+                            <div class="mazmun">Mazmuny:</div>
+                            <div class="editorCon">
+                                <div id="editor3">
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box"></div>
+                        <% } %>
+                    </div>
+                    <div style="display: none;" class="hide"></div>
+                    <div style="display: none;" class="hide2"></div>
+                    <div style="display: none;" class="hide3"></div>
+                    
+
+                    <% for( let i = 0; i < data.body.tm.length; i++ ) { %>
+                        <div style="display: none;" class="hidee"><%= data.body.tm[i] %></div>
+                        <div style="display: none;" class="hidee2"><%= data.body.ru[i] %></div>
+                        <div style="display: none;" class="hidee3"><%= data.body.en[i] %></div>
+                    <% } %>
 
             <div class="submitCon">
-                <div class="more" onclick="moreBtn()">Ýene maglumat goşmak</div>
+                <div class="more">Ýene maglumat goşmak</div>
                 <input class="save" type="submit" value="Ýatda sakla">
             </div>
+
+
         </div>
     </form>
     </div>
-    <div style="display: none;" class="hide"></div>
-    <div style="display: none;" class="hide2"></div>
-    <div style="display: none;" class="hide3"></div>
 
 
 
-    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
- 
-    <!-- Initialize Quill editor  3sany text area hidden inpuda hem salyar-->
+
+
+<!-- load more -->
     <script>
-        
-      var editor = new Quill('#editor', {
-        modules: { },
-        theme: 'snow'
-      });
-      var editor = new Quill('#editor2', {
-        modules: { },
-        theme: 'snow'
-      });
-      var editor = new Quill('#editor3', {
-        modules: { },
-        theme: 'snow'
-      });
-
-    //   3 sany textarea girizilen maglumatlary hidden textarea girizyar
-    
-    var idForm = document.querySelector("#identifier");
-    idForm.addEventListener("submit",function(){
-        var hiddenText = document.querySelectorAll("#hiddenArea");
-        var hiddenText2 = document.querySelectorAll("#hiddenArea2");
-        var hiddenText3 = document.querySelectorAll("#hiddenArea3");
-        var text = document.querySelectorAll("#editor .ql-editor");
-        var text2 = document.querySelectorAll("#editor2 .ql-editor");
-        var text3 = document.querySelectorAll("#editor3 .ql-editor");
-        for(var i = 0; i<hiddenText.length; i++){
-            hiddenText[i].value = text[i].innerHTML;
-            hiddenText2[i].value = text2[i].innerHTML;
-            hiddenText3[i].value = text3[i].innerHTML;
-        }
-    })
-    </script> 
-
-    <!-- formdan maglumat jemlemek -->
-    <script>
-        dropActive(2,3);
-      
-        var form = document.querySelector("#identifier");
-        form.addEventListener('submit',async function(e){
-            e.preventDefault();
-            var data = {
-                tmheader:[],
-                ruheader:[],
-                enheader:[],
-                text:[],
-                text2:[],
-                text3:[],
-                bosh:[]
-            }
-            
-            var headertm = document.querySelectorAll("#identifier .headertm");
-            var headerru = document.querySelectorAll("#identifier .headerru");
-            var headeren = document.querySelectorAll("#identifier .headeren");
-
-            var text = document.querySelectorAll(".ql-editor");
-
-            var san = 3;
-            var headFull = true;
-            for(var i = 1; i<headertm.length; i++){
-                if(headertm[i].value=='' && headerru[i].value == '' &&  headeren[i].value == ''){
-                    data.bosh.push(i-1);
-                }else{
-                    data.tmheader.push(headertm[i].value);
-                    data.ruheader.push(headerru[i].value);
-                    data.enheader.push(headeren[i].value);
-                    data.text.push(text[san].innerHTML);
-                    data.text2.push(text[san+1].innerHTML);
-                    data.text3.push(text[san+2].innerHTML);
-                }
-                san+=3;
-                if(headertm[i].value=='' || headerru[i].value == '' ||  headeren[i].value == ''){
-                    if(headertm[i].value=='' && headerru[i].value == '' &&  headeren[i].value == ''){
-
-                    }else{
-                        headFull = false;
-                    }
-                }
-            }
-            console.log(data);
-            console.log(headFull);
-
-            if(data.tmheader.length == 0){
-                alert("Hemmesini pozum bilmersiniz!")
-            }else{
-                if(headFull){
-                    var res = await dataSend(data,`<%=host%>/menu/editMembership`);
-                    if(typeof(res.id) == 'number'){
-                        location.replace("/admin/agzalyk");
-                    }
-                }else{
-                    alert("Headerlerin birini doldurmaly!!");
-                }
-            }
-        })
-    </script>
-
-
-
-
-
-
-
-<!-- more button ishlandaki edyan ishleri -->
-    <script>
-        let sana=1
-        var imgBox = 3;
         var form2 = document.querySelector("form .form2");
+        var form1 = document.querySelector("form .form1");
 
-        var headTm = '<%=data.header.tm%>';
-        headTm = headTm.split(",");
-        var headru = '<%=data.header.ru%>';
-        headru = headru.split(",");
-        var headen = '<%=data.header.en%>';
-        headen = headen.split(",");
-        var bodytm = '<%=data.body.tm%>';
-        bodytm = bodytm.split(",");
-        var bodyru = '<%=data.body.ru%>';
-        bodyru = bodyru.split(",");
-        var bodyen = '<%=data.body.en%>';
-        bodyen = bodyen.split(",");
-
-        var nache = 0;
-        var bool = false;
-        var globalYene = -5;
+        var moreBtn = document.querySelector(".more");
+        
+        var tmheader = [];
+        var ruheader = [];
+        var enheader = [];
         var squllSan = 3;
         var cssSana = 0;
-        function moreBtn(){
-            if(nache==headTm.length+1){
-                bool = true; 
+        moreBtn.addEventListener("click",function(){
+            var tm = document.querySelectorAll(".tm");
+            var ru = document.querySelectorAll('.ru');
+            var en = document.querySelectorAll('.en');
+            for(var i = 1; i<tm.length; i++){
+                tmheader[i-1] = tm[i].value;
+                ruheader[i-1] = ru[i].value;
+                enheader[i-1] = en[i].value;
             }
-            if(bool){ //backend den gelyan headerlerin ustune sonky goshulyan formlaryn header valuesyny goshyar
-                headTm.push(form2.childNodes[globalYene].childNodes[3].childNodes[3].value);
-                headru.push(form2.childNodes[globalYene+2].childNodes[3].childNodes[3].value);
-                headen.push(form2.childNodes[globalYene+4].childNodes[3].childNodes[3].value);
-            }
-
-            var valSan = 0;
-            var yene = 1;
-            var form1 = document.querySelector("form .form1");
             form2.innerHTML += form1.innerHTML;
-            
-            nache+=1;
-            // taze goshanda header valuesyny boshatyar barde shol value lary tazeden dakyp chykyas
-            
-            for(var i = 0; i<nache; i++){
-                if(headTm.length>i){
-                    form2.childNodes[yene].childNodes[3].childNodes[3].value = headTm[valSan];
-                    form2.childNodes[yene+2].childNodes[3].childNodes[3].value = headru[valSan];
-                    form2.childNodes[yene+4].childNodes[3].childNodes[3].value = headen[valSan];
-                    valSan +=1;
-                    yene +=6;
-                }
-            }
-            globalYene +=6;
 
-            //herbir form ucin taze quill gerek bolyar we id lerem uytgeshik bolmaly;
+            
+
+            // header valuelaryny goyup beryar;
+            var tm = document.querySelectorAll(".tm");
+            var ru = document.querySelectorAll('.ru');
+            var en = document.querySelectorAll('.en');
+            for(var i = 1; i<tm.length-1; i++){
+                tm[i].value = tmheader[i-1];
+                ru[i].value = ruheader[i-1];
+                en[i].value = enheader[i-1];
+            }
+
+
+            //quill ishletmek uchin
             var editor1 = document.querySelectorAll('.editorCon');
             editor1[squllSan].innerHTML = `<div id="editor${squllSan}" class="editorr">
                                             <p></p>
@@ -265,44 +198,173 @@
                 });
             }
             squllSan+=3;
-        }
+        })
     </script>
 
 
-
-
-<!-- quill ishletyar we quill ichine maglumat yazdyryar -->
-<script>
-    var a = '<%=data.body.tm.length%>'
-    for(var i = 0; i<Number(a); i++){
-        moreBtn();
-    }
+<!-- formdan maglumat jemlemek -->
+    <script>
+        var submit = document.querySelector("#identifier");
+        var oneTime = true;
+        submit.addEventListener("submit",async function(e){
+            e.preventDefault()
+            if(oneTime){
+                var inputs = document.querySelectorAll("#identifier input");
+                var data = {
+                    tmheader:[],
+                    ruheader:[],
+                    enheader:[],
+                    text:[],
+                    text2:[],
+                    text3:[]
+                }
     
-    var tm = document.querySelectorAll("#headtm");
-    var ru = document.querySelectorAll("#headru");
-    var en = document.querySelectorAll("#headen");
-    var hide = document.querySelector('.hide');
-    var hide2 = document.querySelector('.hide2');
-    var hide3 = document.querySelector('.hide3');
-    var text = document.querySelectorAll(".ql-editor");
+                var tm = document.querySelectorAll('.tm');
+                var ru = document.querySelectorAll('.ru');
+                var en = document.querySelectorAll('.en');
+                var text = document.querySelectorAll(".ql-editor");
     
-
-
+                // var a = text[3].innerHTML
+                // var b = ''
+                // console.log("len"+a.length);
+                // for(var i = 0; i<a.length; i++){
+                //     console.log(i);
+                //     if(a[i] == '"'){
+                //         b+='\\'+a[i];
+                //     }else{
+                //         b+=a[i];
+                //     }               
+                // }
+                console.log(b);
+                var headFull = true;
+                var san = 3;
+                for(var i = 1; i<tm.length; i++){
+                    if(tm[i].value=='' && ru[i].value == '' &&  en[i].value == ''){
+                        data.bosh.push(i-1);
+                    }else{
+                        data.tmheader.push(tm[i].value);
+                        data.ruheader.push(ru[i].value);
+                        data.enheader.push(en[i].value);
+                        data.text.push(text[san].innerHTML);
+                        data.text2.push(text[san+1].innerHTML);
+                        data.text3.push(text[san+2].innerHTML);
+                    }
+                    san+=3;
+                    if(tm[i].value=='' || ru[i].value == '' ||  en[i].value == ''){
+                        if(tm[i].value=='' && ru[i].value == '' &&  en[i].value == ''){
     
-    var san = 3;
-    for(var i = 0; i<Number(a); i++){
-
-        hide.innerHTML = bodytm[i];
-        hide2.innerHTML = bodyru[i];
-        hide3.innerHTML = bodyen[i];
+                        }else{
+                            headFull = false;
+                        }
+                    }
+                }
+                
+                
+               
+                // if(headFull){
+                //     var res = await dataSend(data,'<%=host%>/menu/editMembership');
         
-        text[san].innerHTML = hide.textContent;
-        text[san+1].innerHTML = hide2.textContent;
-        text[san+2].innerHTML = hide3.textContent;
-        san+=3;
-    }
+                //     if(typeof(res.id) == 'number'){
+                //         location.replace('/admin/agzalyk/');
+                //     }
+                // }else{
+                //     alert('headerlerin biri bosh');
+                //     oneTime=true
+                // }
+                
+            }
+        })
+        dropActive(2,3);
+    </script>
+ 
+    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+ 
+    <!-- Initialize Quill editor  3sany text area hidden inpuda hem salyar-->
+    <script>
+      var editor = new Quill('#editor', {
+        modules: { },
+        theme: 'snow'
+      });
+      var editor = new Quill('#editor2', {
+        modules: { },
+        theme: 'snow'
+      });
+      var editor = new Quill('#editor3', {
+        modules: { },
+        theme: 'snow'
+      });
+    </script> 
 
-</script>
+
+    <!-- first -->
+    <script>
+        function first(){
+            var tmheader = '<%=data.header.tm%>';
+            tmheader = tmheader.split(",");
+            var editor1 = document.querySelectorAll('.editorCon');
+            
+            for(var i = 0; i<tmheader.length; i++){
+                
+                editor1[squllSan].innerHTML = `<div id="editor${squllSan}" class="editorr">
+                                                <p></p>
+                                            </div>`
+                editor1[squllSan+1].innerHTML = `<div id="editor${squllSan+1}" class="editorr">
+                                                <p></p>
+                                            </div>`
+                editor1[squllSan+2].innerHTML = `<div id="editor${squllSan+2}" class='editorr'>
+                                                <p></p>
+                                            </div>`
+    
+    
+                var edit = document.querySelectorAll(".editorr");
+                for(var j =0; j<cssSana; j++){
+                    editor1[3+j].childNodes[0].remove();
+                    
+                }
+                cssSana+=3;
+    
+                var edit = document.querySelectorAll(".editorr");
+                for(var j = 0; j<edit.length; j++){
+                    var editor = new Quill(edit[j], {
+                        modules: { },
+                        theme: 'snow'
+                    });
+                }
+                squllSan+=3;
+            }
+
+
+            var hide = document.querySelector(".hide");
+            var hide2 = document.querySelector(".hide2");
+            var hide3 = document.querySelector(".hide3");
+            var text = document.querySelectorAll(".ql-editor");
+            var hidee = document.querySelectorAll(".hidee");
+            var hidee2 = document.querySelectorAll(".hidee2");
+            var hidee3 = document.querySelectorAll(".hidee3");
+            var bodytm = []
+            var bodyru = []
+            var bodyen = []
+            for(var i =0 ; i<hidee.length; i++){
+                bodytm.push(hidee[i].textContent);
+                bodyru.push(hidee2[i].textContent);
+                bodyen.push(hidee3[i].textContent);
+            }
+            
+            var sana = 3;
+            
+            for(var i = 0; i<bodytm.length; i++){
+                hide.innerHTML = bodytm[i];
+                hide2.innerHTML = bodyru[i];
+                hide3.innerHTML = bodyen[i];
+                text[sana].innerHTML = hide.textContent;
+                text[sana+1].innerHTML = hide2.textContent;
+                text[sana+2].innerHTML = hide3.textContent;
+                sana+=3;
+            }
+        }
+        first();
+
+    </script>
 
 </body>
 </html>

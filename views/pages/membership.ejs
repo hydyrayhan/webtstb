@@ -11,30 +11,19 @@
 
 
     <div class="container">
-        <div class="agzalarHeader">Членство</div>
-        <div class="document">Нормативные документы</div>
+        <div class="agzalarHeader" data-content id="membership">Членство</div>
+        <!-- <div class="document">Нормативные документы</div> -->
         <div class="columns">
-            <div class="col">
-                <div class="name">Въездные документы</div>
-                <div class="content">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi, laboriosam, fugiat adipisci fuga esse nemo sed exercitationem itaque, eius quis suscipit. Tempora optio earum fuga! Aut laboriosam rerum eveniet voluptatum!
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur esse nihil veniam quidem quaerat, fugiat numquam necessitatibus impedit totam illum tenetur ex debitis quos aliquid velit fuga quisquam dolore beatae? Amet sed saepe earum id porro consectetur, voluptate provident unde nostrum voluptatibus deleniti qui aliquam, voluptates quo impedit! Ipsam harum maiores esse enim ullam earum eveniet, delectus, nihil, rem soluta aspernatur minus illum animi corrupti? Cum praesentium soluta ea necessitatibus a consequatur aliquid omnis molestias at quis. Aspernatur voluptate enim iste deserunt, cumque distinctio, quae, nam illum aliquam blanditiis quibusdam architecto molestias. Maiores et odio quam fuga consequatur nisi maxime!
+            <% for( let i = 0; i < data.body.en.length; i++ ) { %>
+                <div class="col">
+                    <div class="name" data-dynamic data-tm='<%- data.header.tm[i] %>' data-ru='<%- data.header.ru[i] %>' data-en='<%- data.header.en[i] %>'><%= data.header.tm[i] %></div>
+                    <div class="content" data-dynamic data-tm='<%- data.body.tm[i] %>' data-ru='<%- data.body.ru[i] %>' data-en='<%-data.body.en[i]%>'>
+                        <%= data.body.tm[i] %> 
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="name">Члены Ассоциации, их права и обязанности</div>
-                <div class="content">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi, laboriosam, fugiat adipisci fuga esse nemo sed exercitationem itaque, eius quis suscipit. Tempora optio earum fuga! Aut laboriosam rerum eveniet voluptatum!
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur esse nihil veniam quidem quaerat, fugiat numquam necessitatibus impedit totam illum tenetur ex debitis quos aliquid velit fuga quisquam dolore beatae? Amet sed saepe earum id porro consectetur, voluptate provident unde nostrum voluptatibus deleniti qui aliquam, voluptates quo impedit! Ipsam harum maiores esse enim ullam earum eveniet, delectus, nihil, rem soluta aspernatur minus illum animi corrupti? Cum praesentium soluta ea necessitatibus a consequatur aliquid omnis molestias at quis. Aspernatur voluptate enim iste deserunt, cumque distinctio, quae, nam illum aliquam blanditiis quibusdam architecto molestias. Maiores et odio quam fuga consequatur nisi maxime!
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur esse nihil veniam quidem quaerat, fugiat numquam necessitatibus impedit totam illum tenetur ex debitis quos aliquid velit fuga quisquam dolore beatae? Amet sed saepe earum id porro consectetur, voluptate provident unde nostrum voluptatibus deleniti qui aliquam, voluptates quo impedit! Ipsam harum maiores esse enim ullam earum eveniet, delectus, nihil, rem soluta aspernatur minus illum animi corrupti? Cum praesentium soluta ea necessitatibus a consequatur aliquid omnis molestias at quis. Aspernatur voluptate enim iste deserunt, cumque distinctio, quae, nam illum aliquam blanditiis quibusdam architecto molestias. Maiores et odio quam fuga consequatur nisi maxime!
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur esse nihil veniam quidem quaerat, fugiat numquam necessitatibus impedit totam illum tenetur ex debitis quos aliquid velit fuga quisquam dolore beatae? Amet sed saepe earum id porro consectetur, voluptate provident unde nostrum voluptatibus deleniti qui aliquam, voluptates quo impedit! Ipsam harum maiores esse enim ullam earum eveniet, delectus, nihil, rem soluta aspernatur minus illum animi corrupti? Cum praesentium soluta ea necessitatibus a consequatur aliquid omnis molestias at quis. Aspernatur voluptate enim iste deserunt, cumque distinctio, quae, nam illum aliquam blanditiis quibusdam architecto molestias. Maiores et odio quam fuga consequatur nisi maxime!
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur esse nihil veniam quidem quaerat, fugiat numquam necessitatibus impedit totam illum tenetur ex debitis quos aliquid velit fuga quisquam dolore beatae? Amet sed saepe earum id porro consectetur, voluptate provident unde nostrum voluptatibus deleniti qui aliquam, voluptates quo impedit! Ipsam harum maiores esse enim ullam earum eveniet, delectus, nihil, rem soluta aspernatur minus illum animi corrupti? Cum praesentium soluta ea necessitatibus a consequatur aliquid omnis molestias at quis. Aspernatur voluptate enim iste deserunt, cumque distinctio, quae, nam illum aliquam blanditiis quibusdam architecto molestias. Maiores et odio quam fuga consequatur nisi maxime!
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur esse nihil veniam quidem quaerat, fugiat numquam necessitatibus impedit totam illum tenetur ex debitis quos aliquid velit fuga quisquam dolore beatae? Amet sed saepe earum id porro consectetur, voluptate provident unde nostrum voluptatibus deleniti qui aliquam, voluptates quo impedit! Ipsam harum maiores esse enim ullam earum eveniet, delectus, nihil, rem soluta aspernatur minus illum animi corrupti? Cum praesentium soluta ea necessitatibus a consequatur aliquid omnis molestias at quis. Aspernatur voluptate enim iste deserunt, cumque distinctio, quae, nam illum aliquam blanditiis quibusdam architecto molestias. Maiores et odio quam fuga consequatur nisi maxime!
-                </div>
-            </div>
+            <% } %>
         </div>
     </div>
-
 
     <%- include ('../src/bottom.ejs') %>
 

@@ -15,48 +15,31 @@
     <div class="container">
         <div class="agzalarHeader">Бизнес-планы</div>
         <div class="listContainer" style="display: block;">
+            <% for( let i = 0; i < data.length; i++ ) { %>
                 <div class="agzalarList">
                     <div class="main">
                         <div class="text">
-                            <div class="listHead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, quae? </div>
-                            <div class="listText textDots" >Lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio quos placeat incidunt perspiciatis, reiciendis harum maxime numquam aliquid error fugit voluptatem nesciunt ipsa deleniti delectus repudiandae consequuntur adipisci ad tempora saepe veniam, dolorum magni! Fuga, repellat. Id quaerat tempora aliquid fugit a saepe totam illo quo, doloribus ullam ratione vero eaque similique voluptate nam unde. Voluptatem consectetur eos commodi ea perspiciatis! Perferendis ullam reiciendis velit qui, temporibus quaerat illo delectus deserunt voluptate odit iste nihil tempore consectetur ducimus veniam pariatur hic autem animi debitis sunt minima esse fugit fuga maxime. Ipsum corporis neque officia quia eius accusantium amet praesentium veritatis? ipsum dolor, sit amet consectetur adipisicing elit. Suscipit, similique impedit? Quos quas incidunt consequatur amet itaque iure sint suscipit delectus fugiat quod harum doloremque veniam dignissimos temporibus est nostrum aliquam, dolore eius reprehenderit aspernatur optio nobis ea minima voluptates! Sint, itaque. Doloremque praesentium reprehenderit sapiente, atque earum possimus consequuntur omnis autem tempora quisquam quas repellat, deserunt cupiditate eligendi odit, accusantium provident. Earum libero esse corrupti, quia et tempora pariatur accusantium modi sit quibusdam magnam nam. Alias maiores blanditiis, perspiciatis fuga quas reprehenderit illo iusto dolores accusantium sed repellendus illum, eos saepe rerum sapiente tempore, a ipsum inventore. Error, asperiores? </div>
+                            <div class="listHead" data-dynamic data-tm="<%- data[i].header.tm %>" data-ru="<%- data[i].header.ru %>" data-en="<%- data[i].header.en %>"><%= data[i].header.tm %> </div>
+                            <div class="listText textDots" data-dynamic data-tm="<%- data[i].body.tm %>" data-ru="<%- data[i].body.ru %>" data-en="<%- data[i].body.en %> "><%= data[i].body.tm %> </div>
                         </div>
                         <div class="icon"><img src="/pictures/icon/grayRightArrow.svg" alt=""></div>
                     </div>
                     <div class="full">
                         <div class="adress">Flayllar download etmek uchin</div>
                         <div class="filesCon">
+                            <% for( let j = 0; j < data[i].files.length; j++ ) { %>
                                 <div class="file">
                                     <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
                                     <div class="fileRight">
-                                        <div class="name"><a href="" download> Lorem, ipsum.</a></div>
-                                        <div class="kb">lorem</div>
+                                        <div class="name"><a href="" download> <%= data[i].files[j].filename %></a></div>
+                                        <div class="kb"><%= data[i].files[j].size %> </div>
                                     </div>
                                 </div>
+                            <% } %>
                         </div>
                     </div>
                 </div>
-                <div class="agzalarList">
-                    <div class="main">
-                        <div class="text">
-                            <div class="listHead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, quae? </div>
-                            <div class="listText textDots" >Lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio quos placeat incidunt perspiciatis, reiciendis harum maxime numquam aliquid error fugit voluptatem nesciunt ipsa deleniti delectus repudiandae consequuntur adipisci ad tempora saepe veniam, dolorum magni! Fuga, repellat. Id quaerat tempora aliquid fugit a saepe totam illo quo, doloribus ullam ratione vero eaque similique voluptate nam unde. Voluptatem consectetur eos commodi ea perspiciatis! Perferendis ullam reiciendis velit qui, temporibus quaerat illo delectus deserunt voluptate odit iste nihil tempore consectetur ducimus veniam pariatur hic autem animi debitis sunt minima esse fugit fuga maxime. Ipsum corporis neque officia quia eius accusantium amet praesentium veritatis? ipsum dolor, sit amet consectetur adipisicing elit. Suscipit, similique impedit? Quos quas incidunt consequatur amet itaque iure sint suscipit delectus fugiat quod harum doloremque veniam dignissimos temporibus est nostrum aliquam, dolore eius reprehenderit aspernatur optio nobis ea minima voluptates! Sint, itaque. Doloremque praesentium reprehenderit sapiente, atque earum possimus consequuntur omnis autem tempora quisquam quas repellat, deserunt cupiditate eligendi odit, accusantium provident. Earum libero esse corrupti, quia et tempora pariatur accusantium modi sit quibusdam magnam nam. Alias maiores blanditiis, perspiciatis fuga quas reprehenderit illo iusto dolores accusantium sed repellendus illum, eos saepe rerum sapiente tempore, a ipsum inventore. Error, asperiores? </div>
-                        </div>
-                        <div class="icon"><img src="/pictures/icon/grayRightArrow.svg" alt=""></div>
-                    </div>
-                    <div class="full">
-                        <div class="adress">Flayllar download etmek uchin</div>
-                        <div class="filesCon">
-                                <div class="file">
-                                    <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
-                                    <div class="fileRight">
-                                        <div class="name"><a href="" download> Lorem, ipsum.</a></div>
-                                        <div class="kb">lorem</div>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-                </div>
+            <% } %>
         </div> 
     </div>
 </section>

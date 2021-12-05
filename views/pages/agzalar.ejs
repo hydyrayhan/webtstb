@@ -15,36 +15,40 @@
             <div class="agzalarWelayatlar">
                 <div class="welayat active" id="0">Ashgabat</div>
                 <div class="welayat" id="1">Ahal</div>
-                <div class="welayat" id="2">Dashoguz</div>
-                <div class="welayat" id="3">Balkan</div>
-                <div class="welayat" id="4">Lebap</div>
-                <div class="welayat" id="5">Mary</div>
+                <div class="welayat" id="2">Balkan</div>
+                <div class="welayat" id="3">Mary</div>
+                <div class="welayat" id="4">Daşoguz</div>
+                <div class="welayat" id="5">Lebap</div>
             </div>
             <div class="selection">
                 <div class="agzaDefinition">Выберите категорию, чтобы увидеть список ниже:</div>
-                <select name="" id="">
-                    <option value="">Select1</option>
-                    <option value="">Select2</option>
-                    <option value="">Select3</option>
-                    <option value="">Select4</option>
-                    <option value="">Select5</option>
+                <select name="" id="bolum">
+                    <option value="" style="display: none;">Kategori sayla</option>
+                    <option value="Himiýa we Senagat">Himiýa we Senagat</option>
+                    <option value="Hukuk">Hukuk</option>
+                    <option value="Oba hojalyk">Oba hojalyk</option>
+                    <option value="Balykçylyk">Balykçylyk</option>
+                    <option value="Ahal">Ahal</option>
+                    <option value="Daşoguz">Daşoguz</option>
                 </select>
             </div>
+            
             <% for( let k = 0; k < data.length; k++ ) { %>
                 <div class="listContainer">
                     <% for( let i = 0; i < data[k].length; i++ ) { %>
                         <div class="agzalarList">
-                            <div class="main">
-                                <div class="logo"><img src="<%= data[k][i].pic %>" alt="dsds"></div>
+                            <div class="welayatHide" style="display: none;"><%= data[k][i].category %> </div>
+                            <div class="main we<%= k %>">
+                                <div class="logo"><img src="<%= host %>/members/<%= data[k][i].id %>/<%= data[k][i].pic %>" alt="dsds"></div>
                                 <div class="text">
-                                    <div class="listHead" data-dynamic data-tm="<%- data[k][i].name.TM %>" data-ru="<%- data[k][i].name.RU %>" data-en="<%- data[k][i].name.EN %>"><%= data[k][i].name.RU %> </div>
-                                    <div class="listText textDots" data-dynamic data-tm="<%- data[k][i].definition.TM %>" data-ru="<%- data[k][i].definition.RU %>" data-en="<%- data[k][i].definition.EN %>"><%= data[k][i].definition.RU %> </div>
+                                    <div class="listHead"><%= data[k][i].name %></div>
+                                    <div class="listText textDots" data-dynamic data-tm="<%- data[k][i].body.tm %>" data-ru="<%- data[k][i].body.ru %>" data-en="<%- data[k][i].body.en %>"><%= data[k][i].body.ru %> </div>
                                 </div>
                                 <div class="icon"><img src="/pictures/icon/grayRightArrow.svg" alt=""></div>
                             </div>
                             <div class="full">
                                 <div class="adress">Address:</div>
-                                <div class="adressInfo" data-dynamic data-tm="<%- data[k][i].address.TM %>" data-ru="<%- data[k][i].address.ru %>" data-en="<%- data[k][i].address.EN %>"><%= data[k][i].address.RU %></div>
+                                <div class="adressInfo" data-dynamic data-tm="<%- data[k][i].address.tm %>" data-ru="<%- data[k][i].address.ru %>" data-en="<%- data[k][i].address.en %>"><%= data[k][i].address.ru %></div>
         
                                 <div class="adress">Link: </div>
                                 <div class="right">
@@ -55,20 +59,20 @@
                                     </div>
             
                                     <div class="links">
-                                        <a href="<%= data[k][i].website %>" class="text"><%= data[k][i].website %> </a>
-                                        <a href="" class="text"><%= data[k][i].email %> </a>
-                                        <a href="" class="text"><%=data[k][i].instagram%></a>
+                                        <a href="<%= data[k][i].link %>" class="text"><%= data[k][i].link %> </a>
+                                        <a href="" class="text"><%= data[k][i].email %></a>
+                                        <a href="" class="text"><%=data[k][i].extra%></a>
                                     </div>
                                 </div>
         
-                                <div class="adress">Flayllar download etmek uchin</div>
+                                <div class="adress">Fayllar download etmek uchin</div>
                                 <div class="filesCon">
                                     <% for( let j = 0; j < data[k][i].files.length; j++ ) { %>
                                         <div class="file">
                                             <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
                                             <div class="fileRight">
-                                                <div class="name"><a href="<%= data[k][i].files[j].link %>" download><%= data[k][i].files[j].name %> </a></div>
-                                                <div class="kb"><%= data[k][i].files[j].size %> </div>
+                                                <div class="name"><a href="<%= data[k][i].files[j].link %>" download><%= data[k][i].files[j].filename %> </a></div>
+                                                <div class="kb"><%= data[k][i].files[j].size %> kb</div>
                                             </div>
                                         </div>
                                     <% } %>
@@ -118,51 +122,82 @@
 
     <!-- list achyan -->
     <script>
-        const list = document.querySelectorAll(".agzalarList .main");
-        var id  = Number('<%=place%>');
-        
-        var bul = false;
-        if(id>=0){
-            open(list[id]);
-        }else{
-            bul = true;
-        }
-
-
-        for(var i = 0; i<list.length; i++){
-            list[i].addEventListener("click",function(){
-                if(this.style.backgroundColor == "white" || bul){
-                    for(var j = 0; j<list.length; j++){
-                        clothes(list[j])
+        var a = '<%=place%>';
+        if(a!='-1'){
+            
+            const list = document.querySelectorAll(".agzalarList .main");
+            var we = document.querySelectorAll(".we<%=place%>");
+            var id  = Number('<%=idd%>');
+            var bul = false;
+            if(id>=0){
+                open(we[id]);
+            }else{
+                bul = true;
+            }
+    
+    
+            for(var i = 0; i<list.length; i++){
+                list[i].addEventListener("click",function(){
+                    if(this.style.backgroundColor == "white" || bul){
+                        for(var j = 0; j<list.length; j++){
+                            clothes(list[j])
+                        }
+                        open(this);
+                    }else{
+                        clothes(this);
+                        bul = true;
                     }
-                    open(this);
-                }else{
-                    clothes(this);
-                    bul = true;
+                })
+            }
+    
+    
+            function clothes(e){
+                e.childNodes[3].childNodes[3].classList.add("textDots")
+                e.nextSibling.nextSibling.style.display = "none";
+                e.parentNode.style.border = "none";
+                e.style.backgroundColor = "white";
+                var child = e.childNodes[5].childNodes[0];
+                child.setAttribute("src","/pictures/icon/grayRightArrow.svg");
+                e.childNodes[5].style.minWidth = "12px";
+            }
+            function open(e){
+                e.childNodes[3].childNodes[3].classList.remove("textDots")
+                e.nextSibling.nextSibling.style.display = "block"
+                e.style.backgroundColor = "#F3F3F2";
+                e.parentNode.style.border = "1px solid #2058D4"
+                var child = e.childNodes[5].childNodes[0];
+                child.setAttribute("src","/pictures/icon/downBlue.svg");
+                e.childNodes[5].style.minWidth = "20px";
+                bul = false;
+            }
+        }
+    </script>
+
+    <!-- kategori filter -->
+    <script>
+        var welayatHide = document.querySelectorAll(".welayatHide");
+        var bolum = document.querySelector('#bolum');
+        bolum.addEventListener('change',function(){
+            for(var i = 0; i<welayatHide.length; i++){
+                welayatHide[i].parentNode.style.display = 'block';
+            }
+            for(var i = 0; i<welayatHide.length; i++){
+                var we = welayatHide[i].textContent;
+                we = we.split(',');
+                var bo = bolum.value;
+                var bool = false;
+                for(var j = 0; j<we.length;j++){
+                    var len = we[j].length;
+                    we[j] = we[j].slice(0,len-1);
+                    if(bo == we[j]){
+                        bool = true;
+                    }
                 }
-            })
-        }
-
-
-        function clothes(e){
-            e.childNodes[3].childNodes[3].classList.add("textDots")
-            e.nextSibling.nextSibling.style.display = "none";
-            e.parentNode.style.border = "none";
-            e.style.backgroundColor = "white";
-            var child = e.childNodes[5].childNodes[0];
-            child.setAttribute("src","/pictures/icon/grayRightArrow.svg");
-            e.childNodes[5].style.minWidth = "12px";
-        }
-        function open(e){
-            e.childNodes[3].childNodes[3].classList.remove("textDots")
-            e.nextSibling.nextSibling.style.display = "block"
-            e.style.backgroundColor = "#F3F3F2";
-            e.parentNode.style.border = "1px solid #2058D4"
-            var child = e.childNodes[5].childNodes[0];
-            child.setAttribute("src","/pictures/icon/downBlue.svg");
-            e.childNodes[5].style.minWidth = "20px";
-            bul = false;
-        }
+                if(!bool){
+                    welayatHide[i].parentNode.style.display = 'none';
+                }
+            }
+        })
     </script>
 
 </body>

@@ -215,89 +215,95 @@
         var form = document.querySelector('#identifier');
         form.addEventListener("submit",async function(e){
             e.preventDefault();
-            
-            var tm = document.querySelectorAll("#identifier .tm");
-            var ru = document.querySelectorAll("#identifier .ru");
-            var en = document.querySelectorAll("#identifier .en");
-
-            var text = document.querySelectorAll(".ql-editor");
-            
-            var hiddenText = document.querySelectorAll("#hiddenArea");
-            var hiddenText2 = document.querySelectorAll("#hiddenArea2");
-            var hiddenText3 = document.querySelectorAll("#hiddenArea3");
-
-            
-            var data = {
-                tmheader:[],
-                ruheader:[],
-                enheader:[],
-                text:[],
-                text2:[],
-                text3:[],
-                bosh:[]
-            }
-
-            var headFull = true;
-            var san = 3;
-            for(var i = 1; i<tm.length; i++){
-                if(tm[i].value=='' && ru[i].value == '' &&  en[i].value == ''){
-                    data.bosh.push(i-1);
-                }else{
-                    data.tmheader.push(tm[i].value);
-                    data.ruheader.push(ru[i].value);
-                    data.enheader.push(en[i].value);
-                    data.text.push(text[san].innerHTML);
-                    data.text2.push(text[san+1].innerHTML);
-                    data.text3.push(text[san+2].innerHTML);
-                }
-                san+=3;
-                if(tm[i].value=='' || ru[i].value == '' ||  en[i].value == ''){
-                    if(tm[i].value=='' && ru[i].value == '' &&  en[i].value == ''){
-
-                    }else{
-                        headFull = false;
-                    }
-                }
-            }
-            
-
-            
-            var arr = [];
-            for(var i = 0; i<data.tmheader.length; i++){
-                if(imgs.length == 0){
-                    break;
-                }else{
-                    var bool = false;
-                    for(var j = 0; j<imgs.length; j++){
-                        if(imgs[j].id == i){
-                            arr.push(imgs[j].file);
-                            bool = true;
-                            break;
-                        }
-                    }
-                    if(!bool){
-                        arr.push('');
-                    }
-                }
-            }
-            console.log(arr);
-            
-            if(headFull){
-                var res = await dataSend(data,'<%=host%>/menu/editAboutUs');
+            if(oneTime){
+                oneTime = false;
+                var tm = document.querySelectorAll("#identifier .tm");
+                var ru = document.querySelectorAll("#identifier .ru");
+                var en = document.querySelectorAll("#identifier .en");
+    
+                var text = document.querySelectorAll(".ql-editor");
                 
-                if(typeof(res.id) == 'number'){
-                    if(arr.length>0){
-                        var data = await imgSend(arr,'<%=host%>/menu/addPic?id='+res.id);
-                        if(data.status == 200){
-                            alert("Ýatda saklandy suratam uytgedildi")
-                        }
+                var hiddenText = document.querySelectorAll("#hiddenArea");
+                var hiddenText2 = document.querySelectorAll("#hiddenArea2");
+                var hiddenText3 = document.querySelectorAll("#hiddenArea3");
+    
+                
+                var data = {
+                    tmheader:[],
+                    ruheader:[],
+                    enheader:[],
+                    text:[],
+                    text2:[],
+                    text3:[],
+                    bosh:[]
+                }
+    
+                var headFull = true;
+                var san = 3;
+                for(var i = 1; i<tm.length; i++){
+                    if(tm[i].value=='' && ru[i].value == '' &&  en[i].value == ''){
+                        data.bosh.push(i-1);
                     }else{
-                        alert("Ýatda saklandy");
+                        data.tmheader.push(tm[i].value);
+                        data.ruheader.push(ru[i].value);
+                        data.enheader.push(en[i].value);
+                        data.text.push(text[san].innerHTML);
+                        data.text2.push(text[san+1].innerHTML);
+                        data.text3.push(text[san+2].innerHTML);
+                    }
+                    san+=3;
+                    if(tm[i].value=='' || ru[i].value == '' ||  en[i].value == ''){
+                        if(tm[i].value=='' && ru[i].value == '' &&  en[i].value == ''){
+    
+                        }else{
+                            headFull = false;
+                        }
                     }
                 }
-            }else{
-                alert("Headerlerin birini daldurmaly!!!");
+                
+    
+                
+                var arr = [];
+                for(var i = 0; i<data.tmheader.length; i++){
+                    if(imgs.length == 0){
+                        break;
+                    }else{
+                        var bool = false;
+                        for(var j = 0; j<imgs.length; j++){
+                            if(imgs[j].id == i){
+                                arr.push(imgs[j].file);
+                                bool = true;
+                                break;
+                            }
+                        }
+                        if(!bool){
+                            arr.push('');
+                        }
+                    }
+                }
+                console.log(arr);
+                console.log(imgs);
+                
+                if(headFull){
+                    var res = await dataSend(data,'<%=host%>/menu/editAboutUs');
+                    
+                    if(typeof(res.id) == 'number'){
+                        if(arr.length>0){
+                            var data = await imgSend(arr,'<%=host%>/menu/addPic?id='+res.id);
+                            if(data.status == 200){
+                                alert("Ýatda saklandy suratam uytgedildi")
+                            }
+                        }else{
+                            alert("Ýatda saklandy");
+                        }
+                    }
+                }else{
+                    alert("Headerlerin birini doldurmaly!!!");
+                    oneTime = true;
+                }
+
             }
+            
         })
 
         dropActive(2,1);

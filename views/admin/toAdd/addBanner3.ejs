@@ -88,11 +88,16 @@
                 oneTime = false;
                 var arr = []
                 arr.push(img)
-                var data = await dataSend(data,'<%=host%>/banners/addBanner?id=3');
-                if(typeof(data.index)=='string'){
-                    var data = await imgSend(arr,'<%=host%>/banners/uploadPic?index='+data.index+'&id=3');
-                    if(data.status == 200){
-                        location.replace("/admin/banner3");
+                if(arr[0] == undefined){
+                    alert("surat goshmaly");
+                    oneTime = true;
+                }else{
+                    var data = await dataSend(data,'<%=host%>/banners/addBanner?id=3');
+                    if(typeof(data.index)=='string'){
+                        var data = await imgSend(arr,'<%=host%>/banners/uploadPic?index='+data.index+'&id=3');
+                        if(data.status == 200){
+                            location.replace("/admin/banner3");
+                        }
                     }
                 }
             }

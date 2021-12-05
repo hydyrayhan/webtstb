@@ -43,6 +43,7 @@
       .dropdown3 .dil:hover {background-color: #ddd;}
 
       .show {display: block;}
+
     </style>
 </head>
 <body>
@@ -58,21 +59,13 @@
             </a>
             
           <div class="right">
-            <!-- <div class="language">
-              <div class='chosen-lang' href='#' data-target='dropdown1'></div>
-    
-              <ul id='dropdown1' class='dropdown-content'>
-                <li class="lang-link" data-content id="TM">TM</li>
-                <li class="lang-link" data-content id="EN">EN</li>
-                <li class="lang-link" data-content id="RU">RU</li>
-              </ul>
-            </div> -->
-            <div class="search">
+            <label id="searchLabel" class="search">
               <div class="icon">
                 <img src="/pictures/icon/search.png" alt="">
               </div>
               <div class="searchText" data-content id='search'></div>
-            </div>
+              <div class="searchInput" id="searchLabel"><input type="text" placeholder="Search"></div>
+            </label>
 
             <div class="dropdown3 language">
               <button onclick="myFunction()" class="dropbtn3 chosen-lang"></button>
@@ -86,7 +79,24 @@
         </nav>
       </div>
     
-    
+      <div class="searchPage">
+        <div class="container">
+          <div class="exit">
+            <div style="cursor: pointer;">
+              <svg width="12" height="12" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.1665 1.66667L6.99983 7.5M6.99983 7.5L12.8332 13.3333M6.99983 7.5L12.8332 1.66667M6.99983 7.5L1.1665 13.3333" stroke="#10181F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Ýapmak</span>
+            </div>
+          </div>
+          <div>
+            <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, tempora.</div>
+            <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, tempora.</div>
+            <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, tempora.</div>
+            <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, tempora.</div>
+          </div>
+        </div>
+      </div>
       
       <div class="nav2">
         <div class="container">
@@ -102,7 +112,7 @@
                 <a href="/membership">
                   <div data-content id='membership'>Membership</div>
                 </a>
-                <a href="/onlineBusiness">
+                <a href="/onlineBusiness/Ashgabat">
                   <div data-content id='onlineBusiness'>Online Business</div>
                 </a>
                 <a href="/businessPlans">
@@ -115,16 +125,96 @@
                   <div data-content id='consultation'>Consultation</div>
                 </a>
               </div>
-              <div class="right">
-                <div class="dots"><img src="/pictures/icon/dots.png" alt=""></div>
-                <div data-content id="menu"></div>
-              </div>
+                <div class="right menu" style="cursor: pointer;">
+                  <div class="dots"><img src="/pictures/icon/dots.png" alt=""></div>
+                  <div data-content id="menu" style="color:white;"></div>
+                </div>
             </div>
             <div class="nagysh"></div>
           </div>
         </div>
       </div>
 
+      <div class="menuPage">
+        <div class="container">
+          <div class="exit">
+            <div style="cursor: pointer;">
+              <svg width="12" height="12" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.1665 1.66667L6.99983 7.5M6.99983 7.5L12.8332 13.3333M6.99983 7.5L12.8332 1.66667M6.99983 7.5L1.1665 13.3333" stroke="#10181F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Ýapmak</span>
+            </div>
+          </div>
+          <div class="menular">
+            <div class="menubox">
+              <div class="headbox">Tazelikler</div>
+              <a href="/sppt" class="list" data-content id='sppt'>SPPT</a>
+              <a href="/agzalar/-1" class="list" data-content id='spptMember'>SPPT Membership</a>
+              <a href="/membership" class="list" data-content id='membership'>Membership</a>
+              <a href="/onlineBusiness/Ashgabat" class="list" data-content id='onlineBusiness'>Online Business</a>
+              <a href="/businessPlans" class="list" data-content id='businessPlan'>Business Plans</a>
+              <a href="/licenses" class="list" data-content id='licenses'>Licenses</a>
+              <a href="/consultation" class="list" data-content id='consultation'>Consultation</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script src="/scripts/js/component/fileSend.js"></script>
+      <!-- search -->
+      <script>
+        var searchBtn = document.querySelector(".search");
+        var label = document.querySelector(".search label");
+        var search = document.querySelector(".searchInput");
+        var searchText = document.querySelector(".searchText");
+        var searchPage = document.querySelector(".searchPage");
+        var exit = document.querySelectorAll(".exit")[0];
+        var body = document.querySelector("body");
+        searchBtn.addEventListener("click",function(){
+          search.style.width = "165px";
+          searchText.style.display = 'none';
+          searchPage.style.left = '0';
+          body.style.position = 'fixed';
+          body.style.width = "100%";
+        })
+
+        exit.addEventListener("click",function(){
+          searchPage.style.left = '100%';
+          searchText.style.display = 'block';
+          search.style.width = '0';
+        })
+      </script>
+      <!-- menu -->
+      <script>
+        var menu = document.querySelector('.menu');
+        var menular = document.querySelector(".menuPage");
+        var exit = document.querySelectorAll(".exit")[1];
+        var host = '<%=host%>'
+        var menus = document.querySelector(".menular");
+        var data;
+        menu.addEventListener("click",async function(){
+          menular.style.left = '0';
+          if(data == undefined){
+            data = await menuData(host);
+            for(var i = 0; i<data.length; i++){
+              menus.innerHTML += `<div class="menubox">
+                  <div class="headbox" data-dynamic data-ru="${data[i].name.RU}" data-tm="${data[i].name.TM}" data-en="${data[i].name.EN}">${data[i].name.TM}</div>
+                                </div>`
+              var list = document.querySelectorAll(".menubox");
+              for(var j = 0; j<data[i].constructors.length; j++){
+                list[i+1].innerHTML += `<a class="list" href="/constructor/${data[i].constructors[j].id}" data-dynamic data-ru="${data[i].constructors[j].name.RU}" data-tm="${data[i].constructors[j].name.TM}" data-en="${data[i].constructors[j].name.EN}">${data[i].constructors[j].name.TM}</a>`
+              }
+            }
+          }
+
+        })
+        exit.addEventListener("click",function(){
+          menular.style.left = "100%";
+        })
+      </script>
+      <!-- screen size uytgande dillerin yeri chalshylyar -->
       <script>
         var size = document.defaultView;
         if(size.innerWidth <=1000){
@@ -167,25 +257,26 @@
         }
       </script>
 
+      <!-- language dropdown -->
+      <script>
+        function myFunction() {
+          document.getElementById("myDropdown3").classList.toggle("show");
+        }
 
-  <script>
-    function myFunction() {
-      document.getElementById("myDropdown3").classList.toggle("show");
-    }
-
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function(event) {
-      if (!event.target.matches('.dropbtn3')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content3");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-            openDropdown.classList.remove('show');
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+          if (!event.target.matches('.dropbtn3')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content3");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+              }
+            }
           }
         }
-      }
-    }
-  </script>
-</body>
+      </script>
+
+  </body>
 </html>

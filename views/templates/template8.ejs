@@ -18,26 +18,27 @@
 
     <section class="agzalar" style="background-color: white;">
         <div class="container">
-            <div class="agzalarHeader">Бизнес-планы</div>
-            <div class="subName">Интернет-торговля</div>
-
-            <div class="mazmunHeader">13 июня 2010 года на основании Решения Правления Союза промышленников и предпринимателей Туркменистана, было создано общественное предприятие “Бирлешме гурлушык”, а также утвержден Устав в соответствии с действующим законодательством.</div>
-
-            <div class="mazmunCon">
-                <div class="mazmun">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corrupti culpa sed assumenda ab unde esse ullam quas magnam deserunt delectus itaque cupiditate quaerat nisi in tempore deleniti, voluptatibus sint est quis soluta ipsa quidem animi ducimus. Facere ad nesciunt vel nobis adipisci quos laudantium neque reprehenderit totam temporibus aliquam, quisquam quae obcaecati reiciendis asperiores ullam tempore eum iusto, maxime nostrum sit nam? Et doloremque assumenda ratione fugiat necessitatibus, cumque praesentium illum dolor iure consequatur? Vel sapiente, magni vero possimus enim tempore, provident dicta sint dolore ratione a quaerat excepturi natus aliquid in laboriosam. Quibusdam, placeat expedita. Incidunt cumque quas consectetur molestiae voluptate cum impedit delectus et quia ipsum quasi odio beatae eligendi maxime, eaque debitis necessitatibus unde corrupti. Omnis aspernatur libero, qui facere error hic officiis et voluptatum exercitationem doloribus nihil eos autem neque praesentium culpa distinctio porro reprehenderit nemo doloremque iste, debitis obcaecati illo. Neque officiis laboriosam eius qui accusamus dolorem exercitationem sunt inventore dolor id odit delectus earum impedit perferendis iure assumenda soluta molestiae temporibus dolores ipsum recusandae, quidem velit debitis! Impedit dicta rem animi ad? Fugiat temporibus non, culpa magni quos quam cumque perspiciatis! Debitis ut culpa eos ratione! At, recusandae veritatis. Necessitatibus eaque beatae magnam nihil nam reprehenderit cupiditate eos itaque ab enim sed hic, dignissimos animi tempore ducimus dolorem inventore totam asperiores. Corrupti dicta fugit facere error vitae tempora tenetur doloribus aspernatur! Vitae aperiam quo quas voluptatibus repudiandae et quisquam, numquam reiciendis esse nihil eaque perferendis laborum eveniet rerum vero aliquam totam exercitationem culpa repellat officiis! Quia totam hic quibusdam doloremque nam officiis numquam quod corrupti fuga. Harum totam nulla optio, blanditiis aperiam quasi ex eum accusamus, consequatur, vero minus natus maxime quis obcaecati nisi doloremque? Itaque ad aliquid quo maxime harum error? Eum, assumenda aperiam porro dicta enim quo asperiores doloremque. Suscipit quia ipsam sapiente quod praesentium voluptate eveniet iure cupiditate distinctio ratione enim possimus, quasi mollitia et totam inventore repellat a corporis omnis dicta fuga tempore delectus ab. Veniam minima molestiae aliquid, tempora nisi eligendi illo, dolorem fugiat culpa sequi, possimus ut laboriosam consequuntur inventore deserunt asperiores quia. Amet, recusandae eius dolore veritatis, at autem vitae nihil provident, iste et ad aperiam eveniet dignissimos aspernatur ratione quidem deserunt! Error, soluta. Voluptas illo error doloremque praesentium quas. Odit cumque eius saepe aliquid veritatis doloremque rerum dolore totam nostrum facilis velit ullam consequuntur, unde omnis, vero harum delectus. Laborum ad possimus at quod suscipit tempora?
+            <div class="agzalarHeader"  data-dynamic data-tm="<%- data.name.TM %>" data-ru="<%- data.name.RU %>" data-en="<%- data.name.EN %>"><%= data.name.TM %> </div>
+            <!-- <div class="subName">Интернет-торговля</div> -->
+            <% for( let i = 0; i < data.header.TM.length; i++ ) { %>
+                <div class="mazmunHeader"  data-dynamic data-tm="<%- data.header.TM[i] %>" data-ru="<%- data.header.RU[i] %>" data-en="<%- data.header.EN[i] %>"></div>
+    
+                <div class="mazmunCon">
+                    <div class="mazmun"  data-dynamic data-tm="<%- data.body.TM[i] %>" data-ru="<%- data.body.RU[i] %>" data-en="<%- data.body.EN[i] %>">
+                        <%= data.body.TM[i] %> 
+                    </div>
+                    <div class="mazmun">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium, illum veniam odio id temporibus consequuntur tempore aspernatur? Esse voluptatem quos quae quaerat ex, est quidem illo modi unde rem delectus aspernatur harum facere sunt architecto doloremque quis at quia voluptatibus. Eveniet numquam perferendis necessitatibus natus aperiam accusamus odit eos exercitationem! Eius quos quaerat porro, ipsum repellendus ipsa omnis dicta et, exercitationem iure voluptas necessitatibus beatae ab, error fugiat ex possimus vel modi eum in! Recusandae deleniti dolor porro vel doloremque velit natus aperiam atque reiciendis laborum illum veniam cum nam cumque fugiat rerum enim eius hic, rem nisi! Temporibus perferendis, repellat optio recusandae ipsam rerum hic dignissimos, earum repudiandae eum ea sapiente. Laudantium vero aperiam molestiae, recusandae cum quaerat adipisci consequatur sapiente tempora corrupti, omnis commodi repellendus, deserunt unde. Nisi ut ullam eligendi reprehenderit? Doloremque perferendis corrupti tempore autem quasi, exercitationem suscipit molestiae, excepturi maxime blanditiis molestias aut fuga facilis consequuntur nobis praesentium explicabo nulla laboriosam repudiandae velit? Impedit error qui itaque dolorum quia ullam accusantium sed delectus praesentium cum, harum nostrum quibusdam totam nesciunt nisi iusto sit. Rerum veritatis possimus debitis dolores quaerat dolorem assumenda porro doloribus quibusdam eveniet enim maiores odio, facere, mollitia unde! Laudantium omnis odio veniam.
+                    </div>
                 </div>
-                <div class="mazmun">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium, illum veniam odio id temporibus consequuntur tempore aspernatur? Esse voluptatem quos quae quaerat ex, est quidem illo modi unde rem delectus aspernatur harum facere sunt architecto doloremque quis at quia voluptatibus. Eveniet numquam perferendis necessitatibus natus aperiam accusamus odit eos exercitationem! Eius quos quaerat porro, ipsum repellendus ipsa omnis dicta et, exercitationem iure voluptas necessitatibus beatae ab, error fugiat ex possimus vel modi eum in! Recusandae deleniti dolor porro vel doloremque velit natus aperiam atque reiciendis laborum illum veniam cum nam cumque fugiat rerum enim eius hic, rem nisi! Temporibus perferendis, repellat optio recusandae ipsam rerum hic dignissimos, earum repudiandae eum ea sapiente. Laudantium vero aperiam molestiae, recusandae cum quaerat adipisci consequatur sapiente tempora corrupti, omnis commodi repellendus, deserunt unde. Nisi ut ullam eligendi reprehenderit? Doloremque perferendis corrupti tempore autem quasi, exercitationem suscipit molestiae, excepturi maxime blanditiis molestias aut fuga facilis consequuntur nobis praesentium explicabo nulla laboriosam repudiandae velit? Impedit error qui itaque dolorum quia ullam accusantium sed delectus praesentium cum, harum nostrum quibusdam totam nesciunt nisi iusto sit. Rerum veritatis possimus debitis dolores quaerat dolorem assumenda porro doloribus quibusdam eveniet enim maiores odio, facere, mollitia unde! Laudantium omnis odio veniam.
-                </div>
-            </div>
+            <% } %>
 
             <div class="splide">
                 <div class="splide__track">
                   <ul class="splide__list">
-                    <li class="splide__slide"><a href="/>"><div><img src="/pictures/reklams/kerwen3.png" alt=""></div></a></li>
-                    <li class="splide__slide"><a href="/>"><div><img src="/pictures/reklams/kerwen1.png" alt=""></div></a></li>
-                    <li class="splide__slide"><a href="/>"><div><img src="/pictures/reklams/kerwen2.png" alt=""></div></a></li>
+                      <% for( let i = 0; i < data.banner.banner.length; i++ ) { %>
+                        <li class="splide__slide"><a href="//<%= data.banner.banner[i].link %>"><div><img src="<%= host %>/banners/<%= data.banner.banner[i].pic %>" alt=""></div></a></li>
+                      <% } %>
                   </ul>
                 </div>
             </div>

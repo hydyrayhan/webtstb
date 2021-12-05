@@ -23,9 +23,10 @@ app.use(fileUpload())
 
 
 let languageData = '';
+
+
 app.get('/',async function(req,res){
  var sl = req.query.sl;
-
   try{
     mainPage = await axios.get(`${host}/`);
   }catch(error){
@@ -79,33 +80,32 @@ app.get("/pressCenter",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-    res.render("pages/pressCenter.ejs",{list:data.data,host,sl});
+  res.render("pages/pressCenter.ejs",{list:data.data,host,sl,teg:''});
 })
-
-
 
 
 app.get('/pressCenterNews',async function(req,res){
   var tab = req.query.tab;
   var page = req.query.page;
   var limit = req.query.limit;
+  var tag = req.query.tag;
   var data;
   
   if(tab == 1){
     try{
-      data = await axios.get(`${host}/news/loadMore?page=${page}&limit=${limit}`);
+      data = await axios.get(`${host}/news/loadMore?page=${page}&limit=${limit}&tag=${tag}`);
     }catch(error){
       console.log(error)
     }
   }else if(tab ==2){
     try{
-      data = await axios.get(`${host}/events/loadMore?page=${page}&limit=${limit}`);
+      data = await axios.get(`${host}/events/loadMore?page=${page}&limit=${limit}&tag=${tag}`);
     }catch(error){
       console.log(error)
     }
   }
 
-  console.log(data.data);
+  // console.log(data.data);
   for(var i = 0; i<data.data.length; i++){
     if(tab == 1){
       data.data[i].tab = 'news';
@@ -118,36 +118,66 @@ app.get('/pressCenterNews',async function(req,res){
   res.json(data.data)
 })
 
+app.get('/pressCenter/:teg', async function(req,res){
+  var teg = req.params.teg;
+  try{
+    data = await axios.get(`${host}/news/tags?tag=${teg}`);
+  }catch(error){
+    console.log(error)
+  }
+  console.log(data.data,'tagli ');
+
+  res.render("pages/pressCenter.ejs",{list:data.data,host,sl:1,teg});
+})
 
 let dataKarhana;
 app.get("/karhana/:id",async function(req,res){
- // backend-den maglumat chekyar;
-
-//  if(dataKarhana == undefined){
-//    let data;
-//    try{
-//      data = await axios.get(`http://10.192.168.43:5000/industry`);
-//    }catch(error){
-//      console.log(error)
-//    }
-//    dataKarhana = data.data;
-//  }
-
-//  var data = dataKarhana;
-
-  var data = fs.readFileSync("./jsons/karhana.json");
-  data = JSON.parse(data);
-  var id = req.params.id
+  var data;
   var pudak = req.query.pudak
-  res.render(`pages/karhana`,{data,id,pudak,host});
+  var id = req.params.id;
+  try{
+    data = await axios.get(`${host}/industry/front?id=${req.query.id}&index=${pudak-1}`);
+  }catch(error){
+    console.log(error)
+  }
+
+  console.log(data.data);
+
+  console.log(id);
+  res.render(`pages/karhana`,{data:data.data,id,pudak,host});
 })
 
-app.get("/agzalar/:id",function(req,res){ 
-  var data = fs.readFileSync("./jsons/agzalar.json");
-  data = JSON.parse(data);
+app.get("/agzalar/:id",async function(req,res){
+  var datas;
+  try{
+    datas = await axios.get(`${host}/members`);
+  }catch(error){
+    console.log(error)
+  }
   
 
+  let m=[]
+  var data = [[],[],[],[],[],[]];
+  for(var i = 0; i<datas.data.length; i++){
+    if(datas.data[i].welayat == "Ashgabat"){
+      data[0].push(datas.data[i]);
+    }else if(datas.data[i].welayat == 'Ahal'){
+      data[1].push(datas.data[i]);
+    
+    }else if(datas.data[i].welayat == 'Balkan'){
+      data[2].push(datas.data[i]);
+    }else if(datas.data[i].welayat == 'Mary'){
+      data[3].push(datas.data[i]);
+    }
+    else if(datas.data[i].welayat == 'Dashoguz'){
+      data[4].push(datas.data[i]);
+    }
+    else if(datas.data[i].welayat == 'Lebap'){
+      data[5].push(datas.data[i]);
+    }
+  }
   var id = req.params.id;
+  var idd;
   var place = 0;
   if (id<0){
     place = -1;
@@ -155,24 +185,30 @@ app.get("/agzalar/:id",function(req,res){
     for(var i = 0; i<data.length; i++){
       for(var j = 0; j<data[i].length; j++){
         if(data[i][j].id == Number(id)){
-          switch(data[i][j].place){
-            case("Asgabat"):
+          switch(data[i][j].welayat){
+            case("Ashgabat"):
               place = 0;
+              idd = j;
               break;
             case("Ahal"):
               place = 1;
-              break;
-            case("Dashoguz"):
-              place = 2;
+              idd = j
               break;
             case("Balkan"):
-              place = 3;
-              break;
-            case("Lebap"):
-              place = 4;
+              place = 2;
+              idd = j
               break;
             case("Mary"):
+              place = 3;
+              idd = j
+              break;
+            case("Dashoguz"):
+              place = 4;
+              idd = j
+              break;
+            case("Lebap"):
               place = 5;
+              idd = j
               break;
           }
         }
@@ -180,14 +216,14 @@ app.get("/agzalar/:id",function(req,res){
     }
   }
   
-  res.render("pages/agzalar",{data,place})
+
+  res.render("pages/agzalar",{data,place,idd,host})
 })
 
 
 
 // Rysgal Gazeti
 app.get("/gazet",async function(req,res){
-
   var data;
   try{
     data = await axios.get(`${host}/newspapers/`);
@@ -199,45 +235,142 @@ app.get("/gazet",async function(req,res){
   res.render("pages/gazet",{data:data.data,page,host}) 
 })
 // sppt
-app.get("/sppt",function(req,res){
-  res.render("pages/sppt",{}) 
+app.get("/sppt",async function(req,res){
+  var data;
+  try{
+    data = await axios.get(`${host}/menu/getAboutUs`);
+  }catch(error){
+    console.log(error)
+  }
+  console.log(data.data);
+  res.render("pages/sppt",{host,data:data.data}) 
 })
 
 // Membership
-app.get("/membership",function(req,res){
-  res.render("pages/membership",{})
+app.get("/membership",async function(req,res){
+  var data;
+  try{
+    data = await axios.get(`${host}/menu/getMembership`);
+  }catch(error){
+    console.log(error)
+  }
+  console.log(data.data);
+  res.render("pages/membership",{host,data:data.data})
 })
 
 // online Business
-app.get("/onlineBusiness",function(req,res){
-  res.render("pages/business",{})
+app.get("/onlineBusiness/:welayat",async function(req,res){
+  var welayat = req.params.welayat;
+  
+  var data;
+  try{
+    data = await axios.get(`${host}/commerce?welayat=${welayat}`);
+  }catch(error){
+    console.log(error)
+  }
+  console.log(data.data);
+  res.render("pages/business",{host,data:data.data})
 })
 
 // businessPlan
-app.get("/businessPlans",function(req,res){
-  res.render("pages/plans",{})
+app.get("/businessPlans",async function(req,res){
+  var data;
+  try{
+    data = await axios.get(`${host}/menu/getAllBussiness`);
+  }catch(error){
+    console.log(error)
+  }
+  console.log(data.data);
+  res.render("pages/plans",{host,data:data.data.bussiness})
 })
 
 // licenses
-app.get("/licenses",function(req,res){
-  res.render("pages/lisense",{id:1});
+app.get("/licenses",async function(req,res){
+  var data;
+  try{
+    data = await axios.get(`${host}/menu/getLicenseHeader`);
+  }catch(error){
+    console.log(error)
+  }
+  console.log(data.data);
+  res.render("pages/lisense",{host,data:data.data});
 })
 
 //licensesMorePage
-app.get("/licenses/:id",function(req,res){
-  res.render("pages/lisenseMore")
+app.get("/licenses/:id",async function(req,res){
+  var data;
+  try{
+    data = await axios.get(`${host}/menu/getOneLicense?id=${req.params.id}`);
+  }catch(error){
+    console.log(error)
+  }
+  console.log(data.data);
+  res.render("pages/lisenseMore",{host,data:data.data})
 })
 
 // konsultasiya
-app.get("/consultation",function(req,res){
-  res.render("pages/konsultasiya");
+app.get("/consultation",async function(req,res){
+  var data;
+  try{
+    data = await axios.get(`${host}/menu/getConsultation`);
+  }catch(error){
+    console.log(error)
+  }
+  console.log(data.data);
+  res.render("pages/konsultasiya",{host,data:data.data});
 })
 
 // news
-app.get('/news/:id',function(req,res){
-  res.render("page/news");
+app.get('/news/:id',async function(req,res){
+  var data;
+  try{
+    data = await axios.get(`${host}/news/getOneFront?id=${req.params.id}`);
+  }catch(error){
+    console.log(error)
+  }
+  console.log(data.data);
+  res.render("pages/news",{host,data:data.data,file:'news'});
 })
 
+
+// events
+app.get('/events/:id',async function(req,res){
+  var data;
+  try{
+    data = await axios.get(`${host}/events/getOneFront?id=${req.params.id}`);
+  }catch(error){
+    console.log(error)
+  }
+  console.log(data.data);
+  res.render("pages/news",{host,data:data.data,file:'events'});
+})
+
+//constructor
+app.get('/constructor/:id', async function(req,res){
+  var data;
+  try{
+    data = await axios.get(`${host}/constructor/subcategory/getOne?id=${req.params.id}`);
+  }catch(error){
+    console.log(error)
+  }
+  var page = data.data.page;
+  console.log(data.data);
+  if(page == '1'){
+    res.render("templates/template1",{host,data:data.data});
+  }else if(page == '2'){
+    res.render("templates/template2",{host,data:data.data});
+  }else if(page == '3'){
+    res.render("templates/template3",{host,data:data.data});
+  }else if(page == '4'){
+    res.render("templates/template4",{host,data:data.data});
+  }else if(page == '5'){
+    res.render("templates/template6",{host,data:data.data});
+  }else if(page == '6'){
+    res.render("templates/template7",{host,data:data.data});
+  }else if(page == '7'){
+    res.render("templates/template8",{host,data:data.data});
+  }
+})
 
 
 
@@ -349,7 +482,6 @@ app.get("/admin/:page",async function(req,res){
     }catch(e){
       console.log(e);
     }
-    console.log(data.data);
     res.render("admin/agzalyk",{data:data.data,name:"Agzalyk",host});
   }else if(page == "internetSowda"){
     try{
@@ -448,6 +580,16 @@ app.get("/admin/:page",async function(req,res){
     }
     console.log(data.data);
     res.render("admin/karta",{data:data.data,name:"Karta",host});
+  }else if(page == "parol"){
+    res.render('admin/parol',{name:"Parol çalyşmak",host});
+  }else if(page == "statistika"){
+    // try{
+    //   data = await axios.get(`${host}/menu/getAboutUs`);
+    // }catch(e){
+    //   console.log(e);
+    // }
+    // res.render('admin/statistika',{name:"Statistika",host,data:data});
+    res.render('admin/statistika',{name:"Statistika",host});
   }
 })
 
@@ -555,6 +697,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     }catch(error){
       console.log(error)
     }
+    console.log(data.data);
     res.render("admin/toEdit/editHabarlar",{data:data.data[0],tags:data.data[1],name:"Habarlar üýtgetmek",host:host});
   }else if(page == 'bildirishler'){
     try{
@@ -850,14 +993,6 @@ app.get("/admin/subConstructor/:id",async function(req,res){
 
 
 
-// //internet sowda kategori add
-// app.post("/internetKategori",function(req,res){
-//   res.redirect("/admin/Internet Söwda/add");
-// })
-
-
-
-
 
 
 // shablonlar
@@ -865,19 +1000,19 @@ app.get("/admin/subConstructor/:id",async function(req,res){
 app.get('/template/:san',function(req,res){
   var san = req.params.san;
   if(san == 1){
-    res.render("templates/template1");
+    res.render("templates/template1",{host});
   }else if(san == 2){
-    res.render("templates/template2");
+    res.render("templates/template2",{host});
   }else if(san == 3){
-    res.render("templates/template3");
+    res.render("templates/template3",{host});
   }else if(san == 4){
-    res.render("templates/template4")
+    res.render("templates/template4",{host})
   }else if(san == 5){
-    res.render("templates/template6")
+    res.render("templates/template6",{host})
   }else if(san == 6){
-    res.render("templates/template7");
+    res.render("templates/template7",{host});
   }else if(san == 7){
-    res.render("templates/template8")
+    res.render("templates/template8",{host});
   }
 })
 

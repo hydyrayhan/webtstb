@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+</head>
+
+<body>
+    <%- include ('./admin.ejs') %>
+    <div class="adminContainer">
+        <div class="main">
+            <div class="pageHeader">
+                <%= name %> 
+            </div>
+        </div>
+    <form action="/admin/tstb" method="POST" id="identifier">
+        <div class="adminTable">
+            <div class="formInputs addHabar form1">
+                <div class="box">
+                    <div class="headerCon">
+                        <label class="mazmuny" for="headtm">Täze adyňyzy giriziň:</label>
+                        <input type="text" id="headtm" name="headerTM" class="header tm" required>
+                    </div>
+                    <div class="headerCon">
+                        <label class="mazmuny" for="headtm">Täze parolyňy giriziň:</label>
+                        <input type="text" id="headtm" name="headerTM" class="header tm" required>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="submitCon">
+                <input class="save" type="submit" value="Ýatda sakla">
+            </div>
+        </div>
+    </form>
+    </div>
+    <script>linkActive(3)</script>
+    <script>
+        var oneTime = true;
+        var submit = document.querySelector("#identifier");
+        submit.addEventListener('submit',async function(e){
+            e.preventDefault();
+            if(oneTime){
+                oneTime = false;
+                var inputs = document.querySelectorAll("#identifier input");
+                var data = {
+                    name:inputs[0].value,
+                    password:inputs[1].value
+                }
+                var res = await dataSend(data,'<%=host%>/login/edit');
+                console.log(res);
+                if(res.status == 200){
+                    alert("Üýtgedildi");
+                    oneTime = true;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

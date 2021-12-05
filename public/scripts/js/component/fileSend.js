@@ -1,4 +1,7 @@
+
+
 async function dataSend(data,link){
+    console.log("Hello");
     const option={
         method:"POST",
         body:JSON.stringify(data),
@@ -28,6 +31,15 @@ async function imgSend(data,link){
     
 }
 
+async function mail(link,data){
+    var status = await axios({
+        method: 'post',
+        url: link,
+        data:data
+    });
+    return status;
+}
+
 async function checkSend(id, link, data){
     var obj = {
         id,
@@ -39,5 +51,14 @@ async function checkSend(id, link, data){
         url: link,
         data: obj
     });
-    
+}
+
+async function menuData(host){
+    var data;
+    data = await axios({
+        method:'get',
+        url:`${host}/constructor/all`,
+    })
+
+    return data.data;
 }

@@ -140,6 +140,90 @@
   cursor: pointer;
 }
 
+.menuPage {
+  background: white;
+  min-height: 100vh;
+  max-height: 100vh;
+  min-width: 100%;
+  z-index: 1000000;
+  position: fixed;
+  top: 0;
+  left: 100%;
+  opacity: 0.9;
+  overflow: auto;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.menuPage .exit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+  margin-top: 30px;
+}
+
+.menuPage .exit div {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.menuPage .exit span {
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.menuPage .exit svg {
+  cursor: pointer;
+}
+
+.menuPage .menular {
+  width: 95%;
+  max-width: 1420px;
+  margin: auto;
+  margin-top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.menuPage .menular .menubox {
+  width: 23%;
+  margin-right: 2.5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.menuPage .menular .menubox:nth-child(4n) {
+  margin-right: 0;
+}
+
+.menuPage .menular .menubox .headbox {
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.menuPage .menular .menubox a {
+  text-decoration: none;
+  color: #10181F;
+  margin-bottom: 10px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 @font-face {
   src: url("/style/font/PTSerif-Bold.ttf");
   font-family: font1;
@@ -1389,6 +1473,38 @@
   }
 }
 
+.bottomSection .followers .title {
+  color: gray;
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 640px) {
+  .bottomSection .followers .title {
+    margin-bottom: 10px;
+    margin-top: 30px;
+  }
+}
+
+.bottomSection .followers .followCounts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 10px;
+}
+
+.bottomSection .followers .followCounts div {
+  margin-right: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #323C44;
+}
+
 .bottomInformation {
   width: 100%;
   background: #2058D4;
@@ -1542,6 +1658,7 @@ body {
   margin: 0;
   font-family: "Segoe UI";
   background: #FBFBFB;
+  overflow-x: hidden;
 }
 
 .content {
@@ -1711,6 +1828,28 @@ body {
   }
 }
 
+.container nav .right .search .searchInput {
+  overflow: hidden;
+  height: 30px;
+  width: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.container nav .right .search .searchInput input {
+  border: none;
+  padding: 5px;
+  outline: none;
+  width: 150px;
+  background-color: #FBFBFB;
+}
+
 .container nav .right .login {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1814,6 +1953,45 @@ body {
 
 .language .dropdown-content li:hover {
   color: #2058D4;
+}
+
+.searchPage {
+  width: 100%;
+  height: 100vh;
+  background: white;
+  position: absolute;
+  left: 100%;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  z-index: 1000000;
+  overflow: auto;
+}
+
+.searchPage .exit {
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+  margin-top: 30px;
+}
+
+.searchPage .exit div {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.searchPage .exit span {
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.searchPage .exit svg {
+  cursor: pointer;
 }
 
 @font-face {
