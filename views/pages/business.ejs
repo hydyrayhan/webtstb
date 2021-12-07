@@ -202,7 +202,7 @@
         }
 
         function showSlides(n,m) {
-            console.log(n,m);
+            // console.log(n,m);
             var i;
             var business = document.querySelectorAll(".businessOne");
             var slides = document.getElementsByClassName("mySlides");
@@ -214,25 +214,15 @@
                 }
                 for(var i =0; i<business.length; i++){
                     business[i].childNodes[1].childNodes[1].childNodes[1].style.display = "block";  //myslides
-                    console.log(business[i].childNodes[1].childNodes[1].childNodes)
                 }
+            }else{
+                var san = (business[m].childNodes[1].childNodes[1].childNodes.length-3)/2
+                for(var i = 0; i < san; i++){
+                    business[m].childNodes[1].childNodes[1].childNodes[i*2+1].style.display = 'none';
+                }
+                
+                business[m].childNodes[1].childNodes[1].childNodes[n*2-1].style.display = "block";
             }
-            // if(m == undefined){
-            //     for (i = 0; i < slides.length; i++) {
-            //         slides[i].style.display = "none";
-            //     }
-            //     for(var i = 0; i<business.length; i++){
-            //         business[i].childNodes[1].childNodes[1].childNodes[1].style.display = "block";
-            //         business[i].childNodes[1].childNodes[1].childNodes[7].childNodes[1].childNodes[1].className += " active";
-            //     }
-            // }else{
-            //     for (i = 1; i <= business.length; i++) {
-            //         business[m].childNodes[1].childNodes[1].childNodes[i*2-1].style.display = "none";
-            //         business[m].childNodes[1].childNodes[1].childNodes[7].childNodes[i*2-1].childNodes[1].classList.remove("active");
-            //     }
-            //     business[m].childNodes[1].childNodes[1].childNodes[n*2-1].style.display = "block";
-            //     business[m].childNodes[1].childNodes[1].childNodes[7].childNodes[n*2-1].childNodes[1].classList.add("active");
-            // }
         }
     </script>
 

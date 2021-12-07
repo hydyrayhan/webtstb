@@ -262,14 +262,15 @@ app.get("/membership",async function(req,res){
 app.get("/onlineBusiness/:welayat",async function(req,res){
   var welayat = req.params.welayat;
   
-  var data;
-  try{
-    data = await axios.get(`${host}/commerce?welayat=${welayat}`);
-  }catch(error){
-    console.log(error)
-  }
-  console.log(data.data);
-  res.render("pages/business",{host,data:data.data})
+  // var data;
+  // try{
+  //   data = await axios.get(`${host}/commerce?welayat=${welayat}`);
+  // }catch(error){
+  //   console.log(error)
+  // }
+  // console.log(data.data);
+  // res.render("pages/business",{host,data:data.data})
+  res.render("pages/business",{host})
 })
 
 // businessPlan
