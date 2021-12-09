@@ -22,6 +22,9 @@
             margin-right: 10px;
             cursor: pointer;
         }
+        .suratHeader{
+            word-break: break-all;
+        }
 
     </style>
 </head>
@@ -103,14 +106,32 @@
                                 <div>
                                     Kategoriýa saýlaň:
                                 </div>
-                                <select  name="" id="" class="welayatSelect">
-                                    <option value="" style="display: none;">Kategoriýa saýlaň</option>
-                                    <option value="Himiýa we Senagat">Himiýa we Senagat</option>
-                                    <option value="Hukuk">Hukuk</option>
-                                    <option value="Oba hojalyk">Oba hojalyk</option>
-                                    <option value="Balykçylyk">Balykçylyk</option>
-                                    <option value="Ahal">Ahal</option>
-                                    <option value="Daşoguz">Daşoguz</option>
+                                <select name="" class="welayatSelect">
+                                    <option value="" style="display: none;">Kategori sayla</option>
+                                    <option value="Işgärler bölümi">Işgärler bölümi</option>
+                                    <option value="Umumy bölümi">Umumy bölümi</option>
+                                    <option value="Hojalyk bölümi">Hojalyk bölümi</option>
+                                    <option value="Ykdysadyýet bölümi">Ykdysadyýet bölümi</option>
+                                    <option value="Seljeriş bölümi">Seljeriş bölümi</option>
+                                    <option value="Meýilleşdiriş bölümi">Meýilleşdiriş bölümi</option>
+                                    <option value="Hasapçylar bölümi">Hasapçylar bölümi</option>
+                                    <option value="Hukuk bölümi">Hukuk bölümi</option>
+                                    <option value="Söwda we hyzmatlar bölümi">Söwda we hyzmatlar bölümi</option>
+                                    <option value="Oba senagat toplumy we balykçylyk müdirligi">Oba senagat toplumy we balykçylyk müdirligi</option>
+                                    <option value="Azyk önümçiligi bölümi">Azyk önümçiligi bölümi</option>
+                                    <option value="Balykçylyk bölümi">Balykçylyk bölümi</option>
+                                    <option value="Gurluşyk bölümi">Gurluşyk bölümi</option>
+                                    <option value="Senagat we himiýa önimçiligi bölümi">Senagat we himiýa önimçiligi bölümi</option>
+                                    <option value="Logistika bölümi">Logistika bölümi</option>
+                                    <option value="Halkara bölümi">Halkara bölümi</option>
+                                    <option value="Sanly ulgamlar bölümi">Sanly ulgamlar bölümi</option>
+                                    <option value="Syýahatçylyk,bilim we sport bölümi">Syýahatçylyk,bilim we sport bölümi</option>
+                                    <option value="Maglumat we mahabat bölümi">Maglumat we mahabat bölümi</option>
+                                    <option value="Aşgabat şäheri we Ahal welaýaty boýunça bölümi">Aşgabat şäheri we Ahal welaýaty boýunça bölümi</option>
+                                    <option value="Balkan welaýaty boýunça bölümi">Balkan welaýaty boýunça bölümi</option>
+                                    <option value="Daşoguz welaýaty boýunça bölümi">Daşoguz welaýaty boýunça bölümi</option>
+                                    <option value="Lebap welaýaty boýunça bölümi">Lebap welaýaty boýunça bölümi</option>
+                                    <option value="Mary welaýaty boýunça bölümi">Mary welaýaty boýunça bölümi</option>
                                 </select>
                             </label>
                             <div class="choosenTeg">
@@ -206,158 +227,157 @@
    
 
 
- <!-- picture show when i choose from file -->
- <script>
-    var imgCount = 0;
-    var delCount = 0;
-    var imgs = [];
-    function takeImg(event){
-        if(event.target.files[0] != undefined){
-            var imgCon = document.querySelector(".imgCon");
-            imgCon.innerHTML += `
-                                <div class="div pdf ${delCount}">
-                                    <img class="img" src="/pictures/icon/pdfRed.png" alt="hjhjhj">
-                                    <div class="imgDelete" onclick="delImg(${delCount})"><img src="/pictures/icon/delete.svg"  alt=""></div>
-                                    <div class="name"></div>
-                                </div>`;
-            
-            var img = document.querySelectorAll(".imgCon .div .name");
+    <!-- picture show when i choose from file -->
+    <script>
+        var imgCount = 0;
+        var delCount = 0;
+        var imgs = [];
+        function takeImg(event){
+            if(event.target.files[0] != undefined){
+                var imgCon = document.querySelector(".imgCon");
+                imgCon.innerHTML += `
+                                    <div class="div pdf ${delCount}">
+                                        <img class="img" src="/pictures/icon/pdfRed.png" alt="hjhjhj">
+                                        <div class="imgDelete" onclick="delImg(${delCount})"><img src="/pictures/icon/delete.svg"  alt=""></div>
+                                        <div class="name"></div>
+                                    </div>`;
+                
+                var img = document.querySelectorAll(".imgCon .div .name");
 
-            img[imgCount].textContent = event.target.files[0].name;
-            var obj = {
-                id:delCount,
-                event:event.target.files[0]
-            }
-            
-            imgCount+=1;
-            delCount+=1;
-            imgs.push(obj);
-            imgLen();
-        }
-    }
-
-    function delImg(san){
-        var imgCon = document.querySelectorAll(".imgCon .div");
-        for(var i = 0; i<imgs.length; i++){
-            if(imgs[i].id == san){
-                imgs.splice(i,1);
+                img[imgCount].textContent = event.target.files[0].name;
+                var obj = {
+                    id:delCount,
+                    event:event.target.files[0]
+                }
+                
+                imgCount+=1;
+                delCount+=1;
+                imgs.push(obj);
+                imgLen();
             }
         }
 
-        for(var i = 0; i<imgCon.length ; i++){
-            var a = imgCon[i].classList.contains(san);
-            if(a){
-                imgCon[i].remove();
-                break;
-            }
-        }
-        
-        imgCount-=1;
-        imgLen();
-    }
-
-    var bool = false;
-    function imgLen(){
-        if(imgs.length==0){
-            var imgsCon = document.querySelector(".imgsCon");
-            var imgCon = document.querySelector(".imgCon");
-            imgCon.style.height = "0";
-            var old = imgsCon.innerHTML;
-            imgsCon.innerHTML = `<div class="noneImg" style="height:100px">
-                                    <img style="filter: invert(1); opacity:0.7; width:30px" src="/pictures/icon/pdf.svg" alt="">
-                                </div>`+old;
-            bool = true;
-        }else if(imgs.length == 1 && bool){
-            var imgNone = document.querySelector(".noneImg");
-            imgNone.remove();
-            var imgCon = document.querySelector(".imgCon");
-            imgCon.style.height = "100px";
-            bool = false;
-        }
-    }
-    imgLen();
-
-    var logo;
-    function takeLogo(e){
-        logo= e.target.files[0];
-        var logoLabel = document.querySelector(".logoPlace label");
-        logoLabel.textContent = e.target.files[0].name;
-    }
-
-
-    dropActive(2,2);
-</script>
-
-<!-- formdan maglumat jemlemek -->
-<script>
-    var oneTime = true;
-    var data = {
-        text : '',
-        text2 : '',
-        text3 : '',
-        name : '',
-        tmAddress : '',
-        web : '',
-        email : '',
-        extra : '',
-        ruAddress : '',
-        enAddress : '',
-        welayat : '',
-        member : ''
-    }
-    var form = document.querySelector("#identifier");
-    form.addEventListener("submit",async function(e){
-        e.preventDefault();
-        if(oneTime){
-            oneTime = false;
-            var inputs = document.querySelectorAll('#identifier input');
-            var welayat = document.querySelectorAll(".welayatSelect");
-            var area = document.querySelector(".editorCon #editor .ql-editor");
-            var area2 = document.querySelector(".editorCon #editor2 .ql-editor");
-            var area3 = document.querySelector(".editorCon #editor3 .ql-editor");
-            data = {
-                text:area.innerHTML,
-                text2: area2.innerHTML,
-                text3: area3.innerHTML,
-                name : inputs[0].value,
-                tmAddress : inputs[1].value,
-                web : inputs[5].value,
-                email : inputs[6].value,
-                extra : inputs[7].value,
-                ruAddress : inputs[8].value,
-                enAddress : inputs[10].value,
-                welayat : welayat[0].value,
-                member : tegs
-            }
-            
-            var arr = [];
-            for(var i =0; i<imgs.length; i++){
-                arr.push(imgs[i].event);
-            }
-            var logoArr = [];
-            logoArr.push(logo);
-            console.log(logoArr);
-            if(imgs.length == 0 || logo.length == 0){
-                alert("Surat ýada PDF giriziň");
-                oneTime = true
-            }else{
-                var res = await dataSend(data,`<%=host%>/members/add`)
-                if(typeof(res.id)=="number"){
-                    var res2 = await imgSend(logoArr,`<%=host%>/members/addPic?id=${res.id}`);
-                    if(res2.status == 200){
-                        var res2 = await imgSend(arr,`<%=host%>/members/addFile?id=${res.id}`);
-                        if(res2.status == 200){
-                            location.replace("/admin/kompaniyalar");
-                        }
-                    }
-                }else{
-                    console.log("Ishlemedi");
+        function delImg(san){
+            var imgCon = document.querySelectorAll(".imgCon .div");
+            for(var i = 0; i<imgs.length; i++){
+                if(imgs[i].id == san){
+                    imgs.splice(i,1);
                 }
             }
 
+            for(var i = 0; i<imgCon.length ; i++){
+                var a = imgCon[i].classList.contains(san);
+                if(a){
+                    imgCon[i].remove();
+                    break;
+                }
+            }
+            
+            imgCount-=1;
+            imgLen();
         }
-    })
-</script>
+
+        var bool = false;
+        function imgLen(){
+            if(imgs.length==0){
+                var imgsCon = document.querySelector(".imgsCon");
+                var imgCon = document.querySelector(".imgCon");
+                imgCon.style.height = "0";
+                var old = imgsCon.innerHTML;
+                imgsCon.innerHTML = `<div class="noneImg" style="height:100px">
+                                        <img style="filter: invert(1); opacity:0.7; width:30px" src="/pictures/icon/pdf.svg" alt="">
+                                    </div>`+old;
+                bool = true;
+            }else if(imgs.length == 1 && bool){
+                var imgNone = document.querySelector(".noneImg");
+                imgNone.remove();
+                var imgCon = document.querySelector(".imgCon");
+                imgCon.style.height = "100px";
+                bool = false;
+            }
+        }
+        imgLen();
+
+        var logo;
+        function takeLogo(e){
+            logo= e.target.files[0];
+            var logoLabel = document.querySelector(".logoPlace label");
+            logoLabel.textContent = e.target.files[0].name;
+        }
+
+
+        dropActive(2,2);
+    </script>
+
+    <!-- formdan maglumat jemlemek -->
+    <script>
+        var oneTime = true;
+        var data = {
+            text : '',
+            text2 : '',
+            text3 : '',
+            name : '',
+            tmAddress : '',
+            web : '',
+            email : '',
+            extra : '',
+            ruAddress : '',
+            enAddress : '',
+            welayat : '',
+            member : ''
+        }
+        var form = document.querySelector("#identifier");
+        form.addEventListener("submit",async function(e){
+            e.preventDefault();
+            if(oneTime){
+                oneTime = false;
+                var inputs = document.querySelectorAll('#identifier input');
+                var welayat = document.querySelectorAll(".welayatSelect");
+                var area = document.querySelector(".editorCon #editor .ql-editor");
+                var area2 = document.querySelector(".editorCon #editor2 .ql-editor");
+                var area3 = document.querySelector(".editorCon #editor3 .ql-editor");
+                data = {
+                    text:area.innerHTML,
+                    text2: area2.innerHTML,
+                    text3: area3.innerHTML,
+                    name : inputs[0].value,
+                    tmAddress : inputs[1].value,
+                    web : inputs[5].value,
+                    email : inputs[6].value,
+                    extra : inputs[7].value,
+                    ruAddress : inputs[8].value,
+                    enAddress : inputs[10].value,
+                    welayat : welayat[0].value,
+                    member : tegs
+                }
+                
+                var arr = [];
+                for(var i =0; i<imgs.length; i++){
+                    arr.push(imgs[i].event);
+                }
+                var logoArr = [];
+                logoArr.push(logo);
+                console.log(logoArr);
+                if(imgs.length == 0 || logo.length == 0){
+                    alert("Surat ýada PDF giriziň");
+                    oneTime = true
+                }else{
+                    var res = await dataSend(data,`<%=host%>/members/add`)
+                    if(typeof(res.id)=="number"){
+                        var res2 = await imgSend(logoArr,`<%=host%>/members/addPic?id=${res.id}`);
+                        if(res2.status == 200){
+                            var res2 = await imgSend(arr,`<%=host%>/members/addFile?id=${res.id}`);
+                            if(res2.status == 200){
+                                location.replace("/admin/kompaniyalar");
+                            }
+                        }
+                    }else{
+                        console.log("Ishlemedi");
+                    }
+                }
+            }
+        })
+    </script>
 
  
     <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
@@ -377,38 +397,6 @@
         modules: { },
         theme: 'snow'
       });
-
-    //   3 sany textarea girizilen maglumatlary hidden textarea girizyar
-    
-    // var idForm = document.querySelector("#identifier");
-    // idForm.addEventListener("submit",function(){
-    //     var hiddenText = document.querySelectorAll("#hiddenArea");
-    //     var hiddenText2 = document.querySelectorAll("#hiddenArea2");
-    //     var hiddenText3 = document.querySelectorAll("#hiddenArea3");
-    //     var text = document.querySelectorAll("#editor .ql-editor");
-    //     var text2 = document.querySelectorAll("#editor2 .ql-editor");
-    //     var text3 = document.querySelectorAll("#editor3 .ql-editor");
-    //     for(var i = 0; i<hiddenText.length; i++){
-    //         hiddenText[i].value = text[i].innerHTML;
-    //         hiddenText2[i].value = text2[i].innerHTML;
-    //         hiddenText3[i].value = text3[i].innerHTML;
-    //     }
-    // })
     </script> 
-
-    <script>
-        // var text = document.querySelector("#editor .ql-editor");
-        // var text2 = document.querySelector("#editor2 .ql-editor");
-        // var text3 = document.querySelector("#editor3 .ql-editor");
-
-        // var editText = document.querySelector(".val")
-        // var editText2 = document.querySelector(".val2")
-        // var editText3 = document.querySelector(".val3")
-
-        // text.innerHTML = editText.textContent;
-        // text2.innerHTML = editText2.textContent;
-        // text3.innerHTML = editText3.textContent;
-    </script>
-
 </body>
 </html>

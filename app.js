@@ -27,6 +27,7 @@ let languageData = '';
 
 app.get('/',async function(req,res){
  var sl = req.query.sl;
+ var mainPage;
   try{
     mainPage = await axios.get(`${host}/`);
   }catch(error){
@@ -226,7 +227,7 @@ app.get("/agzalar/:id",async function(req,res){
 app.get("/gazet",async function(req,res){
   var data;
   try{
-    data = await axios.get(`${host}/newspapers/`);
+    data = await axios.get(`${host}/newspapers/front`);
   }catch(error){
     console.log(error)
   }
@@ -259,18 +260,17 @@ app.get("/membership",async function(req,res){
 })
 
 // online Business
-app.get("/onlineBusiness/:welayat",async function(req,res){
+app.get("/onlineBussiness/:welayat",async function(req,res){
   var welayat = req.params.welayat;
   
-  // var data;
-  // try{
-  //   data = await axios.get(`${host}/commerce?welayat=${welayat}`);
-  // }catch(error){
-  //   console.log(error)
-  // }
-  // console.log(data.data);
-  // res.render("pages/business",{host,data:data.data})
-  res.render("pages/business",{host})
+  var data;
+  try{
+    data = await axios.get(`${host}/commerce?welayat=${welayat}`);
+  }catch(error){
+    console.log(error)
+  }
+  console.log(data.data);
+  res.render("pages/business",{host,data:data.data,welayat});
 })
 
 // businessPlan
@@ -455,7 +455,7 @@ app.get("/admin/:page",async function(req,res){
     res.render("admin/bildirishler",{data:data.data,name:"Bildirişler",host});
   }else if(page == "rysgal"){
     try{
-      data = await axios.get(`${host}/newspapers/`);
+      data = await axios.get(`${host}/newspapers`);
     }catch(error){
       console.log(error)
     }
@@ -584,13 +584,13 @@ app.get("/admin/:page",async function(req,res){
   }else if(page == "parol"){
     res.render('admin/parol',{name:"Parol çalyşmak",host});
   }else if(page == "statistika"){
-    // try{
-    //   data = await axios.get(`${host}/menu/getAboutUs`);
-    // }catch(e){
-    //   console.log(e);
-    // }
-    // res.render('admin/statistika',{name:"Statistika",host,data:data});
-    res.render('admin/statistika',{name:"Statistika",host});
+    try{
+      data = await axios.get(`${host}/menu/getStatistika`);
+    }catch(e){
+      console.log(e);
+    }
+    console.log(data.data);
+    res.render('admin/statistika',{name:"Statistika",host,data:data.data});
   }
 })
 

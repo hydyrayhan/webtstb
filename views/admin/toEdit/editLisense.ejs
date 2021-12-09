@@ -92,8 +92,12 @@
     <div class="val2" style="display: none;"><%=data.body.ru%></div>
     <div class="val3" style="display: none;"><%=data.body.en%></div>
 
-    <% for(var i =0 ; i<data.files.length; i++) {%>
-        <div class="fileTake" style="display: none;"><%= data.files[i].filename %></div>
+    <% if (data.files != null) { %>
+        <% for(var i =0 ; i<data.files.length; i++) {%>
+            <div class="fileTake" style="display: none;"><%= data.files[i].filename %></div>
+        <% } %>
+    <% }else{%>
+        <div class="fileTake" style="display: none;"></div>
     <% } %>
 
     <!-- picture show when i choose from file -->
@@ -306,7 +310,7 @@
         text3.innerHTML = editText3.textContent;
 
 
-        dropActive(2,5);
+        dropActive(2,6);
     </script>
 
 </body>

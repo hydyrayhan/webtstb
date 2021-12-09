@@ -22,6 +22,9 @@
             margin-right: 10px;
             cursor: pointer;
         }
+        .suratHeader{
+            word-break: break-all;
+        }
 
     </style>
 </head>
@@ -76,7 +79,7 @@
                             <div style="width: 40%; margin-left:20px; margin-top: 50px;">
                                 <label for="logo" style="margin-bottom:0;">Logo giriziň:</label>
                                 <label for="logo" class="suratHeader logoPlace">
-                                    <label for="logo" style="padding-left:5px"><%= data.pic %> </label>
+                                    <label for="logo" style="padding-left:5px"><%= data.pic %></label>
                                     <label for="logo"><img src="/pictures/icon/folder.svg" style="width: 15px;" alt=""></label>
                                     <input type="file" onchange="takeLogo(event)" id="logo" style="display: none;">
                                 </label>
@@ -103,14 +106,32 @@
                                 <div>
                                     Kategoriýa saýlaň:
                                 </div>
-                                <select  name="" id="" class="welayatSelect">
-                                    <option value="" style="display: none;">Kategoriýa saýlaň</option>
-                                    <option value="Himiýa we Senagat">Himiýa we Senagat</option>
-                                    <option value="Hukuk">Hukuk</option>
-                                    <option value="Oba hojalyk">Oba hojalyk</option>
-                                    <option value="Balykçylyk">Balykçylyk</option>
-                                    <option value="Ahal">Ahal</option>
-                                    <option value="Daşoguz">Daşoguz</option>
+                                <select name="" class="welayatSelect">
+                                    <option value="" style="display: none;">Kategori sayla</option>
+                                    <option value="Işgärler bölümi">Işgärler bölümi</option>
+                                    <option value="Umumy bölümi">Umumy bölümi</option>
+                                    <option value="Hojalyk bölümi">Hojalyk bölümi</option>
+                                    <option value="Ykdysadyýet bölümi">Ykdysadyýet bölümi</option>
+                                    <option value="Seljeriş bölümi">Seljeriş bölümi</option>
+                                    <option value="Meýilleşdiriş bölümi">Meýilleşdiriş bölümi</option>
+                                    <option value="Hasapçylar bölümi">Hasapçylar bölümi</option>
+                                    <option value="Hukuk bölümi">Hukuk bölümi</option>
+                                    <option value="Söwda we hyzmatlar bölümi">Söwda we hyzmatlar bölümi</option>
+                                    <option value="Oba senagat toplumy we balykçylyk müdirligi">Oba senagat toplumy we balykçylyk müdirligi</option>
+                                    <option value="Azyk önümçiligi bölümi">Azyk önümçiligi bölümi</option>
+                                    <option value="Balykçylyk bölümi">Balykçylyk bölümi</option>
+                                    <option value="Gurluşyk bölümi">Gurluşyk bölümi</option>
+                                    <option value="Senagat we himiýa önimçiligi bölümi">Senagat we himiýa önimçiligi bölümi</option>
+                                    <option value="Logistika bölümi">Logistika bölümi</option>
+                                    <option value="Halkara bölümi">Halkara bölümi</option>
+                                    <option value="Sanly ulgamlar bölümi">Sanly ulgamlar bölümi</option>
+                                    <option value="Syýahatçylyk,bilim we sport bölümi">Syýahatçylyk,bilim we sport bölümi</option>
+                                    <option value="Maglumat we mahabat bölümi">Maglumat we mahabat bölümi</option>
+                                    <option value="Aşgabat şäheri we Ahal welaýaty boýunça bölümi">Aşgabat şäheri we Ahal welaýaty boýunça bölümi</option>
+                                    <option value="Balkan welaýaty boýunça bölümi">Balkan welaýaty boýunça bölümi</option>
+                                    <option value="Daşoguz welaýaty boýunça bölümi">Daşoguz welaýaty boýunça bölümi</option>
+                                    <option value="Lebap welaýaty boýunça bölümi">Lebap welaýaty boýunça bölümi</option>
+                                    <option value="Mary welaýaty boýunça bölümi">Mary welaýaty boýunça bölümi</option>
                                 </select>
                             </label>
                             <div class="choosenTeg">
@@ -192,7 +213,7 @@
             `
     }
 
-    var teg = document.querySelector(".welayatSelect");
+    var teg = document.querySelectorAll(".welayatSelect")[1];
     teg.addEventListener("change",function(){
         var choosen = document.querySelector(".choosenTeg");
         var goshma = false;
@@ -375,7 +396,7 @@
                 ruAddress : inputs[8].value,
                 enAddress : inputs[10].value,
                 welayat : welayat[0].value,
-                kategori : welayat[1].value
+                member : tegs
             }
             var arr = [];
             for(var i =0; i<imgs.length; i++){
@@ -387,9 +408,7 @@
             if(logo !== undefined){
                 logoArr.push(logo);
             }
-            
             var res = await dataSend(data,`<%=host%>/members/edit?id=<%=id%>`);
-            console.log(res.status);
             if(res.status == 'success'){
                 var bool = false;
                 var bool2 = false;

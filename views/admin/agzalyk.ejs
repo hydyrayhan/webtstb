@@ -235,7 +235,6 @@
                 //         b+=a[i];
                 //     }               
                 // }
-                console.log(b);
                 var headFull = true;
                 var san = 3;
                 for(var i = 1; i<tm.length; i++){
@@ -261,16 +260,16 @@
                 
                 
                
-                // if(headFull){
-                //     var res = await dataSend(data,'<%=host%>/menu/editMembership');
+                if(headFull){
+                    var res = await dataSend(data,'<%=host%>/menu/editMembership');
         
-                //     if(typeof(res.id) == 'number'){
-                //         location.replace('/admin/agzalyk/');
-                //     }
-                // }else{
-                //     alert('headerlerin biri bosh');
-                //     oneTime=true
-                // }
+                    if(typeof(res.id) == 'number'){
+                        location.replace('/admin/agzalyk/');
+                    }
+                }else{
+                    alert('headerlerin biri bosh');
+                    oneTime=true
+                }
                 
             }
         })

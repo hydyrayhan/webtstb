@@ -12,10 +12,12 @@
     <section class="consultation">
         <div class="container">
             <div class="header">Консультация</div>
-            <% for( let i = 0; i < data.body.tm.length; i++ ) { %>
-                <div class="name" data-dynamic data-tm="<%- data.header.tm[i] %>" data-ru="<%- data.header.ru[i] %>" data-en="<%- data.header.en[i] %>"><%= data.header.tm[i] %></div>
-                <div class="img"><img src="<%= host %>/menu/<%= data.pic[i] %>" alt=""></div>
-                <div class="text" data-dynamic data-tm="<%- data.body.tm[i] %>" data-ru="<%- data.body.ru[i] %>" data-en="<%- data.body.en[i] %>"><%= data.body.tm[i] %> </div>
+            <% if (data.pic != null) { %>
+                <% for( let i = 0; i < data.body.tm.length; i++ ) { %>
+                    <div class="name" data-dynamic data-tm="<%- data.header.tm[i] %>" data-ru="<%- data.header.ru[i] %>" data-en="<%- data.header.en[i] %>"><%= data.header.tm[i] %></div>
+                    <div class="img"><img src="<%= host %>/menu/<%= data.pic[i] %>" alt=""></div>
+                    <div class="text" data-dynamic data-tm="<%- data.body.tm[i] %>" data-ru="<%- data.body.ru[i] %>" data-en="<%- data.body.en[i] %>"><%= data.body.tm[i] %> </div>
+                <% } %>
             <% } %>
         </div>
     </section>

@@ -85,15 +85,14 @@
 
 .menuPage{
     background: white;
-    min-height: 100vh;
-    max-height: 100vh;
+    height: 0vh;
+    // max-height: 100vh;
     min-width: 100%;
     z-index: 1000000;
-    position: fixed;
-    top:0;
-    left: 100%;
+    position: absolute;
+    // left: 100%;
     opacity: 0.9;
-    overflow: auto;
+    overflow: hidden;
     transition: 0.3s;
     .exit{
         display: flex;

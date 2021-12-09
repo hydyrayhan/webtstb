@@ -142,15 +142,12 @@
 
 .menuPage {
   background: white;
-  min-height: 100vh;
-  max-height: 100vh;
+  height: 0vh;
   min-width: 100%;
   z-index: 1000000;
-  position: fixed;
-  top: 0;
-  left: 100%;
+  position: absolute;
   opacity: 0.9;
-  overflow: auto;
+  overflow: hidden;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
@@ -1846,7 +1843,7 @@ body {
   border: none;
   padding: 5px;
   outline: none;
-  width: 150px;
+  width: 330px;
   background-color: #FBFBFB;
 }
 
@@ -3081,6 +3078,7 @@ section.agzalar .listContainer .agzalarList .main .logo img {
 section.agzalar .listContainer .agzalarList .main .text {
   margin-right: 40px;
   width: 100%;
+  word-break: break-all;
 }
 
 section.agzalar .listContainer .agzalarList .main .text .listHead {
@@ -3100,6 +3098,7 @@ section.agzalar .listContainer .agzalarList .main .text .textDots {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   white-space: normal;
+  word-break: break-all;
 }
 
 section.agzalar .listContainer .agzalarList .main .icon {

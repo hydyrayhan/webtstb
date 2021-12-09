@@ -90,10 +90,32 @@
             </div>
           </div>
           <div>
-            <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, tempora.</div>
-            <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, tempora.</div>
-            <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, tempora.</div>
-            <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae, tempora.</div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menuPage">
+        <div class="container">
+          <div class="exit">
+            <div style="cursor: pointer;">
+              <svg width="12" height="12" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.1665 1.66667L6.99983 7.5M6.99983 7.5L12.8332 13.3333M6.99983 7.5L12.8332 1.66667M6.99983 7.5L1.1665 13.3333" stroke="#10181F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Ýapmak</span>
+            </div>
+          </div>
+          <div class="menular">
+            <div class="menubox">
+              <div class="headbox">Tazelikler</div>
+              <a href="/sppt" class="list" data-content id='sppt'>SPPT</a>
+              <a href="/agzalar/-1" class="list" data-content id='spptMember'>SPPT Membership</a>
+              <a href="/membership" class="list" data-content id='membership'>Membership</a>
+              <a href="/onlineBussiness/Ashgabat" class="list" data-content id='onlineBusiness'>Online Business</a>
+              <a href="/businessPlans" class="list" data-content id='businessPlan'>Business Plans</a>
+              <a href="/licenses" class="list" data-content id='licenses'>Licenses</a>
+              <a href="/consultation" class="list" data-content id='consultation'>Consultation</a>
+            </div>
           </div>
         </div>
       </div>
@@ -135,30 +157,7 @@
         </div>
       </div>
 
-      <div class="menuPage">
-        <div class="container">
-          <div class="exit">
-            <div style="cursor: pointer;">
-              <svg width="12" height="12" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1.1665 1.66667L6.99983 7.5M6.99983 7.5L12.8332 13.3333M6.99983 7.5L12.8332 1.66667M6.99983 7.5L1.1665 13.3333" stroke="#10181F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span>Ýapmak</span>
-            </div>
-          </div>
-          <div class="menular">
-            <div class="menubox">
-              <div class="headbox">Tazelikler</div>
-              <a href="/sppt" class="list" data-content id='sppt'>SPPT</a>
-              <a href="/agzalar/-1" class="list" data-content id='spptMember'>SPPT Membership</a>
-              <a href="/membership" class="list" data-content id='membership'>Membership</a>
-              <a href="/onlineBusiness/Ashgabat" class="list" data-content id='onlineBusiness'>Online Business</a>
-              <a href="/businessPlans" class="list" data-content id='businessPlan'>Business Plans</a>
-              <a href="/licenses" class="list" data-content id='licenses'>Licenses</a>
-              <a href="/consultation" class="list" data-content id='consultation'>Consultation</a>
-            </div>
-          </div>
-        </div>
-      </div>
+
 
 
       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -173,7 +172,7 @@
         var exit = document.querySelectorAll(".exit div")[0];
         var body = document.querySelector("body");
         searchBtn.addEventListener("click",function(){
-          search.style.width = "165px";
+          search.style.width = "335px";
           searchText.style.display = 'none';
           searchPage.style.left = '0';
           body.style.position = 'fixed';
@@ -184,6 +183,7 @@
           searchPage.style.left = '100%';
           searchText.style.display = 'block';
           search.style.width = '0';
+          body.style.position = 'static';
         })
       </script>
       <!-- menu -->
@@ -194,8 +194,11 @@
         var host = '<%=host%>'
         var menus = document.querySelector(".menular");
         var data;
+        var body = document.querySelector("body");
         menu.addEventListener("click",async function(){
-          menular.style.left = '0';
+          menular.style.height = '100vh';
+          body.style.position = 'fixed';
+          body.style.width = "100%";
           if(data == undefined){
             data = await menuData(host);
             for(var i = 0; i<data.length; i++){
@@ -211,7 +214,9 @@
 
         })
         exit.addEventListener("click",function(){
-          menular.style.left = "100%";
+          // menular.style.left = "100%";
+          menular.style.height = '0';
+          body.style.position= 'static';
         })
       </script>
       <!-- screen size uytgande dillerin yeri chalshylyar -->

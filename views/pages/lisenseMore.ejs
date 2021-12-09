@@ -15,18 +15,20 @@
 
             <div class="header" data-dynamic data-tm="<%- data.header.tm %>" data-ru="<%- data.header.ru %>" data-en="<%- data.header.en %>"><%= data.header.tm %> </div>
             <div class="content" data-dynamic data-tm="<%- data.body.tm %>" data-ru="<%- data.body.ru %>" data-en="<%- data.body.en %> "><%= data.body.tm %> </div>
+            <% if (data.files !== null) { %>
             <div class="adress">Flayllar download etmek uchin</div>
             <div class="filesCon">
-                <% for( let i = 0; i < data.files.length; i++ ) { %>
-                    <div class="file">
-                        <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
-                        <div class="fileRight">
-                            <div class="name"><a href="" download><%=data.files[i].filename%></a></div>
-                            <div class="kb"><%= data.files[i].size %> </div>
+                    <% for( let i = 0; i < data.files.length; i++ ) { %>
+                        <div class="file">
+                            <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
+                            <div class="fileRight">
+                                <div class="name"><a href="" download><%=data.files[i].filename%></a></div>
+                                <div class="kb"><%= data.files[i].size %> </div>
+                            </div>
                         </div>
-                    </div>
-                <% } %>
-            </div>
+                    <% } %>
+                </div>
+            <% } %>
         </div>
     </section>
 

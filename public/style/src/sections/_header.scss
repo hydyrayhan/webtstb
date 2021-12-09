@@ -103,7 +103,7 @@ body{
               border: none;
               padding: 5px;
               outline: none;
-              width: 150px;
+              width: 330px;
               background-color: #FBFBFB
             }
           }
@@ -189,8 +189,6 @@ body{
   left: 100%;
   transition: 0.3s;
   z-index: 1000000;
-  // background-color: red;
-  // overflow: hidden;
   overflow: auto;
   .exit{
     margin: auto;
@@ -208,5 +206,5 @@ body{
     svg{
         cursor: pointer;
     }
-}
+  }
 }

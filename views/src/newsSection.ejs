@@ -32,7 +32,7 @@
 
                       <div class="splideHide" style="display: block;">
                         <div class="newsSplide">
-                          <div class="left"><img src='<%= host %>/news/<%= list.list[0].pic %>' alt=""></div>
+                          <div class="left"><a href="news/<%= list.list[0].id %>"><img src='<%= host %>/news/<%= list.list[0].pic %>' alt=""></a></div>
                           <div class="right">
                             <div class="top">
                               <a href="news/<%= list.list[0].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%-list.list[0].header.RU%>" data-tm="<%-list.list[0].header.TM%>" data-en="<%-list.list[0].header.EN%>" id="name"><%=list.list[0].header.RU%></div></a>
@@ -47,7 +47,7 @@
                           
                           <% for (let i = 1; i < 4; i++) {%>
                             <div class="newsContainer lowNews<%=i%>">
-                              <div class="top"><img src="<%= host %>/news/<%= list.list[i].pic %>" alt=""></div>
+                              <div class="top"><a href="news/<%= list.list[i].id %>"><img src="<%= host %>/news/<%= list.list[i].pic %>" alt=""></a></div>
                               <div class="bottomTop">
                                 <a href="news/<%= list.list[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%-list.list[i].header.RU%>" data-tm="<%-list.list[i].header.TM%>" data-en="<%-list.list[i].header.EN%>" id="name"><%=list.list[i].header.RU%></div></a>
                               </div>
@@ -66,7 +66,7 @@
 
                       <div class="splideHide" style="display: block;">
                         <div class="newsSplide2">
-                          <div class="left"><img src='<%= host %>/events/<%= list.list2[0].pic %>' alt=""></div>
+                          <div class="left"><a href="events/<%= list.list2[0].id %>"><img src='<%= host %>/events/<%= list.list2[0].pic %>' alt=""></a></div>
                           <div class="right">
                             <div class="top">
                               <a href="events/<%= list.list2[0].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%-list.list2[0].header.RU%>" data-tm="<%-list.list2[0].header.TM%>" data-en="<%-list.list2[0].header.EN%>" id="name"><%=list.list2[0].header.RU%></div></a>
@@ -81,7 +81,7 @@
                           
                           <% for (let i = 1; i < 4; i++) {%>
                             <div class="newsContainer lowNews<%=i%>">
-                              <div class="top"><img src="<%= host %>/events/<%= list.list2[i].pic %>" alt=""></div>
+                              <div class="top"><a href="events/<%= list.list2[i].id %>"><img src="<%= host %>/events/<%= list.list2[i].pic %>" alt=""></a></div>
                               <div class="bottomTop">
                                 <a href="events/<%= list.list2[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%-list.list2[i].header.RU%>" data-tm="<%-list.list2[i].header.TM%>" data-en="<%-list.list2[i].header.EN%>" id="name"><%=list.list2[i].header.RU%></div></a>
                               </div>
@@ -96,11 +96,6 @@
                       </div>
 
                     </li>
-                    <!-- <li class="splide__slide">
-
-                      barde gazetlar bolmaly nahili yagdayda bosada;
-
-                    </li> -->
                   </ul>
                 </div>
               </div>
@@ -115,7 +110,6 @@
               </div>
           </div>
         </section>
-        <div><%= sl %> </div>
         <script src="/scripts/src/materialize/splide.js"></script>
         <!-- splide Banner -->
         <script>
