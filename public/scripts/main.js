@@ -1,11 +1,3 @@
-// async function name (){
-//   const data = await fetch.get(`http://localhost:3000/data/language.json`);
-//   const obj = await data.json();
-//   return obj;
-// }
-
-
-
 // yokardaky 7 sany static page ichine girende active edyar;
 
 function active(num){
@@ -21,8 +13,6 @@ async function changeLanguage(){
   const contentNodes = document.querySelectorAll('[data-content]');
   const dynamicNodes = document.querySelectorAll("[data-dynamic]");
   const navLang = document.querySelector('.chosen-lang');
-  // const language = document.querySelector('.language');
-  // const ul = document.querySelector('.language ul');
 
 
 
@@ -57,6 +47,13 @@ async function changeLanguage(){
     const contents = await getContents();
     navLang.innerText = contents[languagee][languagee];
     contentNodes.forEach(node => {
+      if(node.tagName == 'INPUT'){
+        if(node.id == 'toFollow'){
+          node.setAttribute('value',contents[languagee][node.id])
+        }else{
+          node.setAttribute('placeholder',contents[languagee][node.id]);
+        }
+      }
       node.innerHTML = contents[languagee][node.id]
     });
     dynamicNodes.forEach(node => {
@@ -81,10 +78,6 @@ async function changeLanguage(){
     }
   }
 
-
-  // function setLangToLocalStorage(lang){
-  //   localStorage.setItem(`nesibeliAdimLang`, lang)
-  // }
   getLangFromLocalStorage()
 }
 changeLanguage();

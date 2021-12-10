@@ -41,11 +41,11 @@
             <div class="followers">
                 <div class="title" id="watched" data-content>Followers</div>
                 <div class="followCounts">
-                    <div class="day">101 <span data-content id="gunlik">a day</span></div>
+                    <div class="day"><%= follow[4] %>  <span data-content id="gunlik">a day</span></div>
                     <div>|</div>
-                    <div class="month">1232 <span data-content id="aylyk">a month</span></div>
+                    <div class="month"><%= follow[5] %> <span data-content id="aylyk">a month</span></div>
                     <div>|</div>
-                    <div class="year">12345 <span id="yyllyk" data-content>a year</span></div>
+                    <div class="year"><%= follow[6] %> <span id="yyllyk" data-content>a year</span></div>
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
             
             <div class="inputCon">
                 <input type="email" id="pocta" data-content  placeholder="Email Address">
-                <input class="submit" type="submit" value="Goshulmak">
+                <input class="submit" type="submit" id="toFollow" data-content value="Goshulmak">
             </div>
         </div>
     </div>

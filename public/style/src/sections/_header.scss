@@ -60,6 +60,7 @@ body{
         font-size: 14px;
         div{
           cursor: pointer;
+          z-index: 10000000;
         }
         @include center(center, center);
 

@@ -3,7 +3,9 @@ const axios = require('axios');
 const bodyParser = require("body-parser");
 const fs = require("fs")
 require("dotenv").config({path:"./config/config.env"});
-const host = process.env.HOST;
+// const host = process.env.HOST;
+const host = 'http://192.168.1.103:5000'
+
 const app = express();
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -24,7 +26,7 @@ app.use(fileUpload())
 
 let languageData = '';
 
-
+var follow;
 app.get('/',async function(req,res){
  var sl = req.query.sl;
  var mainPage;
@@ -34,12 +36,12 @@ app.get('/',async function(req,res){
     console.log(error)
   }
   console.log(mainPage.data);
+  follow = mainPage.data.statictika;
   mainPage = mainPage.data;
   languageData = mainPage.data
   
   var loop = 0;
   var seeAll = false;
-  console.log
   if(mainPage.brands.length<9){
     loop = mainPage.brands.length;
   }else{
@@ -66,8 +68,7 @@ app.get('/',async function(req,res){
   location[6] = ['Balkan','Mary','Daşoguz','Lebap'];
   location[7] = ['Балкан','Мары','Дашогуз','Лебап'];
   location[8] = ['Balkan','Mary','Dashoguz','Lebap'];
-
-  res.render('main',{list:mainPage,loop,loop1,host,seeAll,seeAllBolum,sl,location})
+  res.render('main',{list:mainPage,loop,loop1,host,seeAll,seeAllBolum,sl,location,follow})
 })
 
 
@@ -81,7 +82,7 @@ app.get("/pressCenter",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/pressCenter.ejs",{list:data.data,host,sl,teg:''});
+  res.render("pages/pressCenter.ejs",{list:data.data,host,sl,teg:'',follow});
 })
 
 
@@ -145,7 +146,7 @@ app.get("/karhana/:id",async function(req,res){
   console.log(data.data);
 
   console.log(id);
-  res.render(`pages/karhana`,{data:data.data,id,pudak,host});
+  res.render(`pages/karhana`,{data:data.data,id,pudak,host,follow});
 })
 
 app.get("/agzalar/:id",async function(req,res){
@@ -218,7 +219,7 @@ app.get("/agzalar/:id",async function(req,res){
   }
   
 
-  res.render("pages/agzalar",{data,place,idd,host})
+  res.render("pages/agzalar",{data,place,idd,host,follow})
 })
 
 
@@ -233,7 +234,7 @@ app.get("/gazet",async function(req,res){
   }
   var page = req.query.page;
   console.log(data.data);
-  res.render("pages/gazet",{data:data.data,page,host}) 
+  res.render("pages/gazet",{data:data.data,page,host,follow}) 
 })
 // sppt
 app.get("/sppt",async function(req,res){
@@ -244,7 +245,7 @@ app.get("/sppt",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/sppt",{host,data:data.data}) 
+  res.render("pages/sppt",{host,data:data.data,follow}) 
 })
 
 // Membership
@@ -256,7 +257,7 @@ app.get("/membership",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/membership",{host,data:data.data})
+  res.render("pages/membership",{host,data:data.data,follow})
 })
 
 // online Business
@@ -270,7 +271,7 @@ app.get("/onlineBussiness/:welayat",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/business",{host,data:data.data,welayat});
+  res.render("pages/business",{host,data:data.data,welayat,follow});
 })
 
 // businessPlan
@@ -282,7 +283,7 @@ app.get("/businessPlans",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/plans",{host,data:data.data.bussiness})
+  res.render("pages/plans",{host,data:data.data.bussiness,follow})
 })
 
 // licenses
@@ -294,7 +295,7 @@ app.get("/licenses",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/lisense",{host,data:data.data});
+  res.render("pages/lisense",{host,data:data.data,follow});
 })
 
 //licensesMorePage
@@ -306,7 +307,7 @@ app.get("/licenses/:id",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/lisenseMore",{host,data:data.data})
+  res.render("pages/lisenseMore",{host,data:data.data,follow})
 })
 
 // konsultasiya
@@ -318,7 +319,7 @@ app.get("/consultation",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/konsultasiya",{host,data:data.data});
+  res.render("pages/konsultasiya",{host,data:data.data,follow});
 })
 
 // news
@@ -330,7 +331,7 @@ app.get('/news/:id',async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/news",{host,data:data.data,file:'news'});
+  res.render("pages/news",{host,data:data.data,file:'news',follow});
 })
 
 
@@ -343,7 +344,7 @@ app.get('/events/:id',async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/news",{host,data:data.data,file:'events'});
+  res.render("pages/news",{host,data:data.data,file:'events',follow});
 })
 
 //constructor
@@ -357,19 +358,19 @@ app.get('/constructor/:id', async function(req,res){
   var page = data.data.page;
   console.log(data.data);
   if(page == '1'){
-    res.render("templates/template1",{host,data:data.data});
+    res.render("templates/template1",{host,data:data.data,follow});
   }else if(page == '2'){
-    res.render("templates/template2",{host,data:data.data});
+    res.render("templates/template2",{host,data:data.data,follow});
   }else if(page == '3'){
-    res.render("templates/template3",{host,data:data.data});
+    res.render("templates/template3",{host,data:data.data,follow});
   }else if(page == '4'){
-    res.render("templates/template4",{host,data:data.data});
+    res.render("templates/template4",{host,data:data.data,follow});
   }else if(page == '5'){
-    res.render("templates/template6",{host,data:data.data});
+    res.render("templates/template6",{host,data:data.data,follow});
   }else if(page == '6'){
-    res.render("templates/template7",{host,data:data.data});
+    res.render("templates/template7",{host,data:data.data,follow});
   }else if(page == '7'){
-    res.render("templates/template8",{host,data:data.data});
+    res.render("templates/template8",{host,data:data.data,follow});
   }
 })
 
@@ -413,7 +414,7 @@ app.post("/login",async function(req,res){
   if(data.data.status == 200){
     res.redirect("admin/habarlar");
   }else{
-    res.redirect("admin");
+    res.redirect("admin",follow);
   }
 })
 
