@@ -390,7 +390,7 @@ app.get('/constructor/:id', async function(req,res){
 // admin ==========================================================================================
 
 app.get("/admin",function(req,res){
-  res.render("pages/login",{host})
+  res.render("pages/login",{host,follow})
 })
 
 app.post("/login",async function(req,res){
