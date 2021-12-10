@@ -63,7 +63,8 @@
     "parol":"Password",
     "parolUnutmak":"Forgot the password",
     "exit":"Close",
-    "faks":"Fax"
+    "faks":"Fax",
+    "bashSahypa":"Main page"
   },
   "TM":{
     "TM":"Türkmen",
@@ -129,7 +130,8 @@
     "parol":"Açarsözi",
     "parolUnutmak":"Açarsözüni unutdyňyzmy?",
     "exit":"Ýapmak",
-    "faks":"Faks"
+    "faks":"Faks",
+    "bashSahypa":"Baş sahypa"
   },
   "RU":{
     "TM":"Türkmen",
@@ -195,6 +197,7 @@
     "parol":"Пароль",
     "parolUnutmak":"Забыли пароль?",
     "exit":"Закрыт",
-    "faks":"Факс"
+    "faks":"Факс",
+    "bashSahypa":"Главная страница"
   }
 }
