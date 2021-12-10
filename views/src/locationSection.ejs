@@ -15,7 +15,7 @@
 <body>
     <section class="locationSection">
         <div class="container">
-          <div class="sectionHeader" id="bolumler" data-content id="welayatBolum">Welayatdaky bolumler</div>
+          <div class="sectionHeader" id="bolumler" data-dynamic data-tm="Welaýat bölümleri" data-en="Regional departments" data-ru="Отделения в велаятах">Welayatdaky bolumler</div>
           <div class="welayatNames">
             <div class="0" id="active" data-dynamic data-tm="Aşgabat we Ahal" data-ru="Ашхабад и Ахал" data-en="Ashgabat and Akhal">Ashgabat we Ahal</div>
             <div class="2" data-content id="mary">Mary</div>
@@ -42,28 +42,28 @@
                   <div class="velayat" style="display: none;">
 
                     <div class="head change" id="mapHead" data-dynamic data-tm="Aşgabat" data-ru="Ашхабад" data-en="Ashgabat">Ashgabat</div>
-                    <div class="title" id="mapAdress" data-content id="address">Adress:</div>
+                    <div class="title" id="mapAdress" data-dynamic data-tm="Salgysy" data-en="Address" data-ru="Адрес">Adress:</div>
                     <div class="information change" id="mapLocation" data-dynamic data-tm="<%-location[i-1].tmAddress%>" data-ru="<%-location[i-1].ruAddress%>" data-en="<%-location[i-1].enAddress%>"><%=location[i-1].tmAddress%></div>
-                    <div class="title" data-content id="goniTelefon mapPhones">Telefonlar:</div>
+                    <div class="title" data-dynamic data-tm="Kabulahananyň telefon belgileri" data-en="Reception phones" data-ru="Телефоны приемной" id="mapPhones">Telefonlar:</div>
                     <%for(var j = 0; j<location[i-1].phone.length; j++){%>
                       <div class="information change up"><%=location[i-1].phone[j]%></div>
                     <%}%>
-                    <div class="title" id="mapFaks" data-content id="faks">Faks:</div>
+                    <div class="title" id="mapFaks" data-dynamic data-tm="Faks" data-en="Fax" data-ru="Факс">Faks:</div>
                     <div class="information change faks"><%=location[i-1].faks%></div>
-                    <div class="title" id="email mapEmail" data-content>Elektron pochta:</div>
+                    <div class="title" id="mapEmail" data-dynamic data-tm="E-mail" data-en="E-mail" data-ru="Email">Elektron pochta:</div>
                     <div class="information change" style="margin-bottom: 20px;"><%=location[i-1].email%></div>
 
 
                     <div class="head change" id="mapHead" data-dynamic data-tm="Ahal" data-ru="Ахал" data-en="Ahal">Ahal</div>
-                    <div class="title" id="address mapAdress" data-content>Adress:</div>
+                    <div class="title" id="mapAdress" data-dynamic data-tm="Salgysy" data-en="Address" data-ru="Адрес">Adress:</div>
                     <div class="information change" id="mapLocation" data-dynamic data-tm="<%-location[i].tmAddress%>" data-ru="<%-location[i].ruAddress%>" data-en="<%-location[i].enAddress%>"><%=location[i].tmAddress%></div>
-                    <div class="title" data-content id="goniTelefon mapPhones">Telefonlar:</div>
+                    <div class="title" data-dynamic data-tm="Kabulahananyň telefon belgileri" data-en="Reception phones" data-ru="Телефоны приемной" id="mapPhones">Telefonlar:</div>
                     <%for(var j = 0; j<location[i].phone.length; j++){%>
                       <div class="information change up"><%=location[i].phone[j]%></div>
                     <%}%>
-                    <div class="title" data-content id="faks mapFaks">Faks:</div>
+                    <div class="title" data-dynamic data-tm="Faks" data-en="Fax" data-ru="Факс" id="mapFaks">Faks:</div>
                     <div class="information change faks"><%=location[i].faks%></div>
-                    <div class="title" data-content id="email mapEmail">Elektron pochta:</div>
+                    <div class="title" data-dynamic data-tm="E-mail" data-en="E-mail" data-ru="Email" id="mapEmail">Elektron pochta:</div>
                     <div class="information change"><%=location[i].email%></div>
 
                   </div>
