@@ -11,7 +11,7 @@
 
     <section class="agzalar">
         <div class="container">
-            <div class="agzalarHeader">Лицензирование</div>
+            <div class="agzalarHeader" data-content id="licenses">Лицензирование</div>
             <% for( let i = 0; i < data.length; i++ ) { %>
                 <div class="docCon">
                     <a href="/licenses/<%= data[i].id %>"><div data-dynamic data-tm="<%-data[i].header.tm%>" data-ru="<%-data[i].header.ru%>" data-en="<%-data[i].header.en%>"><%= data[i].header.tm %> </div></a>

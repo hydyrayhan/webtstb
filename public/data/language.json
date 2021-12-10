@@ -62,7 +62,8 @@
     "girmekDefinition":"Войдите и начните управлять своими кандидатами!",
     "parol":"Password",
     "parolUnutmak":"Forgot the password",
-    "exit":"Close"
+    "exit":"Close",
+    "faks":"Fax"
   },
   "TM":{
     "TM":"Türkmen",
@@ -127,7 +128,8 @@
     "girmekDefinition":"Войдите и начните управлять своими кандидатами!",
     "parol":"Açarsözi",
     "parolUnutmak":"Açarsözüni unutdyňyzmy?",
-    "exit":"Ýapmak"
+    "exit":"Ýapmak",
+    "faks":"Faks"
   },
   "RU":{
     "TM":"Türkmen",
@@ -192,6 +194,7 @@
     "girmekDefinition":"Войдите и начните управлять своими кандидатами!",
     "parol":"Пароль",
     "parolUnutmak":"Забыли пароль?",
-    "exit":"Закрыт"
+    "exit":"Закрыт",
+    "faks":"Факс"
   }
 }

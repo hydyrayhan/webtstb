@@ -11,7 +11,7 @@
 
     <section class="consultation">
         <div class="container">
-            <div class="header">Консультация</div>
+            <div class="header" data-content id="consultation">Консультация</div>
             <% if (data.pic != null) { %>
                 <% for( let i = 0; i < data.body.tm.length; i++ ) { %>
                     <div class="name" data-dynamic data-tm="<%- data.header.tm[i] %>" data-ru="<%- data.header.ru[i] %>" data-en="<%- data.header.en[i] %>"><%= data.header.tm[i] %></div>
