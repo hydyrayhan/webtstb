@@ -115,7 +115,7 @@
     <script>
         const welayat = document.querySelectorAll(".welayat");
         const listCon = document.querySelectorAll(".listContainer");
-        var id  = Number('<%=place%>');
+        var id = '<%=place%>';
         if(id<0){
             show(welayat[0])
         }else{
@@ -145,6 +145,7 @@
             const list = document.querySelectorAll(".agzalarList .main");
             var we = document.querySelectorAll(".we<%=place%>");
             var id  = Number('<%=idd%>');
+            console.log(id);
             var bul = false;
             if(id>=0){
                 open(we[id]);
@@ -163,6 +164,20 @@
                     }else{
                         clothes(this);
                         bul = true;
+                    }
+                })
+            }
+        }else{
+            const list = document.querySelectorAll(".agzalarList .main");
+            for(var i = 0; i<list.length;i++){
+                list[i].addEventListener("click",function(){
+                    if(this.style.backgroundColor == "white"){
+                        for(var j= 0; j<list.length; j++){
+                            clothes(list[j])
+                        }
+                        open(this);
+                    }else{
+                        clothes(this);
                     }
                 })
             }
