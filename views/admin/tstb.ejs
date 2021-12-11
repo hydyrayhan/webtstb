@@ -96,6 +96,9 @@
         <div style="display: none;" class="exTM"><%=data.header.tm[i]%></div>
         <div style="display: none;" class="exEN"><%=data.header.en[i]%></div>
         <div style="display: none;" class="exRU"><%=data.header.ru[i]%></div>
+        <div style="display: none;" class="tmbody"><%= data.body.tm[i] %> </div>
+        <div style="display: none;" class="rubody"><%= data.body.ru[i] %> </div>
+        <div style="display: none;" class="enbody"><%= data.body.en[i] %> </div>
     <% } %>
 
 
@@ -134,20 +137,32 @@
         var extm = document.querySelectorAll(".exTM");
         var exen = document.querySelectorAll(".exEN");
         var exru = document.querySelectorAll(".exRU");
+        var tmbody = document.querySelectorAll(".tmbody");
+        var rubody = document.querySelectorAll(".rubody");
+        var enbody = document.querySelectorAll(".enbody");
         var headTm = []
         var headru = []
         var headen = []
+        var bodytm = []
+        var bodyru = []
+        var bodyen = []
+        console.log(tmbody[0].textContent)
         for(var i =0; i<extm.length; i++){
             headTm.push(extm[i].textContent);
             headru.push(exru[i].textContent);
             headen.push(exen[i].textContent);
+            bodytm.push(tmbody[i].textContent)
+            bodyru.push(rubody[i].textContent)
+            bodyen.push(enbody[i].textContent)
         }
-        var bodytm = '<%=data.body.tm%>';
-        bodytm = bodytm.split(",");
-        var bodyru = '<%=data.body.ru%>';
-        bodyru = bodyru.split(",");
-        var bodyen = '<%=data.body.en%>';
-        bodyen = bodyen.split(",");
+
+        
+        // var bodytm = '<%=data.body.tm%>';
+        // bodytm = bodytm.split(",");
+        // var bodyru = '<%=data.body.ru%>';
+        // bodyru = bodyru.split(",");
+        // var bodyen = '<%=data.body.en%>';
+        // bodyen = bodyen.split(",");
         
         var nache = 0;
         var bool = false;
