@@ -92,6 +92,11 @@
     <div style="display: none;" class="hide2"></div>
     <div style="display: none;" class="hide3"></div>
     </div>
+    <% for( let i = 0; i < data.header.tm.length; i++ ) { %>
+        <div style="display: none;" class="exTM"><%=data.header.tm[i]%></div>
+        <div style="display: none;" class="exEN"><%=data.header.en[i]%></div>
+        <div style="display: none;" class="exRU"><%=data.header.ru[i]%></div>
+    <% } %>
 
 
 
@@ -126,20 +131,24 @@
         let sana=1
         var imgBox = 3;
         var form2 = document.querySelector("form .form2");
-
-        var headTm = '<%=data.header.tm%>';
-        headTm = headTm.split(",");
-        var headru = '<%=data.header.ru%>';
-        headru = headru.split(",");
-        var headen = '<%=data.header.en%>';
-        headen = headen.split(",");
+        var extm = document.querySelectorAll(".exTM");
+        var exen = document.querySelectorAll(".exEN");
+        var exru = document.querySelectorAll(".exRU");
+        var headTm = []
+        var headru = []
+        var headen = []
+        for(var i =0; i<extm.length; i++){
+            headTm.push(extm[i].textContent);
+            headru.push(exru[i].textContent);
+            headen.push(exen[i].textContent);
+        }
         var bodytm = '<%=data.body.tm%>';
         bodytm = bodytm.split(",");
         var bodyru = '<%=data.body.ru%>';
         bodyru = bodyru.split(",");
         var bodyen = '<%=data.body.en%>';
         bodyen = bodyen.split(",");
-
+        
         var nache = 0;
         var bool = false;
         var globalYene = -7;
@@ -154,7 +163,7 @@
                 headru.push(form2.childNodes[globalYene+4].childNodes[3].childNodes[3].value);
                 headen.push(form2.childNodes[globalYene+6].childNodes[3].childNodes[3].value);
             }
-
+            
             var valSan = 0;
             var yene = 1;
             var form1 = document.querySelector("form .form1");
@@ -293,6 +302,7 @@
                             }
                         }else{
                             alert("Ýatda saklandy");
+                            oneTime = true;
                         }
                     }
                 }else{

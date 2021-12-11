@@ -300,7 +300,8 @@
                 data.lebap.phone.push(lb[i].value);
             }
         }
-        var res = await dataSend(data,'<%=host%>/province/editProvince');
+        console.log(data);
+        // var res = await dataSend(data,'<%=host%>/province/editProvince');
         if(res.status == 200){
             location.reload();
         }

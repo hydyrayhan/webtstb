@@ -12,18 +12,18 @@
 
     <section class="agzalar" style="background-color: white;">
         <div class="container">
-            <div class="agzalarHeader" data-dynamic data-tm="<%- data.name.TM %>" data-ru="<%- data.name.RU %>" data-en="<%- data.name.EN %>"><%= data.name.TM %> </div>
+            <div class="agzalarHeader" data-dynamic data-tm="<%= data.name.TM %>" data-ru="<%= data.name.RU %>" data-en="<%= data.name.EN %>"><%= data.name.TM %> </div>
             <!-- <div class="subName">Интернет-торговля</div> -->
 
             <div class="templateCards" style="margin-bottom: 100px;">
                 <% for( let i = 0; i < data.header.TM.length; i++ ) { %>
                     <div class="card">
-                        <div class="subName" data-dynamic data-tm="<%- data.header.TM[i] %>" data-ru="<%- data.header.RU[i] %>" data-en="<%- data.header.EN[i] %>"><%= data.header.TM[i] %> </div>
+                        <div class="subName" data-dynamic data-tm="<%= data.header.TM[i] %>" data-ru="<%= data.header.RU[i] %>" data-en="<%= data.header.EN[i] %>"><%= data.header.TM[i] %> </div>
                         <div class="main">
                             <div class="img"><img src="<%= host %>/constructor/<%= data.id %>/<%= data.pic[i] %>" alt=""></div>
                             <div class="right">
                                 <!-- <div class="place">Ashgabat</div> -->
-                                <div class="tempContent" data-dynamic data-tm="<%- data.body.TM[i] %>" data-ru="<%- data.body.RU[i] %>" data-en="<%- data.body.EN[i] %>"><%= data.body.TM[i] %> </div>
+                                <div class="tempContent" data-dynamic data-tm="<%= data.body.TM[i] %>" data-ru="<%= data.body.RU[i] %>" data-en="<%= data.body.EN[i] %>"><%= data.body.TM[i] %> </div>
                             </div>
                         </div>
                     </div>

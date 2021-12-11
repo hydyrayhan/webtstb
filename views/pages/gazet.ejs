@@ -39,7 +39,7 @@
                             <img src="<%=host%>/newspapers/pic/<%= data[i].logo %>" alt="">
                         </div>
                         <div class="pdf">
-                            <div class="name"><a href="//:<%= host %>/newspapers/download?file=<%= data[i].filename %>" data-dynamic data-ru="<%-data[i].name.ru%>" data-tm="<%-data[i].name.tm%>" data-en="<%-data[i].name.en%>" download><%= data[i].name.tm %></a></div>
+                            <div class="name"><a href="//:<%= host %>/newspapers/download?file=<%= data[i].filename %>" data-dynamic data-ru="<%=data[i].name.ru%>" data-tm="<%=data[i].name.tm%>" data-en="<%=data[i].name.en%>" download><%= data[i].name.tm %></a></div>
                             <div class="date"><%= data[i].date %></div>
                         </div>
                     </div>

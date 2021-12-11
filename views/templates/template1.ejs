@@ -11,10 +11,10 @@
 
     <section class="agzalar" style="background-color: white;">
         <div class="container">
-            <div class="agzalarHeader" data-dynamic data-tm="<%- data.name.TM %>" data-ru="<%- data.name.RU %>" data-en="<%- data.name.EN %>"><%= data.name.TM %> </div>
+            <div class="agzalarHeader" data-dynamic data-tm="<%= data.name.TM %>" data-ru="<%= data.name.RU %>" data-en="<%= data.name.EN %>"><%= data.name.TM %> </div>
             <!-- <div class="subName">Строительная промышленность</div> -->
             <% for( let i = 0; i < data.header.TM.length; i++ ) { %>
-                <div class="mazmunHeader" data-dynamic data-tm="<%- data.header.TM[i] %>" data-ru="<%- data.header.RU[i] %>" data-en="<%- data.header.EN[i] %>"><%= data.header.TM[i] %> </div> 
+                <div class="mazmunHeader" data-dynamic data-tm="<%= data.header.TM[i] %>" data-ru="<%= data.header.RU[i] %>" data-en="<%= data.header.EN[i] %>"><%= data.header.TM[i] %> </div> 
                 <div class="imgCon">
                     <div>
                         <img src="<%= host %>/constructor/<%= data.id %>/<%= data.pic[i*2] %>" alt="">
@@ -23,7 +23,7 @@
                         <img src="<%= host %>/constructor/<%= data.id %>/<%= data.pic[i*2+1] %>" alt="">
                     </div>
                 </div>
-                <div class="mazmun" data-dynamic data-tm="<%- data.body.TM[i] %>" data-ru="<%- data.body.RU[i] %>" data-en="<%- data.body.EN[i] %>">
+                <div class="mazmun" data-dynamic data-tm="<%= data.body.TM[i] %>" data-ru="<%= data.body.RU[i] %>" data-en="<%= data.body.EN[i] %>">
                     <%= data.body.TM[i] %> 
                 </div>
             <% } %>

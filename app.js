@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const fs = require("fs")
 require("dotenv").config({path:"./config/config.env"});
 const host = process.env.HOST;
-
 const app = express();
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -128,7 +127,7 @@ app.get('/pressCenter/:teg', async function(req,res){
   }
   console.log(data.data,'tagli ');
 
-  res.render("pages/pressCenter.ejs",{list:data.data,host,sl:1,teg});
+  res.render("pages/pressCenter.ejs",{list:data.data,host,sl:1,teg,follow});
 })
 
 let dataKarhana;

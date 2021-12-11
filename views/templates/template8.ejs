@@ -18,13 +18,13 @@
 
     <section class="agzalar" style="background-color: white;">
         <div class="container">
-            <div class="agzalarHeader"  data-dynamic data-tm="<%- data.name.TM %>" data-ru="<%- data.name.RU %>" data-en="<%- data.name.EN %>"><%= data.name.TM %> </div>
+            <div class="agzalarHeader"  data-dynamic data-tm="<%= data.name.TM %>" data-ru="<%= data.name.RU %>" data-en="<%= data.name.EN %>"><%= data.name.TM %> </div>
             <!-- <div class="subName">Интернет-торговля</div> -->
             <% for( let i = 0; i < data.header.TM.length; i++ ) { %>
-                <div class="mazmunHeader"  data-dynamic data-tm="<%- data.header.TM[i] %>" data-ru="<%- data.header.RU[i] %>" data-en="<%- data.header.EN[i] %>"></div>
+                <div class="mazmunHeader"  data-dynamic data-tm="<%= data.header.TM[i] %>" data-ru="<%= data.header.RU[i] %>" data-en="<%= data.header.EN[i] %>"></div>
     
                 <div class="mazmunCon">
-                    <div class="mazmun"  data-dynamic data-tm="<%- data.body.TM[i] %>" data-ru="<%- data.body.RU[i] %>" data-en="<%- data.body.EN[i] %>">
+                    <div class="mazmun"  data-dynamic data-tm="<%= data.body.TM[i] %>" data-ru="<%= data.body.RU[i] %>" data-en="<%= data.body.EN[i] %>">
                         <%= data.body.TM[i] %> 
                     </div>
                     <div class="mazmun">
