@@ -8,6 +8,20 @@ function active(num){
   statics[num].classList.add("active");
 }
 
+// session 
+async function user(host){
+  let user = sessionStorage.getItem('tstbEnter');
+  if(user==undefined){
+    const option={
+      method:"GET"
+    }
+    await fetch(`${host}/menu/addOne`)
+    sessionStorage.setItem("tstbEnter","true");
+  } 
+}
+
+
+
 async function changeLanguage(){
   const langLinks = document.querySelectorAll('.lang-link');
   const contentNodes = document.querySelectorAll('[data-content]');
@@ -42,7 +56,8 @@ async function changeLanguage(){
         })
     });
   }
-
+var a = 0;
+var sene = document.querySelectorAll(".date");
   async function changeUiLanguage(languagee) {
     const contents = await getContents();
     navLang.innerText = contents[languagee][languagee];
@@ -59,6 +74,8 @@ async function changeLanguage(){
     dynamicNodes.forEach(node => {
       node.innerHTML = node.dataset[languagee.toLowerCase()]
     })
+    
+    
   }
 
   async function getLangFromLocalStorage(){
@@ -81,3 +98,8 @@ async function changeLanguage(){
   getLangFromLocalStorage()
 }
 changeLanguage();
+
+
+var seneler = {
+
+}

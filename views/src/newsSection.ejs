@@ -41,7 +41,7 @@
                             <div class="bottom">
                               <div class="new" data-content id="newss">News</div>
                               <div class="dot"></div>
-                              <div class="date" data-dynamic data-ru="<%=list.list[0].date%>" data-tm="<%=list.list[0].date%>" data-en="<%=list.list[0].date%>" id="date"><%=list.list[0].date%></div>
+                              <div class="date"  id="date"><%=list.list[0].date%></div>
                             </div>
                           </div>
                           
@@ -54,7 +54,7 @@
                               <div class="bottom">
                                 <div class="new" data-content id="newss">News</div>
                                 <div class="dot"></div>
-                                <div class="date" data-dynamic data-ru="<%=list.list[i].date%>" data-tm="<%=list.list[i].date%>" data-en="<%=list.list[i].date%>" id="date"><%=list.list[i].date%></div>
+                                <div class="date" id="date"><%=list.list[i].date%></div>
                               </div>
                             </div>
                           <%} %> 
@@ -75,7 +75,7 @@
                             <div class="bottom">
                               <div class="new" data-content id="newss">News</div>
                               <div class="dot"></div>
-                              <div class="date" data-dynamic data-ru="<%=list.list2[0].date%>" data-tm="<%=list.list2[0].date%>" data-en="<%=list.list2[0].date%>" id="date"><%=list.list2[0].date%></div>
+                              <div class="date" id="date"><%=list.list2[0].date%></div>
                             </div>
                           </div>
                           
@@ -88,7 +88,7 @@
                               <div class="bottom">
                                 <div class="new" data-content id="newss">News</div>
                                 <div class="dot"></div>
-                                <div class="date" data-dynamic data-ru="<%=list.list2[i].date%>" data-tm="<%=list.list2[i].date%>" data-en="<%=list.list2[i].date%>" id="date"><%=list.list2[i].date%></div>
+                                <div class="date"   id="date"><%=list.list2[i].date%></div>
                               </div>
                             </div>
                           <%} %> 
@@ -172,5 +172,16 @@
           }
 
         </script>
-</body>
+
+        <script>
+          var date = document.querySelectorAll('.date');
+          // console.log(date[0].textContent);
+          
+          var options = {year:'numeric',month:'long',day:'numeric'};
+          var today = new Date(date[0].textContent);
+          // console.log(to)
+          // console.log(today.toLocaleDateString("en-US",options))
+          console.log(today.toLocaleDateString("ru-RU",options))
+        </script>
+  </body>
 </html>

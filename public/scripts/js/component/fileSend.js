@@ -1,5 +1,4 @@
 
-
 async function dataSend(data,link){
     const option={
         method:"POST",
@@ -10,7 +9,6 @@ async function dataSend(data,link){
     }
     
     var status = await fetch(link,option);
-    
     return status.json();
 }
 
@@ -60,4 +58,22 @@ async function menuData(host){
     })
 
     return data.data;
+}
+
+async function statistikaTake(host){
+    var data2;
+    data2 = await axios({
+        method:"get",
+        url:`${host}/menu/getStatistika`
+    })
+    return data2.data;
+}
+
+async function searchData(host,data){
+    var data3;
+    data3 = await axios({
+        method:"get",
+        url:`${host}/news/search?text=${data}`
+    })
+    return data3.data;
 }

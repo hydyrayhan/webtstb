@@ -128,12 +128,15 @@
                 imgLen();
             }
         }
+        var firstLen = true;
         function firstWork(){
             var fileTake = document.querySelectorAll(".fileTake");
             var pic = [];
             for(var i = 0; i<fileTake.length;i++){
                 pic.push(fileTake[i].textContent);
             }
+            
+            
             if(pic.length == 1 && pic[0] == ''){
             }else{
                 var imgCon = document.querySelector(".imgCon");
@@ -152,7 +155,9 @@
                     imgCount+=1;
                     imgs.push(obj)
                 }
-                imgLen();
+                if(pic.length !== 0){
+                    imgLen();
+                }
             }
         }
         firstWork();
@@ -166,7 +171,6 @@
                             method: 'delete'
                         }
                         var res = await fetch('<%=host%>/menu/deleteLicenseFile?id=<%=data.id%>&index='+i,option);
-                        
                     }
                     imgs.splice(i,1);
                     break;
@@ -193,6 +197,7 @@
 
         var bool = false;
         function imgLen(){
+            
             if(imgs.length==0){
                 var imgsCon = document.querySelector(".imgsCon");
                 var imgCon = document.querySelector(".imgCon");
@@ -237,7 +242,7 @@
                     }
                 }
 
-                if(imgs.length !== 0){
+                // if(imgs.length !== 0){
                     var res = await dataSend(data,'<%=host%>/menu/editLicense?id=<%=data.id%>');
                     if(typeof(res.id) == 'number'){
                         if(arr.length>0){
@@ -249,10 +254,10 @@
                             location.replace('/admin/ygtyyarnama')
                         }
                     }
-                }else{
-                    alert('Surat ýok')
-                    oneTime=true;
-                }
+                // }else{
+                //     alert('Surat ýok')
+                //     oneTime=true;
+                // }
             }
             
         })

@@ -58,14 +58,15 @@
                                                 </div>
                     
                                             <% } %>
-                                            
-                                            <div class="row">
-                                                <% for( let k = 0; k < data[i].commerce[j].pic.length; k++ ) { %>
-                                                    <div class="column">
-                                                        <img class="demo cursor" src="<%= host %>/commerce/<%= data[i].commerce[j].id %>/<%= data[i].commerce[j].pic[k] %>" alt="hello" style="width:100%" onclick="currentSlide('<%=k+1%>','<%=m%>')" alt="The Woods">
-                                                    </div>
-                                                <% } %>
-                                            </div>
+                                            <% if (data[i].commerce[j].pic.length >1) { %>
+                                                <div class="row">
+                                                    <% for( let k = 0; k < data[i].commerce[j].pic.length; k++ ) { %>
+                                                        <div class="column">
+                                                            <img class="demo cursor" src="<%= host %>/commerce/<%= data[i].commerce[j].id %>/<%= data[i].commerce[j].pic[k] %>" alt="hello" style="width:100%" onclick="currentSlide('<%=k+1%>','<%=m%>')" alt="The Woods">
+                                                        </div>
+                                                    <% } %>
+                                                </div>
+                                            <% } %>
                                         <% } %>
                                       </div>
                                 </div>

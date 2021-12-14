@@ -140,13 +140,14 @@
         var tmbody = document.querySelectorAll(".tmbody");
         var rubody = document.querySelectorAll(".rubody");
         var enbody = document.querySelectorAll(".enbody");
+        
         var headTm = []
         var headru = []
         var headen = []
         var bodytm = []
         var bodyru = []
         var bodyen = []
-        console.log(tmbody[0].textContent)
+        // console.log(tmbody[0].textContent)
         for(var i =0; i<extm.length; i++){
             headTm.push(extm[i].textContent);
             headru.push(exru[i].textContent);
@@ -157,12 +158,6 @@
         }
 
         
-        // var bodytm = '<%=data.body.tm%>';
-        // bodytm = bodytm.split(",");
-        // var bodyru = '<%=data.body.ru%>';
-        // bodyru = bodyru.split(",");
-        // var bodyen = '<%=data.body.en%>';
-        // bodyen = bodyen.split(",");
         
         var nache = 0;
         var bool = false;
@@ -314,6 +309,7 @@
                             var data = await imgSend(arr,'<%=host%>/menu/addPic?id='+res.id);
                             if(data.status == 200){
                                 alert("Ýatda saklandy suratam uytgedildi")
+                                oneTime = true
                             }
                         }else{
                             alert("Ýatda saklandy");
@@ -371,13 +367,14 @@
         var san = 3;
         for(var i = 0; i<Number(a); i++){
 
+            // console.log(bodytm[i],4893792743987243)
             hide.innerHTML = bodytm[i];
             hide2.innerHTML = bodyru[i];
             hide3.innerHTML = bodyen[i];
             
-            text[san].innerHTML = hide.textContent;
-            text[san+1].innerHTML = hide2.textContent;
-            text[san+2].innerHTML = hide3.textContent;
+            text[san].innerHTML = hide.innerHTML;
+            text[san+1].innerHTML = hide2.innerHTML;
+            text[san+2].innerHTML = hide3.innerHTML;
             san+=3;
         }
 

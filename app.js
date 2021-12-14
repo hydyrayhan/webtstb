@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const fs = require("fs")
 require("dotenv").config({path:"./config/config.env"});
 const host = process.env.HOST;
-const app = express();
+const app = express(); 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.set("view engine","ejs");
@@ -16,6 +16,7 @@ app.use('/js',express.static(__dirname+"public/scripts"));
 app.use('/img',express.static(__dirname+"public/pictures"));
 
 const fileUpload = require("express-fileupload");
+const { send } = require("process");
 app.use(fileUpload())
 
 
@@ -220,8 +221,6 @@ app.get("/agzalar/:id",async function(req,res){
   res.render("pages/agzalar",{data,place,idd,host,follow})
 })
 
-
-
 // Rysgal Gazeti
 app.get("/gazet",async function(req,res){
   var data;
@@ -381,6 +380,13 @@ app.get('/constructor/:id', async function(req,res){
 
 
 
+var menu;
+
+app.get('/menuData',async function(req,res){
+  data = await axios.get(`${host}/constructor/all`);
+  console.log(data.data);
+})
+
 
 
 
@@ -391,33 +397,6 @@ app.get('/constructor/:id', async function(req,res){
 app.get("/admin",function(req,res){
   res.render("pages/login",{host,follow})
 })
-
-app.post("/login",async function(req,res){
-  
-  var name = req.body.login;
-  var pass = req.body.password;
-  console.log(name,pass,269)
-  var data;
-  try{
-    data = await axios({
-      method: 'post',
-      url: `${host}/login`,
-      data: {name,pass}
-    });
-  }catch(error){
-    console.log(error)
-  }
-
-  console.log(data.data);
-  if(data.data.status == 200){
-    res.redirect("admin/habarlar");
-  }else{
-    res.redirect("admin",follow);
-  }
-})
-
-
-
 
 
 

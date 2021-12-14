@@ -21,11 +21,11 @@
                 </div>
                 <!-- <div class="forget"><a href="">Забыл пароль?</a></div> -->
                 <input type="submit" value="Войти">
-                <!-- <div class="error">Bir yalnyshlyk bar!!!</div> -->
+                <div class="error" style="display: none;">Bir yalnyşlyk bar!!!</div>
             </form>
         </div>
     </section>
-
+    
     <%- include ('../src/bottom.ejs') %>
     <script src="/scripts/js/component/fileSend.js"></script>
     <script>
@@ -42,6 +42,9 @@
             if(res.status == 200){
                 sessionStorage.setItem('tstbAdmin','Ok');
                 location.replace('/admin/habarlar');
+            }else{
+                var err = document.querySelector(".error");
+                err.style.display = "block";
             }
         })
     </script>

@@ -54,7 +54,7 @@
                     <div class="logo">
                         <img src="/pictures/logo/logo.svg" alt="">
                     </div>
-                    <div class="title" data-content id='title'>Union of Industrialists and entrepreneurs of turkmenistan</div>
+                    <div class="title" data-content id='title'></div>
                 </div>
             </a>
             
@@ -89,8 +89,10 @@
               <span data-content id="exit">Ýapmak</span>
             </div>
           </div>
-          <div>
-            <div></div>
+          <div class="docConCon">
+            <div class="docCon">
+              
+            </div>
           </div>
         </div>
       </div>
@@ -107,7 +109,7 @@
           </div>
           <div class="menular">
             <div class="menubox">
-              <div class="headbox" data-content id="bashSahypa">Mail Page</div>
+              <div class="headbox" data-content id="bashSahypa">Main Page</div>
               <a href="/sppt" class="list" data-content id='sppt'>SPPT</a>
               <a href="/agzalar/-1" class="list" data-content id='spptMember'>SPPT Membership</a>
               <a href="/membership" class="list" data-content id='membership'>Membership</a>
@@ -174,17 +176,33 @@
         searchBtn.addEventListener("click",function(){
           search.style.width = "335px";
           searchText.style.display = 'none';
-          searchPage.style.left = '0';
-          body.style.position = 'fixed';
-          body.style.width = "100%";
+          searchPage.style.height = 'auto';
         })
 
         exit.addEventListener("click",function(){
-          searchPage.style.left = '100%';
           searchText.style.display = 'block';
+          searchPage.style.height = '0'
           search.style.width = '0';
-          body.style.position = 'static';
         })
+
+        var searching = document.querySelector("input#search");
+        
+        searching.addEventListener("change",async function(){
+          const option = {
+            method:"GET"
+          }
+          
+          var data = await searchData("<%=host%>",this.value)
+          
+          var docCon = document.querySelector(".docConCon");
+          for(var i=0; i<data.length; i++){
+              docCon.innerHTML += `
+                  <div class="docCon">
+                    <a href="/${data[i].category}/${data[i].id}"><div>...${data[i].soz}...</div></a>
+                  </div>
+              ` 
+            }
+          })
       </script>
       <!-- menu -->
       <script>
@@ -195,13 +213,11 @@
         var menus = document.querySelector(".menular");
         var data;
         var body = document.querySelector("body");
-        menu.addEventListener("click",async function(){
-          menular.style.height = '100vh';
-          body.style.position = 'fixed';
-          body.style.width = "100%";
-          if(data == undefined){
-            data = await menuData(host);
-            for(var i = 0; i<data.length; i++){
+
+        async function menuTake(){
+          data = await menuData(host);
+          
+          for(var i = 0; i<data.length; i++){
               menus.innerHTML += `<div class="menubox">
                   <div class="headbox" data-dynamic data-ru="${data[i].name.RU}" data-tm="${data[i].name.TM}" data-en="${data[i].name.EN}">${data[i].name.TM}</div>
                                 </div>`
@@ -210,8 +226,15 @@
                 list[i+1].innerHTML += `<a class="list" href="/constructor/${data[i].constructors[j].id}" data-dynamic data-ru="${data[i].constructors[j].name.RU}" data-tm="${data[i].constructors[j].name.TM}" data-en="${data[i].constructors[j].name.EN}">${data[i].constructors[j].name.TM}</a>`
               }
             }
-          }
+        }
+        menuTake();
 
+    
+
+        menu.addEventListener("click",async function(){
+          menular.style.height = '100vh';
+          body.style.position = 'fixed';
+          body.style.width = "100%";
         })
         exit.addEventListener("click",function(){
           // menular.style.left = "100%";

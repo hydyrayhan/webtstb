@@ -1950,14 +1950,29 @@ body {
 
 .searchPage {
   width: 100%;
-  height: 100vh;
-  background: white;
+  height: 0;
+  background: #F3F3F2;
   position: absolute;
-  left: 100%;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  -webkit-transition: max-height 0.3s;
+  transition: max-height 0.3s;
   z-index: 1000000;
   overflow: auto;
+}
+
+.searchPage .docCon {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.searchPage .docCon a {
+  text-decoration: none;
+  color: #10181F;
+}
+
+.searchPage .docCon a div {
+  background: white;
+  padding: 10px 30px;
+  margin-bottom: 20px;
 }
 
 .searchPage .exit {
@@ -2634,15 +2649,17 @@ body {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   margin-bottom: 50px;
 }
 
 .gazetlar .list {
   margin-top: 30px;
   width: 32%;
+  margin-right: 2%;
+}
+
+.gazetlar .list:nth-child(3n) {
+  margin-right: 0;
 }
 
 @media (max-width: 640px) {

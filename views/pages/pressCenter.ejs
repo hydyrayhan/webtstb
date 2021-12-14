@@ -188,7 +188,7 @@
                 <div class="splide__track">
                   <ul class="splide__list">
                     <%for(var i = 0; i < list.ads[0].banner.length; i++){%>
-                      <li class="splide__slide"><div><img src="<%= host %>/banners/<%=list.ads[0].banner[i].pic%>" alt=""></div></li>
+                      <li class="splide__slide"><a href="//<%= list.ads[0].banner[i].link %>"><img src="<%= host %>/banners/<%=list.ads[0].banner[i].pic%>" alt=""></a></li>
                     <%}%>
                   </ul>
                 </div>
@@ -207,7 +207,7 @@
                         <div class="splide__track">
                           <ul class="splide__list">
                             <%for(var i = 0; i < list.ads[1].banner.length; i++){%>
-                              <li class="splide__slide"><div><img src="<%= host %>/banners/<%=list.ads[1].banner[i].pic%>" alt=""></div></li>
+                              <li class="splide__slide"><a href="//<%= list.ads[1].banner[i].link %>"><img src="<%= host %>/banners/<%=list.ads[1].banner[i].pic%>" alt=""></a></li>
                             <%}%>
                           </ul>
                         </div>
@@ -221,7 +221,7 @@
                         <div class="splide__track">
                           <ul class="splide__list">
                             <%for(var i = 0; i < list.ads[2].banner.length; i++){%>
-                              <li class="splide__slide"><div><img src="<%= host %>/banners/<%=list.ads[2].banner[i].pic%>" alt=""></div></li>
+                              <li class="splide__slide"><a href="//<%= list.ads[2].banner[i].link %>"><img src="<%= host %>/banners/<%=list.ads[2].banner[i].pic%>" alt=""></a></li>
                             <%}%>
                           </ul>
                         </div>
@@ -230,7 +230,7 @@
                 <div class="lowNewsContainer">
                     
                 </div>
-                <div class="downloadBtn">Download more</div>
+                <div class="downloadBtn" style="cursor: pointer;">Download more</div>
             </div>
         </section>
         

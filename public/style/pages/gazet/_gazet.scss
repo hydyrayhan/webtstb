@@ -4,11 +4,14 @@
 .gazetlar{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     margin-bottom: 50px;
     .list{
         margin-top: 30px;
         width: 32%;
+        margin-right: 2%;
+        &:nth-child(3n){
+            margin-right: 0;
+        }
         @include mobile{
             width: 100%;
         }

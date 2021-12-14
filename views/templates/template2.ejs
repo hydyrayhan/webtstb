@@ -16,7 +16,7 @@
             <!-- <div class="subName">Строительная промышленность</div> -->
             <% for( let i = 0; i < data.header.TM.length; i++ ) { %>
                 <div class="mazmunHeader" data-dynamic data-tm="<%= data.header.TM[i] %>" data-ru="<%= data.header.RU[i] %>" data-en="<%= data.header.EN[i] %>"><%= data.header.TM[i] %> </div>
-                <div class="videoCon">
+                <div class="videoCon" style="width: 80%; margin: 0 auto;">
                     <video src="<%= host %>/constructor/<%= data.id %>/<%= data.pic[i] %> " controls></video>
                 </div>
                 <div class="mazmun" data-dynamic data-tm="<%= data.body.TM[i] %>" data-ru="<%= data.body.RU[i] %>" data-en="<%= data.body.EN[i] %>"><%= data.body.TM[i] %> </div>

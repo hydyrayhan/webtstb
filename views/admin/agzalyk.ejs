@@ -224,17 +224,7 @@
                 var en = document.querySelectorAll('.en');
                 var text = document.querySelectorAll(".ql-editor");
     
-                // var a = text[3].innerHTML
-                // var b = ''
-                // console.log("len"+a.length);
-                // for(var i = 0; i<a.length; i++){
-                //     console.log(i);
-                //     if(a[i] == '"'){
-                //         b+='\\'+a[i];
-                //     }else{
-                //         b+=a[i];
-                //     }               
-                // }
+                
                 var headFull = true;
                 var san = 3;
                 for(var i = 1; i<tm.length; i++){
@@ -344,9 +334,9 @@
             var bodyru = []
             var bodyen = []
             for(var i =0 ; i<hidee.length; i++){
-                bodytm.push(hidee[i].textContent);
-                bodyru.push(hidee2[i].textContent);
-                bodyen.push(hidee3[i].textContent);
+                bodytm.push(hidee[i].innerHTML);
+                bodyru.push(hidee2[i].innerHTML);
+                bodyen.push(hidee3[i].innerHTML);
             }
             
             var sana = 3;
