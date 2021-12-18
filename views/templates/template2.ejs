@@ -22,6 +22,21 @@
                 <div class="mazmun" data-dynamic data-tm="<%= data.body.TM[i] %>" data-ru="<%= data.body.RU[i] %>" data-en="<%= data.body.EN[i] %>"><%= data.body.TM[i] %> </div>
             <% } %>
 
+            <% if (data.files !== null) { %>
+                <div  class="adress" id="fileDownloadUcin" data-content>Flayllar download etmek uchin</div>
+                <div style="margin-bottom:50px;" class="filesCon">
+                    <% for( let i = 0; i < data.files.length; i++ ) { %>
+                        <div class="file">
+                            <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
+                            <div class="fileRight">
+                                <div class="name"><a href="" download><%=data.files[i].filename%></a></div>
+                                <div class="kb"><%= data.files[i].size %> </div>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            <% } %>
+
             <div class="splide">
                 <div class="splide__track">
                   <ul class="splide__list">
