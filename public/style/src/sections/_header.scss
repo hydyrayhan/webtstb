@@ -202,8 +202,8 @@ body{
           padding: 10px 30px;
           margin-bottom: 20px;
       }
-  }
-} 
+    }
+  } 
   .exit{
     margin: auto;
     display: flex;
@@ -219,6 +219,101 @@ body{
     }
     svg{
         cursor: pointer;
+    }
+  }
+}
+
+.chatContainer{
+  position: fixed;
+  z-index: 10000000;
+  bottom: 20px;
+  right: 2.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  .textPage{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    width: 400px;
+    height: 700px;
+    max-height: 500px;
+    background: green;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    @include mobile{
+      height: 400px;
+      width: 100%;
+    }
+    .textHeader{
+      display: flex;
+      justify-content: space-between;
+      padding: 15px;
+      background-color: $blue;
+      color: white;
+    }
+    .texts{
+      background: #d9d9d9;
+      height: 410px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      @include mobile{
+        height: 315px;
+      }
+      .admin{
+        margin: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        span{
+          background: #b8baf4;
+          margin-right: 20px;
+          padding: 10px;
+          border-radius: 10px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+          width: fit-content;
+        }
+      }
+      .user{
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        margin: 10px;
+        width: fit-content;
+        padding: 10px;
+        border-radius: 10px;
+      }
+
+    }
+    .writePage{
+      background: white;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      input{
+        height: 40px;
+        width: 90%;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        resize: none;
+        padding: 10px;
+        box-sizing: border-box;
+        &::-webkit-scrollbar{
+          display: none;
+        }
+      }
+      img{
+        cursor: pointer;
+      }
+    }
+  }
+  .chatBtn{
+    background: $gray;
+    width: 30px;
+    height: 30px;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    img{
+      width: 100%;
     }
   }
 }

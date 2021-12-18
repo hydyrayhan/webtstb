@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/app.css">
     <link rel="stylesheet" href="/style/src/materialize/splide.min.css">
+    <script defer src="http://10.192.168.51:3000/socket.io/socket.io.js"></script>
+    <script defer src="/scripts/js/component/chat.js"></script>
     <title>Document</title>
     <style>
       .dropbtn3 {
@@ -159,11 +161,33 @@
         </div>
       </div>
 
-
+      <div class="chatContainer">
+        <div class="textPage" style="display: none;">
+          <div class="textHeader">
+            <div id="chatHeader" data-content>Открытая линия TSTB</div>
+            <div class="exit" style="cursor: pointer;">
+              <svg width="12" height="12" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.1665 1.66667L6.99983 7.5M6.99983 7.5L12.8332 13.3333M6.99983 7.5L12.8332 1.66667M6.99983 7.5L1.1665 13.3333" fill="white" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="texts">
+            <!-- <div id="bottommm"></div> -->
+          </div>
+          <a href="#bottommm" id="toBot" style="display: none;">ok</a>
+          <div class="writePage">
+            <input type="text">
+            <img src="/pictures/icon/sendMessage.png" alt=""></div>
+        </div>
+        <div class="chatBtn">
+          <img src="/pictures/icon/chat.png" alt="">
+        </div>
+      </div>
 
 
       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
       <script src="/scripts/js/component/fileSend.js"></script>
+      
       <!-- search -->
       <script>
         var searchBtn = document.querySelector(".search");
@@ -305,6 +329,7 @@
           }
         }
       </script>
+
 
   </body>
 </html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .right{
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    
+    <%- include ('admin.ejs') %>
+    <%- include ('header.ejs') %>
+
+    <div class="adminContainer">
+        <div class="adminTable chatTable">
+            <div class="chatCon" style="background-color: #505056;">
+                <% for( let i = 0; i < data.chat.length; i++ ) { %>
+                    <% if (data.chat[i].who == 'you') { %>
+                        <div class="chat user"><span><%= data.chat[i].message %></span></div>
+                    <% }else{ %>
+                        <div class="chat admin"><span><%= data.chat[i].message %> </span></div>
+                    <% } %> 
+                <% } %>
+                <div id="bottomm"></div>
+            </div>
+            <div style="display: none;" id="bottom" class="userId"><%= data.id %> </div>
+            <a href="#bottomm" id="toBottom" style="display: none;">hi</a>
+            <div class="input">
+                <input type="text">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        linkActive(5)
+        var text = document.querySelector(".input input");
+        text.addEventListener("change",function(){
+            sendMessage()
+        });
+
+        window.onload = function(){
+            var toBottom = document.querySelector("#toBottom");
+            toBottom.click();
+        }
+    </script>
+</body>
+</html>

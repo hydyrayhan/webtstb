@@ -75,6 +75,23 @@
                 <div class="formInputs addHabar form2">
 
                 </div>
+                <div class="formInputs addHabar">
+                    <div class="box imgBox">
+                        <div class="headerCon">
+                            <div class="suratHeader">
+                                <label for="">Faýl [PDF] giriziň:</label>
+                                <label for="sowdaSurat">Faýl goşmak <img src="/pictures/icon/plus.svg" alt=""></label>
+                                <input type="file" onchange="takeImg(event)" id="sowdaSurat" style="display: none;">
+                            </div>
+                        </div>
+                        <label for="" class="imgsCon">
+                            <!-- js bilen bir tag gelyar surat yok bolondo default surat gelyan -->
+                            <div class="imgCon pdfCon">
+                                <!-- js bilen doldurylyar surat goyulyar -->
+                            </div>
+                        </label>
+                    </div>
+                </div>
 
 
             <div class="submitCon">
@@ -89,6 +106,77 @@
 
 
 
+        <!-- picture show when i choose from file -->
+    <script>
+        var imgCount = 0;
+        var delCount = 0;
+        var pdfs = [];
+        function takeImg(event){
+            if(event.target.files[0] != undefined){
+                var imgCon = document.querySelector(".imgCon");
+                imgCon.innerHTML += `
+                                    <div class="div pdf ${delCount}">
+                                        <img class="img" src="/pictures/icon/pdfRed.png" alt="hjhjhj">
+                                        <div class="imgDelete" onclick="delImg(${delCount})"><img src="/pictures/icon/delete.svg"  alt=""></div>
+                                        <div class="name"></div>
+                                    </div>`;
+                
+                var img = document.querySelectorAll(".imgCon .div .name");
+
+                img[imgCount].textContent = event.target.files[0].name;
+                var obj = {
+                    id:delCount,
+                    event:event.target.files[0]
+                }
+                imgCount+=1;
+                delCount+=1;
+                pdfs.push(obj);
+                imgLen();
+            }
+        }
+
+        function delImg(san){
+            var imgCon = document.querySelectorAll(".imgCon .div");
+            for(var i = 0; i<pdfs.length; i++){
+                if(pdfs[i].id == san){
+                    pdfs.splice(i,1);
+                }
+            }
+
+            for(var i = 0; i<imgCon.length ; i++){
+                var a = imgCon[i].classList.contains(san);
+                if(a){
+                    imgCon[i].remove();
+                    break;
+                }
+            }
+            
+            imgCount-=1;
+            imgLen();
+        }
+
+        var bool = false;
+        function imgLen(){
+            if(pdfs.length==0){
+                var imgsCon = document.querySelector(".imgsCon");
+                var imgCon = document.querySelector(".imgCon");
+                imgCon.style.height = "0";
+                var old = imgsCon.innerHTML;
+                imgsCon.innerHTML = `<div class="noneImg">
+                                        <img style="filter: invert(1); opacity:0.7; width:30px" src="/pictures/icon/pdf.svg" alt="">
+                                    </div>`+old;
+                bool = true;
+            }else if(pdfs.length == 1 && bool){
+                var imgNone = document.querySelector(".noneImg");
+                imgNone.remove();
+                var imgCon = document.querySelector(".imgCon");
+                imgCon.style.height = "200px";
+                bool = false;
+            }
+        }
+        imgLen();
+        /////////////////////////////
+    </script>
 
 
 
@@ -216,6 +304,7 @@
         submit.addEventListener("submit",async function(e){
             e.preventDefault()
             if(oneTime){
+                oneTime = false;
                 var inputs = document.querySelectorAll("#identifier input");
                 var data = {
                     tm:'<%=data.tm%>',
@@ -256,17 +345,38 @@
                     hemmeSurat = true;
                 }
 
+                // pdf uchin gerek
+                var pdfArr = [];
+                for(var i = 0; i<pdfs.length; i++){
+                    pdfArr.push(pdfs[i].event);
+                }
+                ////////////
+
+                
+
                 if(hemmeSurat){
                     var res = await dataSend(data,'<%=host%>/constructor/subCategory');
-                    console.log(res);
                     if(typeof(res.id) == 'number'){
-                        if(arr.length>0){
-                            var data = await imgSend(arr,'<%=host%>/constructor/addPic?id='+res.id);
+                        // pdf ucin
+                        var bool = false;
+                        if(pdfArr.length>0){
+                            var data = await imgSend(pdfArr,'<%=host%>/constructor/addFile?id='+res.id);
                             if(data.status == 200){
-                                location.replace('/admin/subConstructor/<%=id%>');
+                                bool = true;
                             }
                         }else{
-                            location.replace('/admin/subConstructor/<%=id%>');
+                            bool = true;
+                        }
+                        ///////////
+                        if(bool){
+                            if(arr.length>0){
+                                var data = await imgSend(arr,'<%=host%>/constructor/addPic?id='+res.id);
+                                if(data.status == 200){
+                                    location.replace('/admin/subConstructor/<%=id%>');
+                                }
+                            }else{
+                                location.replace('/admin/subConstructor/<%=id%>');
+                            }
                         }
                     }
                 }else{

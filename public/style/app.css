@@ -144,7 +144,7 @@
   background: white;
   height: 0vh;
   min-width: 100%;
-  z-index: 1000000;
+  z-index: 100000000;
   position: absolute;
   opacity: 0.9;
   overflow: hidden;
@@ -2000,6 +2000,150 @@ body {
 
 .searchPage .exit svg {
   cursor: pointer;
+}
+
+.chatContainer {
+  position: fixed;
+  z-index: 10000000;
+  bottom: 20px;
+  right: 2.5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.chatContainer .textPage {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  width: 400px;
+  height: 700px;
+  max-height: 500px;
+  background: green;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 640px) {
+  .chatContainer .textPage {
+    height: 400px;
+    width: 100%;
+  }
+}
+
+.chatContainer .textPage .textHeader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 15px;
+  background-color: #2058D4;
+  color: white;
+}
+
+.chatContainer .textPage .texts {
+  background: #d9d9d9;
+  height: 410px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+@media (max-width: 640px) {
+  .chatContainer .textPage .texts {
+    height: 315px;
+  }
+}
+
+.chatContainer .textPage .texts .admin {
+  margin: 10px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.chatContainer .textPage .texts .admin span {
+  background: #b8baf4;
+  margin-right: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.chatContainer .textPage .texts .user {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  margin: 10px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.chatContainer .textPage .writePage {
+  background: white;
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.chatContainer .textPage .writePage input {
+  height: 40px;
+  width: 90%;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.chatContainer .textPage .writePage input::-webkit-scrollbar {
+  display: none;
+}
+
+.chatContainer .textPage .writePage img {
+  cursor: pointer;
+}
+
+.chatContainer .chatBtn {
+  background: #999999;
+  width: 30px;
+  height: 30px;
+  padding: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.chatContainer .chatBtn img {
+  width: 100%;
 }
 
 @font-face {
@@ -4813,5 +4957,76 @@ section.consultation .container .text {
 
 .box .shablon .imgKeep .img img {
   width: 100%;
+}
+
+.chatCon {
+  margin-top: 30px;
+  height: 70vh;
+  padding-top: 20px;
+  overflow-y: auto;
+  padding-left: 10px;
+}
+
+.chatCon a {
+  text-decoration: none;
+  color: #f1f1f1;
+}
+
+.chatCon a .oneHat {
+  background: #3e4049;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 15px 0;
+}
+
+.chatCon a .oneUnread {
+  background-color: #635f5f;
+  font-weight: 600;
+}
+
+.chatCon .chat {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.chatCon .chat span {
+  background: #3e4049;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 15px;
+  border-radius: 10px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.chatCon .admin {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.chatCon .admin span {
+  margin-right: 20px !important;
+}
+
+.chatCon .user {
+  margin-bottom: 55px;
+}
+
+.input input {
+  outline: none;
+  border: none;
+  width: 400px;
+  padding: 15px;
+  font-size: 18px;
+  background: #f1f1f1;
+}
+
+.chatTable {
+  margin-bottom: 30px;
 }
 /*# sourceMappingURL=app.css.map */

@@ -3,7 +3,10 @@ const axios = require('axios');
 const bodyParser = require("body-parser");
 const fs = require("fs")
 require("dotenv").config({path:"./config/config.env"});
-const host = process.env.HOST;
+// const host = process.env.HOST;
+// const host = 'http://192.168.1.108:5000'
+const host = 'http://10.192.168.51:5000';
+// const host = 'http://192.168.27.142:5000';
 const app = express(); 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -17,6 +20,7 @@ app.use('/img',express.static(__dirname+"public/pictures"));
 
 const fileUpload = require("express-fileupload");
 const { send } = require("process");
+const { data } = require("jquery");
 app.use(fileUpload())
 
 
@@ -569,9 +573,27 @@ app.get("/admin/:page",async function(req,res){
     }
     console.log(data.data);
     res.render('admin/statistika',{name:"Statistika",host,data:data.data});
+  }else if(page == 'messages'){
+    try{
+      data = await axios.get(`${host}/chat/getAll`);
+    }catch(e){
+      console.log(e);
+    }
+    console.log(data.data)
+    res.render('admin/chat',{name:"Hatlar",host,data:data.data});
   }
 })
 
+app.get("/admin/messages/:id", async function(req,res){
+  var data;
+  try{
+    data = await axios.get(`${host}/chat/getOne?id=${req.params.id}`);
+  }catch(e){
+    console.log(e);
+  }
+  console.log(data.data);
+  res.render("admin/oneChat",{name:"Hatlar ",host,data:data.data});
+})
 
 // page post
 app.post("/admin/:page",function(req,res){

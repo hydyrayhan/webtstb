@@ -516,3 +516,66 @@
         }
     }
 }
+
+.chatCon{
+    margin-top: 30px;
+    height: 70vh;
+    padding-top: 20px;
+    overflow-y: auto;
+    
+    padding-left: 10px;
+    a{
+        .oneHat{
+            background: #3e4049;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        text-decoration: none;
+        color: $adminWhite;
+        .oneUnread{
+            background-color: #635f5f;
+            font-weight: 600;
+        }
+    }
+    .chat{
+        width: 100%;
+        margin-bottom: 10px;
+        span{
+            background: #3e4049;
+            box-sizing: border-box;
+            padding: 15px;
+            border-radius: 10px;
+            width: fit-content;
+        }
+    }
+    .admin{
+        display: flex;
+        justify-content: flex-end;
+        span{
+            margin-right: 20px !important;
+        }
+    }
+    .user{
+        margin-bottom: 55px;
+    }
+}
+.input{
+    // margin-bottom: 50px;
+    input{
+        outline: none;
+        border: none;
+        width: 400px;
+        padding: 15px;
+        font-size: 18px;
+        background: $adminWhite;
+    }
+}
+
+.chatTable{
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
+    // align-items: space-between;
+    margin-bottom: 30px;
+}

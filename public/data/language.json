@@ -17,11 +17,11 @@
     "newsCenter":"Press-center",
     "news":"<span></span>News",
     "newss":"News",
-    "events":"<span></span>Events announcement",
+    "events":"<span></span>Events and announcements",
     "gazet":"<span></span>\"Rysgal\" Newspaper",
     "seeAll":"Show all",
     "swk":"Industries and enterprises",
-    "brandHeader":"Companies - TUIET members",
+    "brandHeader":"Companies - UIET members",
     "welayatBolum":"Regional departments",
     "sponserler":"Our partners",
     "gowurak":"More",
@@ -29,12 +29,12 @@
     "okadyldy":"studies",
     "bizBilen":"Entrepreneurs with us",
     "prejectler":"Completed projects",
-    "sizBilenIshleyas":"We've been helping you work for 13 years",
+    "sizBilenIshleyas":"years we've been helping you to work",
     "geljekgiOkadyldy":"Trained future entrepreneurs",
     "goniTelefon":"Reception phones",
     "address":"Аddress",
     "email":"E-mail",
-    "spptBarada":"About TUIET",
+    "spptBarada":"About UIET",
     "dontKnow":"Confidentiality",
     "jogap":"Contact with us",
     "watched":"Visits",
@@ -65,7 +65,8 @@
     "parolUnutmak":"Forgot the password",
     "exit":"Close",
     "faks":"Fax",
-    "bashSahypa":"Main page"
+    "bashSahypa":"Main page",
+    "chatHeader":"Open line of UIET"
   },
   "TM":{
     "TM":"Türkmen",
@@ -85,7 +86,7 @@
     "newsCenter":"Press-merkezi",
     "news":"<span></span>Habarlar",
     "newss":"Täzelikler",
-    "events":"<span></span>Çäreleriň bildirşleri",
+    "events":"<span></span>Çäreler we bildirşler",
     "gazet":"<span></span>\"Rysgal\" gazeti",
     "seeAll":"Ählisini gör",
     "swk":"Pudaklar we kärhanalar",
@@ -97,7 +98,7 @@
     "okadyldy":"&nbsp;okuwy geçenler",
     "bizBilen":"Biz bilen bolan telekeçileriň sany",
     "prejectler":"Tamamlanan taslamalar",
-    "sizBilenIshleyas":"Biz size 13 ýyldan bäri işlemäge ýardam berýäris",
+    "sizBilenIshleyas":" ýyldan bäri işlemäge ýardam berýäris",
     "geljekgiOkadyldy":"Bilim alan geljekki telekeçileriň sany",
     "goniTelefon":"Kabulahananyň telefon belgileri",
     "address":"Salgysy",
@@ -133,7 +134,8 @@
     "parolUnutmak":"Açarsözüni unutdyňyzmy?",
     "exit":"Ýapmak",
     "faks":"Faks",
-    "bashSahypa":"Baş sahypa"
+    "bashSahypa":"Baş sahypa",
+    "chatHeader":"TSTB açyk ulgamy"
   },
   "RU":{
     "TM":"Türkmen",
@@ -153,7 +155,7 @@
     "newsCenter":"Пресс-центр",
     "news":"<span></span>Новости",
     "newss":"Новости",
-    "events":"<span></span>Анонсы мероприятий",
+    "events":"<span></span>События и анонсы",
     "gazet":"<span></span>Газета \"Rysgal\"",
     "seeAll":"Смотреть все",
     "swk":"Отрасли и предприятия",
@@ -165,7 +167,7 @@
     "okadyldy":"обучено",
     "bizBilen":"Предпринимателей уже с нами",
     "prejectler":"Завершенных проектов",
-    "sizBilenIshleyas":"Мы помогаем вам работать уже 13 лет",
+    "sizBilenIshleyas":"лет мы помогаем вам работать",
     "geljekgiOkadyldy":"Обучено будущих предпринимателей",
     "goniTelefon":"Телефоны приемной",
     "address":"Адрес",
@@ -201,6 +203,7 @@
     "parolUnutmak":"Забыли пароль?",
     "exit":"Закрыт",
     "faks":"Факс",
-    "bashSahypa":"Главная страница"
+    "bashSahypa":"Главная страница",
+    "chatHeader":"Открытая линия TSTB"
   }
 }
