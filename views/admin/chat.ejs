@@ -9,6 +9,9 @@
         .right{
             display: none !important;
         }
+        .unread{
+            background: #717171 !important;
+        }
     </style>
 </head>
 <body>
@@ -19,7 +22,11 @@
         <div class="adminTable chatCon">
             <% for( let i = 0; i < data.length; i++ ) { %>
                 <% if (data[i].chat !== null) { %>
-                    <a href="/admin/messages/<%= data[i].id %>"><div class="oneHat"><%= data[i].chat[data[i].chat.length-1].message %></div></a>
+                    <% if (data[i].isRead == 'true') { %>
+                        <a href="/admin/messages/<%= data[i].id %>"><div class="oneHat"><%= data[i].chat[data[i].chat.length-1].message %></div></a>
+                    <% }else{ %>
+                        <a href="/admin/messages/<%= data[i].id %>"><div class="oneHat unread"><%= data[i].chat[data[i].chat.length-1].message %></div></a>
+                    <% } %>
                 <% } %>
             <% } %>
         </div>

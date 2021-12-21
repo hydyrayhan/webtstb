@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .mazmun{
-            min-height:1000px;
-            /* background: red; */
-        }
+        
     </style>
 </head>
 <body>
@@ -20,18 +17,16 @@
         <div class="container">
             <div class="agzalarHeader"  data-dynamic data-tm="<%= data.name.TM %>" data-ru="<%= data.name.RU %>" data-en="<%= data.name.EN %>"><%= data.name.TM %> </div>
             <!-- <div class="subName">Интернет-торговля</div> -->
-            <% for( let i = 0; i < data.header.TM.length; i++ ) { %>
-                <div class="mazmunHeader"  data-dynamic data-tm="<%= data.header.TM[i] %>" data-ru="<%= data.header.RU[i] %>" data-en="<%= data.header.EN[i] %>"></div>
+                <div class="mazmunHeader"  data-dynamic data-tm="<%= data.header.TM[0] %>" data-ru="<%= data.header.RU[0] %>" data-en="<%= data.header.EN[0] %>"></div>
     
                 <div class="mazmunCon">
-                    <div class="mazmun"  data-dynamic data-tm="<%= data.body.TM[i] %>" data-ru="<%= data.body.RU[i] %>" data-en="<%= data.body.EN[i] %>">
-                        <%= data.body.TM[i] %> 
+                    <div class="mazmun"  data-dynamic data-tm="<%= data.body.TM[0] %>" data-ru="<%= data.body.RU[0] %>" data-en="<%= data.body.EN[0] %>">
+                        <%= data.body.TM[0] %> 
                     </div>
-                    <div class="mazmun">
-                        <!-- Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium, illum veniam odio id temporibus consequuntur tempore aspernatur? Esse voluptatem quos quae quaerat ex, est quidem illo modi unde rem delectus aspernatur harum facere sunt architecto doloremque quis at quia voluptatibus. Eveniet numquam perferendis necessitatibus natus aperiam accusamus odit eos exercitationem! Eius quos quaerat porro, ipsum repellendus ipsa omnis dicta et, exercitationem iure voluptas necessitatibus beatae ab, error fugiat ex possimus vel modi eum in! Recusandae deleniti dolor porro vel doloremque velit natus aperiam atque reiciendis laborum illum veniam cum nam cumque fugiat rerum enim eius hic, rem nisi! Temporibus perferendis, repellat optio recusandae ipsam rerum hic dignissimos, earum repudiandae eum ea sapiente. Laudantium vero aperiam molestiae, recusandae cum quaerat adipisci consequatur sapiente tempora corrupti, omnis commodi repellendus, deserunt unde. Nisi ut ullam eligendi reprehenderit? Doloremque perferendis corrupti tempore autem quasi, exercitationem suscipit molestiae, excepturi maxime blanditiis molestias aut fuga facilis consequuntur nobis praesentium explicabo nulla laboriosam repudiandae velit? Impedit error qui itaque dolorum quia ullam accusantium sed delectus praesentium cum, harum nostrum quibusdam totam nesciunt nisi iusto sit. Rerum veritatis possimus debitis dolores quaerat dolorem assumenda porro doloribus quibusdam eveniet enim maiores odio, facere, mollitia unde! Laudantium omnis odio veniam. -->
+                    <div class="mazmun"  data-dynamic data-tm="<%= data.body.TM[1] %>" data-ru="<%= data.body.RU[1] %>" data-en="<%= data.body.EN[1] %>">
+                        <%= data.body.TM[1] %> 
                     </div>
                 </div>
-            <% } %>
 
             <% if (data.files !== null) { %>
                 <div  class="adress" id="fileDownloadUcin" data-content>Flayllar download etmek uchin</div>
@@ -71,10 +66,6 @@
                   cover:true
                 }).mount();
             });
-     </script>
-     <script>
-         var text = document.querySelector(".mazmun");
-         console.log(text.textContent);
      </script>
 </body>
 </html>

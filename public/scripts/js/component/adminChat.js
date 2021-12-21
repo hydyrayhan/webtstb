@@ -4,23 +4,12 @@ socket.on("new-messages",()=>{
     alert("You have new messages")
 })
 
-
-
+var audio = document.querySelector("#audio");
 
 
 var userId='';
 var globalText='';
 
-// text.addEventListener("change",function(){
-//     var chatText = text.value;
-//     globalText = text.value;
-//     text.value = ''
-//     var obj ={
-//         text:chatText,
-//         user:userId.textContent
-//     }
-//     socket.emit("admin-send",(obj));
-// })
 
 function sendMessage(){
     var text = document.querySelector(".input input");
@@ -33,6 +22,7 @@ function sendMessage(){
         user:userId.textContent
     }
     socket.emit("admin-send",(obj));
+    audio.play();
 }
 
 socket.on("admin-success",()=>{
@@ -48,6 +38,8 @@ socket.on('chat-message',(message)=>{
     var messageId = message.message.id;
     var messageText = message.message.message;
     var pageHeader = document.querySelector(".pageHeader");
+
+    audio.play();
     if(pageHeader.innerHTML == '<span>Hatlar</span>'){
     }else if(pageHeader.innerHTML == '<span>Hatlar </span>'){
         var text = document.querySelector(".userId");

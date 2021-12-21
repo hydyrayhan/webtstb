@@ -25,10 +25,29 @@
             <div class="pageHeader"><span><%= name  %></span></div>
             <div class="right">
                 <a href="/admin/<%= name %>/add"><div class="text">Täze döretmek</div><div class="headerBtn"><img src="/pictures/icon/plus.svg"/></div></a>
-                <div class="headerBtn"><img src="/pictures/icon/login.svg" alt=""></div>
-                <div class="headerBtn"><label for="gozleg" class="iconGozleg"><img src="/pictures/icon/gozleg.svg" alt=""></label><span><input id="gozleg" type="text" placeholder="Gozlemek..."></span></div>
+                <a href="/" class="headerBtn"><img src="/pictures/icon/login.svg" alt=""></a>
+                <form id="searchForm" action="/admin/<%= name %>/search" method="post">
+                    <div class="headerBtn"><label for="gozleg" class="iconGozleg"><img src="/pictures/icon/gozleg.svg" alt=""></label><span><input id="gozleg" name="search" type="text" placeholder="Gozlemek..."></span></div>
+                </form>
             </div>
         </div>
     </div>
+
+    <!-- admin log out bolandanson bashka birin girip bilmez yaly -->
+    <script>
+        var del = document.querySelector("a.headerBtn");
+
+        del.addEventListener("click",function(){
+            sessionStorage.setItem("tstbAdmin","");
+        })
+    </script>
+
+    <!-- searching -->
+    <script>
+        var searchBtn = document.querySelector('#searchForm');
+        searchBtn.addEventListener("submit",function(e){
+            
+        })
+    </script>
 </body>
 </html>

@@ -8,7 +8,7 @@ function active(num){
   statics[num].classList.add("active");
 }
 
-// session 
+// session for statistica
 async function user(host){
   let user = sessionStorage.getItem('tstbEnter');
   if(user==undefined){
@@ -19,6 +19,13 @@ async function user(host){
     sessionStorage.setItem("tstbEnter","true");
   } 
 }
+
+
+
+
+
+
+
 
 
 
@@ -44,13 +51,19 @@ async function changeLanguage(){
 
   // Onclick event Lang Links
   function onClicklangLinks() {
+    
     langLinks.forEach(a => {
         a.addEventListener('click',async (e) => {
+          
             let cookieLang = a.id;
             let chosenLang = a.textContent;
             let languagee = cookieLang.toUpperCase()
+            //fdsfdsfd
             document.cookie = `language = ${languagee}`
             document.cookie = `showLanguage = ${chosenLang}`
+            ///fdsfdsfdsf
+            localStorage.setItem('language',languagee)
+            localStorage.setItem('showLanguage',chosenLang)
             changeLanguage();
             return changeUiLanguage(languagee)       
         })
@@ -58,40 +71,36 @@ async function changeLanguage(){
   }
 var a = 0;
 var sene = document.querySelectorAll(".date");
-  async function changeUiLanguage(languagee) {
-    const contents = await getContents();
-    navLang.innerText = contents[languagee][languagee];
-    contentNodes.forEach(node => {
-      if(node.tagName == 'INPUT'){
-        if(node.id == 'toFollow'){
-          node.setAttribute('value',contents[languagee][node.id])
-        }else{
-          node.setAttribute('placeholder',contents[languagee][node.id]);
-        }
+async function changeUiLanguage(languagee) {
+  
+  const contents = await getContents();
+  navLang.innerText = contents[languagee][languagee];
+  contentNodes.forEach(node => {
+    if(node.tagName == 'INPUT'){
+      if(node.id == 'toFollow'){
+        node.setAttribute('value',contents[languagee][node.id])
+      }else{
+        node.setAttribute('placeholder',contents[languagee][node.id]);
       }
-      node.innerHTML = contents[languagee][node.id]
-    });
-    dynamicNodes.forEach(node => {
-      node.innerHTML = node.dataset[languagee.toLowerCase()]
-    })
-    
-    
-  }
+    }
+    node.innerHTML = contents[languagee][node.id]
+  });
+  dynamicNodes.forEach(node => {
+    node.innerHTML = node.dataset[languagee.toLowerCase()]
+  })    
+}
 
   async function getLangFromLocalStorage(){
 
-    var data = document.cookie;
-    data = data.split(";")
-    data = data.map(cookie => cookie.split('='));
-    data = data.reduce((accumulator,[key,value])=>
-    ({...accumulator, [key.trim()]: decodeURIComponent(value)}),{});
     
-    lang = data.language
-    if(data.language){
-        return changeUiLanguage(lang);
+    
+    var lang = localStorage.getItem("language");
+    
+    if(lang == null){
+      return changeUiLanguage('TM')
     }
     else{
-        return changeUiLanguage('TM')
+      return changeUiLanguage(lang);
     }
   }
 
@@ -99,7 +108,3 @@ var sene = document.querySelectorAll(".date");
 }
 changeLanguage();
 
-
-var seneler = {
-
-}

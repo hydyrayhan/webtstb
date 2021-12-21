@@ -183,10 +183,13 @@
           <img src="/pictures/icon/chat.png" alt="">
         </div>
       </div>
-
+      <audio id="audio" src="/pictures/icon/message.mp3"></audio>
+      
 
       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
       <script src="/scripts/js/component/fileSend.js"></script>
+
+     
       
       <!-- search -->
       <script>
@@ -242,14 +245,16 @@
           data = await menuData(host);
           
           for(var i = 0; i<data.length; i++){
-              menus.innerHTML += `<div class="menubox">
-                  <div class="headbox" data-dynamic data-ru="${data[i].name.RU}" data-tm="${data[i].name.TM}" data-en="${data[i].name.EN}">${data[i].name.TM}</div>
-                                </div>`
-              var list = document.querySelectorAll(".menubox");
-              for(var j = 0; j<data[i].constructors.length; j++){
-                list[i+1].innerHTML += `<a class="list" href="/constructor/${data[i].constructors[j].id}" data-dynamic data-ru="${data[i].constructors[j].name.RU}" data-tm="${data[i].constructors[j].name.TM}" data-en="${data[i].constructors[j].name.EN}">${data[i].constructors[j].name.TM}</a>`
-              }
+            
+            menus.innerHTML += `<div class="menubox">
+                <div class="headbox" data-dynamic data-ru="${data[i].name.RU}" data-tm="${data[i].name.TM}" data-en="${data[i].name.EN}">${data[i].name.TM}</div>
+                              </div>`
+            var list = document.querySelectorAll(".menubox");
+            for(var j = 0; j<data[i].constructors.length; j++){
+              list[i+1].innerHTML += `<a class="list" href="/constructor/${data[i].constructors[j].id}" data-dynamic data-ru="${data[i].constructors[j].name.RU}" data-tm="${data[i].constructors[j].name.TM}" data-en="${data[i].constructors[j].name.EN}">${data[i].constructors[j].name.TM}</a>`
             }
+          }
+          await changeLanguage();
         }
         menuTake();
 

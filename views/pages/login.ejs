@@ -28,6 +28,7 @@
     
     <%- include ('../src/bottom.ejs') %>
     <script src="/scripts/js/component/fileSend.js"></script>
+    <!-- admin admin page girende ishleyar access beryar -->
     <script>
         var submit = document.querySelector("#a");
         submit.addEventListener("submit",async function(e){
@@ -40,7 +41,7 @@
 
             var res = await dataSend(data,`<%=host%>/login`);
             if(res.status == 200){
-                sessionStorage.setItem('tstbAdmin','Ok');
+                sessionStorage.setItem('tstbAdmin',`'fkds;kfjaeurpeif jkd sf;dk sfjds0ffdsfde923 9rjdfjaj fdk;ljf'jgfjd;lsfjdsf;sfjdsljf;lsjalfjhlkjahjf hdsafjfjdkfljdsljf'`);
                 location.replace('/admin/habarlar');
             }else{
                 var err = document.querySelector(".error");
@@ -48,6 +49,8 @@
             }
         })
     </script>
+
+
     <script>
         const eye = document.querySelector(".eye");
         const pass = document.querySelector("input[type='password']");

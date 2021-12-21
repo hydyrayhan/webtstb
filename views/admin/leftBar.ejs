@@ -183,18 +183,19 @@
         </div>
     </div>
 
+    <audio id="audio">
+        <source src="/pictures/icon/message.mp3">
+    </audio>
 
 
 
     <!-- login parol yalnysh bolanda -->
     <script>
         var session=sessionStorage.getItem("tstbAdmin")
-        if(session==null){
+        if(session!==`'fkds;kfjaeurpeif jkd sf;dk sfjds0ffdsfde923 9rjdfjaj fdk;ljf'jgfjd;lsfjdsf;sfjdsljf;lsjalfjhlkjahjf hdsafjfjdkfljdsljf'`){
             window.location.replace("/admin")
         }
     </script>
-
-    <!-- <script src="/scripts/sendData.js"></script> -->
 
     <!-- drop down function -->
     <script>
@@ -214,75 +215,75 @@
         }
     </script>
 
-<!-- Pop up functions -->
-<script>
-        function popup(){
-            var bg = document.querySelector(".bg");
-            var katPop = document.querySelector(".kategoriPopup");
-            var addKat = document.querySelector(".addKategori");
-    
-            addKat.addEventListener("click",function(){
-                bg.style.display = "block";
-                katPop.style.display = "block";
-            })
-            bg.addEventListener("click",function(){
-                bg.style.display = "none";
-                katPop.style.display = "none";
-            })
-        }
-
-        function popup2(){
-            var bg = document.querySelector(".bg2");
-            var katPop = document.querySelector(".kategoriPopup2");
-            var addKat = document.querySelector(".addKategori2");
-            var element = document.querySelectorAll(".element img");
-    
-            addKat.addEventListener("click",function(){
-                bg.style.display = "block";
-                katPop.style.display = "block";
-            })
-            bg.addEventListener("click",function(){
-                bg.style.display = "none";
-                katPop.style.display = "none";
-            })
-        }
-
-        async function popupDel(event,id,host){
-            const option = {
-                method : "DELETE",
-                headers: {"Accept":"application/json","Content-type":"application/json"},
-                body:JSON.stringify({teg:id})
+    <!-- Pop up functions -->
+    <script>
+            function popup(){
+                var bg = document.querySelector(".bg");
+                var katPop = document.querySelector(".kategoriPopup");
+                var addKat = document.querySelector(".addKategori");
+        
+                addKat.addEventListener("click",function(){
+                    bg.style.display = "block";
+                    katPop.style.display = "block";
+                })
+                bg.addEventListener("click",function(){
+                    bg.style.display = "none";
+                    katPop.style.display = "none";
+                })
             }
 
-            var tag = await fetch(`${host}/news/tags?id=${id}`,option);
-            if(tag.status == 200){
-                location.reload();
+            function popup2(){
+                var bg = document.querySelector(".bg2");
+                var katPop = document.querySelector(".kategoriPopup2");
+                var addKat = document.querySelector(".addKategori2");
+                var element = document.querySelectorAll(".element img");
+        
+                addKat.addEventListener("click",function(){
+                    bg.style.display = "block";
+                    katPop.style.display = "block";
+                })
+                bg.addEventListener("click",function(){
+                    bg.style.display = "none";
+                    katPop.style.display = "none";
+                })
             }
+
+            async function popupDel(event,id,host){
+                const option = {
+                    method : "DELETE",
+                    headers: {"Accept":"application/json","Content-type":"application/json"},
+                    body:JSON.stringify({teg:id})
+                }
+
+                var tag = await fetch(`${host}/news/tags?id=${id}`,option);
+                if(tag.status == 200){
+                    location.reload();
+                }
+            }
+    </script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/scripts/js/component/fileSend.js"></script>
+
+    <!-- active -->
+    <script>
+        
+        function dropActive(el,inEl){
+            inEl = inEl*2-1;
+            var a = document.querySelectorAll('.dropdown-btn');
+            var b = document.querySelectorAll(".dropdown-container");
+            // a[el].classList.add("active");
+            a[el].click();
+            b[el].childNodes[inEl].style.color = "white";
+            b[el].childNodes[inEl].style.background = "rgba(159, 162, 180, 0.08)";
         }
-</script>
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="/scripts/js/component/fileSend.js"></script>
-
-<!-- active -->
-<script>
-    
-    function dropActive(el,inEl){
-        inEl = inEl*2-1;
-        var a = document.querySelectorAll('.dropdown-btn');
-        var b = document.querySelectorAll(".dropdown-container");
-        // a[el].classList.add("active");
-        a[el].click();
-        b[el].childNodes[inEl].style.color = "white";
-        b[el].childNodes[inEl].style.background = "rgba(159, 162, 180, 0.08)";
-    }
-
-    function linkActive(el){
-        var a = document.querySelectorAll(".yeke")
-        a[el].style.color = "white";
-        a[el].style.background = "rgba(159, 162, 180, 0.08)";
-        a[el].classList.add("active");
-    }
-</script>
-</body>
+        function linkActive(el){
+            var a = document.querySelectorAll(".yeke")
+            a[el].style.color = "white";
+            a[el].style.background = "rgba(159, 162, 180, 0.08)";
+            a[el].classList.add("active");
+        }
+    </script>
+    </body>
 </html>

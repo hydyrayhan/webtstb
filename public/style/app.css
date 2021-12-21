@@ -1757,7 +1757,7 @@ body {
 
 .container nav .right div {
   cursor: pointer;
-  z-index: 10000000;
+  z-index: 1000000000;
 }
 
 .container nav .right .search {
@@ -2004,7 +2004,7 @@ body {
 
 .chatContainer {
   position: fixed;
-  z-index: 10000000;
+  z-index: 1000000000;
   bottom: 20px;
   right: 2.5%;
   display: -webkit-box;

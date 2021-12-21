@@ -18,98 +18,77 @@
         </div>
     <form  method="POST" id="identifier">
         <div class="adminTable">
-                <div class="formInputs addHabar form1" style="display: none;">
-                    <div class="box">
-                        <div class="boxHeader">Türkmençe giriziň</div>
-                        <div class="headerCon">
-                            <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                            <input type="text" name="headerTM" class="header tm">
-                        </div>
-                        <div class="mazmun">Mazmuny:</div>
-                        <div class="editorCon">
-                            <div id="editor">
-                                <p></p>
-                            </div>
+            <div class="formInputs addHabar form1">
+                <div class="box">
+                    <div class="boxHeader">Türkmençe giriziň</div>
+                    <div class="headerCon">
+                        <label class="mazmuny" for="">Mazmunyň headeri:</label>
+                        <input type="text" name="headerTM" class="header tm" value="<%= data.header.TM[0] %>" required>
+                    </div>
+                    <div class="mazmun">Mazmuny:</div>
+                    <div class="editorCon">
+                        <div id="editor">
+                            <p></p>
                         </div>
                     </div>
-                    
-                    <div class="box">
-                        <div class="boxHeader">Rusça giriziň</div>
-                        <div class="headerCon">
-                            <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerRU" id="topTa" class="header ru">
-                        </div>
-                        <div class="mazmun">Mazmuny:</div>
-                        <div class="editorCon">
-                            <div id="editor2">
-                                <p></p>
-                            </div>
+                    <div class="mazmun">Mazmuny 2:</div>
+                    <div class="editorCon">
+                        <div id="editor2">
+                            <p></p>
                         </div>
                     </div>
-                    
-                    <div class="box">
-                        <div class="boxHeader">Iňlisçe giriziň</div>
-                        <div class="headerCon">
-                            <label class="mazmuny" for="topTas">Mazmunyň headeri:</label>
-                            <input type="text" name="headerEN" id="topTas" class="header en">
-                        </div>
-                        <div class="mazmun">Mazmuny:</div>
-                        <div class="editorCon">
-                            <div id="editor3">
-                                <p></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="box"></div>
+                
                 </div>
 
-
-
-                <div class="formInputs addHabar form2">
-
-                    <% for( let i = 2; i <= data.header.TM.length+1; i++ ) { %>
-                        <div class="box">
-                            <div class="boxHeader">Türkmençe giriziň</div>
-                            <div class="headerCon">
-                                <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                                <input type="text" name="headerTM" class="header tm" value="<%= data.header.TM[i-2] %>">
-                            </div>
-                            <div class="mazmun">Mazmuny:</div>
-                            <div class="editorCon">
-                                <div id="editor">
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box">
-                            <div class="boxHeader">Rusça giriziň</div>
-                            <div class="headerCon">
-                                <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                                <input type="text" name="headerRU" id="topTa" class="header ru" value="<%= data.header.RU[i-2] %>">
-                            </div>
-                            <div class="mazmun">Mazmuny:</div>
-                            <div class="editorCon">
-                                <div id="editor2">
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box">
-                            <div class="boxHeader">Iňlisçe giriziň</div>
-                            <div class="headerCon">
-                                <label class="mazmuny" for="topTas">Mazmunyň headeri:</label>
-                                <input type="text" name="headerEN" id="topTas" class="header en" value="<%= data.header.EN[i-2] %>">
-                            </div>
-                            <div class="mazmun">Mazmuny:</div>
-                            <div class="editorCon">
-                                <div id="editor3">
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box"></div>
-                        <% } %>
+                <textarea name="text" style="display: none;" id="hiddenArea" cols="30"  rows="10"></textarea>
+                <textarea name="text2" id="hiddenArea2" style="display: none;" cols="30"  rows="10"></textarea>
+                <textarea name="text3" id="hiddenArea3" cols="30" style="display: none;" rows="10"></textarea>
+                
+                <div class="box">
+                    <div class="boxHeader">Rusça giriziň</div>
+                    <div class="headerCon">
+                        <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
+                        <input type="text" name="headerRU" id="topTa" class="header ru" value="<%= data.header.RU[0] %>" required>
                     </div>
+                    <div class="mazmun">Mazmuny:</div>
+                    <div class="editorCon">
+                        <div id="editor3">
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="mazmun">Mazmuny 2:</div>
+                    <div class="editorCon">
+                        <div id="editor4">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="boxHeader">Iňlisçe giriziň</div>
+                    <div class="headerCon">
+                        <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
+                        <input type="text" name="headerEN" id="topTa" class="header en" value="<%= data.header.EN[0] %>" required>
+                    </div>
+                    <div class="mazmun">Mazmuny:</div>
+                    <div class="editorCon">
+                        <div id="editor5">
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="mazmun">Mazmuny 2:</div>
+                    <div class="editorCon">
+                        <div id="editor6">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="box"></div>
+            </div>
+
+
+
+               
                     <div style="display: none;" class="hide"></div>
                     <div style="display: none;" class="hide2"></div>
                     <div style="display: none;" class="hide3"></div>
@@ -176,7 +155,6 @@
                     <% } %>
 
             <div class="submitCon">
-                <div class="more">Ýene maglumat goşmak</div>
                 <input class="save" type="submit" value="Ýatda sakla">
             </div>
 
@@ -322,73 +300,6 @@
 
 
 
-<!-- load more -->
-    <script>
-        var form2 = document.querySelector("form .form2");
-        var form1 = document.querySelector("form .form1");
-
-        var moreBtn = document.querySelector(".more");
-        
-        var tmheader = [];
-        var ruheader = [];
-        var enheader = [];
-        var squllSan = 3;
-        var cssSana = 0;
-        moreBtn.addEventListener("click",function(){
-            var tm = document.querySelectorAll(".tm");
-            var ru = document.querySelectorAll('.ru');
-            var en = document.querySelectorAll('.en');
-            for(var i = 1; i<tm.length; i++){
-                tmheader[i-1] = tm[i].value;
-                ruheader[i-1] = ru[i].value;
-                enheader[i-1] = en[i].value;
-            }
-            form2.innerHTML += form1.innerHTML;
-
-            
-
-            // header valuelaryny goyup beryar;
-            var tm = document.querySelectorAll(".tm");
-            var ru = document.querySelectorAll('.ru');
-            var en = document.querySelectorAll('.en');
-            for(var i = 1; i<tm.length-1; i++){
-                tm[i].value = tmheader[i-1];
-                ru[i].value = ruheader[i-1];
-                en[i].value = enheader[i-1];
-            }
-
-
-            //quill ishletmek uchin
-            var editor1 = document.querySelectorAll('.editorCon');
-            editor1[squllSan].innerHTML = `<div id="editor${squllSan}" class="editorr">
-                                            <p></p>
-                                        </div>`
-            editor1[squllSan+1].innerHTML = `<div id="editor${squllSan+1}" class="editorr">
-                                            <p></p>
-                                        </div>`
-            editor1[squllSan+2].innerHTML = `<div id="editor${squllSan+2}" class='editorr'>
-                                            <p></p>
-                                        </div>`
-
-
-            var edit = document.querySelectorAll(".editorr");
-            for(var i =0; i<cssSana; i++){
-                editor1[3+i].childNodes[0].remove();
-                
-            }
-            cssSana+=3;
-
-            var edit = document.querySelectorAll(".editorr");
-            for(var i = 0; i<edit.length; i++){
-                var editor = new Quill(edit[i], {
-                    modules: { },
-                    theme: 'snow'
-                });
-            }
-            squllSan+=3;
-        })
-    </script>
-
 
 <!-- formdan maglumat jemlemek -->
     <script>
@@ -421,30 +332,20 @@
                 var ru = document.querySelectorAll('.ru');
                 var en = document.querySelectorAll('.en');
                 var text = document.querySelectorAll(".ql-editor");
+                console.log(text);
     
     
+                data.tmheader.push(tm[0].value);
+                data.ruheader.push(ru[0].value);
+                data.enheader.push(en[0].value);
                 var headFull = true;
-                var san = 3;
-                for(var i = 1; i<tm.length; i++){
-                    if(tm[i].value=='' && ru[i].value == '' &&  en[i].value == ''){
-                        data.bosh.push(i-1);
-                    }else{
-                        data.tmheader.push(tm[i].value);
-                        data.ruheader.push(ru[i].value);
-                        data.enheader.push(en[i].value);
-                        data.text.push(text[san].innerHTML);
-                        data.text2.push(text[san+1].innerHTML);
-                        data.text3.push(text[san+2].innerHTML);
-                    }
-                    san+=3;
-                    if(tm[i].value=='' || ru[i].value == '' ||  en[i].value == ''){
-                        if(tm[i].value=='' && ru[i].value == '' &&  en[i].value == ''){
-    
-                        }else{
-                            headFull = false;
-                        }
-                    }
-                }
+
+                data.text.push(text[0].innerHTML);
+                data.text.push(text[1].innerHTML);
+                data.text2.push(text[2].innerHTML);
+                data.text2.push(text[3].innerHTML);
+                data.text3.push(text[4].innerHTML);
+                data.text3.push(text[5].innerHTML);
                 
                 // pdf ucin
                 var pdfAdd = false;
@@ -457,6 +358,8 @@
                     }
                     pdfArr.push(pdfs[i].event);
                 }
+                console.log(text);
+                console.log(data);
                 ////////////
                
                 if(headFull){
@@ -500,6 +403,18 @@
         modules: { },
         theme: 'snow'
       });
+      var editor = new Quill('#editor4', {
+        modules: { },
+        theme: 'snow'
+      });
+      var editor = new Quill('#editor5', {
+        modules: { },
+        theme: 'snow'
+      });
+      var editor = new Quill('#editor6', {
+        modules: { },
+        theme: 'snow'
+      });
     </script> 
 
 
@@ -509,36 +424,6 @@
             var tmheader = '<%=data.header.TM%>';
             tmheader = tmheader.split(",");
             var editor1 = document.querySelectorAll('.editorCon');
-            
-            for(var i = 0; i<tmheader.length; i++){
-                
-                editor1[squllSan].innerHTML = `<div id="editor${squllSan}" class="editorr">
-                                                <p></p>
-                                            </div>`
-                editor1[squllSan+1].innerHTML = `<div id="editor${squllSan+1}" class="editorr">
-                                                <p></p>
-                                            </div>`
-                editor1[squllSan+2].innerHTML = `<div id="editor${squllSan+2}" class='editorr'>
-                                                <p></p>
-                                            </div>`
-    
-    
-                var edit = document.querySelectorAll(".editorr");
-                for(var j =0; j<cssSana; j++){
-                    editor1[3+j].childNodes[0].remove();
-                    
-                }
-                cssSana+=3;
-    
-                var edit = document.querySelectorAll(".editorr");
-                for(var j = 0; j<edit.length; j++){
-                    var editor = new Quill(edit[j], {
-                        modules: { },
-                        theme: 'snow'
-                    });
-                }
-                squllSan+=3;
-            }
 
 
             var hide = document.querySelector(".hide");
@@ -551,7 +436,7 @@
             bodyru = bodyru.split(',')
             var bodyen = '<%=data.body.EN%>'
             bodyen = bodyen.split(',');
-            var sana = 3;
+            var sana = 0;
             
             for(var i = 0; i<bodytm.length; i++){
                 hide.innerHTML = bodytm[i];

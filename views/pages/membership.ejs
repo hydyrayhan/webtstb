@@ -9,21 +9,36 @@
 <body>
     <%- include ('../src/header.ejs') %>
 
-
-    <div class="container">
-        <div class="agzalarHeader" data-content id="membership">Членство</div>
-        <!-- <div class="document">Нормативные документы</div> -->
-        <div class="columns">
-            <% for( let i = 0; i < data.body.en.length; i++ ) { %>
-                <div class="col">
-                    <div class="name" data-dynamic data-tm="<%= data.header.tm[i] %>" data-ru="<%= data.header.ru[i] %>" data-en="<%= data.header.en[i] %>"><%= data.header.tm[i] %></div>
-                    <div class="content" data-dynamic data-tm="<%= data.body.tm[i] %>" data-ru="<%= data.body.ru[i] %>" data-en="<%=data.body.en[i]%>">
-                        <%= data.body.tm[i] %> 
+    <section class="agzalar">
+        <div class="container">
+            <div class="agzalarHeader" data-content id="membership">Членство</div>
+            <!-- <div class="document">Нормативные документы</div> -->
+            <div class="columns">
+                <% for( let i = 0; i < data.body.en.length; i++ ) { %>
+                    <div class="col">
+                        <div class="name" data-dynamic data-tm="<%= data.header.tm[i] %>" data-ru="<%= data.header.ru[i] %>" data-en="<%= data.header.en[i] %>"><%= data.header.tm[i] %></div>
+                        <div class="content" data-dynamic data-tm="<%= data.body.tm[i] %>" data-ru="<%= data.body.ru[i] %>" data-en="<%=data.body.en[i]%>">
+                            <%= data.body.tm[i] %> 
+                        </div>
                     </div>
+                <% } %>
+            </div>
+            <% if (data.files !== null) { %>
+                <div  class="adress" id="fileDownloadUcin" data-content>Flayllar download etmek uchin</div>
+                <div style="margin-bottom:50px;" class="filesCon">
+                    <% for( let i = 0; i < data.files.length; i++ ) { %>
+                        <div class="file">
+                            <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
+                            <div class="fileRight">
+                                <div class="name"><a href="" download><%=data.files[i].filename%></a></div>
+                                <div class="kb"><%= data.files[i].size %> </div>
+                            </div>
+                        </div>
+                    <% } %>
                 </div>
             <% } %>
         </div>
-    </div>
+    </section>
 
     <%- include ('../src/bottom.ejs') %>
 

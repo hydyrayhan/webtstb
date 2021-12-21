@@ -31,6 +31,12 @@
                                 <p></p>
                             </div>
                         </div>
+                        <div class="mazmun">Mazmuny 2:</div>
+                        <div class="editorCon">
+                            <div id="editor2">
+                                <p></p>
+                            </div>
+                        </div>
                     
                     </div>
     
@@ -46,7 +52,13 @@
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
-                            <div id="editor2">
+                            <div id="editor3">
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="mazmun">Mazmuny 2:</div>
+                        <div class="editorCon">
+                            <div id="editor4">
                                 <p></p>
                             </div>
                         </div>
@@ -59,17 +71,21 @@
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
-                            <div id="editor3">
+                            <div id="editor5">
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="mazmun">Mazmuny 2:</div>
+                        <div class="editorCon">
+                            <div id="editor6">
                                 <p></p>
                             </div>
                         </div>
                     </div>
+                   
                     <div class="box"></div>
                 </div>
-                
-                <div class="formInputs addHabar form2">
-
-                </div>
+               
                 <div class="formInputs addHabar">
                     <div class="box imgBox">
                         <div class="headerCon">
@@ -90,7 +106,7 @@
 
 
             <div class="submitCon">
-                <div class="more">Ýene maglumat goşmak</div>
+                <!-- <div class="more">Ýene maglumat goşmak</div> -->
                 <input class="save" type="submit" value="Ýatda sakla">
             </div>
 
@@ -174,12 +190,12 @@
         
 
 
-        <!-- worked more button -->
+        <!-- worked more button
         <script>
             var form2 = document.querySelector("form .form2");
             var form1 = document.querySelector("form .form1");
     
-            var moreBtn = document.querySelector(".more");
+            // var moreBtn = document.querySelector(".more");
             var suratId = 1;
             var suratPlace = 3;
             var tmheader = [];
@@ -187,60 +203,7 @@
             var enheader = [];
             var squllSan = 3;
             var cssSana = 0;
-            moreBtn.addEventListener("click",function(){
-                var tm = document.querySelectorAll(".tm");
-                var ru = document.querySelectorAll('.ru');
-                var en = document.querySelectorAll('.en');
-                for(var i = 1; i<tm.length; i++){
-                    tmheader[i-1] = tm[i].value;
-                    ruheader[i-1] = ru[i].value;
-                    enheader[i-1] = en[i].value;
-                }
-                
-                form2.innerHTML += form1.innerHTML;
-   
-    
-                // header valuelaryny goyup beryar;
-                var tm = document.querySelectorAll(".tm");
-                var ru = document.querySelectorAll('.ru');
-                var en = document.querySelectorAll('.en');
-                for(var i = 1; i<tm.length-1; i++){
-                    tm[i].value = tmheader[i-1];
-                    ru[i].value = ruheader[i-1];
-                    en[i].value = enheader[i-1];
-                }
-    
-    
-                //quill ishletmek uchin
-                var editor1 = document.querySelectorAll('.editorCon');
-                editor1[squllSan].innerHTML = `<div id="editor${squllSan}" class="editorr">
-                                                <p></p>
-                                            </div>`
-                editor1[squllSan+1].innerHTML = `<div id="editor${squllSan+1}" class="editorr">
-                                                <p></p>
-                                            </div>`
-                editor1[squllSan+2].innerHTML = `<div id="editor${squllSan+2}" class='editorr'>
-                                                <p></p>
-                                            </div>`
-    
-    
-                var edit = document.querySelectorAll(".editorr");
-                for(var i =0; i<cssSana; i++){
-                    editor1[3+i].childNodes[0].remove();
-                    
-                }
-                cssSana+=3;
-    
-                var edit = document.querySelectorAll(".editorr");
-                for(var i = 0; i<edit.length; i++){
-                    var editor = new Quill(edit[i], {
-                        modules: { },
-                        theme: 'snow'
-                    });
-                }
-                squllSan+=3;
-            })
-        </script>
+        </script> -->
     
        
      
@@ -258,6 +221,18 @@
             theme: 'snow'
           });
           var editor = new Quill('#editor3', {
+            modules: { },
+            theme: 'snow'
+          });
+          var editor = new Quill('#editor4', {
+            modules: { },
+            theme: 'snow'
+          });
+          var editor = new Quill('#editor5', {
+            modules: { },
+            theme: 'snow'
+          });
+          var editor = new Quill('#editor6', {
             modules: { },
             theme: 'snow'
           });
@@ -290,16 +265,17 @@
                 var en = document.querySelectorAll('.en');
                 var text = document.querySelectorAll(".ql-editor");
     
-                var a = 0;
-                for(var i = 0; i<tm.length;i++){
-                    data.tmheader.push(tm[i].value);
-                    data.ruheader.push(ru[i].value);
-                    data.enheader.push(en[i].value);
-                    data.text.push(text[a].innerHTML);
-                    data.text2.push(text[a+1].innerHTML);
-                    data.text3.push(text[a+2].innerHTML);
-                    a+=3;
-                }
+                data.tmheader.push(tm[0].value);
+                data.ruheader.push(ru[0].value);
+                data.enheader.push(en[0].value);
+                
+                data.text.push(text[0].innerHTML);
+                data.text.push(text[1].innerHTML);
+                data.text2.push(text[2].innerHTML);
+                data.text2.push(text[3].innerHTML);
+                data.text3.push(text[4].innerHTML);
+                data.text3.push(text[5].innerHTML);
+                
                  // pdf uchin gerek
                  var pdfArr = [];
                 for(var i = 0; i<pdfs.length; i++){
@@ -308,6 +284,7 @@
                 ////////////
                 console.log(data);
                 var res = await dataSend(data,'<%=host%>/constructor/subCategory');
+                
                 if(typeof(res.id) == 'number'){
                     if(pdfArr.length>0){
                         var data = await imgSend(pdfArr,'<%=host%>/constructor/addFile?id='+res.id);

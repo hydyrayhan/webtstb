@@ -414,10 +414,6 @@ app.get("/admin",function(req,res){
 
 
 // Get functions
-
-
-let banner
-let katigoriya
 app.get("/admin/:page",async function(req,res){
   var page = req.params.page;
   var data;
@@ -584,6 +580,76 @@ app.get("/admin/:page",async function(req,res){
   }
 })
 
+// search
+app.post("/admin/:page/search",async function(req,res){
+  var page = req.params.page;
+  var text = req.body.search;
+  
+  var link;
+  var ejs;
+  if(page == "Habarlar"){
+    link = "news";
+    ejs = "habarlar"
+  }
+  else if(page == "Bildirişler"){
+    link = "events"
+    ejs = "bildirishler"
+  }
+  else if(page == "Gazetler"){
+    link = "newspapers"
+    ejs = "gazetler"
+  }
+  else if(page == "TSTB agzalary"){
+    link = ""
+    ejs = "kompaniyalar"
+  }
+  else if(page == "Internet Söwda"){
+    link = ""
+    ejs = "internetSowda"
+  }
+  else if(page == "Iş meýilnamasy"){
+    link = ""
+    ejs = "plans"
+  } 
+  else if(page == "Ygtyýarnama"){
+    link = ""
+    ejs = "lisense"
+  } 
+  else if(page == "Pudaklar"){
+    link = ""
+    ejs = "pudaklar"
+  } 
+  else if(page == "Kärhanalar"){
+    link = ""
+    ejs = "karhanalar"
+  } 
+  else if(page == "Partniýorlar"){
+    link = ""
+    ejs = "partniyorlar"
+  }
+  else if(page == "Constructor kategoriýalar"){
+    link = "constructor"
+    ejs = "constructor"
+  }
+  else if(page == "Sub constructorlar"){
+    link = "constructor"
+    ejs = "subConstructor";
+  }
+  var data;
+  console.log(link);
+  console.log(text);
+  try{
+    data = await axios.get(`${host}/${link}/searchAdmin?text=${text}`);
+  }catch(error){
+    console.log(error)
+  }
+  console.log(data.data)
+  res.render(`admin/${ejs}`,{data:data.data,name:page,host:host});
+  
+})
+
+
+// message page
 app.get("/admin/messages/:id", async function(req,res){
   var data;
   try{
