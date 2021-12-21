@@ -3,9 +3,9 @@ const axios = require('axios');
 const bodyParser = require("body-parser");
 const fs = require("fs")
 require("dotenv").config({path:"./config/config.env"});
-// const host = process.env.HOST;
-// const host = 'http://192.168.1.108:5000'
-const host = 'http://10.192.168.51:5000';
+const host = process.env.HOST;
+// const host = 'http://192.168.1.104:5000'
+// const host = 'http://10.192.168.51:5000';
 // const host = 'http://192.168.27.142:5000';
 const app = express(); 
 app.use(express.json())
@@ -600,37 +600,37 @@ app.post("/admin/:page/search",async function(req,res){
     ejs = "gazetler"
   }
   else if(page == "TSTB agzalary"){
-    link = ""
+    link = "members"
     ejs = "kompaniyalar"
   }
   else if(page == "Internet Söwda"){
-    link = ""
+    link = "commerce"
     ejs = "internetSowda"
   }
   else if(page == "Iş meýilnamasy"){
-    link = ""
+    link = "menu/bussiness"
     ejs = "plans"
   } 
   else if(page == "Ygtyýarnama"){
-    link = ""
+    link = "menu/license"
     ejs = "lisense"
   } 
-  else if(page == "Pudaklar"){
-    link = ""
-    ejs = "pudaklar"
-  } 
-  else if(page == "Kärhanalar"){
-    link = ""
-    ejs = "karhanalar"
-  } 
-  else if(page == "Partniýorlar"){
-    link = ""
-    ejs = "partniyorlar"
-  }
-  else if(page == "Constructor kategoriýalar"){
-    link = "constructor"
-    ejs = "constructor"
-  }
+  // else if(page == "Pudaklar"){
+  //   link = ""
+  //   ejs = "pudaklar"
+  // } 
+  // else if(page == "Kärhanalar"){
+  //   link = ""
+  //   ejs = "karhanalar"
+  // } 
+  // else if(page == "Partniýorlar"){
+  //   link = ""
+  //   ejs = "partniyorlar"
+  // }
+  // else if(page == "Constructor kategoriýalar"){
+  //   link = "constructor"
+  //   ejs = "constructor"
+  // }
   else if(page == "Sub constructorlar"){
     link = "constructor"
     ejs = "subConstructor";
