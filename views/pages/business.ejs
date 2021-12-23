@@ -30,7 +30,7 @@
             <div class="selection">
                 <div class="agzaDefinition" data-content id="kategoriDefinition">Выберите категорию:</div>
                 <select name="" id="kategori">
-                    <option value="" style="display: none;">Kategori sayla</option>
+                    <option value="" style="display: none;" id="kategoriDefinition" data-content >Kategori saýla</option>
                     <% if (data !=undefined) { %>
                         <% for( let i = 0; i < data.length; i++ ) { %>
                             <option value="<%= data[i].name.TM %> " data-dynamic data-tm="<%= data[i].name.TM %>" data-ru="<%= data[i].name.RU %>" data-en="<%= data[i].name.EN %>"><%= data[i].name.TM %> </option>
