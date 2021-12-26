@@ -82,11 +82,9 @@
 
 
             <div class="submitCon">
-                <div class="more" onclick="moreBtn()">Ýene maglumat goşmak</div>
+                <div class="more" onclick="moreBtn()" style="display: none;">Ýene maglumat goşmak</div>
                 <input class="save" type="submit" value="Ýatda sakla">
             </div>
-
-
         </div>
     </form>
 
@@ -107,7 +105,7 @@
 
     <!-- picture show when i choose from file and send to node with fetch-->
     <script>
-
+        
 
         var imgs = [];
         var loadFile = function(event,el) {
@@ -225,7 +223,9 @@
             var edit = document.querySelectorAll(".editorr");
             for(var i = 0; i<edit.length; i++){
                 var editor = new Quill(edit[i], {
-                    modules: { },
+                    modules: {
+                        toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]] 
+                     },
                     theme: 'snow'
                 });
             }
@@ -271,6 +271,12 @@
                         data.text.push(text[san].innerHTML);
                         data.text2.push(text[san+1].innerHTML);
                         data.text3.push(text[san+2].innerHTML);
+                        // var newText = giveSpace(text[san].innerHTML);
+                        // data.text.push(newText);
+                        // var newText2 = giveSpace(text[san+1].innerHTML);
+                        // data.text2.push(newText2);
+                        // var newText3 = giveSpace(text[san+2].innerHTML);
+                        // data.text3.push(newText3);
                     }
                     san+=3;
                     if(tm[i].value=='' || ru[i].value == '' ||  en[i].value == ''){
@@ -302,7 +308,8 @@
                         }
                     }
                 }
-                
+
+                console.log(data);
                 if(headFull){
                     var res = await dataSend(data,'<%=host%>/menu/editAboutUs');
                     
@@ -335,17 +342,17 @@
     <!-- Initialize Quill editor  3sany text area hidden inpuda hem salyar-->
     <script>
         var editor = new Quill('#editor', {
-            modules: { },
-            theme: 'snow'
+            modules: {},
+            theme: 'snow',
         });
 
         var editor = new Quill('#editor2', {
-            modules: { },
+            modules: {},
             theme: 'snow'
         });
 
         var editor = new Quill('#editor3', {
-            modules: { },
+            modules: {},
             theme: 'snow'
         });
     </script> 
@@ -368,8 +375,6 @@
         
         var san = 3;
         for(var i = 0; i<Number(a); i++){
-
-            // console.log(bodytm[i],4893792743987243)
             hide.innerHTML = bodytm[i];
             hide2.innerHTML = bodyru[i];
             hide3.innerHTML = bodyen[i];

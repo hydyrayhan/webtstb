@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/app.css">
     <link rel="stylesheet" href="/style/src/materialize/splide.min.css">
-    <script defer src="http://192.168.5.198:3000/socket.io/socket.io.js"></script>
+    <!-- <script defer src="http://192.168.5.198:3000/socket.io/socket.io.js"></script> -->
+    <script defer src="http://10.192.168.51:3000/socket.io/socket.io.js"></script>
     <script defer src="/scripts/js/component/chat.js"></script>
     <title>TSTB</title>
     <style>
@@ -263,12 +264,16 @@
         menu.addEventListener("click",async function(){
           menular.style.height = '100vh';
           body.style.position = 'fixed';
+          menular.style.overflow = 'auto';
           body.style.width = "100%";
+          menular.style.paddingBottom = '150px'
         })
         exit.addEventListener("click",function(){
           // menular.style.left = "100%";
           menular.style.height = '0';
           body.style.position= 'static';
+          menular.style.overflow = 'hidden';
+          // menular.style.paddingBottom = '0';
         })
       </script>
       <!-- screen size uytgande dillerin yeri chalshylyar -->

@@ -3,8 +3,8 @@ const axios = require('axios');
 const bodyParser = require("body-parser");
 const fs = require("fs")
 require("dotenv").config({path:"./config/config.env"});
-const host = process.env.HOST;
-// const host = 'http://192.168.1.104:5000'
+// const host = process.env.HOST;
+const host = 'http://192.168.1.104:5000'
 // const host = 'http://10.192.168.51:5000';
 // const host = 'http://192.168.27.142:5000';
 const app = express(); 
@@ -404,9 +404,7 @@ app.get("/admin",function(req,res){
 
 
 
-
-
-
+  
 
 
 
@@ -896,9 +894,6 @@ app.get("/admin/:page/edit/:id",async function(req,res){
   }
 })
 
-
-
- 
 
 
 // page delete

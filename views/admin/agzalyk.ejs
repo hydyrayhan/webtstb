@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+    <style>
+    </style>
 </head>
 
 <body>
@@ -141,7 +142,7 @@
                     <% } %>
 
             <div class="submitCon">
-                <div class="more">Ýene maglumat goşmak</div>
+                <div class="more" style="display: none;">Ýene maglumat goşmak</div>
                 <input class="save" type="submit" value="Ýatda sakla">
             </div>
             <% if (data.files != null) { %>
@@ -152,10 +153,10 @@
                 <div class="fileTake" style="display: none;"></div>
             <% } %>
 
+
         </div>
     </form>
     </div>
-
 
     <!-- picture show when i choose from file -->
     <script>
@@ -278,7 +279,7 @@
 
 
 
-<!-- load more -->
+<!--  load more  ishlemeyar yone-->
     <script>
         var form2 = document.querySelector("form .form2");
         var form1 = document.querySelector("form .form1");
@@ -348,10 +349,12 @@
 
 <!-- formdan maglumat jemlemek -->
     <script>
+
         var submit = document.querySelector("#identifier");
         var oneTime = true;
         submit.addEventListener("submit",async function(e){
             e.preventDefault()
+            console.log("ishledim")
             if(oneTime){
                 oneTime = false;
                 var inputs = document.querySelectorAll("#identifier input");
@@ -406,7 +409,7 @@
                 }
                 ////////////
                 
-                
+                console.log(data);
                
                 if(headFull){
                     var res = await dataSend(data,'<%=host%>/menu/editMembership');
@@ -432,13 +435,16 @@
         })
         dropActive(2,3);
     </script>
- 
+
+
     <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
  
     <!-- Initialize Quill editor  3sany text area hidden inpuda hem salyar-->
     <script>
       var editor = new Quill('#editor', {
-        modules: { },
+        modules: {
+            
+         },
         theme: 'snow'
       });
       var editor = new Quill('#editor2', {
@@ -449,6 +455,8 @@
         modules: { },
         theme: 'snow'
       });
+
+     
     </script> 
 
 
@@ -459,7 +467,7 @@
             tmheader = tmheader.split(",");
             var editor1 = document.querySelectorAll('.editorCon');
             
-            for(var i = 0; i<tmheader.length; i++){
+            for(var i = 0; i<1; i++){
                 
                 editor1[squllSan].innerHTML = `<div id="editor${squllSan}" class="editorr">
                                                 <p></p>
@@ -478,17 +486,19 @@
                     
                 }
                 cssSana+=3;
+
     
                 var edit = document.querySelectorAll(".editorr");
                 for(var j = 0; j<edit.length; j++){
                     var editor = new Quill(edit[j], {
-                        modules: { },
+                        modules: {
+                            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
+                         },
                         theme: 'snow'
                     });
                 }
                 squllSan+=3;
             }
-
 
             var hide = document.querySelector(".hide");
             var hide2 = document.querySelector(".hide2");

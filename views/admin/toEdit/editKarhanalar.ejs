@@ -23,11 +23,11 @@
                         <div class="boxHeader">Türkmençe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Kärhana ady:</label>
-                            <input type="text" name="tm" class="header" value="<%=data.name.tm%>">
+                            <input type="text" name="tm" class="header inputss" value="<%=data.name.tm%>">
                         </div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                            <input type="text" name="headerTM" class="header" value="<%=data.title.tm%>">
+                            <input type="text" name="headerTM" class="header inputss" value="<%=data.title.tm%>">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -54,11 +54,11 @@
                         <div class="boxHeader">Rusça giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Kärhana ady:</label>
-                            <input type="text" name="ru" class="header" value="<%=data.name.ru%>">
+                            <input type="text" name="ru" class="header inputss" value="<%=data.name.ru%>">
                         </div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerRU" id="topTa" class="header" value="<%=data.title.ru%>">
+                            <input type="text" name="headerRU" id="topTa" class="header inputss" value="<%=data.title.ru%>">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -71,11 +71,11 @@
                         <div class="boxHeader">Iňlisçe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Kärhana ady:</label>
-                            <input type="text" name="en" class="header" value="<%=data.name.en%>">
+                            <input type="text" name="en" class="header inputss" value="<%=data.name.en%>">
                         </div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerEN" id="topTa" class="header" value="<%=data.title.en%>">
+                            <input type="text" name="headerEN" id="topTa" class="header inputss" value="<%=data.title.en%>">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -123,15 +123,24 @@
     <script>
         
       var editor = new Quill('#editor', {
-        modules: { },
+        modules: { 
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]] 
+
+        },
         theme: 'snow'
       });
       var editor = new Quill('#editor2', {
-        modules: { },
+        modules: {
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]] 
+
+         },
         theme: 'snow'
       });
       var editor = new Quill('#editor3', {
-        modules: { },
+        modules: { 
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]] 
+
+        },
         theme: 'snow'
       });
 
@@ -160,17 +169,17 @@
             e.preventDefault();
             if(oneTime){
                 oneTime = false;
-                var inputs = document.querySelectorAll('#identifier input');
+                var inputs = document.querySelectorAll('#identifier .inputss');
                 var text = document.querySelector("#editor .ql-editor");
                 var text2 = document.querySelector("#editor2 .ql-editor");
                 var text3 = document.querySelector("#editor3 .ql-editor");
                 var data = {
                     tm:inputs[0].value,
                     tmheader:inputs[1].value,
-                    ru:inputs[4].value,
-                    ruheader:inputs[5].value,
-                    en:inputs[7].value,
-                    enheader:inputs[8].value,
+                    ru:inputs[2].value,
+                    ruheader:inputs[3].value,
+                    en:inputs[4].value,
+                    enheader:inputs[5].value,
                     text:text.innerHTML,
                     text2:text2.innerHTML,
                     text3:text3.innerHTML

@@ -150,6 +150,8 @@
   overflow: hidden;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .menuPage .exit {
@@ -1234,7 +1236,8 @@
 }
 
 .container .sponserler .sponser .left .sponserLogo {
-  max-width: 70px;
+  background: green;
+  max-width: 70%;
   max-height: 70px;
   min-width: 70px;
   min-height: 70px;
@@ -1252,6 +1255,7 @@
 
 .container .sponserler .sponser .left .sponserLogo img {
   width: 100%;
+  height: 70px;
 }
 
 .container .sponserler .sponser .icon {
@@ -3743,7 +3747,7 @@ section.consultation .container .text {
 }
 
 .login .container .header {
-  margin-top: 120px;
+  margin-top: 35px;
   font-size: 36px;
   font-weight: 600;
   color: #10181F;
@@ -3893,6 +3897,11 @@ section.consultation .container .text {
 
 .agzalar .container .mazmun {
   margin-bottom: 70px;
+}
+
+.agzalar .container .mazmun img {
+  margin-left: 10%;
+  width: 80%;
 }
 
 .agzalar .container .videoCon {
@@ -4292,10 +4301,6 @@ section.consultation .container .text {
   fill: black;
 }
 
-.adminTable .ql-snow .ql-picker {
-  display: none;
-}
-
 .adminTable .ql-toolbar {
   border: none;
   border-bottom: 0.5px solid #717484;
@@ -4306,16 +4311,11 @@ section.consultation .container .text {
 }
 
 .adminTable .ql-toolbar.ql-snow {
-  padding: 0;
-}
-
-.adminTable .ql-toolbar.ql-snow span {
-  border-right: 0.5px solid #717484;
   padding: 5px;
 }
 
-.adminTable .ql-toolbar.ql-snow .ql-formats:first-child {
-  display: none;
+.adminTable .ql-toolbar.ql-snow span.ql-formats {
+  border-right: 0.5px solid #717484;
 }
 
 .adminTable .editorCon {
@@ -5028,5 +5028,9 @@ section.consultation .container .text {
 
 .chatTable {
   margin-bottom: 30px;
+}
+
+.ql-align-center {
+  text-align: center;
 }
 /*# sourceMappingURL=app.css.map */

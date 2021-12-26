@@ -93,7 +93,9 @@
     // left: 100%;
     opacity: 0.9;
     overflow: hidden;
+    // padding-bottom: 150px;
     transition: 0.3s;
+    box-sizing: border-box;
     .exit{
         display: flex;
         justify-content: right;

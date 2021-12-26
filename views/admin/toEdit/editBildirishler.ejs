@@ -50,7 +50,7 @@
                     <div class="boxHeader">Türkmençe giriziň</div>
                     <div class="headerCon">
                         <label class="mazmuny" for="a">Mazmunyň headeri:</label>
-                        <input type="text" name="headerTM" id="a" required class="header" value="<%= data.header.TM %>">
+                        <input type="text" name="headerTM" id="a" required class="header inputs" value="<%= data.header.TM %>">
                     </div>
                     <div class="mazmun">Mazmuny:</div>
                     <div class="editorCon">
@@ -69,11 +69,11 @@
                     </div>
                     <div class="headerCon">
                         <label class="mazmuny" for="ady">Ady:</label>
-                        <input type="text" name="ady" id="ady" class="header" required value="<%= data.name %>">
+                        <input type="text" name="ady" id="ady" class="header inputs" required value="<%= data.name %>">
                     </div>
                     <div class="headerCon">
                         <label class="mazmuny" for="topTa">Täzelikler topary:</label>
-                        <input type="text" name="tazeliklerTopary" id="topTa" class="header" required value="<%= data.topar %>">
+                        <input type="text" name="tazeliklerTopary" id="topTa" class="header inputs" required value="<%= data.topar %>">
                     </div>
                     <div class="extraInputs" style="justify-content: space-between;">
                         
@@ -91,14 +91,14 @@
                             
                         <div class="date">
                             <div class="name">M.girizilen senesi:</div>
-                            <input type="date" name="date" required value="<%= data.date %>">
+                            <input type="date" name="date" class="inputs" required value="<%= data.date %>">
                         </div>
                         <div class="ishjen">
                             <div class="head">Işjeň:</div>
                             <% if (data.active=="true") { %>
-                                <input type="checkbox" checked name="habarIshjen" id="">
+                                <input type="checkbox" class="inputs" checked name="habarIshjen" id="">
                             <% }else{ %>
-                                <input type="checkbox"  name="habarIshjen" id="">
+                                <input type="checkbox" class="inputs" name="habarIshjen" id="">
                             <% } %> 
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                 <div class="boxHeader">Rusça giriziň</div>
                 <div class="headerCon">
                     <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                    <input type="text" name="headerRU" id="topTa" class="header" required value="<%= data.header.RU %>">
+                    <input type="text" name="headerRU" id="topTa" class="header inputs" required value="<%= data.header.RU %>">
                 </div>
                 <div class="mazmun">Mazmuny:</div>
                 <div class="editorCon">
@@ -128,7 +128,7 @@
                 <div class="boxHeader">Iňlisçe giriziň</div>
                 <div class="headerCon">
                     <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                    <input type="text" name="headerEN" id="topTa" class="header" required value="<%= data.header.EN %>">
+                    <input type="text" name="headerEN" id="topTa" class="header inputs" required value="<%= data.header.EN %>">
                 </div>
                 <div class="mazmun">Mazmuny:</div>
                 <div class="editorCon">
@@ -231,7 +231,7 @@
             e.preventDefault();
             if(oneTime){
                 oneTime = false;
-                var inputs = document.querySelectorAll("#identifier input");
+                var inputs = document.querySelectorAll("#identifier .inputs");
                 var area = document.querySelector(".editorCon #editor .ql-editor");
                 var area2 = document.querySelector(".editorCon #editor2 .ql-editor");
                 var area3 = document.querySelector(".editorCon #editor3 .ql-editor");
@@ -241,12 +241,12 @@
                     text3:area3.innerHTML,
                     tag:[],
                     headerTM:inputs[0].value,
-                    headerRU:inputs[7].value,
-                    headerEN:inputs[9].value,
-                    date:inputs[5].value,
-                    active:inputs[6].checked,
-                    name:inputs[3].value,
-                    topar:inputs[4].value
+                    headerRU:inputs[6].value,
+                    headerEN:inputs[7].value,
+                    date:inputs[4].value,
+                    active:inputs[5].checked,
+                    name:inputs[2].value,
+                    topar:inputs[3].value
                 }
                 
                 for(var i = 0; i<tegs.length; i++){
@@ -322,15 +322,24 @@
     <!-- Initialize Quill editor -->
     <script>
       var editor = new Quill('#editor', {
-        modules: { },
+        modules: { 
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
+
+        },
         theme: 'snow'
       });
       var editor = new Quill('#editor2', {
-        modules: { },
+        modules: {
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
+
+         },
         theme: 'snow'
       });
       var editor = new Quill('#editor3', {
-        modules: { },
+        modules: { 
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
+
+        },
         theme: 'snow'
       });
 

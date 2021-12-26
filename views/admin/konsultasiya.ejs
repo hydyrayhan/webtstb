@@ -25,7 +25,7 @@
                         <div class="boxHeader">Türkmençe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                            <input type="text" name="headerTM" class="header tm">
+                            <input type="text" name="headerTM" class="header tm inputs">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -53,7 +53,7 @@
                         <div class="boxHeader">Rusça giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerRU" id="topTa" class="header ru">
+                            <input type="text" name="headerRU" id="topTa" class="header ru inputs">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -66,7 +66,7 @@
                         <div class="boxHeader">Iňlisçe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerEN" id="topTa" class="header en">
+                            <input type="text" name="headerEN" id="topTa" class="header en inputs">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -212,14 +212,15 @@
             var edit = document.querySelectorAll(".editorr");
             for(var i =0; i<cssSana; i++){
                 editor1[3+i].childNodes[0].remove();
-                
             }
             cssSana+=3;
 
             var edit = document.querySelectorAll(".editorr");
             for(var i = 0; i<edit.length; i++){
                 var editor = new Quill(edit[i], {
-                    modules: { },
+                    modules: {
+                        toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
+                     },
                     theme: 'snow'
                 });
             }
@@ -241,7 +242,6 @@
             var hiddenText2 = document.querySelectorAll("#hiddenArea2");
             var hiddenText3 = document.querySelectorAll("#hiddenArea3");
 
-            
             var data = {
                 tmheader:[],
                 ruheader:[],

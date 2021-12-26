@@ -287,7 +287,10 @@
             var edit = document.querySelectorAll(".editorr");
             for(var i = 0; i<edit.length; i++){
                 var editor = new Quill(edit[i], {
-                    modules: { },
+                    modules: { 
+                        toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]] 
+
+                    },
                     theme: 'snow'
                 });
             }
@@ -353,7 +356,7 @@
                 ////////////
 
                 
-
+                // console.log(data);
                 if(hemmeSurat){
                     var res = await dataSend(data,'<%=host%>/constructor/subCategory');
                     if(typeof(res.id) == 'number'){
@@ -394,15 +397,24 @@
     <!-- Initialize Quill editor  3sany text area hidden inpuda hem salyar-->
     <script>
       var editor = new Quill('#editor', {
-        modules: { },
+        modules: {
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]] 
+
+         },
         theme: 'snow'
       });
       var editor = new Quill('#editor2', {
-        modules: { },
+        modules: { 
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]] 
+
+        },
         theme: 'snow'
       });
       var editor = new Quill('#editor3', {
-        modules: { },
+        modules: { 
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]] 
+
+        },
         theme: 'snow'
       });
     </script> 

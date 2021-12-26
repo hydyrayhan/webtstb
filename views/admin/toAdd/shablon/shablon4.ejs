@@ -287,7 +287,10 @@
             var edit = document.querySelectorAll(".editorr");
             for(var i = 0; i<edit.length; i++){
                 var editor = new Quill(edit[i], {
-                    modules: { },
+                    modules: { 
+                        toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]] 
+
+                    },
                     theme: 'snow'
                 });
             }
@@ -303,15 +306,24 @@
     <script>
         
       var editor = new Quill('#editor', {
-        modules: { },
+        modules: {
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]] 
+
+         },
         theme: 'snow'
       });
       var editor = new Quill('#editor2', {
-        modules: { },
+        modules: { 
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]] 
+
+        },
         theme: 'snow'
       });
       var editor = new Quill('#editor3', {
-        modules: { },
+        modules: { 
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]] 
+
+        },
         theme: 'snow'
       });
     </script> 
@@ -320,78 +332,80 @@
     <!-- formdan maglumat jemlemek -->
     <script>
         var submit = document.querySelector("#identifier");
-
+        var oneTime = true;
         submit.addEventListener("submit",async function(e){
             e.preventDefault()
-            var inputs = document.querySelectorAll("#identifier input");
-            var data = {
-                tm:'<%=data.tm%>',
-                ru:'<%=data.ru%>',
-                en:'<%=data.en%>',
-                banner:'<%=data.banner%>',
-                shablon:'<%=data.shablon%>',
-                tmheader:[],
-                ruheader:[],
-                enheader:[],
-                text:[],
-                text2:[],
-                text3:[],
-                category:'<%=id%>'
-            }
-
-            var tm = document.querySelectorAll('.tm');
-            var ru = document.querySelectorAll('.ru');
-            var en = document.querySelectorAll('.en');
-            var text = document.querySelectorAll(".ql-editor");
-
-            var a = 0;
-            for(var i = 0; i<tm.length;i++){
-                data.tmheader.push(tm[i].value);
-                data.ruheader.push(ru[i].value);
-                data.enheader.push(en[i].value);
-                data.text.push(text[a].innerHTML);
-                data.text2.push(text[a+1].innerHTML);
-                data.text3.push(text[a+2].innerHTML);
-                a+=3;
-            }
-            
-            
-            // console.log(imgs);
-            var arr = [];
-            for(var i = 0; i<imgs.length; i++){
-                arr.push(imgs[i].file);
-            }
-
-             // pdf uchin gerek
-             var pdfArr = [];
-            for(var i = 0; i<pdfs.length; i++){
-                pdfArr.push(pdfs[i].event);
-            }
-            ////////////
-
-            console.log(data);
-            console.log(arr);
-
-            var res = await dataSend(data,'<%=host%>/constructor/subCategory');
-            console.log(res);
-            if(typeof(res.id) == 'number'){
-                var bool = false;
-                if(pdfArr.length>0){
-                    var data = await imgSend(pdfArr,'<%=host%>/constructor/addFile?id='+res.id);
-                    if(data.status == 200){
-                        bool = true;
-                    }
-                }else{
-                    bool = true;
+            if(oneTime){
+                var inputs = document.querySelectorAll("#identifier input");
+                var data = {
+                    tm:'<%=data.tm%>',
+                    ru:'<%=data.ru%>',
+                    en:'<%=data.en%>',
+                    banner:'<%=data.banner%>',
+                    shablon:'<%=data.shablon%>',
+                    tmheader:[],
+                    ruheader:[],
+                    enheader:[],
+                    text:[],
+                    text2:[],
+                    text3:[],
+                    category:'<%=id%>'
                 }
-                if(bool){
-                    if(arr.length>0){
-                        var data = await imgSend(arr,'<%=host%>/constructor/addPic?id='+res.id);
+    
+                var tm = document.querySelectorAll('.tm');
+                var ru = document.querySelectorAll('.ru');
+                var en = document.querySelectorAll('.en');
+                var text = document.querySelectorAll(".ql-editor");
+    
+                var a = 0;
+                for(var i = 0; i<tm.length;i++){
+                    data.tmheader.push(tm[i].value);
+                    data.ruheader.push(ru[i].value);
+                    data.enheader.push(en[i].value);
+                    data.text.push(text[a].innerHTML);
+                    data.text2.push(text[a+1].innerHTML);
+                    data.text3.push(text[a+2].innerHTML);
+                    a+=3;
+                }
+                
+                
+                // console.log(imgs);
+                var arr = [];
+                for(var i = 0; i<imgs.length; i++){
+                    arr.push(imgs[i].file);
+                }
+    
+                 // pdf uchin gerek
+                 var pdfArr = [];
+                for(var i = 0; i<pdfs.length; i++){
+                    pdfArr.push(pdfs[i].event);
+                }
+                ////////////
+    
+                console.log(data);
+                console.log(arr);
+    
+                var res = await dataSend(data,'<%=host%>/constructor/subCategory');
+                console.log(res);
+                if(typeof(res.id) == 'number'){
+                    var bool = false;
+                    if(pdfArr.length>0){
+                        var data = await imgSend(pdfArr,'<%=host%>/constructor/addFile?id='+res.id);
                         if(data.status == 200){
-                            location.replace('/admin/subConstructor/<%=id%>');
+                            bool = true;
                         }
                     }else{
-                        location.replace('/admin/subConstructor/<%=id%>');
+                        bool = true;
+                    }
+                    if(bool){
+                        if(arr.length>0){
+                            var data = await imgSend(arr,'<%=host%>/constructor/addPic?id='+res.id);
+                            if(data.status == 200){
+                                location.replace('/admin/subConstructor/<%=id%>');
+                            }
+                        }else{
+                            location.replace('/admin/subConstructor/<%=id%>');
+                        }
                     }
                 }
             }

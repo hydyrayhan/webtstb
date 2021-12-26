@@ -23,7 +23,7 @@
                         <div class="boxHeader">Türkmençe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                            <input type="text" name="headerTM" class="header">
+                            <input type="text" name="headerTM" class="header inputs">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -53,7 +53,7 @@
                         <div class="boxHeader">Rusça giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerRU" id="topTa" class="header">
+                            <input type="text" name="headerRU" id="topTa" class="header inputs">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -66,7 +66,7 @@
                         <div class="boxHeader">Iňlisçe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerEN" id="topTa" class="header">
+                            <input type="text" name="headerEN" id="topTa" class="header inputs">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -166,14 +166,14 @@
             e.preventDefault();
             if(oneTime){
                 oneTime = false;
-                var inputs = document.querySelectorAll("#identifier input");
+                var inputs = document.querySelectorAll("#identifier .inputs");
                 var area = document.querySelector(".editorCon #editor .ql-editor");
                 var area2 = document.querySelector(".editorCon #editor2 .ql-editor");
                 var area3 = document.querySelector(".editorCon #editor3 .ql-editor");
                 var data = {
                     tmheader:inputs[0].value,
-                    ruheader:inputs[3].value,
-                    enheader:inputs[5].value,
+                    ruheader:inputs[1].value,
+                    enheader:inputs[2].value,
                     text:area.innerHTML,
                     text2:area2.innerHTML,
                     text3:area3.innerHTML
@@ -206,15 +206,24 @@
     <script>
         
       var editor = new Quill('#editor', {
-        modules: { },
+        modules: { 
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
+
+        },
         theme: 'snow'
       });
       var editor = new Quill('#editor2', {
-        modules: { },
+        modules: { 
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
+
+        },
         theme: 'snow'
       });
       var editor = new Quill('#editor3', {
-        modules: { },
+        modules: { 
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
+
+        },
         theme: 'snow'
       });
 

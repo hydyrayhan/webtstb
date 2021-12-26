@@ -195,7 +195,11 @@
         </div>
     </form>
     </div>
-
+    <% for( let i = 0; i < data.header.TM.length; i++ ) { %>
+        <div style="display: none;" class="tmbody"><%= data.body.TM[i] %> </div>
+        <div style="display: none;" class="rubody"><%= data.body.RU[i] %> </div>
+        <div style="display: none;" class="enbody"><%= data.body.EN[i] %> </div>
+    <% } %>
 
     <!-- picture show when i choose from file -->
     <script>
@@ -444,7 +448,10 @@
             var edit = document.querySelectorAll(".editorr");
             for(var i = 0; i<edit.length; i++){
                 var editor = new Quill(edit[i], {
-                    modules: { },
+                    modules: { 
+                        toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]] 
+
+                    },
                     theme: 'snow'
                 });
             }
@@ -535,7 +542,7 @@
                 }
                 ////////////
                 
-               
+                
                 if(headFull){
                     var res = await dataSend(data,'<%=host%>/constructor/subCategory/edit?id=<%=id%>');
                     
@@ -577,29 +584,35 @@
     <!-- Initialize Quill editor  3sany text area hidden inpuda hem salyar-->
     <script>
       var editor = new Quill('#editor', {
-        modules: { },
+        modules: { 
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]] 
+
+        },
         theme: 'snow'
       });
       var editor = new Quill('#editor2', {
-        modules: { },
+        modules: { 
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]] 
+
+        },
         theme: 'snow'
       });
       var editor = new Quill('#editor3', {
-        modules: { },
+        modules: {
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]] 
+
+         },
         theme: 'snow'
       });
     </script> 
 
 
-    <!-- first -->
-    <script>
+      <!-- first -->
+      <script>
         function first(){
-            var tmheader = '<%=data.header.TM%>';
-            tmheader = tmheader.split(",");
             var editor1 = document.querySelectorAll('.editorCon');
-            
-            for(var i = 0; i<tmheader.length; i++){
-                
+            var len = document.querySelectorAll(".tmbody");
+            for(var i = 0; i<len.length; i++){
                 editor1[squllSan].innerHTML = `<div id="editor${squllSan}" class="editorr">
                                                 <p></p>
                                             </div>`
@@ -621,7 +634,10 @@
                 var edit = document.querySelectorAll(".editorr");
                 for(var j = 0; j<edit.length; j++){
                     var editor = new Quill(edit[j], {
-                        modules: { },
+                        modules: { 
+                        toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]] 
+
+                        },
                         theme: 'snow'
                     });
                 }
@@ -633,28 +649,22 @@
             var hide2 = document.querySelector(".hide2");
             var hide3 = document.querySelector(".hide3");
             var text = document.querySelectorAll(".ql-editor");
-            var bodytm = '<%=data.body.TM%>'
-            bodytm = bodytm.split(',');
-            var bodyru = '<%=data.body.RU%>'
-            bodyru = bodyru.split(',')
-            var bodyen = '<%=data.body.EN%>'
-            bodyen = bodyen.split(',');
+            
+            var tmbody = document.querySelectorAll(".tmbody");
+            var rubody = document.querySelectorAll(".rubody");
+            var enbody = document.querySelectorAll(".enbody");
             var sana = 3;
             
-            for(var i = 0; i<bodytm.length; i++){
-                hide.innerHTML = bodytm[i];
-                hide2.innerHTML = bodyru[i];
-                hide3.innerHTML = bodyen[i];
-                text[sana].innerHTML = hide.textContent;
-                text[sana+1].innerHTML = hide2.textContent;
-                text[sana+2].innerHTML = hide3.textContent;
+            for(var i = 0; i<tmbody.length; i++){
+                text[sana].innerHTML = tmbody[i].textContent;
+                text[sana+1].innerHTML = rubody[i].textContent;
+                text[sana+2].innerHTML = enbody[i].textContent;
                 sana+=3;
             }
         }
         first();
 
     </script>
-
 </body>
 </html>
 

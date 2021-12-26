@@ -23,7 +23,7 @@
                         <div class="boxHeader">Türkmençe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                            <input type="text" name="headerTM" class="header" value="<%= data.header.tm %>" required>
+                            <input type="text" name="headerTM" class="header inputs" value="<%= data.header.tm %>" required>
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -53,7 +53,7 @@
                         <div class="boxHeader">Rusça giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerRU" id="topTa" class="header" value="<%= data.header.ru %>" required>
+                            <input type="text" name="headerRU" id="topTa" class="header inputs" value="<%= data.header.ru %>" required>
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -66,7 +66,7 @@
                         <div class="boxHeader">Iňlisçe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerEN" id="topTa" class="header" value="<%= data.header.en %>" required>
+                            <input type="text" name="headerEN" id="topTa" class="header inputs" value="<%= data.header.en %>" required>
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
@@ -92,8 +92,10 @@
     <div class="val2" style="display: none;"><%=data.body.ru%></div>
     <div class="val3" style="display: none;"><%=data.body.en%></div>
 
-    <% for(var i =0 ; i<data.files.length; i++) {%>
-        <div class="fileTake" style="display: none;"><%= data.files[i].filename %></div>
+    <% if (data.files !== null) { %>
+        <% for(var i =0 ; i<data.files.length; i++) {%>
+            <div class="fileTake" style="display: none;"><%= data.files[i].filename %></div>
+        <% } %>
     <% } %>
 
     <!-- picture show when i choose from file -->
@@ -127,11 +129,12 @@
         function firstWork(){
             var imgCon = document.querySelector(".imgCon");
             var fileTake = document.querySelectorAll(".fileTake");
-            console.log(fileTake);
+
             var pic = [];
             for(var i = 0; i<fileTake.length;i++){
                 pic.push(fileTake[i].textContent);
             }
+            
             for(var i = 0; i<pic.length; i++){
                 imgCon.innerHTML += `
                                     <div class="div pdf ${delCount}">
@@ -147,7 +150,9 @@
                 imgCount+=1;
                 imgs.push(obj)
             }
-            imgLen();
+            
+            imgs.length == 0 ? '' : imgLen();
+            // imgLen();
         }
         firstWork();
 
@@ -187,6 +192,7 @@
 
         var bool = false;
         function imgLen(){
+            
             if(imgs.length==0){
                 var imgsCon = document.querySelector(".imgsCon");
                 var imgCon = document.querySelector(".imgCon");
@@ -211,14 +217,14 @@
             e.preventDefault();
             if(oneTime){
                 oneTime = false;
-                var inputs = document.querySelectorAll("#identifier input");
+                var inputs = document.querySelectorAll("#identifier .inputs");
                 var area = document.querySelector(".editorCon #editor .ql-editor");
                 var area2 = document.querySelector(".editorCon #editor2 .ql-editor");
                 var area3 = document.querySelector(".editorCon #editor3 .ql-editor");
                 var data = {
                     tmheader:inputs[0].value,
-                    ruheader:inputs[3].value,
-                    enheader:inputs[5].value,
+                    ruheader:inputs[1].value,
+                    enheader:inputs[2].value,
                     text:area.innerHTML,
                     text2:area2.innerHTML,
                     text3:area3.innerHTML
@@ -229,22 +235,19 @@
                         arr.push(imgs[i].event);
                     }
                 }
-                if(imgs.length !== 0){
-                    var res = await dataSend(data,'<%=host%>/menu/editBussiness?id=<%=data.id%>');
-                    if(typeof(res.id) == 'number'){
-                        if(arr.length>0){
-                            var data = await imgSend(arr,'<%=host%>/menu/addBussinessFile?id='+res.id);
-                            if(data.status == 200){
-                                location.replace('/admin/plans');
-                            }
-                        }else{
-                            location.replace('/admin/plans')
+                
+                var res = await dataSend(data,'<%=host%>/menu/editBussiness?id=<%=data.id%>');
+                if(typeof(res.id) == 'number'){
+                    if(arr.length>0){
+                        var data = await imgSend(arr,'<%=host%>/menu/addBussinessFile?id='+res.id);
+                        if(data.status == 200){
+                            location.replace('/admin/plans');
                         }
+                    }else{
+                        location.replace('/admin/plans')
                     }
-                }else{
-                    alert('Surat ýok')
-                    oneTime=true;
                 }
+                
             }
             
         })
@@ -256,15 +259,24 @@
     <script>
         
       var editor = new Quill('#editor', {
-        modules: { },
+        modules: {
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
+
+         },
         theme: 'snow'
       });
       var editor = new Quill('#editor2', {
-        modules: { },
+        modules: {
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
+
+         },
         theme: 'snow'
       });
       var editor = new Quill('#editor3', {
-        modules: { },
+        modules: { 
+            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
+
+        },
         theme: 'snow'
       });
 
