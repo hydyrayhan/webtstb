@@ -1,4 +1,5 @@
-const socket = io('http://10.192.168.51:3000');
+const socket = io('http://192.168.5.198:3000');
+// const socket = io('http://10.192.168.51:3000');
 socket.emit("admin-login")
 socket.on("new-messages",()=>{
     alert("You have new messages")
