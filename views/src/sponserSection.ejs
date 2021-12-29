@@ -22,12 +22,14 @@
                       <ul class="splide__list">
                         <%for(var i = 0; i < list.sponserler.length; i++){%>
                             <li class="splide__slide">
-                                <a href="/" class="sponser">
+                                <a target="_blank" href="//<%= list.sponserler[i].link %>" style="text-decoration:none; color:black">
+                                    <div class="sponser">
                                         <div class="left">
                                             <div class="sponserLogo"><img src="<%=host%>/sponsor/<%= list.sponserler[i].pic %>" alt="surat"></div>
                                             <div class="name"><%=list.sponserler[i].name%></div>
                                         </div>
                                         <div class="icon"><img src="/pictures/icon/topRight.png" alt="icon"></div>
+                                    </div>
                                 </a>
                             </li>
                         <%}%>
@@ -36,13 +38,15 @@
                 </div>
                 <div class="sponsers">
                     <% for( var i = 0; i < list.sponserler.length; i++ ) { %>
-                        <div class="sponser">
+                        <a target="_blank" href="//<%= list.sponserler[i].link %>"  style="text-decoration:none; color:black" >
+                            <div class="sponser">
                                 <div class="left">
                                     <div class="sponserLogo"><img src="<%= host %>/sponsor/<%=list.sponserler[i].pic%>" alt="surat"></div>
                                     <div class="name"><%=list.sponserler[i].name%></div>
                                 </div>
-                                <div class="icon"><a target="_blank" href="//<%= list.sponserler[i].link %>"><img src="/pictures/icon/topRight.png" alt="icon"></a></div>
-                        </div>
+                                <div class="icon"><img src="/pictures/icon/topRight.png" alt="icon"></div>
+                            </div>
+                        </a>
                     <% } %>
                 </div>
             </div>
