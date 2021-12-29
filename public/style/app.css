@@ -1236,7 +1236,6 @@
 }
 
 .container .sponserler .sponser .left .sponserLogo {
-  background: green;
   max-width: 70%;
   max-height: 70px;
   min-width: 70px;
@@ -5032,5 +5031,9 @@ section.consultation .container .text {
 
 .ql-align-center {
   text-align: center;
+}
+
+.ql-align-right {
+  text-align: right;
 }
 /*# sourceMappingURL=app.css.map */

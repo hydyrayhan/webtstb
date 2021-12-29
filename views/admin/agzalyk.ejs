@@ -354,7 +354,7 @@
         var oneTime = true;
         submit.addEventListener("submit",async function(e){
             e.preventDefault()
-            console.log("ishledim")
+            // console.log("ishledim")
             if(oneTime){
                 oneTime = false;
                 var inputs = document.querySelectorAll("#identifier input");
@@ -409,7 +409,6 @@
                 }
                 ////////////
                 
-                console.log(data);
                
                 if(headFull){
                     var res = await dataSend(data,'<%=host%>/menu/editMembership');
@@ -466,8 +465,8 @@
             var tmheader = '<%=data.header.tm%>';
             tmheader = tmheader.split(",");
             var editor1 = document.querySelectorAll('.editorCon');
-            
-            for(var i = 0; i<1; i++){
+            console.log(tmheader.length,"tmheaderin length");
+            for(var i = 0; i<tmheader.length; i++){
                 
                 editor1[squllSan].innerHTML = `<div id="editor${squllSan}" class="editorr">
                                                 <p></p>
