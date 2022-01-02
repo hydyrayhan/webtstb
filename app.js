@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const fs = require("fs")
 require("dotenv").config({path:"./config/config.env"});
 const host = process.env.HOST;
+const hostiso = process.env.HOSTISO;
+
 // const host = 'http://192.168.1.104:5000'
 // const host = 'http://10.192.168.51:5000';
 // const host = 'http://192.168.27.142:5000';
@@ -1082,6 +1084,6 @@ app.get('/template/:san',function(req,res){
 
 
 //Server Start
-app.listen("3001",function(){
-  console.log('3001 server is working');
+app.listen("443",function(){
+  console.log('443 server is working');
 })
