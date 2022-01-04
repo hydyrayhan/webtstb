@@ -1,6 +1,5 @@
 
 async function dataSend(data,link){
-    console.log(link);
     const option={
         method:"POST",
         body:JSON.stringify(data),
@@ -57,7 +56,7 @@ async function menuData(host){
     
     data = await axios({
         method:'get',
-        url:`http://95.85.118.229:5000/constructor/all`,
+        url:`${host}/constructor/all`,
     })
 
     return data.data;
@@ -68,7 +67,7 @@ async function statistikaTake(host){
     
     data2 = await axios({
         method:"get",
-        url:`http://95.85.118.229:5000/menu/getStatistika`
+        url:`${host}/menu/getStatistika`
     })
     return data2.data;
 }

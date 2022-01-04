@@ -187,7 +187,7 @@
           <img src="/pictures/icon/chat.png" alt="">
         </div>
       </div>
-      <div style="display: none;" class="host"><%= host %></div>
+      
       <audio id="audio" src="/pictures/icon/message.mp3"></audio>
       
 
@@ -247,7 +247,7 @@
         var menu = document.querySelector('.menu');
         var menular = document.querySelector(".menuPage");
         var exit = document.querySelectorAll(".exit div")[1];
-        var host = document.querySelector(".host").textContent;
+        var host = '<%=host%>'
         var menus = document.querySelector(".menular");
         var data;
         var body = document.querySelector("body");

@@ -24,7 +24,7 @@
                 <div class="error" style="display: none;">Bir yalnyşlyk bar!!!</div>
             </form>
         </div>
-        <div style="display: none;" class="host"><%= host %></div>
+        
     </section>
     
     <%- include ('../src/bottom.ejs') %>
@@ -40,8 +40,7 @@
                 pass:inputs[1].value
             }
             var host = document.querySelector(".host").textContent
-            console.log(host)
-            var res = await dataSend(data,`${host}/login`);
+            var res = await dataSend(data,`<%=host%>/login`);
             if(res.status == 200){
                 sessionStorage.setItem('tstbAdmin',`'fkds;kfjaeurpeif jkd sf;dk sfjds0ffdsfde923 9rjdfjaj fdk;ljf'jgfjd;lsfjdsf;sfjdsljf;lsjalfjhlkjahjf hdsafjfjdkfljdsljf'`);
                 location.replace('/admin/habarlar');
