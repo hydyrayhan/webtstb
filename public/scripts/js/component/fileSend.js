@@ -56,7 +56,7 @@ async function menuData(host){
     console.log(host,'jsdaki')
     data = await axios({
         method:'get',
-        url:`${host}/constructor/all`,
+        url:`/${host}/constructor/all`,
     })
 
     return data.data;
@@ -67,7 +67,7 @@ async function statistikaTake(host){
     console.log(host,"statistika")
     data2 = await axios({
         method:"get",
-        url:`${host}/menu/getStatistika`
+        url:`/${host}/menu/getStatistika`
     })
     return data2.data;
 }
