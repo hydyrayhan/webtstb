@@ -1,5 +1,6 @@
 
 async function dataSend(data,link){
+    console.log(link)
     const option={
         method:"POST",
         body:JSON.stringify(data),
