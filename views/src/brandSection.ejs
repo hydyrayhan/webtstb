@@ -9,15 +9,17 @@
 <body>
     <section class="brandSection">
         <div class="container">
+          <% if (list.banner[1].banner != null) { %>
           <div class="splide2">
             <div class="splide__track">
               <ul class="splide__list">
-                <%for(var i = 0; i < list.banner[1].banner.length; i++){%>
-                  <li class="splide__slide"><a href="//<%=list.banner[1].banner[i].link%>" target="_blank"><div><img src="<%=host%>/banners/<%=list.banner[1].banner[i].pic%>" alt=""></div></a></li>
-                <%}%>
-              </ul>
+                  <%for(var i = 0; i < list.banner[1].banner.length; i++){%>
+                    <li class="splide__slide"><a href="//<%=list.banner[1].banner[i].link%>" target="_blank"><div><img src="<%=host%>/banners/<%=list.banner[1].banner[i].pic%>" alt=""></div></a></li>
+                  <%}%>
+                </ul>
+              </div>
             </div>
-          </div>
+            <% } %>
           <div class="brandHeader">
             <div class="header" id="brandHeader" data-content>Karhanalar - Sppt agzalary</div>
             <div class="seeAll" ><a href="/agzalar/-1" data-content id="seeAll"> Hemmesini gormek</a></div>

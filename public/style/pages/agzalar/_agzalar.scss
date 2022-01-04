@@ -77,7 +77,7 @@ section.agzalar{
                 .text{
                     margin-right: 40px;
                     width: 100%;
-                    word-break: break-all;
+                    word-break: break-word;
                     .listHead{
                         font-weight: 600;
                         color: $notBlack;
@@ -85,6 +85,9 @@ section.agzalar{
                     }
                     .listText{
                         color: $notBlack;
+                        p{
+                            background: none !important;
+                        }
                     }
                     .textDots{
                         text-overflow: ellipsis;

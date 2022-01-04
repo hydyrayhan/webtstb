@@ -4,7 +4,8 @@ async function dataSend(data,link){
         method:"POST",
         body:JSON.stringify(data),
         headers:new Headers({
-            'Content-Type':"application/json"
+            'Content-Type':"application/json",
+            'Access-Control-Request-Private-Network': true
         })
     }
     

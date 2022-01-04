@@ -29,6 +29,12 @@
                 align-items: center;
                 justify-content: center;
                 position: relative;
+                width: fit-content;
+                @include mobile{
+                    margin-right: 5px;
+                    width: 100px;
+                    height: 40px;
+                }
                 span{
                     width: 0;
                     height: 50px;

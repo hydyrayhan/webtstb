@@ -57,7 +57,7 @@
                     <% for( let i = 0; i < data[k].length; i++ ) { %>
                         <div class="agzalarList">
                             <div class="welayatHide" style="display: none;"><%= data[k][i].category %> </div>
-                            <div class="main we<%= k %>">
+                            <div class="main we<%= k %>" style="background-color: white;">
                                 <div class="logo"><img src="<%= host %>/members/<%= data[k][i].id %>/<%= data[k][i].pic %>" alt="dsds"></div>
                                 <div class="text">
                                     <div class="listHead"><%= data[k][i].name %></div>
@@ -142,6 +142,7 @@
     <!-- list achyan -->
     <script>
         var a = '<%=place%>';
+        
         if(a!='-1'){
             const list = document.querySelectorAll(".agzalarList .main");
             var we = document.querySelectorAll(".we<%=place%>");
@@ -183,6 +184,7 @@
                 })
             }
         }
+
         function clothes(e){
             e.childNodes[3].childNodes[3].classList.add("textDots")
             e.nextSibling.nextSibling.style.display = "none";

@@ -185,15 +185,18 @@
                     </div>
             </div>
             <hr id="newsSection">
-              <div class="splide">
-                <div class="splide__track">
-                  <ul class="splide__list">
-                    <%for(var i = 0; i < list.ads[0].banner.length; i++){%>
-                      <li class="splide__slide"><a target="_blank" href="//<%= list.ads[0].banner[i].link %>"><img src="<%= host %>/banners/<%=list.ads[0].banner[i].pic%>" alt=""></a></li>
-                    <%}%>
-                  </ul>
+            <% if (list.ads[0].banner!=null) { %>
+                <div class="splide">
+                  <div class="splide__track">
+                    <ul class="splide__list">
+  
+                      <%for(var i = 0; i < list.ads[0].banner.length; i++){%>
+                        <li class="splide__slide"><a target="_blank" href="//<%= list.ads[0].banner[i].link %>"><img src="<%= host %>/banners/<%=list.ads[0].banner[i].pic%>" alt=""></a></li>
+                      <%}%>
+                    </ul>
+                  </div>
                 </div>
-              </div>
+            <% } %>
           </div>
         </section>
 
@@ -204,29 +207,33 @@
                 <div class="lowNewsContainer">     
                 </div>
                 <div class="splideSplide">
-                    <div class="splide2">
-                        <div class="splide__track">
-                          <ul class="splide__list">
-                            <%for(var i = 0; i < list.ads[1].banner.length; i++){%>
-                              <li class="splide__slide"><a target="_blank" href="//<%= list.ads[1].banner[i].link %>"><img src="<%= host %>/banners/<%=list.ads[1].banner[i].pic%>" alt=""></a></li>
-                            <%}%>
-                          </ul>
-                        </div>
-                      </div>
+                    <% if (list.ads[1].banner != null) { %>
+                        <div class="splide2">
+                            <div class="splide__track">
+                              <ul class="splide__list">
+                                <%for(var i = 0; i < list.ads[1].banner.length; i++){%>
+                                  <li class="splide__slide"><a target="_blank" href="//<%= list.ads[1].banner[i].link %>"><img src="<%= host %>/banners/<%=list.ads[1].banner[i].pic%>" alt=""></a></li>
+                                <%}%>
+                              </ul>
+                            </div>
+                          </div>
+                    <% } %>
                 </div>
                 <div class="lowNewsContainer">
                     
                 </div>
                 <div class="splideSplide">
-                    <div class="splide3">
-                        <div class="splide__track">
-                          <ul class="splide__list">
-                            <%for(var i = 0; i < list.ads[2].banner.length; i++){%>
-                              <li class="splide__slide"><a target="_blank" href="//<%= list.ads[2].banner[i].link %>"><img src="<%= host %>/banners/<%=list.ads[2].banner[i].pic%>" alt=""></a></li>
-                            <%}%>
-                          </ul>
-                        </div>
-                      </div>
+                    <% if (list.ads[2].banner != null) { %>
+                        <div class="splide3">
+                            <div class="splide__track">
+                              <ul class="splide__list">
+                                <%for(var i = 0; i < list.ads[2].banner.length; i++){%>
+                                  <li class="splide__slide"><a target="_blank" href="//<%= list.ads[2].banner[i].link %>"><img src="<%= host %>/banners/<%=list.ads[2].banner[i].pic%>" alt=""></a></li>
+                                <%}%>
+                              </ul>
+                            </div>
+                          </div>
+                    <% } %>
                 </div>
                 <div class="lowNewsContainer">
                     

@@ -64,6 +64,7 @@
                     width: 10px;
                     margin-left: 10px;
                     @include center(center,flex-end);
+                    padding-bottom: 5px;
                     img{
                         width: 100%;
                     }

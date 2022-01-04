@@ -78,20 +78,35 @@
                               <div class="date" id="date"><%=list.list2[0].date%></div>
                             </div>
                           </div>
-                          
-                          <% for (let i = 1; i < 4; i++) {%>
-                            <div class="newsContainer lowNews<%=i%>">
-                              <div class="top"><a href="events/<%= list.list2[i].id %>"><img src="<%= host %>/events/<%= list.list2[i].pic %>" alt=""></a></div>
-                              <div class="bottomTop">
-                                <a href="events/<%= list.list2[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%=list.list2[i].header.RU%>" data-tm="<%=list.list2[i].header.TM%>" data-en="<%=list.list2[i].header.EN%>" id="name"><%=list.list2[i].header.RU%></div></a>
+                          <% if (list.list2.length > 4) { %>
+                            <% for (let i = 1; i < 4; i++) {%>
+                              <div class="newsContainer lowNews<%=i%>">
+                                <div class="top"><a href="events/<%= list.list2[i].id %>"><img src="<%= host %>/events/<%= list.list2[i].pic %>" alt=""></a></div>
+                                <div class="bottomTop">
+                                  <a href="events/<%= list.list2[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%=list.list2[i].header.RU%>" data-tm="<%=list.list2[i].header.TM%>" data-en="<%=list.list2[i].header.EN%>" id="name"><%=list.list2[i].header.RU%></div></a>
+                                </div>
+                                <div class="bottom">
+                                  <div class="new" data-content id="newss">News</div>
+                                  <div class="dot"></div>
+                                  <div class="date"   id="date"><%=list.list2[i].date%></div>
+                                </div>
                               </div>
-                              <div class="bottom">
-                                <div class="new" data-content id="newss">News</div>
-                                <div class="dot"></div>
-                                <div class="date"   id="date"><%=list.list2[i].date%></div>
+                            <%} %> 
+                          <% }else{ %>
+                            <% for (let i = 1; i < list.list2.length; i++) {%>
+                              <div class="newsContainer lowNews<%=i%>">
+                                <div class="top"><a href="events/<%= list.list2[i].id %>"><img src="<%= host %>/events/<%= list.list2[i].pic %>" alt=""></a></div>
+                                <div class="bottomTop">
+                                  <a href="events/<%= list.list2[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%=list.list2[i].header.RU%>" data-tm="<%=list.list2[i].header.TM%>" data-en="<%=list.list2[i].header.EN%>" id="name"><%=list.list2[i].header.RU%></div></a>
+                                </div>
+                                <div class="bottom">
+                                  <div class="new" data-content id="newss">News</div>
+                                  <div class="dot"></div>
+                                  <div class="date"   id="date"><%=list.list2[i].date%></div>
+                                </div>
                               </div>
-                            </div>
-                          <%} %> 
+                            <%} %> 
+                          <% } %> 
                         </div>
                       </div>
 
@@ -102,13 +117,15 @@
               <div class="splide">
                 <div class="splide__track">
                   <ul class="splide__list">
-                    <%for(var i = 0; i < list.banner[0].banner.length; i++){%>
-                      <li class="splide__slide"><a target="_blank" href="//<%=list.banner[0].banner[i].link%>"><div><img src="<%= host %>/banners/<%=list.banner[0].banner[i].pic%>" alt=""></div></a></li>
-                    <%}%>
-                  </ul>
+                    <% if (list.banner[0].banner !=null) { %>
+                      <%for(var i = 0; i < list.banner[0].banner.length; i++){%>
+                        <li class="splide__slide"><a target="_blank" href="//<%=list.banner[0].banner[i].link%>"><div><img src="<%= host %>/banners/<%=list.banner[0].banner[i].pic%>" alt=""></div></a></li>
+                      <%}%>
+                      <% } %>
+                    </ul>
+                  </div>
                 </div>
               </div>
-          </div>
         </section>
         <script src="/scripts/src/materialize/splide.js"></script>
         <!-- splide Banner -->

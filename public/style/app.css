@@ -193,8 +193,7 @@
 }
 
 .menuPage .menular .menubox {
-  width: 23%;
-  margin-right: 2.5%;
+  margin-right: 10%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -338,6 +337,7 @@
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
+  padding-bottom: 5px;
 }
 
 .newsSection .newsSectionContainer .navbar .left1 .img img {
@@ -1206,12 +1206,17 @@
   }
 }
 
+.container .sponserler a {
+  text-decoration: none;
+}
+
 .container .sponserler .sponser {
   margin: 10px 10px 10px 10px;
   -webkit-box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.04);
           box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.04);
   padding: 15px;
   border-radius: 5px;
+  color: black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2202,6 +2207,17 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+@media (max-width: 640px) {
+  .NavbarSection .container .lineTop div, .NavbarSection .container .lineTop a {
+    margin-right: 5px;
+    width: 100px;
+    height: 40px;
+  }
 }
 
 .NavbarSection .container .lineTop div span, .NavbarSection .container .lineTop a span {
@@ -3238,7 +3254,7 @@ section.agzalar .listContainer .agzalarList .main .logo img {
 section.agzalar .listContainer .agzalarList .main .text {
   margin-right: 40px;
   width: 100%;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 section.agzalar .listContainer .agzalarList .main .text .listHead {
@@ -3249,6 +3265,10 @@ section.agzalar .listContainer .agzalarList .main .text .listHead {
 
 section.agzalar .listContainer .agzalarList .main .text .listText {
   color: #323C44;
+}
+
+section.agzalar .listContainer .agzalarList .main .text .listText p {
+  background: none !important;
 }
 
 section.agzalar .listContainer .agzalarList .main .text .textDots {
@@ -5035,5 +5055,9 @@ section.consultation .container .text {
 
 .ql-align-right {
   text-align: right;
+}
+
+.ql-align-justify {
+  text-align: justify;
 }
 /*# sourceMappingURL=app.css.map */

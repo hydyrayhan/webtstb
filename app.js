@@ -22,11 +22,8 @@ app.use('/img',express.static(__dirname+"public/pictures"));
 
 const fileUpload = require("express-fileupload");
 const { send } = require("process");
-const { data } = require("jquery");
+// const { data } = require("jquery");
 app.use(fileUpload())
-
-
-
 
 
 let languageData = '';
@@ -64,16 +61,18 @@ app.get('/',async function(req,res){
   }
 
   var location = [];
-  location[0] = mainPage.location.place.ashgabat;
-  location[1] = mainPage.location.place.ahal;
-  location[2] = mainPage.location.place.balkan;
-  location[3] = mainPage.location.place.mary;
-  location[4] = mainPage.location.place.dashoguz;
-  location[5] = mainPage.location.place.lebap;
-  location[6] = ['Balkan','Mary','Daşoguz','Lebap'];
-  location[7] = ['Балкан','Мары','Дашогуз','Лебап'];
-  location[8] = ['Balkan','Mary','Dashoguz','Lebap'];
-  res.render('main',{list:mainPage,loop,loop1,host,seeAll,seeAllBolum,sl,location,follow})
+  if(mainPage.location!=null){
+    location[0] = mainPage.location.place.ashgabat;
+    location[1] = mainPage.location.place.ahal;
+    location[2] = mainPage.location.place.balkan;
+    location[3] = mainPage.location.place.mary;
+    location[4] = mainPage.location.place.dashoguz;
+    location[5] = mainPage.location.place.lebap;
+    location[6] = ['Balkan','Mary','Daşoguz','Lebap'];
+    location[7] = ['Балкан','Мары','Дашогуз','Лебап'];
+    location[8] = ['Balkan','Mary','Dashoguz','Lebap'];
+  }
+  res.render('main',{list:mainPage,loop,loop1,host,seeAll,seeAllBolum,sl,location,follow,hostiso})
 })
 
 
@@ -87,7 +86,7 @@ app.get("/pressCenter",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/pressCenter.ejs",{list:data.data,host,sl,teg:'',follow});
+  res.render("pages/pressCenter.ejs",{list:data.data,host,sl,teg:'',follow,hostiso});
 })
 
 
@@ -151,7 +150,7 @@ app.get("/karhana/:id",async function(req,res){
   console.log(data.data);
 
   console.log(id);
-  res.render(`pages/karhana`,{data:data.data,id,pudak,host,follow});
+  res.render(`pages/karhana`,{data:data.data,id,pudak,host,follow,hostiso});
 })
 
 app.get("/agzalar/:id",async function(req,res){
@@ -224,7 +223,7 @@ app.get("/agzalar/:id",async function(req,res){
   }
   
 
-  res.render("pages/agzalar",{data,place,idd,host,follow})
+  res.render("pages/agzalar",{data,place,idd,host,follow,hostiso})
 })
 
 // Rysgal Gazeti
@@ -237,7 +236,7 @@ app.get("/gazet",async function(req,res){
   }
   var page = req.query.page;
   console.log(data.data);
-  res.render("pages/gazet",{data:data.data,page,host,follow}) 
+  res.render("pages/gazet",{data:data.data,page,host,follow,hostiso}) 
 })
 // sppt
 app.get("/sppt",async function(req,res){
@@ -248,7 +247,7 @@ app.get("/sppt",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/sppt",{host,data:data.data,follow}) 
+  res.render("pages/sppt",{host,data:data.data,follow,hostiso}) 
 })
 
 // Membership
@@ -260,7 +259,7 @@ app.get("/membership",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/membership",{host,data:data.data,follow})
+  res.render("pages/membership",{host,data:data.data,follow,hostiso})
 })
 
 // online Business
@@ -274,7 +273,7 @@ app.get("/onlineBussiness/:welayat",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/business",{host,data:data.data,welayat,follow});
+  res.render("pages/business",{host,data:data.data,welayat,follow,hostiso});
 })
 
 // businessPlan
@@ -286,7 +285,7 @@ app.get("/businessPlans",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/plans",{host,data:data.data.bussiness,follow})
+  res.render("pages/plans",{host,data:data.data.bussiness,follow,hostiso})
 })
 
 // licenses
@@ -298,7 +297,7 @@ app.get("/licenses",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/lisense",{host,data:data.data,follow});
+  res.render("pages/lisense",{host,data:data.data,follow,hostiso});
 })
 
 //licensesMorePage
@@ -310,7 +309,7 @@ app.get("/licenses/:id",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/lisenseMore",{host,data:data.data,follow})
+  res.render("pages/lisenseMore",{host,data:data.data,follow,hostiso})
 })
 
 // konsultasiya
@@ -322,7 +321,7 @@ app.get("/consultation",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/konsultasiya",{host,data:data.data,follow});
+  res.render("pages/konsultasiya",{host,data:data.data,follow,hostiso});
 })
 
 // news
@@ -334,7 +333,7 @@ app.get('/news/:id',async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/news",{host,data:data.data,file:'news',follow});
+  res.render("pages/news",{host,data:data.data,file:'news',follow,hostiso});
 })
 
 
@@ -347,7 +346,7 @@ app.get('/events/:id',async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/news",{host,data:data.data,file:'events',follow});
+  res.render("pages/news",{host,data:data.data,file:'events',follow,hostiso});
 })
 
 //constructor
@@ -361,19 +360,19 @@ app.get('/constructor/:id', async function(req,res){
   var page = data.data.page;
   console.log(data.data);
   if(page == '1'){
-    res.render("templates/template1",{host,data:data.data,follow});
+    res.render("templates/template1",{host,data:data.data,follow,hostiso});
   }else if(page == '2'){
-    res.render("templates/template2",{host,data:data.data,follow});
+    res.render("templates/template2",{host,data:data.data,follow,hostiso});
   }else if(page == '3'){
-    res.render("templates/template3",{host,data:data.data,follow});
+    res.render("templates/template3",{host,data:data.data,follow,hostiso});
   }else if(page == '4'){
-    res.render("templates/template4",{host,data:data.data,follow});
+    res.render("templates/template4",{host,data:data.data,follow,hostiso});
   }else if(page == '5'){
-    res.render("templates/template6",{host,data:data.data,follow});
+    res.render("templates/template6",{host,data:data.data,follow,hostiso});
   }else if(page == '6'){
-    res.render("templates/template7",{host,data:data.data,follow});
+    res.render("templates/template7",{host,data:data.data,follow,hostiso});
   }else if(page == '7'){
-    res.render("templates/template8",{host,data:data.data,follow});
+    res.render("templates/template8",{host,data:data.data,follow,hostiso});
   }
 })
 
@@ -401,7 +400,7 @@ app.get('/menuData',async function(req,res){
 // admin ==========================================================================================
 
 app.get("/admin",function(req,res){
-  res.render("pages/login",{host,follow})
+  res.render("pages/login",{host,follow,hostiso})
 })
 
 
@@ -423,14 +422,14 @@ app.get("/admin/:page",async function(req,res){
     }catch(error){
       console.log(error)
     }
-    res.render("admin/habarlar",{data:data.data,name:"Habarlar",host:host});
+    res.render("admin/habarlar",{data:data.data,name:"Habarlar",host:host,hostiso});
   }else if(page == "bildirishler"){
     try{
       data = await axios.get(`${host}/events/getAll`);
     }catch(error){
       console.log(error)
     }
-    res.render("admin/bildirishler",{data:data.data,name:"Bildirişler",host});
+    res.render("admin/bildirishler",{data:data.data,name:"Bildirişler",host,hostiso});
   }else if(page == "rysgal"){
     try{
       data = await axios.get(`${host}/newspapers`);
@@ -438,7 +437,7 @@ app.get("/admin/:page",async function(req,res){
       console.log(error)
     }
     
-    res.render("admin/gazetler",{data:data.data, name:"Gazetler", host});
+    res.render("admin/gazetler",{data:data.data, name:"Gazetler", host,hostiso});
   }else if(page == "tstb"){
     try{
       data = await axios.get(`${host}/menu/getAboutUs`);
@@ -446,7 +445,7 @@ app.get("/admin/:page",async function(req,res){
       console.log(e);
     }
     console.log(data.data);
-    res.render("admin/tstb",{data:data.data,name:"TSTB - biz barada",host});
+    res.render("admin/tstb",{data:data.data,name:"TSTB - biz barada",host,hostiso});
   }else if(page == "pudaklar"){
     try{
       data = await axios.get(`${host}/industry`);
@@ -454,14 +453,14 @@ app.get("/admin/:page",async function(req,res){
       console.log(e);
     }
     console.log(data.data);
-    res.render("admin/pudaklar",{data:data.data,name:"Pudaklar"});
+    res.render("admin/pudaklar",{data:data.data,name:"Pudaklar",hostiso});
   }else if(page == "agzalyk"){
     try{
       data = await axios.get(`${host}/menu/getMembership`);
     }catch(e){
       console.log(e);
     }
-    res.render("admin/agzalyk",{data:data.data,name:"Agzalyk",host});
+    res.render("admin/agzalyk",{data:data.data,name:"Agzalyk",host,hostiso});
   }else if(page == "internetSowda"){
     try{
       data = await axios.get(`${host}/commerce/getAll`);
@@ -469,7 +468,7 @@ app.get("/admin/:page",async function(req,res){
       console.log(e);
     }
     console.log(data.data);
-    res.render("admin/internetSowda",{data:data.data,name:"Internet Söwda",host});
+    res.render("admin/internetSowda",{data:data.data,name:"Internet Söwda",host,hostiso});
   }else if(page == "plans"){
     try{
       data = await axios.get(`${host}/menu/getAllBussiness`);
@@ -477,7 +476,7 @@ app.get("/admin/:page",async function(req,res){
       console.log(e);
     }
     console.log(data.data);
-    res.render("admin/plans",{data:data.data.bussiness,name:"Iş meýilnamasy",host})
+    res.render("admin/plans",{data:data.data.bussiness,name:"Iş meýilnamasy",host,hostiso})
   }else if(page == "ygtyyarnama"){
     try{
       data = await axios.get(`${host}/menu/getAllLicense`);
@@ -485,7 +484,7 @@ app.get("/admin/:page",async function(req,res){
       console.log(e)
     }
     console.log(data.data)
-    res.render("admin/lisense",{data:data.data,name:"Ygtyýarnama",host})
+    res.render("admin/lisense",{data:data.data,name:"Ygtyýarnama",host,hostiso})
   }else if(page == "maslahat"){
     try{
       data = await axios.get(`${host}/menu/getConsultation`);
@@ -493,7 +492,7 @@ app.get("/admin/:page",async function(req,res){
       console.log(e)
     }
     console.log(data.data)
-    res.render("admin/konsultasiya",{data:data.data,name:"Maslahat",host})
+    res.render("admin/konsultasiya",{data:data.data,name:"Maslahat",host,hostiso})
   }else if(page == "kompaniyalar"){
     try{
       data = await axios.get(`${host}/members/`);
@@ -501,7 +500,7 @@ app.get("/admin/:page",async function(req,res){
       console.log(error)
     }
     
-    res.render("admin/kompaniyalar",{data:data.data, name:"TSTB agzalary", host});
+    res.render("admin/kompaniyalar",{data:data.data, name:"TSTB agzalary", host,hostiso});
 
   }else if(page == "partniyorlar"){
     try{
@@ -518,7 +517,7 @@ app.get("/admin/:page",async function(req,res){
       console.log(error)
     }
     console.log(data.data);
-    res.render("admin/banner1",{data:data.data.banner, name:"1-nji banner", host});
+    res.render("admin/banner1",{data:data.data.banner, name:"1-nji banner", host,hostiso});
   }else if(page == "banner2"){
     try{
       data = await axios.get(`${host}/banners/getOne?id=2`);
@@ -526,7 +525,7 @@ app.get("/admin/:page",async function(req,res){
       console.log(error)
     }
     
-    res.render("admin/banner2",{data:data.data.banner, name:"2-nji banner", host});
+    res.render("admin/banner2",{data:data.data.banner, name:"2-nji banner", host,hostiso});
   }else if(page == "banner3"){
     try{
       data = await axios.get(`${host}/banners/getOne?id=3`);
@@ -534,7 +533,7 @@ app.get("/admin/:page",async function(req,res){
       console.log(error)
     }
     
-    res.render("admin/banner3",{data:data.data.banner, name:"3-nji banner", host});
+    res.render("admin/banner3",{data:data.data.banner, name:"3-nji banner", host,hostiso});
   }else if(page == "mail"){
     try{
       data = await axios.get(`${host}/mail/`);
@@ -542,7 +541,7 @@ app.get("/admin/:page",async function(req,res){
       console.log(error)
     }
     console.log(data.data);
-    res.render("admin/mail",{data:data.data,name:"Mail subcribers"});
+    res.render("admin/mail",{data:data.data,name:"Mail subcribers",hostiso});
   }else if (page == "constructor"){
     try{
       data = await axios.get(`${host}/constructor/`);
@@ -550,7 +549,7 @@ app.get("/admin/:page",async function(req,res){
       console.log(error)
     }
     console.log(data.data);
-    res.render("admin/constructor",{data:data.data,name:"Constructor kategoriýalar"});
+    res.render("admin/constructor",{data:data.data,name:"Constructor kategoriýalar",hostiso});
   }else if(page == "karta"){
     try{
       data = await axios.get(`${host}/province/getProvince`);
@@ -558,9 +557,9 @@ app.get("/admin/:page",async function(req,res){
       console.log(error)
     }
     console.log(data.data);
-    res.render("admin/karta",{data:data.data,name:"Karta",host});
+    res.render("admin/karta",{data:data.data,name:"Karta",host,hostiso});
   }else if(page == "parol"){
-    res.render('admin/parol',{name:"Parol çalyşmak",host});
+    res.render('admin/parol',{name:"Parol çalyşmak",host,hostiso});
   }else if(page == "statistika"){
     try{
       data = await axios.get(`${host}/menu/getStatistika`);
@@ -568,7 +567,7 @@ app.get("/admin/:page",async function(req,res){
       console.log(e);
     }
     console.log(data.data);
-    res.render('admin/statistika',{name:"Statistika",host,data:data.data});
+    res.render('admin/statistika',{name:"Statistika",host,data:data.data,hostiso});
   }else if(page == 'messages'){
     try{
       data = await axios.get(`${host}/chat/getAll`);
@@ -576,7 +575,7 @@ app.get("/admin/:page",async function(req,res){
       console.log(e);
     }
     console.log(data.data)
-    res.render('admin/chat',{name:"Hatlar",host,data:data.data});
+    res.render('admin/chat',{name:"Hatlar",host,data:data.data,hostiso});
   }
 })
 
@@ -644,7 +643,7 @@ app.post("/admin/:page/search",async function(req,res){
     console.log(error)
   }
   console.log(data.data)
-  res.render(`admin/${ejs}`,{data:data.data,name:page,host:host});
+  res.render(`admin/${ejs}`,{data:data.data,name:page,host:host,hostiso});
   
 })
 
@@ -658,7 +657,7 @@ app.get("/admin/messages/:id", async function(req,res){
     console.log(e);
   }
   console.log(data.data);
-  res.render("admin/oneChat",{name:"Hatlar ",host,data:data.data});
+  res.render("admin/oneChat",{name:"Hatlar ",host,data:data.data,hostiso});
 })
 
 // page post
@@ -669,19 +668,19 @@ app.post("/admin/:page",function(req,res){
     console.log(req.body);
     banner=nomer
     if(nomer == 1){
-      res.render("admin/toAdd/shablon/shablon1",{data:req.body,name:"Sub Constructor",id:constructorId,host});
+      res.render("admin/toAdd/shablon/shablon1",{data:req.body,name:"Sub Constructor",id:constructorId,host,hostiso});
     }else if(nomer == 2){
-      res.render("admin/toAdd/shablon/shablon2",{data:req.body,name:"Sub Constructor",host,id:constructorId});
+      res.render("admin/toAdd/shablon/shablon2",{data:req.body,name:"Sub Constructor",host,id:constructorId,hostiso});
     }else if(nomer == 3){
-      res.render("admin/toAdd/shablon/shablon3",{data:req.body,name:"Sub Constructor",host,id:constructorId});
+      res.render("admin/toAdd/shablon/shablon3",{data:req.body,name:"Sub Constructor",host,id:constructorId,hostiso});
     }else if(nomer == 4){
-      res.render("admin/toAdd/shablon/shablon4",{data:req.body,name:"Sub Constructor",host,id:constructorId})
+      res.render("admin/toAdd/shablon/shablon4",{data:req.body,name:"Sub Constructor",host,id:constructorId,hostiso})
     }else if(nomer == 5){
-      res.render("admin/toAdd/shablon/shablon5",{data:req.body,name:"Sub Constructor",host,id:constructorId})
+      res.render("admin/toAdd/shablon/shablon5",{data:req.body,name:"Sub Constructor",host,id:constructorId,hostiso})
     }else if(nomer == 6){
-      res.render("admin/toAdd/shablon/shablon6",{data:req.body,name:"Sub Constructor",host,id:constructorId})
+      res.render("admin/toAdd/shablon/shablon6",{data:req.body,name:"Sub Constructor",host,id:constructorId,hostiso})
     }else if(nomer == 7){
-      res.render("admin/toAdd/shablon/shablon7",{data:req.body,name:"Sub Constructor",host,id:constructorId})
+      res.render("admin/toAdd/shablon/shablon7",{data:req.body,name:"Sub Constructor",host,id:constructorId,hostiso})
     }
   }else if(page == "subConstructor2"){
     console.log("Shablondan Maglumat geldi"+constructorId);
@@ -702,7 +701,7 @@ app.get("/admin/:page/add",async function(req,res){
   if(page == 'Habarlar'){
     try{
       data = await axios.get(`${host}/news/tag`);
-      res.render("admin/toAdd/addHabarlar",{tag:data.data,name : page+" goşmak",host});
+      res.render("admin/toAdd/addHabarlar",{tag:data.data,name : page+" goşmak",host,hostiso});
     }catch(error){
       res.send(error);
     }
@@ -710,44 +709,44 @@ app.get("/admin/:page/add",async function(req,res){
   }else if(page == "Bildirişler"){
     try{
       data = await axios.get(`${host}/events/tag`);
-      res.render("admin/toAdd/addBildirishler",{tag:data.data,name : "Bildiriş goşmak",host});
+      res.render("admin/toAdd/addBildirishler",{tag:data.data,name : "Bildiriş goşmak",host,hostiso});
     }catch(error){
       res.send(error);
     }
 
   }else if(page == "Gazetler"){
-    res.render("admin/toAdd/addGazetler",{name:"Gazet goşmak",host})
+    res.render("admin/toAdd/addGazetler",{name:"Gazet goşmak",host,hostiso})
   }else if(page == "Pudaklar"){
-    res.render("admin/toAdd/addPudaklar",{name:"Pudak goşmak",host})
+    res.render("admin/toAdd/addPudaklar",{name:"Pudak goşmak",host,hostiso})
   }else if(page == "Kärhanalar"){
-    res.render("admin/toAdd/addKarhanalar",{name:"Kärhana goşmak",host,id:pudakId})
+    res.render("admin/toAdd/addKarhanalar",{name:"Kärhana goşmak",host,id:pudakId,hostiso})
   }else if(page == "Internet Söwda"){
     try{
       data = await axios.get(`${host}/commerce/getCategorySimple`);
       console.log(data.data);
-      res.render("admin/toAdd/addInternetSowda",{tag:data.data,name:"Internet Söwda goşmak",host})
+      res.render("admin/toAdd/addInternetSowda",{tag:data.data,name:"Internet Söwda goşmak",host,hostiso})
     }catch(error){
       res.send(error);
     }
   }else if(page == "Iş meýilnamasy"){
-    res.render("admin/toAdd/addPlans",{name:"Iş meýilnamasyny goşmak",host})
+    res.render("admin/toAdd/addPlans",{name:"Iş meýilnamasyny goşmak",host,hostiso})
   }else if(page == "Ygtyýarnama"){
-    res.render("admin/toAdd/addLisense",{name:"Ygtyýarnama goşmak",host})
+    res.render("admin/toAdd/addLisense",{name:"Ygtyýarnama goşmak",host,hostiso})
   }else if(page == "TSTB agzalary"){
-    res.render('admin/toAdd/addKompaniyalar',{name:"TSTB agza goşmak",host});
+    res.render('admin/toAdd/addKompaniyalar',{name:"TSTB agza goşmak",host,hostiso});
   }else if(page == "Partniýorlar"){
-    res.render("admin/toAdd/addPartniyorlar",{name:"Partniýor goşmak",host})
+    res.render("admin/toAdd/addPartniyorlar",{name:"Partniýor goşmak",host,hostiso})
   }else if(page == "1-nji banner"){
-    res.render("admin/toAdd/addBanner1",{name : "Banner 1-a goşmak",host});
+    res.render("admin/toAdd/addBanner1",{name : "Banner 1-a goşmak",host,hostiso});
   }else if(page == "2-nji banner"){
-    res.render("admin/toAdd/addBanner2",{name:"2-nji bannere goşmak",host})
+    res.render("admin/toAdd/addBanner2",{name:"2-nji bannere goşmak",host,hostiso})
   }else if(page == "3-nji banner"){
-    res.render("admin/toAdd/addBanner3",{name:"3-nji bannere goşmak",host})
+    res.render("admin/toAdd/addBanner3",{name:"3-nji bannere goşmak",host,hostiso})
   }else if(page == "Constructor kategoriýalar"){
-    res.render("admin/toAdd/addConstructorKategori",{host,name:"Constructor kategoriýa goşmak"})
+    res.render("admin/toAdd/addConstructorKategori",{host,name:"Constructor kategoriýa goşmak",hostiso})
   }else if(page == "Sub constructorlar"){
     console.log(constructorId)
-    res.render("admin/toAdd/addSubConstructor",{name:"Sub constructor goşmak"})
+    res.render("admin/toAdd/addSubConstructor",{name:"Sub constructor goşmak",hostiso})
   }
 })
 
