@@ -53,10 +53,10 @@ async function checkSend(id, link, data){
 
 async function menuData(host){
     var data;
-    console.log(host,'jsdaki')
+    
     data = await axios({
         method:'get',
-        url:`/${host}/constructor/all`,
+        url:`http://95.85.118.229:5000/constructor/all`,
     })
 
     return data.data;
@@ -64,10 +64,10 @@ async function menuData(host){
 
 async function statistikaTake(host){
     var data2;
-    console.log(host,"statistika")
+    
     data2 = await axios({
         method:"get",
-        url:`/${host}/menu/getStatistika`
+        url:`http://95.85.118.229:5000/menu/getStatistika`
     })
     return data2.data;
 }
