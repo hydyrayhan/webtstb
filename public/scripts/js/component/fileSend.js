@@ -1,6 +1,5 @@
 
 async function dataSend(data,link){
-    console.log(link)
     const option={
         method:"POST",
         body:JSON.stringify(data),
@@ -54,6 +53,7 @@ async function checkSend(id, link, data){
 
 async function menuData(host){
     var data;
+    console.log(host,'jsdaki')
     data = await axios({
         method:'get',
         url:`${host}/constructor/all`,
@@ -64,6 +64,7 @@ async function menuData(host){
 
 async function statistikaTake(host){
     var data2;
+    console.log(host,"statistika")
     data2 = await axios({
         method:"get",
         url:`${host}/menu/getStatistika`
