@@ -3,12 +3,8 @@ const axios = require('axios');
 const bodyParser = require("body-parser");
 const fs = require("fs")
 require("dotenv").config({path:"./config/config.env"});
-// const host = process.env.HOST;
+const host = process.env.HOST;
 const hostiso = process.env.HOSTISO;
-const host = 'https://tstb.gov.tm:5003'
-// const host = 'http://192.168.1.104:5000'
-// const host = 'http://10.192.168.51:5000';
-// const host = 'http://192.168.27.142:5000';
 const app = express(); 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}));
@@ -21,23 +17,23 @@ app.use('/js',express.static(__dirname+"public/scripts"));
 app.use('/img',express.static(__dirname+"public/pictures"));
 
 const fileUpload = require("express-fileupload");
-// const { send } = require("process");
-// const { data } = require("jquery");
 app.use(fileUpload())
 
 
 let languageData = '';
 var follow;
 app.get('/',async function(req,res){
-  console.log(host);
  var sl = req.query.sl;
  var mainPage;
+
+ 
+ //shu yerde axios backend den maglumat alyp bilenok 
   try{
     mainPage = await axios.get(host);
   }catch(error){
     console.log(error)
   }
-  // console.log(mainPage.data);
+
   follow = mainPage.data.statictika;
   mainPage = mainPage.data;
   languageData = mainPage.data
