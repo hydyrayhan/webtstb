@@ -28,16 +28,16 @@ app.get('/',async function(req,res){
  var sl = req.query.sl;
  var mainPage;
 
- console.log("deneme"+host);
+
  //shu yerde axios backend den maglumat alyp bilenok 
   try{
     // mainPage = await axios.get(host);
     mainPage = await axios({
       method:"get",
       url:`${host}`
-  })
+  }).catch(err=>console.log(`test ${err}`));
   }catch(error){
-    console.log(error)
+    console.log("test catch:"+error)
   }
 
   follow = mainPage.data.statictika;
