@@ -35,6 +35,8 @@ app.get('/',async function(req,res){
     mainPage = await axios({
       method:"get",
       url:`https://localhost:5003`
+  }).then(data=>{
+    console.log("data:"+data);
   }).catch(err=>console.log(`test ${err}`));
   }catch(error){
     console.log("test catch:"+error)
