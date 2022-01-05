@@ -34,7 +34,7 @@ app.get('/',async function(req,res){
     // mainPage = await axios.get(host);
     mainPage = await axios({
       method:"get",
-      url:`https://localhost:5003`
+      url:`https://tstb.gov.tm:5003`
   }).then(data=>{
     console.log("data:"+data);
   }).catch(err=>console.log(`test ${err}`));
