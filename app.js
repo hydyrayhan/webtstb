@@ -21,7 +21,7 @@ app.use('/js',express.static(__dirname+"public/scripts"));
 app.use('/img',express.static(__dirname+"public/pictures"));
 
 const fileUpload = require("express-fileupload");
-const { send } = require("process");
+// const { send } = require("process");
 // const { data } = require("jquery");
 app.use(fileUpload())
 
@@ -37,7 +37,7 @@ app.get('/',async function(req,res){
   }catch(error){
     console.log(error)
   }
-  console.log(mainPage.data);
+  // console.log(mainPage.data);
   follow = mainPage.data.statictika;
   mainPage = mainPage.data;
   languageData = mainPage.data
