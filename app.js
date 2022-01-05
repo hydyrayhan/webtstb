@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const fs = require("fs")
 require("dotenv").config({path:"./config/config.env"});
 const path = require('path')
-const host = process.env.HOST+"/api";
+const host = process.env.HOST;
 const hostiso = process.env.HOSTISO;
 
 const app = express();
