@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const fs = require("fs")
 require("dotenv").config({path:"./config/config.env"});
 const path = require('path')
-const host = process.env.HOST ? process.env.HOST : 5003;
+const host = process.env.HOST+"/api";
 const hostiso = process.env.HOSTISO;
 
 const app = express();
@@ -34,7 +34,7 @@ app.get('/',async function(req,res){
     // mainPage = await axios.get(host);
     mainPage = await axios({
       method:"get",
-      url:`${host}/`
+      url:`${host}`
   })
   }catch(error){
     console.log(error)
