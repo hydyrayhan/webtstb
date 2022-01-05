@@ -1,5 +1,6 @@
 // const socket = io('http://10.192.168.44:3000');
-const socket = io('http://95.85.118.228:3000');
+// const socket = io('https://95.85.118.228:3000');
+const socket = io('https://tstb.gov.tm:2022');
 // const socket = io('http://10.192.168.51:3000');
 const messageContainer = document.getElementById('message-container')
 const messageForm = document.getElementById('send-container')
