@@ -3,18 +3,19 @@ const axios = require('axios');
 const bodyParser = require("body-parser");
 const fs = require("fs")
 require("dotenv").config({path:"./config/config.env"});
+const path = require('path')
 const host = process.env.HOST;
 const hostiso = process.env.HOSTISO;
-const app = express(); 
+const app = express();
 app.use(express.json())
 app.use(express.urlencoded({extended:true}));
 app.set("view engine","ejs");
 
 app.use(express.static("public"))
-app.use('/css',express.static(__dirname+"public/style"));
-app.use('/font',express.static(__dirname+"public/style"));
-app.use('/js',express.static(__dirname+"public/scripts"));
-app.use('/img',express.static(__dirname+"public/pictures"));
+app.use('/css',express.static(path.join(__dirname,"public","style")));
+app.use('/font',express.static(path.join(__dirname,"public","style")));
+app.use('/js',express.static(path.join(__dirname,"public","scripts")));
+app.use('/img',express.static(path.join(__dirname,"public","pictures")));
 
 const fileUpload = require("express-fileupload");
 app.use(fileUpload())
@@ -70,7 +71,6 @@ app.get('/',async function(req,res){
   }
   res.render('main',{list:mainPage,loop,loop1,host,seeAll,seeAllBolum,sl,location,follow,hostiso})
 })
-
 
 app.get("/pressCenter",async function(req,res){
   var sl = req.query.sl;
