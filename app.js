@@ -24,7 +24,7 @@ app.use(fileUpload())
 
 let languageData = '';
 var follow;
-app.get('/',async function(req,res){
+app.get('/api',async function(req,res){
  var sl = req.query.sl;
  var mainPage;
 
