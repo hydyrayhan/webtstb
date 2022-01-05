@@ -21,6 +21,7 @@ app.use('/img',express.static(path.join(__dirname,"public","pictures")));
 const fileUpload = require("express-fileupload");
 app.use(fileUpload())
 
+const localHost = 'http://localhost:5000'
 
 let languageData = '';
 var follow;
@@ -34,7 +35,7 @@ app.get('/',async function(req,res){
     // mainPage = await axios.get(host);
     mainPage = await axios({
       method:"get",
-      url:`http://95.85.118.228:5000`
+      url:localHost
   }).catch(err=>console.log(`test ${err}`));
   }catch(error){
     console.log("test catch:"+error)
@@ -82,7 +83,7 @@ app.get("/pressCenter",async function(req,res){
   
   var data;
   try{
-    data = await axios.get(`${host}/news`);
+    data = await axios.get(`${localHost}/news`);
   }catch(error){
     console.log(error)
   }
@@ -100,13 +101,13 @@ app.get('/pressCenterNews',async function(req,res){
   
   if(tab == 1){
     try{
-      data = await axios.get(`${host}/news/loadMore?page=${page}&limit=${limit}&tag=${tag}`);
+      data = await axios.get(`${localHost}/news/loadMore?page=${page}&limit=${limit}&tag=${tag}`);
     }catch(error){
       console.log(error)
     }
   }else if(tab ==2){
     try{
-      data = await axios.get(`${host}/events/loadMore?page=${page}&limit=${limit}&tag=${tag}`);
+      data = await axios.get(`${localHost}/events/loadMore?page=${page}&limit=${limit}&tag=${tag}`);
     }catch(error){
       console.log(error)
     }
@@ -128,7 +129,7 @@ app.get('/pressCenterNews',async function(req,res){
 app.get('/pressCenter/:teg', async function(req,res){
   var teg = req.params.teg;
   try{
-    data = await axios.get(`${host}/news/tags?tag=${teg}`);
+    data = await axios.get(`${localHost}/news/tags?tag=${teg}`);
   }catch(error){
     console.log(error)
   }
@@ -143,7 +144,7 @@ app.get("/karhana/:id",async function(req,res){
   var pudak = req.query.pudak
   var id = req.params.id;
   try{
-    data = await axios.get(`${host}/industry/front?id=${req.query.id}&index=${pudak-1}`);
+    data = await axios.get(`${localHost}/industry/front?id=${req.query.id}&index=${pudak-1}`);
   }catch(error){
     console.log(error)
   }
@@ -157,7 +158,7 @@ app.get("/karhana/:id",async function(req,res){
 app.get("/agzalar/:id",async function(req,res){
   var datas;
   try{
-    datas = await axios.get(`${host}/members`);
+    datas = await axios.get(`${localHost}/members`);
   }catch(error){
     console.log(error)
   }
@@ -231,7 +232,7 @@ app.get("/agzalar/:id",async function(req,res){
 app.get("/gazet",async function(req,res){
   var data;
   try{
-    data = await axios.get(`${host}/newspapers/front`);
+    data = await axios.get(`${localHost}/newspapers/front`);
   }catch(error){
     console.log(error)
   }
@@ -243,7 +244,7 @@ app.get("/gazet",async function(req,res){
 app.get("/sppt",async function(req,res){
   var data;
   try{
-    data = await axios.get(`${host}/menu/getAboutUs`);
+    data = await axios.get(`${localHost}/menu/getAboutUs`);
   }catch(error){
     console.log(error)
   }
@@ -255,7 +256,7 @@ app.get("/sppt",async function(req,res){
 app.get("/membership",async function(req,res){
   var data;
   try{
-    data = await axios.get(`${host}/menu/getMembership`);
+    data = await axios.get(`${localHost}/menu/getMembership`);
   }catch(error){
     console.log(error)
   }
@@ -269,7 +270,7 @@ app.get("/onlineBussiness/:welayat",async function(req,res){
   
   var data;
   try{
-    data = await axios.get(`${host}/commerce?welayat=${welayat}`);
+    data = await axios.get(`${localHost}/commerce?welayat=${welayat}`);
   }catch(error){
     console.log(error)
   }
@@ -281,7 +282,7 @@ app.get("/onlineBussiness/:welayat",async function(req,res){
 app.get("/businessPlans",async function(req,res){
   var data;
   try{
-    data = await axios.get(`${host}/menu/getAllBussiness`);
+    data = await axios.get(`${localHost}/menu/getAllBussiness`);
   }catch(error){
     console.log(error)
   }
@@ -293,7 +294,7 @@ app.get("/businessPlans",async function(req,res){
 app.get("/licenses",async function(req,res){
   var data;
   try{
-    data = await axios.get(`${host}/menu/getLicenseHeader`);
+    data = await axios.get(`${localHost}/menu/getLicenseHeader`);
   }catch(error){
     console.log(error)
   }
@@ -305,7 +306,7 @@ app.get("/licenses",async function(req,res){
 app.get("/licenses/:id",async function(req,res){
   var data;
   try{
-    data = await axios.get(`${host}/menu/getOneLicense?id=${req.params.id}`);
+    data = await axios.get(`${localHost}/menu/getOneLicense?id=${req.params.id}`);
   }catch(error){
     console.log(error)
   }
@@ -317,7 +318,7 @@ app.get("/licenses/:id",async function(req,res){
 app.get("/consultation",async function(req,res){
   var data;
   try{
-    data = await axios.get(`${host}/menu/getConsultation`);
+    data = await axios.get(`${localHost}/menu/getConsultation`);
   }catch(error){
     console.log(error)
   }
@@ -329,7 +330,7 @@ app.get("/consultation",async function(req,res){
 app.get('/news/:id',async function(req,res){
   var data;
   try{
-    data = await axios.get(`${host}/news/getOneFront?id=${req.params.id}`);
+    data = await axios.get(`${localHost}/news/getOneFront?id=${req.params.id}`);
   }catch(error){
     console.log(error)
   }
@@ -342,7 +343,7 @@ app.get('/news/:id',async function(req,res){
 app.get('/events/:id',async function(req,res){
   var data;
   try{
-    data = await axios.get(`${host}/events/getOneFront?id=${req.params.id}`);
+    data = await axios.get(`${localHost}/events/getOneFront?id=${req.params.id}`);
   }catch(error){
     console.log(error)
   }
@@ -354,7 +355,7 @@ app.get('/events/:id',async function(req,res){
 app.get('/constructor/:id', async function(req,res){
   var data;
   try{
-    data = await axios.get(`${host}/constructor/subcategory/getOne?id=${req.params.id}`);
+    data = await axios.get(`${localHost}/constructor/subcategory/getOne?id=${req.params.id}`);
   }catch(error){
     console.log(error)
   }
@@ -389,7 +390,7 @@ app.get('/constructor/:id', async function(req,res){
 var menu;
 
 app.get('/menuData',async function(req,res){
-  data = await axios.get(`${host}/constructor/all`);
+  data = await axios.get(`${localHost}/constructor/all`);
   console.log(data.data);
 })
 
@@ -419,21 +420,21 @@ app.get("/admin/:page",async function(req,res){
   var data;
   if(page == "habarlar"){
     try{
-      data = await axios.get(`${host}/news/getAll`);
+      data = await axios.get(`${localHost}/news/getAll`);
     }catch(error){
       console.log(error)
     }
     res.render("admin/habarlar",{data:data.data,name:"Habarlar",host:host,hostiso});
   }else if(page == "bildirishler"){
     try{
-      data = await axios.get(`${host}/events/getAll`);
+      data = await axios.get(`${localHost}/events/getAll`);
     }catch(error){
       console.log(error)
     }
     res.render("admin/bildirishler",{data:data.data,name:"Bildirişler",host,hostiso});
   }else if(page == "rysgal"){
     try{
-      data = await axios.get(`${host}/newspapers`);
+      data = await axios.get(`${localHost}/newspapers`);
     }catch(error){
       console.log(error)
     }
@@ -441,7 +442,7 @@ app.get("/admin/:page",async function(req,res){
     res.render("admin/gazetler",{data:data.data, name:"Gazetler", host,hostiso});
   }else if(page == "tstb"){
     try{
-      data = await axios.get(`${host}/menu/getAboutUs`);
+      data = await axios.get(`${localHost}/menu/getAboutUs`);
     }catch(e){
       console.log(e);
     }
@@ -449,7 +450,7 @@ app.get("/admin/:page",async function(req,res){
     res.render("admin/tstb",{data:data.data,name:"TSTB - biz barada",host,hostiso});
   }else if(page == "pudaklar"){
     try{
-      data = await axios.get(`${host}/industry`);
+      data = await axios.get(`${localHost}/industry`);
     }catch(e){
       console.log(e);
     }
@@ -457,14 +458,14 @@ app.get("/admin/:page",async function(req,res){
     res.render("admin/pudaklar",{data:data.data,name:"Pudaklar",hostiso});
   }else if(page == "agzalyk"){
     try{
-      data = await axios.get(`${host}/menu/getMembership`);
+      data = await axios.get(`${localHost}/menu/getMembership`);
     }catch(e){
       console.log(e);
     }
     res.render("admin/agzalyk",{data:data.data,name:"Agzalyk",host,hostiso});
   }else if(page == "internetSowda"){
     try{
-      data = await axios.get(`${host}/commerce/getAll`);
+      data = await axios.get(`${localHost}/commerce/getAll`);
     }catch(e){
       console.log(e);
     }
@@ -472,7 +473,7 @@ app.get("/admin/:page",async function(req,res){
     res.render("admin/internetSowda",{data:data.data,name:"Internet Söwda",host,hostiso});
   }else if(page == "plans"){
     try{
-      data = await axios.get(`${host}/menu/getAllBussiness`);
+      data = await axios.get(`${localHost}/menu/getAllBussiness`);
     }catch(e){
       console.log(e);
     }
@@ -480,7 +481,7 @@ app.get("/admin/:page",async function(req,res){
     res.render("admin/plans",{data:data.data.bussiness,name:"Iş meýilnamasy",host,hostiso})
   }else if(page == "ygtyyarnama"){
     try{
-      data = await axios.get(`${host}/menu/getAllLicense`);
+      data = await axios.get(`${localHost}/menu/getAllLicense`);
     }catch(e){
       console.log(e)
     }
@@ -488,7 +489,7 @@ app.get("/admin/:page",async function(req,res){
     res.render("admin/lisense",{data:data.data,name:"Ygtyýarnama",host,hostiso})
   }else if(page == "maslahat"){
     try{
-      data = await axios.get(`${host}/menu/getConsultation`);
+      data = await axios.get(`${localHost}/menu/getConsultation`);
     }catch(e){
       console.log(e)
     }
@@ -496,7 +497,7 @@ app.get("/admin/:page",async function(req,res){
     res.render("admin/konsultasiya",{data:data.data,name:"Maslahat",host,hostiso})
   }else if(page == "kompaniyalar"){
     try{
-      data = await axios.get(`${host}/members/`);
+      data = await axios.get(`${localHost}/members/`);
     }catch(error){
       console.log(error)
     }
@@ -505,7 +506,7 @@ app.get("/admin/:page",async function(req,res){
 
   }else if(page == "partniyorlar"){
     try{
-      data = await axios.get(`${host}/sponsor/getAll`);
+      data = await axios.get(`${localHost}/sponsor/getAll`);
     }catch(error){
       console.log(error)
     }
@@ -513,7 +514,7 @@ app.get("/admin/:page",async function(req,res){
     res.render("admin/partniyorlar",{data:data.data,name:"Partniýorlar"});
   }else if(page == "banner1"){
     try{
-      data = await axios.get(`${host}/banners/getOne?id=1`);
+      data = await axios.get(`${localHost}/banners/getOne?id=1`);
     }catch(error){
       console.log(error)
     }
@@ -521,7 +522,7 @@ app.get("/admin/:page",async function(req,res){
     res.render("admin/banner1",{data:data.data.banner, name:"1-nji banner", host,hostiso});
   }else if(page == "banner2"){
     try{
-      data = await axios.get(`${host}/banners/getOne?id=2`);
+      data = await axios.get(`${localHost}/banners/getOne?id=2`);
     }catch(error){
       console.log(error)
     }
@@ -529,7 +530,7 @@ app.get("/admin/:page",async function(req,res){
     res.render("admin/banner2",{data:data.data.banner, name:"2-nji banner", host,hostiso});
   }else if(page == "banner3"){
     try{
-      data = await axios.get(`${host}/banners/getOne?id=3`);
+      data = await axios.get(`${localHost}/banners/getOne?id=3`);
     }catch(error){
       console.log(error)
     }
@@ -537,7 +538,7 @@ app.get("/admin/:page",async function(req,res){
     res.render("admin/banner3",{data:data.data.banner, name:"3-nji banner", host,hostiso});
   }else if(page == "mail"){
     try{
-      data = await axios.get(`${host}/mail/`);
+      data = await axios.get(`${localHost}/mail/`);
     }catch(error){
       console.log(error)
     }
@@ -545,7 +546,7 @@ app.get("/admin/:page",async function(req,res){
     res.render("admin/mail",{data:data.data,name:"Mail subcribers",hostiso});
   }else if (page == "constructor"){
     try{
-      data = await axios.get(`${host}/constructor/`);
+      data = await axios.get(`${localHost}/constructor/`);
     }catch(error){
       console.log(error)
     }
@@ -553,7 +554,7 @@ app.get("/admin/:page",async function(req,res){
     res.render("admin/constructor",{data:data.data,name:"Constructor kategoriýalar",hostiso});
   }else if(page == "karta"){
     try{
-      data = await axios.get(`${host}/province/getProvince`);
+      data = await axios.get(`${localHost}/province/getProvince`);
     }catch(error){
       console.log(error)
     }
@@ -563,7 +564,7 @@ app.get("/admin/:page",async function(req,res){
     res.render('admin/parol',{name:"Parol çalyşmak",host,hostiso});
   }else if(page == "statistika"){
     try{
-      data = await axios.get(`${host}/menu/getStatistika`);
+      data = await axios.get(`${localHost}/menu/getStatistika`);
     }catch(e){
       console.log(e);
     }
@@ -571,7 +572,7 @@ app.get("/admin/:page",async function(req,res){
     res.render('admin/statistika',{name:"Statistika",host,data:data.data,hostiso});
   }else if(page == 'messages'){
     try{
-      data = await axios.get(`${host}/chat/getAll`);
+      data = await axios.get(`${localHost}/chat/getAll`);
     }catch(e){
       console.log(e);
     }
@@ -639,7 +640,7 @@ app.post("/admin/:page/search",async function(req,res){
   console.log(link);
   console.log(text);
   try{
-    data = await axios.get(`${host}/${link}/searchAdmin?text=${text}`);
+    data = await axios.get(`${localHost}/${link}/searchAdmin?text=${text}`);
   }catch(error){
     console.log(error)
   }
@@ -653,7 +654,7 @@ app.post("/admin/:page/search",async function(req,res){
 app.get("/admin/messages/:id", async function(req,res){
   var data;
   try{
-    data = await axios.get(`${host}/chat/getOne?id=${req.params.id}`);
+    data = await axios.get(`${localHost}/chat/getOne?id=${req.params.id}`);
   }catch(e){
     console.log(e);
   }
@@ -701,7 +702,7 @@ app.get("/admin/:page/add",async function(req,res){
   var data;
   if(page == 'Habarlar'){
     try{
-      data = await axios.get(`${host}/news/tag`);
+      data = await axios.get(`${localHost}/news/tag`);
       res.render("admin/toAdd/addHabarlar",{tag:data.data,name : page+" goşmak",host,hostiso});
     }catch(error){
       res.send(error);
@@ -709,7 +710,7 @@ app.get("/admin/:page/add",async function(req,res){
     
   }else if(page == "Bildirişler"){
     try{
-      data = await axios.get(`${host}/events/tag`);
+      data = await axios.get(`${localHost}/events/tag`);
       res.render("admin/toAdd/addBildirishler",{tag:data.data,name : "Bildiriş goşmak",host,hostiso});
     }catch(error){
       res.send(error);
@@ -723,7 +724,7 @@ app.get("/admin/:page/add",async function(req,res){
     res.render("admin/toAdd/addKarhanalar",{name:"Kärhana goşmak",host,id:pudakId,hostiso})
   }else if(page == "Internet Söwda"){
     try{
-      data = await axios.get(`${host}/commerce/getCategorySimple`);
+      data = await axios.get(`${localHost}/commerce/getCategorySimple`);
       console.log(data.data);
       res.render("admin/toAdd/addInternetSowda",{tag:data.data,name:"Internet Söwda goşmak",host,hostiso})
     }catch(error){
@@ -760,7 +761,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
   var data;
   if(page == "habarlar"){
     try{
-      data = await axios.get(`${host}/news/getOne?id=${id}`);
+      data = await axios.get(`${localHost}/news/getOne?id=${id}`);
     }catch(error){
       console.log(error)
     }
@@ -768,14 +769,14 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     res.render("admin/toEdit/editHabarlar",{data:data.data[0],tags:data.data[1],name:"Habarlar üýtgetmek",host:host});
   }else if(page == 'bildirishler'){
     try{
-      data = await axios.get(`${host}/events/getOne?id=${id}`);
+      data = await axios.get(`${localHost}/events/getOne?id=${id}`);
     }catch(error){
       console.log(error)
     }
     res.render("admin/toEdit/editBildirishler",{data:data.data[0],tags:data.data[1],name:"Bildiriş üýtgetmek",host:host});
   }else if(page == 'gazetlar'){
     try{
-      data = await axios.get(`${host}/newspapers/getOne?id=${id}`);
+      data = await axios.get(`${localHost}/newspapers/getOne?id=${id}`);
     }catch(error){
       console.log(error)
     }
@@ -783,7 +784,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     res.render("admin/toEdit/editGazetlar",{data:data.data,name:"Gazet üýtgetmek",host:host});
   }else if (page == 'banner1'){
     try{
-      data = await axios.get(`${host}/banners/getOneBanner?id=1&index=${id}`);
+      data = await axios.get(`${localHost}/banners/getOneBanner?id=1&index=${id}`);
     }catch(error){
       console.log(error)
     }
@@ -791,7 +792,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     res.render("admin/toEdit/editBanner1",{data:data.data,index:req.params.id,name:"1-nji banneri üýtgetmek",host:host});
   }else if (page == 'banner2'){
     try{
-      data = await axios.get(`${host}/banners/getOneBanner?index=${id}&id=2`);
+      data = await axios.get(`${localHost}/banners/getOneBanner?index=${id}&id=2`);
     }catch(error){
       console.log(error)
     }
@@ -799,7 +800,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     res.render("admin/toEdit/editBanner2",{data:data.data,index:req.params.id,name:"2-nji banneri üýtgetmek",host});
   }else if (page == 'banner3'){
     try{
-      data = await axios.get(`${host}/banners/getOneBanner?index=${id}&id=3`);
+      data = await axios.get(`${localHost}/banners/getOneBanner?index=${id}&id=3`);
     }catch(error){
       console.log(error)
     }
@@ -807,7 +808,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     res.render("admin/toEdit/editBanner3",{data:data.data,index:req.params.id,name:"3-nji banneri üýtgetmek",host});
   }else if(page == 'kompaniyalar'){
     try{
-      data = await axios.get(`${host}/members/getOne?id=${id}`);
+      data = await axios.get(`${localHost}/members/getOne?id=${id}`);
     }catch(error){
       console.log(error)
     }
@@ -815,7 +816,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     res.render("admin/toEdit/editKompaniyalar",{data:data.data,id:req.params.id,name:"Kompaniýa üýtgetmek",host});
   }else if(page == 'internetSowda'){
     try{
-      data = await axios.get(`${host}/commerce/getOne?id=${id}`);
+      data = await axios.get(`${localHost}/commerce/getOne?id=${id}`);
     }catch(error){
       console.log(error)
     }
@@ -823,7 +824,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     res.render("admin/toEdit/editInternetSowda",{data:data.data[0],tag:data.data[1],id:req.params.id,name:"Internet Söwdany üýtgetmek",host});
   }else if(page == 'ishMeyilnamasy'){
     try{
-      data = await axios.get(`${host}/menu/getOneBussiness?id=${id}`);
+      data = await axios.get(`${localHost}/menu/getOneBussiness?id=${id}`);
     }catch(e){
       console.log(e);
     }
@@ -831,7 +832,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     res.render('admin/toEdit/editPlans',{data:data.data,name:"Iş meýilnamasyny üýtgetmek",host});
   }else if(page == 'ygtyyarnama'){
     try{
-      data = await axios.get(`${host}/menu/getOneLicense?id=${id}`);
+      data = await axios.get(`${localHost}/menu/getOneLicense?id=${id}`);
     }catch(e){
       console.log(e);
     }
@@ -839,7 +840,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     res.render('admin/toEdit/editLisense',{data:data.data,name:"Ygtyýarnama üýtgetmek",host});
   }else if(page == "pudaklar"){
     try{
-      data = await axios.get(`${host}/industry/getOne?id=${id}`);
+      data = await axios.get(`${localHost}/industry/getOne?id=${id}`);
     }catch(e){
       console.log(e);
     }
@@ -847,7 +848,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     res.render("admin/toEdit/editPudaklar",{data:data.data,host,name:"Pudaklar üýtgetmek"});
   }else if(page == "karhanalar"){
     try{
-      data = await axios.get(`${host}/industry/subCategory?index=${id}&id=${pudakId}`);
+      data = await axios.get(`${localHost}/industry/subCategory?index=${id}&id=${pudakId}`);
     }catch(e){
       console.log(e);
     }
@@ -855,7 +856,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     res.render("admin/toEdit/editKarhanalar",{data:data.data,name:"Karhanalar üýtgetmek",host,index:id,id:pudakId});
   }else if(page == 'partniyorlar'){
     try{
-      data = await axios.get(`${host}/sponsor/getOne?id=${id}`);
+      data = await axios.get(`${localHost}/sponsor/getOne?id=${id}`);
     }catch(e){
       console.log(e);
     }
@@ -863,7 +864,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     res.render('admin/toEdit/editPartniyorlar',{data:data.data,host,name:'Partniýorlar üýtgetmek'})
   }else if(page == 'constructorKategori'){
     try{
-      data = await axios.get(`${host}/constructor/getOneSimple?id=${id}`);
+      data = await axios.get(`${localHost}/constructor/getOneSimple?id=${id}`);
     }catch(e){
       console.log(e);
     }
@@ -871,7 +872,7 @@ app.get("/admin/:page/edit/:id",async function(req,res){
     res.render('admin/toEdit/editConstructorKategori',{data:data.data,host,name:'Constructor kategory üýtgetmek',id})
   }else if(page == 'subConstructor'){
     try{
-      data = await axios.get(`${host}/constructor/subCategory/getOne?id=${id}`);
+      data = await axios.get(`${localHost}/constructor/subCategory/getOne?id=${id}`);
     }catch(e){
       console.log(e);
     }
@@ -904,7 +905,7 @@ app.get("/admin/:page/delete/:id",async function(req,res){
   var id = req.params.id;
   if(page == 'habarlar'){
     try{
-      await axios.delete(`${host}/news?id=${id}`);
+      await axios.delete(`${localHost}/news?id=${id}`);
     }catch(error){
       console.log(error)
     }
@@ -912,7 +913,7 @@ app.get("/admin/:page/delete/:id",async function(req,res){
     res.redirect("/admin/habarlar")
   }else if(page == 'bildirishler'){
     try{
-      await axios.delete(`${host}/events?id=${id}`);
+      await axios.delete(`${localHost}/events?id=${id}`);
     }catch(error){
       console.log(error)
     }
@@ -920,7 +921,7 @@ app.get("/admin/:page/delete/:id",async function(req,res){
     res.redirect("/admin/bildirishler")
   }else if(page == 'gazetlar'){
     try{
-      await axios.delete(`${host}/newspapers?id=${id}`);
+      await axios.delete(`${localHost}/newspapers?id=${id}`);
     }catch(error){
       console.log(error)
     }
@@ -928,7 +929,7 @@ app.get("/admin/:page/delete/:id",async function(req,res){
     res.redirect("/admin/rysgal");
   }else if(page == "banner1"){
     try{
-      await axios.delete(`${host}/banners?index=${id}&id=1`);
+      await axios.delete(`${localHost}/banners?index=${id}&id=1`);
     }catch(error){
       console.log(error)
     }
@@ -936,7 +937,7 @@ app.get("/admin/:page/delete/:id",async function(req,res){
     res.redirect("/admin/banner1");
   }else if(page == "banner2"){
     try{
-      await axios.delete(`${host}/banners?index=${id}&id=2`);
+      await axios.delete(`${localHost}/banners?index=${id}&id=2`);
     }catch(error){
       console.log(error)
     }
@@ -944,7 +945,7 @@ app.get("/admin/:page/delete/:id",async function(req,res){
     res.redirect("/admin/banner2");
   }else if(page == 'banner3'){
     try{
-      await axios.delete(`${host}/banners?index=${id}&id=3`);
+      await axios.delete(`${localHost}/banners?index=${id}&id=3`);
     }catch(error){
       console.log(error)
     }
@@ -952,70 +953,70 @@ app.get("/admin/:page/delete/:id",async function(req,res){
     res.redirect("/admin/banner3");
   }else if(page == 'kompaniyalar'){
     try{
-      await axios.delete(`${host}/members?id=${id}`)
+      await axios.delete(`${localHost}/members?id=${id}`)
     }catch(e){
       console.log(e);
     }
     res.redirect("/admin/kompaniyalar");
   }else if(page == 'internetSowda'){
     try{
-      await axios.delete(`${host}/commerce?id=${id}`)
+      await axios.delete(`${localHost}/commerce?id=${id}`)
     }catch(e){
       console.log(e);
     }
     res.redirect("/admin/internetSowda");
   }else if(page == 'ishMeyilnamasy'){
     try{
-      await axios.delete(`${host}/menu/deleteBussiness?id=${id}`)
+      await axios.delete(`${localHost}/menu/deleteBussiness?id=${id}`)
     }catch(e){
       console.log(e);
     }
     res.redirect('/admin/plans');
   }else if(page == 'ygtyyarnama'){
     try{
-      await axios.delete(`${host}/menu/deleteLicense?id=${id}`)
+      await axios.delete(`${localHost}/menu/deleteLicense?id=${id}`)
     }catch(e){
       console.log(e);
     }
     res.redirect('/admin/ygtyyarnama');
   }else if(page == 'partniyorlar'){
     try{
-      await axios.delete(`${host}/sponsor?id=${id}`)
+      await axios.delete(`${localHost}/sponsor?id=${id}`)
     }catch(e){
       console.log(e);
     }
     res.redirect('/admin/partniyorlar');
   }else if(page == 'pudaklar'){
     try{
-      await axios.delete(`${host}/industry?id=${id}`)
+      await axios.delete(`${localHost}/industry?id=${id}`)
     }catch(e){
       console.log(e);
     }
     res.redirect('/admin/pudaklar');
   }else if(page == "karhanalar"){
     try{
-      await axios.delete(`${host}/industry/subCategory?index=${id}&id=${pudakId}`)
+      await axios.delete(`${localHost}/industry/subCategory?index=${id}&id=${pudakId}`)
     }catch(e){
       console.log(e);
     }
     res.redirect('/admin/karhanalar/'+pudakId);
   }else if(page == 'constructorKategori'){
     try{
-      await axios.delete(`${host}/constructor?id=${id}`)
+      await axios.delete(`${localHost}/constructor?id=${id}`)
     }catch(e){
       console.log(e);
     }
     res.redirect('/admin/constructor')
   }else if(page == 'subConstructor'){
     try{
-      await axios.delete(`${host}/constructor/subCategory?id=${id}`);
+      await axios.delete(`${localHost}/constructor/subCategory?id=${id}`);
     }catch(e){
       console.log(e);
     }
     res.redirect('/admin/subConstructor/'+constructorId);
   }else if(page == 'mail'){
     try{
-      await axios.delete(`${host}/mail?id=${id}`);
+      await axios.delete(`${localHost}/mail?id=${id}`);
     }catch(e){
       console.log(e);
     }
@@ -1030,7 +1031,7 @@ app.get("/admin/karhanalar/:id",async function(req,res){
   pudakId = req.params.id
   var data;
   try{
-    data = await axios.get(`${host}/industry/getOne?id=${pudakId}`);
+    data = await axios.get(`${localHost}/industry/getOne?id=${pudakId}`);
   }catch(error){
     console.log(error)
   }
@@ -1045,7 +1046,7 @@ app.get("/admin/subConstructor/:id",async function(req,res){
   constructorId = req.params.id;
   var data;
   try{
-    data = await axios.get(`${host}/constructor/getOne?id=${constructorId}`)
+    data = await axios.get(`${localHost}/constructor/getOne?id=${constructorId}`)
   }catch(e){
     console.log(e);
   }
