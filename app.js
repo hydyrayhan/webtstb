@@ -31,7 +31,7 @@ app.get('/',async function(req,res){
  console.log("deneme"+host);
  //shu yerde axios backend den maglumat alyp bilenok 
   try{
-    mainPage = await axios.get(host);
+    mainPage = await axios.get('http://95.85.118.228:5000');
   }catch(error){
     console.log(error)
   }
