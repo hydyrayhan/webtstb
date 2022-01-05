@@ -4,8 +4,9 @@ const bodyParser = require("body-parser");
 const fs = require("fs")
 require("dotenv").config({path:"./config/config.env"});
 const path = require('path')
-const host = process.env.HOST;
+const host = process.env.HOST ? process.env.HOST : 5003;
 const hostiso = process.env.HOSTISO;
+
 const app = express();
 app.use(express.json())
 app.use(express.urlencoded({extended:true}));
@@ -27,7 +28,7 @@ app.get('/',async function(req,res){
  var sl = req.query.sl;
  var mainPage;
 
- 
+ console.log("deneme"+host);
  //shu yerde axios backend den maglumat alyp bilenok 
   try{
     mainPage = await axios.get(host);
