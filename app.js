@@ -27,13 +27,13 @@ app.use(fileUpload())
 
 
 let languageData = '';
-
+console.log(host);
 var follow;
 app.get('/',async function(req,res){
  var sl = req.query.sl;
  var mainPage;
   try{
-    mainPage = await axios.get(`${host}/`);
+    mainPage = await axios.get(host+"/");
   }catch(error){
     console.log(error)
   }
