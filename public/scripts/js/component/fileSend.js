@@ -1,4 +1,3 @@
-
 async function dataSend(data,link){
     const option={
         method:"POST",
