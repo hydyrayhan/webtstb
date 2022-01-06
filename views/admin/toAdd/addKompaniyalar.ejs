@@ -363,11 +363,13 @@
                 // }else{
                     var res = await dataSend(data,`<%=host%>/members/add`)
                     if(typeof(res.id)=="number"){
-                        var res2 = await imgSend(logoArr,`<%=host%>/members/addPic?id=${res.id}`);
-                        if(res2.status == 200){
-                            var res2 = await imgSend(arr,`<%=host%>/members/addFile?id=${res.id}`);
-                            if(res2.status == 200){
-                                location.replace("/admin/kompaniyalar");
+                        if(imgs.length !== 0){
+                            var res2 = await imgSend(logoArr,`<%=host%>/members/addPic?id=${res.id}`);
+                            if(res2.status == 200 && arr.length>0){
+                                var res2 = await imgSend(arr,`<%=host%>/members/addFile?id=${res.id}`);
+                                if(res2.status == 200){
+                                    location.replace("/admin/kompaniyalar");
+                                }
                             }
                         }
                     }else{
