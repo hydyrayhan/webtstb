@@ -197,10 +197,11 @@
         <div class="val2"><%= data.body.ru %></div>
         <div class="val3"><%= data.body.en %></div>
     </div>
-
-    <% for(var i =0 ; i<data.files.length; i++) {%>
-        <div class="fileTake" style="display: none;"><%= data.files[i].filename %></div>
-    <% } %>  
+    <% if (data.files.length >0) { %>
+        <% for(var i =0 ; i<data.files.length; i++) {%>
+            <div class="fileTake" style="display: none;"><%= data.files[i].filename %></div>
+        <% } %>  
+    <% } %>
  <!-- selectden saylanany ashakda gorkezmek -->
  <script>
     var tegs = "<%=data.category%>";
