@@ -366,7 +366,8 @@
                     if(typeof(res.id)=="number"){
                         console.log(logoArr.length)
                         if(logoArr.length > 0){
-                            console.log('logoArr');
+                            console.log(logoArr,'logoArr');
+                            console.log(arr,'arr')
                             var res2 = await imgSend(logoArr,`<%=host%>/members/addPic?id=${res.id}`);
                             if(res2.status == 200 && arr.length>0){
                                 var res2 = await imgSend(arr,`<%=host%>/members/addFile?id=${res.id}`);
