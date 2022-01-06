@@ -370,6 +370,17 @@
                                 if(res2.status == 200){
                                     location.replace("/admin/kompaniyalar");
                                 }
+                            }else{
+                                location.replace('/admin/kompaniyalar');
+                            }
+                        }else{
+                            if(arr.length>0){
+                                var res2 = await imgSend(arr,`<%=host%>/members/addFile?id=${res.id}`); 
+                                if(res2.status == 200){
+                                    location.replace("/admin/kompaniyalar");
+                                }
+                            }else{
+                                location.replace('/admin/kompaniyalar')
                             }
                         }
                     }else{
