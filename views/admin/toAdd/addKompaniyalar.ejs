@@ -357,10 +357,10 @@
                 var logoArr = [];
                 logoArr.push(logo);
 
-                if(imgs.length == 0 || logo.length == 0){
-                    alert("Surat ýada PDF giriziň");
-                    oneTime = true
-                }else{
+                // if(imgs.length == 0 || logo.length == 0){
+                //     alert("Surat ýada PDF giriziň");
+                //     oneTime = true
+                // }else{
                     var res = await dataSend(data,`<%=host%>/members/add`)
                     if(typeof(res.id)=="number"){
                         var res2 = await imgSend(logoArr,`<%=host%>/members/addPic?id=${res.id}`);
@@ -373,7 +373,7 @@
                     }else{
                         console.log("Ishlemedi");
                     }
-                }
+                // }
             }
         })
     </script>
