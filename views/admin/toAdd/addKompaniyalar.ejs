@@ -361,31 +361,33 @@
                 //     alert("Surat ýada PDF giriziň");
                 //     oneTime = true
                 // }else{
-                    var res = await dataSend(data,`<%=host%>/members/add`)
-                    if(typeof(res.id)=="number"){
-                        if(imgs.length !== 0){
-                            var res2 = await imgSend(logoArr,`<%=host%>/members/addPic?id=${res.id}`);
-                            if(res2.status == 200 && arr.length>0){
-                                var res2 = await imgSend(arr,`<%=host%>/members/addFile?id=${res.id}`);
-                                if(res2.status == 200){
-                                    location.replace("/admin/kompaniyalar");
-                                }
-                            }else{
-                                location.replace('/admin/kompaniyalar');
-                            }
-                        }else{
-                            if(arr.length>0){
-                                var res2 = await imgSend(arr,`<%=host%>/members/addFile?id=${res.id}`); 
-                                if(res2.status == 200){
-                                    location.replace("/admin/kompaniyalar");
-                                }
-                            }else{
-                                location.replace('/admin/kompaniyalar')
-                            }
-                        }
-                    }else{
-                        console.log("Ishlemedi");
-                    }
+                    console.log(logoArr);
+                    console.log(arr);
+                    // var res = await dataSend(data,`<%=host%>/members/add`)
+                    // if(typeof(res.id)=="number"){
+                    //     if(logoArr.length !== 0){
+                    //         var res2 = await imgSend(logoArr,`<%=host%>/members/addPic?id=${res.id}`);
+                    //         if(res2.status == 200 && arr.length>0){
+                    //             var res2 = await imgSend(arr,`<%=host%>/members/addFile?id=${res.id}`);
+                    //             if(res2.status == 200){
+                    //                 location.replace("/admin/kompaniyalar");
+                    //             }
+                    //         }else{
+                    //             location.replace('/admin/kompaniyalar');
+                    //         }
+                    //     }else{
+                    //         if(arr.length>0){
+                    //             var res2 = await imgSend(arr,`<%=host%>/members/addFile?id=${res.id}`); 
+                    //             if(res2.status == 200){
+                    //                 location.replace("/admin/kompaniyalar");
+                    //             }
+                    //         }else{
+                    //             location.replace('/admin/kompaniyalar')
+                    //         }
+                    //     }
+                    // }else{
+                    //     console.log("Ishlemedi");
+                    // }
                 // }
             }
         })
