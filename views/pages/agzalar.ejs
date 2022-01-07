@@ -66,7 +66,7 @@
                                 <div class="icon"><img src="/pictures/icon/grayRightArrow.svg" alt=""></div>
                             </div>
                             <div class="full">
-                                <div class="adress"><span data-content id="address"></span>:</div>
+                                <div class="adress"><span data-content id="address"></span></div>
                                 <div class="adressInfo" data-dynamic data-tm="<%= data[k][i].address.tm %>" data-ru="<%= data[k][i].address.ru %>" data-en="<%= data[k][i].address.en %>"><%= data[k][i].address.ru %></div>
         
                                 <div class="adress"><span data-content id="sylka"></span>:</div>
@@ -74,13 +74,13 @@
                                     <div class="adresses">
                                         <div class="webLink"><span data-content id="website"></span></div>
                                         <div class="email"><span data-content id="email"></span>: </div>
-                                        <div class="instagram"><span data-content id="extra"></span>: </div>
+                                        <div class="instagram"><span data-content id="extra"></span></div>
                                     </div>
             
                                     <div class="links">
                                         <a href="<%= data[k][i].link %>" class="text"><%= data[k][i].link %> </a>
-                                        <a href="" class="text"><%= data[k][i].email %></a>
-                                        <a href="" class="text"><%=data[k][i].extra%></a>
+                                        <div href="" style="color: #2058D4;" class="text"><%= data[k][i].email %></div>
+                                        <div href="" style="color: #2058D4;" class="text"><%=data[k][i].extra%></div>
                                     </div>
                                 </div>
         
