@@ -36,7 +36,7 @@
                         <div class="file">
                             <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
                             <div class="fileRight">
-                                <div class="name"><a href="" download><%=data.files[i].filename%></a></div>
+                                <div class="name"><a href="<%= host %>/constructor/download?file=<%= data.files[i].link %>&id=<%= data.id %>" download><%=data.files[i].filename%></a></div>
                                 <div class="kb"><%= data.files[i].size %> </div>
                             </div>
                         </div>

@@ -33,7 +33,7 @@
                                     <div class="file">
                                         <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
                                         <div class="fileRight">
-                                            <div class="name"><a href="" download> <%= data[i].files[j].filename %></a></div>
+                                            <div class="name"><a href="<%= host %>/menu/bussiness/download?file=<%= data[i].files[j].link %>&id=<%= data[i].id %>" download> <%= data[i].files[j].filename %></a></div>
                                             <div class="kb"><%= data[i].files[j].size %> </div>
                                         </div>
                                     </div>

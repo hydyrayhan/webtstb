@@ -86,14 +86,16 @@
         
                                 <div class="adress">Fayllar download etmek uchin</div>
                                 <div class="filesCon">
-                                    <% for( let j = 0; j < data[k][i].files.length; j++ ) { %>
-                                        <div class="file">
-                                            <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
-                                            <div class="fileRight">
-                                                <div class="name"><a href="<%= data[k][i].files[j].link %>" download><%= data[k][i].files[j].filename %> </a></div>
-                                                <div class="kb"><%= data[k][i].files[j].size %> kb</div>
+                                    <% if (data[k][i].files !== null) { %>
+                                        <% for( let j = 0; j < data[k][i].files.length; j++ ) { %>
+                                            <div class="file">
+                                                <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
+                                                <div class="fileRight">
+                                                    <div class="name"><a href="<%= host %>/members/download?file=<%= data[k][i].files[j].link %>&id=<%= data[k][i].id %>" download><%= data[k][i].files[j].filename %> </a></div>
+                                                    <div class="kb"><%= data[k][i].files[j].size %> kb</div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        <% } %>
                                     <% } %>
                                 </div>
                             </div>
