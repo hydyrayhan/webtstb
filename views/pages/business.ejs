@@ -78,10 +78,10 @@
                                     <div class="infoLabel" data-dynamic data-tm="<%= data[i].commerce[j].address.tm %>" data-en="<%= data[i].commerce[j].address.en %>" data-ru="<%= data[i].commerce[j].address.ru %>"><%= data[i].commerce[j].address.tm %></div>
                                     <div class="label" data-content id="phone">Телефон:</div>
                                     <div class="infoLabel"><%= data[i].commerce[j].number %></div> 
-                                    <div class="label"><span data-content id="email">Почта</span>:</div>
+                                    <div class="label"><span data-content id="email"></span>:</div>
                                     <div class="infoLabel"><%= data[i].commerce[j].email %></div>
-                                    <div class="label"><span data-content id="website">Веб-сайт</span>:</div>
-                                    <div class="web"><%= data[i].commerce[j].website %></div>
+                                    <div class="label"><span data-content id="website"></span></div>
+                                    <div class="web"><a href="//<%= data[i].commerce[j].website %>" style="text-decoration: none; color: #2058D4;"><%= data[i].commerce[j].website %></a></div>
                                 </div>
                             </div>
                         <% m+=1} %>

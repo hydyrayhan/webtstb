@@ -66,15 +66,15 @@
                                 <div class="icon"><img src="/pictures/icon/grayRightArrow.svg" alt=""></div>
                             </div>
                             <div class="full">
-                                <div class="adress">Address:</div>
+                                <div class="adress"><span data-content id="address"></span>:</div>
                                 <div class="adressInfo" data-dynamic data-tm="<%= data[k][i].address.tm %>" data-ru="<%= data[k][i].address.ru %>" data-en="<%= data[k][i].address.en %>"><%= data[k][i].address.ru %></div>
         
-                                <div class="adress">Link: </div>
+                                <div class="adress"><span data-content id="sylka"></span>:</div>
                                 <div class="right">
                                     <div class="adresses">
-                                        <div class="webLink">web sayt: </div>
-                                        <div class="email">Email: </div>
-                                        <div class="instagram">Instagram: </div>
+                                        <div class="webLink"><span data-content id="website"></span></div>
+                                        <div class="email"><span data-content id="email"></span>: </div>
+                                        <div class="instagram"><span data-content id="extra"></span>: </div>
                                     </div>
             
                                     <div class="links">
@@ -84,21 +84,21 @@
                                     </div>
                                 </div>
         
-                                <div class="adress">Fayllar download etmek uchin</div>
+                            <% if (data[k][i].files !== null) { %>
+                                <div class="adress" data-content id="fileDownloadUcin"></div>
                                 <div class="filesCon">
-                                    <% if (data[k][i].files !== null) { %>
                                         <% for( let j = 0; j < data[k][i].files.length; j++ ) { %>
                                             <div class="file">
                                                 <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
                                                 <div class="fileRight">
                                                     <div class="name"><a href="<%= host %>/members/download?file=<%= data[k][i].files[j].filename %>&id=<%= data[k][i].id %>" download><%= data[k][i].files[j].filename %> </a></div>
-                                                    <div class="kb"><%= data[k][i].files[j].size %> kb</div>
+                                                    <div class="kb"><%= data[k][i].files[j].size %></div>
                                                 </div>
                                             </div>
                                         <% } %>
-                                    <% } %>
+                                    </div>
                                 </div>
-                            </div>
+                            <% } %>
                         </div>
                     <% } %>
                 </div>

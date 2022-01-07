@@ -1037,6 +1037,7 @@
 }
 
 .locationSection .container .location .map {
+  margin-bottom: 40px;
   width: 70%;
   fill: #C4C4C4;
 }
