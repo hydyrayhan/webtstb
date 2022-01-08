@@ -43,7 +43,7 @@
                       <div class="dropdown-container">
                         <% if (data[0][i].sub !== null) { %>
                           <%for(var j = 0; j<data[0][i].sub.length;j++){%>
-                            <a href="/karhana/<%=i+1%>?pudak=<%=j%>&id=<%= data[0][i].id %>" class="link" data-dynamic data-ru="<%=data[0][i].sub[j].name.ru%>" data-tm="<%=data[0][i].sub[j].name.tm%>" data-en="<%=data[0][i].sub[j].name.en%>"></a>
+                            <a href="/karhana/<%=i+1%>?pudak=<%=j+1%>&id=<%= data[0][i].id %>" class="link" data-dynamic data-ru="<%=data[0][i].sub[j].name.ru%>" data-tm="<%=data[0][i].sub[j].name.tm%>" data-en="<%=data[0][i].sub[j].name.en%>"></a>
                           <%}%>
                         <% } %>
                       </div>
