@@ -22,6 +22,7 @@ const fileUpload = require("express-fileupload");
 app.use(fileUpload())
 
 const localHost = 'http://localhost:5000'
+// const localHost = host; 
 
 let languageData = '';
 var follow;
@@ -225,7 +226,7 @@ app.get("/agzalar/:id",async function(req,res){
   }
   
 
-  res.render("pages/agzalar",{data,place,idd,host,follow,hostiso})
+  res.render("pages/agzalar",{data,place,idd,host,follow,hostiso,id})
 })
 
 // Rysgal Gazeti

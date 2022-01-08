@@ -105,6 +105,7 @@
             <% } %>      
         </div>
     </section>
+    <a href="/agzalar/<%= id %>/#id_<%= id %>" id="clickId" style="display: none;"></a>
 
     <%- include ('../src/bottom.ejs') %>
 
@@ -148,9 +149,11 @@
         if(a!='-1'){
             const list = document.querySelectorAll(".agzalarList .main");
             var we = document.querySelectorAll(".we<%=place%>");
+            var clickId = document.querySelector("#clickId");
             var id  = Number('<%=idd%>');
-            console.log(id);
             var bul = false;
+            we[id].setAttribute('id',"id_<%=id%>");
+            clickId.click();
             if(id>=0){
                 open(we[id]);
             }else{

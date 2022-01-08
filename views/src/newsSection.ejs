@@ -12,15 +12,15 @@
           <div class="navbar">
             <div class="left1">
               <a href="/pressCenter">
-                <div class="h1" data-content id="newsCenter">Press Center</div>
+                <div class="h1" data-content id="newsCenter"> </div>
                 <div class="img"><img src="/pictures/icon/rightArrow.png" alt=""></div>
               </a>
             </div>
     
             <div class="right1">
-              <div class="active1 slide" data-id0 data-content id="news"><span></span> News</div>
-              <div data-id1 data-content class="slide" id="events"><span></span> Events announcements</div>
-              <a href="/gazet"><div data-id2 data-content id="gazet"><span></span> About us</div></a>
+              <div class="active1 slide" data-id0 data-content id="news"><span></span> </div>
+              <div data-id1 data-content class="slide" id="events"><span></span>  </div>
+              <a href="/gazet"><div data-id2 data-content id="gazet"><span></span>  </div></a>
             </div>
           </div>
             
@@ -35,7 +35,7 @@
                           <div class="left"><a href="news/<%= list.list[0].id %>"><img src='<%= host %>/news/<%= list.list[0].pic %>' alt=""></a></div>
                           <div class="right">
                             <div class="top">
-                              <a href="news/<%= list.list[0].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%=list.list[0].header.RU%>" data-tm="<%=list.list[0].header.TM%>" data-en="<%=list.list[0].header.EN%>" id="name"><%=list.list[0].header.RU%></div></a>
+                              <a href="news/<%= list.list[0].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%=list.list[0].header.RU%>" data-tm="<%=list.list[0].header.TM%>" data-en="<%=list.list[0].header.EN%>" id="name"></div></a>
                               <div class="title" data-dynamic data-ru="<%=list.list[0].body.RU%>" data-tm="<%=list.list[0].body.TM%>" data-en="<%=list.list[0].body.EN%>" id="title"><%=list.list[0].body.RU%></div>
                             </div>
                             <div class="bottom">
@@ -49,10 +49,10 @@
                             <div class="newsContainer lowNews<%=i%>">
                               <div class="top"><a href="news/<%= list.list[i].id %>"><img src="<%= host %>/news/<%= list.list[i].pic %>" alt=""></a></div>
                               <div class="bottomTop">
-                                <a href="news/<%= list.list[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%=list.list[i].header.RU%>" data-tm="<%=list.list[i].header.TM%>" data-en="<%=list.list[i].header.EN%>" id="name"><%=list.list[i].header.RU%></div></a>
+                                <a href="news/<%= list.list[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%=list.list[i].header.RU%>" data-tm="<%=list.list[i].header.TM%>" data-en="<%=list.list[i].header.EN%>" id="name"></div></a>
                               </div>
                               <div class="bottom">
-                                <div class="new" data-content id="newss">News</div>
+                                <div class="new" data-content id="newss"></div>
                                 <div class="dot"></div>
                                 <div class="date" id="date"><%=list.list[i].date%></div>
                               </div>
@@ -69,11 +69,11 @@
                           <div class="left"><a href="events/<%= list.list2[0].id %>"><img src='<%= host %>/events/<%= list.list2[0].pic %>' alt=""></a></div>
                           <div class="right">
                             <div class="top">
-                              <a href="events/<%= list.list2[0].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%=list.list2[0].header.RU%>" data-tm="<%=list.list2[0].header.TM%>" data-en="<%=list.list2[0].header.EN%>" id="name"><%=list.list2[0].header.RU%></div></a>
+                              <a href="events/<%= list.list2[0].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%=list.list2[0].header.RU%>" data-tm="<%=list.list2[0].header.TM%>" data-en="<%=list.list2[0].header.EN%>" id="name"></div></a>
                               <div class="title" data-dynamic data-ru="<%=list.list2[0].body.RU%>" data-tm="<%=list.list2[0].body.TM%>" data-en="<%=list.list2[0].body.EN%>" id="title"><%=list.list2[0].body.RU%></div>
                             </div>
                             <div class="bottom">
-                              <div class="new" data-content id="newss">News</div>
+                              <div class="new" data-content id="newss"></div>
                               <div class="dot"></div>
                               <div class="date" id="date"><%=list.list2[0].date%></div>
                             </div>
@@ -86,7 +86,7 @@
                                   <a href="events/<%= list.list2[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%=list.list2[i].header.RU%>" data-tm="<%=list.list2[i].header.TM%>" data-en="<%=list.list2[i].header.EN%>" id="name"><%=list.list2[i].header.RU%></div></a>
                                 </div>
                                 <div class="bottom">
-                                  <div class="new" data-content id="newss">News</div>
+                                  <div class="new" data-content id="newss"></div>
                                   <div class="dot"></div>
                                   <div class="date"   id="date"><%=list.list2[i].date%></div>
                                 </div>
@@ -188,16 +188,6 @@
             })
           }
 
-        </script>
-
-        <script>
-          var date = document.querySelectorAll('.date');
-          // console.log(date[0].textContent);
-          
-          var options = {year:'numeric',month:'long',day:'numeric'};
-          var today = new Date(date[0].textContent);
-          // console.log(to)
-          // console.log(today.toLocaleDateString("en-US",options))
         </script>
   </body>
 </html>

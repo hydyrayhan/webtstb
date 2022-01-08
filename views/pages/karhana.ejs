@@ -20,20 +20,20 @@
     <div class="karhanaPage">
         <div class="container">
           <div class="forPhone">
-            <div class="warning">Выберите интересующую промышленность:</div>
+            <div class="warning" data-content id="pudakSayla"></div>
             <div class="phonekategori">
-              <div class="chosen" data-dynamic data-ru="<%=data[1].name.ru%>" data-tm="<%=data[1].name.tm%>" data-en="<%=data[1].name.en%>"><%=data[1].name.ru%></div>
+              <div class="chosen" data-dynamic data-ru="<%=data[1].name.ru%>" data-tm="<%=data[1].name.tm%>" data-en="<%=data[1].name.en%>"></div>
               <div class="icon"><img src="/pictures/icon/downGray.svg" alt=""></div>
             </div>
             <div class="ifc">
               
               <div class="container">
-                <div class="tutor">Выберите категорию:</div>
+                <div class="tutor" data-content id="kategoriDefinition"></div>
                 <div class="space">
                   <div class="subKarhana">
                     <%for(var i = 0; i<data[0].length; i++){%>
                       <div class="downBtn">
-                        <button  class="dropdown-btn" data-dynamic data-ru="<%=data[0][i].name.RU%>" data-tm="<%=data[0][i].name.TM%>" data-en="<%=data[0][i].name.EN%>"><%=data[0][i].name.RU%></button>
+                        <button  class="dropdown-btn" data-dynamic data-ru="<%=data[0][i].name.RU%>" data-tm="<%=data[0][i].name.TM%>" data-en="<%=data[0][i].name.EN%>"></button>
                         <div class="downImg">
                           <svg width="12" height="7" viewBox="0 0 12 7" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1.71249 0.292501L5.5925 4.1725L9.4725 0.292501C9.86249 -0.0975003 10.4925 -0.0975003 10.8825 0.292501C11.2725 0.682501 11.2725 1.3125 10.8825 1.7025L6.2925 6.2925C5.9025 6.6825 5.27249 6.6825 4.8825 6.2925L0.2925 1.7025C-0.0975 1.3125 -0.0975 0.682501 0.2925 0.292501C0.682495 -0.0875003 1.32249 -0.0975003 1.71249 0.292501Z" fill="#323C44"/>
@@ -43,7 +43,7 @@
                       <div class="dropdown-container">
                         <% if (data[0][i].sub !== null) { %>
                           <%for(var j = 0; j<data[0][i].sub.length;j++){%>
-                            <a href="/karhana/<%=i+1%>?pudak=<%=j%>&id=<%= data[0][i].id %>" class="link" data-dynamic data-ru="<%=data[0][i].sub[j].name.ru%>" data-tm="<%=data[0][i].sub[j].name.tm%>" data-en="<%=data[0][i].sub[j].name.en%>"><%=data[0][i].sub[j].name.ru%></a>
+                            <a href="/karhana/<%=i+1%>?pudak=<%=j%>&id=<%= data[0][i].id %>" class="link" data-dynamic data-ru="<%=data[0][i].sub[j].name.ru%>" data-tm="<%=data[0][i].sub[j].name.tm%>" data-en="<%=data[0][i].sub[j].name.en%>"></a>
                           <%}%>
                         <% } %>
                       </div>
@@ -52,21 +52,21 @@
   
                   <div class="back">
                     <div class="img"><img src="/pictures/icon/leftBlackBigger.svg" alt=""></div>
-                    <div>Вернуться назад</div>
+                    <div data-content id="back"></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-            <div class="karhanaPageName" data-dynamic data-ru="<%=data[1].name.ru%>" data-tm="<%=data[1].name.tm%>" data-en="<%=data[1].name.en%>"><%=data[1].name.ru%></div>
+            <div class="karhanaPageName" data-dynamic data-ru="<%=data[1].name.ru%>" data-tm="<%=data[1].name.tm%>" data-en="<%=data[1].name.en%>"></div>
             <div class="karhanaBody">
               <div class="leftNav">
-                  <div class="navName" id="swk" data-content>Отрасли и предприятия:</div>
+                  <div class="navName" id="swk" data-content></div>
                   <div class="sidenav">
                     <div class="subKarhana">
                       <%for(var i = 0; i<data[0].length; i++){%>
                         <div class="downBtn">
-                          <button  class="dropdown-btn" data-dynamic data-ru="<%=data[0][i].name.RU%>" data-tm="<%=data[0][i].name.TM%>" data-en="<%=data[0][i].name.EN%>"><%=data[0][i].name.RU%> ></button>
+                          <button  class="dropdown-btn" data-dynamic data-ru="<%=data[0][i].name.RU%>" data-tm="<%=data[0][i].name.TM%>" data-en="<%=data[0][i].name.EN%>"></button>
                           <div class="downImg">
                             <svg width="12" height="7" viewBox="0 0 12 7" xmlns="http://www.w3.org/2000/svg">
                               <path d="M1.71249 0.292501L5.5925 4.1725L9.4725 0.292501C9.86249 -0.0975003 10.4925 -0.0975003 10.8825 0.292501C11.2725 0.682501 11.2725 1.3125 10.8825 1.7025L6.2925 6.2925C5.9025 6.6825 5.27249 6.6825 4.8825 6.2925L0.2925 1.7025C-0.0975 1.3125 -0.0975 0.682501 0.2925 0.292501C0.682495 -0.0875003 1.32249 -0.0975003 1.71249 0.292501Z" fill="#323C44"/>
@@ -76,19 +76,19 @@
                         <div class="dropdown-container">
                           <% if (data[0][i].sub !== null) { %>
                           <%for(var j = 0; j<data[0][i].sub.length;j++){%>
-                            <a href="/karhana/<%=i+1%>?pudak=<%=j+1%>&id=<%= data[0][i].id %>" class="link" data-dynamic data-ru="<%=data[0][i].sub[j].name.ru%>" data-tm="<%=data[0][i].sub[j].name.tm%>" data-en="<%=data[0][i].sub[j].name.en%>"><%=data[0][i].sub[j].name.ru%></a>
+                            <a href="/karhana/<%=i+1%>?pudak=<%=j+1%>&id=<%= data[0][i].id %>" class="link" data-dynamic data-ru="<%=data[0][i].sub[j].name.ru%>" data-tm="<%=data[0][i].sub[j].name.tm%>" data-en="<%=data[0][i].sub[j].name.en%>"></a>
                           <%}}%>
                         </div>
                       <%}%>
                     </div>
                 </div>
               </div>
-            <div class="karhanaPageNameMobile" data-dynamic data-ru="<%=data[1].name.RU%>" data-tm="<%=data[1].name.TM%>" data-en="<%=data[1].name.EN%>"><%=data[1].name.RU%></div>
+            <div class="karhanaPageNameMobile" data-dynamic data-ru="<%=data[1].name.RU%>" data-tm="<%=data[1].name.TM%>" data-en="<%=data[1].name.EN%>"></div>
               <div class="karhanaContent">
                 <% if(data[1] != null){ %> 
                 <div class="pic"><img src="<%= host %>/industry/<%= data[1].pic %>" alt=""></div>
-                <div class="title" data-dynamic data-ru="<%=data[1].title.ru%>" data-tm="<%=data[1].title.tm%>" data-en="<%=data[1].title.en%>"><%=data[1].title.ru%></div>
-                <div class="karhanaInfo" data-dynamic data-ru="<%=data[1].text.ru%>" data-tm="<%=data[1].text.tm%>" data-en="<%=data[1].text.en%>"><%=data[1].text.ru%></div>
+                <div class="title" data-dynamic data-ru="<%=data[1].title.ru%>" data-tm="<%=data[1].title.tm%>" data-en="<%=data[1].title.en%>"></div>
+                <div class="karhanaInfo" data-dynamic data-ru="<%=data[1].text.ru%>" data-tm="<%=data[1].text.tm%>" data-en="<%=data[1].text.en%>"></div>
                 <% } %> 
               </div>
             </div>

@@ -95,7 +95,9 @@
     "lebapBolum":"Department at Lebap region",
     "maryBolum":"Department at Mary region",
     "name":"Name:",
-    "phone":"Phone:"
+    "phone":"Phone:",
+    "pudakSayla":"Select the industry you are interested in:",
+    "back":"Come back"
   },
   "TM":{
     "TM":"Türkmen",
@@ -193,7 +195,9 @@
     "lebapBolum":"Lebap welaýaty boýunça bölümi",
     "maryBolum":"Mary welaýaty boýunça bölümi",
     "name":"Ady:",
-    "phone":"Telefon:"
+    "phone":"Telefon:",
+    "pudakSayla":"Özüňizi gyzyklandyrýan pudagy saýlaň:",
+    "back":"Gaýdyp gel"
   },
   "RU":{
     "TM":"Türkmen",
@@ -291,6 +295,8 @@
     "lebapBolum":"Отдел по Лебапскому велаяту",
     "maryBolum":"Отдео по Марыйскому ведаяту",
     "name":"Имя:",
-    "phone":"Телефон:"
+    "phone":"Телефон:",
+    "pudakSayla":"Выберите интересующую промышленность:",
+    "back":"Вернуться назад"
   }
 }
