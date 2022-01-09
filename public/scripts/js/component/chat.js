@@ -47,6 +47,7 @@ function appendMessage(message) {
 
 
 
+// client tarapdaky chaty achyan button
 var chatBtn = document.querySelector(".chatBtn");
 chatBtn.addEventListener("click",function(){
     var id = localStorage.getItem("socketId");
@@ -57,12 +58,11 @@ chatBtn.addEventListener("click",function(){
     }
     var textPage = document.querySelector(".textPage");
     textPage.style.display="block";
-    
 })
 
 
 
-
+// chaty yapyan button
 var exit = document.querySelector(".textHeader .exit");
 exit.addEventListener("click",function(){
     var textPage = document.querySelector(".textPage");
@@ -70,14 +70,20 @@ exit.addEventListener("click",function(){
 })
 
 
+// send button basylanda gerek
 var chat = document.querySelector(".writePage img");
 chat.addEventListener("click",function(){
     userSend();
+    let label = document.querySelector("#clickLabel");
+    label.click();
 })
 
+//hat yazylyk enter basylandaky function;
 var input = document.querySelector(".writePage input");
 input.addEventListener('change',function(){
     userSend();
+    let label = document.querySelector("#clickLabel");
+    label.click();
 })
 
 function userSend(){

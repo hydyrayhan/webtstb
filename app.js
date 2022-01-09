@@ -22,7 +22,7 @@ const fileUpload = require("express-fileupload");
 app.use(fileUpload())
 
 const localHost = 'http://localhost:5000'
-// const localHost = host; 
+// const localHost = host;  
 
 let languageData = '';
 var follow;

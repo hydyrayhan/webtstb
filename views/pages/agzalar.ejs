@@ -83,8 +83,8 @@
                                         <div href="" style="color: #2058D4;" class="text"><%=data[k][i].extra%></div>
                                     </div>
                                 </div>
-        
-                            <% if (data[k][i].files !== null) { %>
+                                
+                            <% if (data[k][i].files !== null && data[k][i].files != '') { %>
                                 <div class="adress" data-content id="fileDownloadUcin"></div>
                                 <div class="filesCon">
                                         <% for( let j = 0; j < data[k][i].files.length; j++ ) { %>
@@ -97,8 +97,8 @@
                                             </div>
                                         <% } %>
                                     </div>
-                                </div>
-                            <% } %>
+                                <% } %>
+                            </div>
                         </div>
                     <% } %>
                 </div>
