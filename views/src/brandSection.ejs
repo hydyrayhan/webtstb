@@ -27,7 +27,7 @@
           <div class="brands">
             <%for (var i = 1; i<loop+1; i++){%>
               <%if(i%3==0){%>
-                <a href="/agzalar/<%=list.brands[i-1].id%>" class="margin">
+                <a href="/agzalar/<%=list.brands[i-1].id%>/#id_<%= list.brands[i-1].id %>" class="margin">
                   <div class="brand">
                     <div class="left">
                       <div class="brandLogo"><img src="<%= host %>/members/<%= list.brands[i-1].id %>/<%=list.brands[i-1].pic%>" alt=""></div>
@@ -37,7 +37,7 @@
                   </div>
                 </a>
               <%}else{%>
-                <a href="/agzalar/<%= list.brands[i-1].id %>">
+                <a href="/agzalar/<%= list.brands[i-1].id %>/#id_<%= list.brands[i-1].id %>">
                   <div class="brand">
                     <div class="left">
                       <div class="brandLogo"><img src="<%= host %>/members/<%= list.brands[i-1].id %>/<%=list.brands[i-1].pic%>" at=""></div>

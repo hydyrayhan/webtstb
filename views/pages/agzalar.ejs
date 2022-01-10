@@ -57,7 +57,7 @@
                     <% for( let i = 0; i < data[k].length; i++ ) { %>
                         <div class="agzalarList">
                             <div class="welayatHide" style="display: none;"><%= data[k][i].category %> </div>
-                            <div class="main we<%= k %>" style="background-color: white;">
+                            <div class="main we<%= k %>" id="id_<%= data[k][i].id %>" style="background-color: white;">
                                 <div class="logo"><img src="<%= host %>/members/<%= data[k][i].id %>/<%= data[k][i].pic %>" alt="dsds"></div>
                                 <div class="text">
                                     <div class="listHead"><%= data[k][i].name %></div>
@@ -105,7 +105,7 @@
             <% } %>      
         </div>
     </section>
-    <a href="/agzalar/<%= id %>/#id_<%= id %>" id="clickId" style="display: none;"></a>
+    
 
     <%- include ('../src/bottom.ejs') %>
 
@@ -149,11 +149,9 @@
         if(a!='-1'){
             const list = document.querySelectorAll(".agzalarList .main");
             var we = document.querySelectorAll(".we<%=place%>");
-            var clickId = document.querySelector("#clickId");
+            
             var id  = Number('<%=idd%>');
             var bul = false;
-            we[id].setAttribute('id',"id_<%=id%>");
-            clickId.click();
             if(id>=0){
                 open(we[id]);
             }else{
