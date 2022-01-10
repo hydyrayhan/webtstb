@@ -26,7 +26,7 @@
                 <% if(data.length>0){ %> 
                 <% for( let i = 0; i < data.length; i++ ) { %>
                         <tr>
-                            <td style="max-width: 400px;"><%= data[i].name%></td>
+                            <td style="max-width: 400px;"><a href="/admin/habarlar/edit/<%= data[i].id %>"><%= data[i].name%></a></td>
                             <td><%= data[i].topar %> </td>
                             <td><%= data[i].date %> </td>
                             <% if (data[i].active=="true") { %>

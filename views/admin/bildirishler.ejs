@@ -25,7 +25,7 @@
                   </tr>
                   <% for( let i = 0; i < data.length; i++ ) { %>
                     <tr>
-                        <td style="width: 400px;"><%= data[i].name%></td>
+                        <td style="width: 400px;"><a href="/admin/bildirishler/edit/<%= data[i].id %>"><%= data[i].name%></a></td>
                         <td><%= data[i].date %> </td>
                         <% if (data[i].active=="true") { %>
                             <td style="max-width: 0px;" class="checkbox"><input style="cursor: pointer;" type="checkbox" checked  name=""  id="<%=data[i].id%>"></td>
