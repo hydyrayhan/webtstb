@@ -51,10 +51,10 @@
                 <div class="fullLeft0">
                     <div class="fullLeft newsSectionContainer">
                         <% if (list.list.length >0) { %>
-                            <div class="left"><a href="news/<%= list.list[0].id %>"><img src="<%=host%>/news/<%= list.list[0].pic %>" alt=""></a></div>
+                            <div class="left"><a href="/news/<%= list.list[0].id %>"><img src="<%=host%>/news/<%= list.list[0].pic %>" alt=""></a></div>
                             <div class="right">
                             <div class="top">
-                                <a href="news/<%= list.list[0].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="<%= list.list[0].header.TM %>" data-en="<%= list.list[0].header.EN %>" data-ru="<%= list.list[0].header.RU %>"><%= list.list[0].header.RU %> </div></a>
+                                <a href="/news/<%= list.list[0].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="<%= list.list[0].header.TM %>" data-en="<%= list.list[0].header.EN %>" data-ru="<%= list.list[0].header.RU %>"><%= list.list[0].header.RU %> </div></a>
                             </div>
                             <div class="bottom">
                                 <div class="new" data-content id="news">News</div>
@@ -66,9 +66,9 @@
                         <% for (let i = 1; i < 3; i++) {%>
                             <% if (list.list.length >i) { %>
                                 <div class="newsContainer lowNews<%=i%>">
-                                    <div class="top"><a href="news/<%= list.list[i].id %>"><img src="<%=host%>/news/<%= list.list[i].pic %>" alt=""></a></div>
+                                    <div class="top"><a href="/news/<%= list.list[i].id %>"><img src="<%=host%>/news/<%= list.list[i].pic %>" alt=""></a></div>
                                     <div class="bottomTop">
-                                        <a href="news/<%= list.list[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="<%= list.list[i].header.TM %>" data-en="<%= list.list[i].header.EN %>" data-ru="<%= list.list[i].header.RU %>"><%= list.list[i].header.RU %> </div></a>
+                                        <a href="/news/<%= list.list[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="<%= list.list[i].header.TM %>" data-en="<%= list.list[i].header.EN %>" data-ru="<%= list.list[i].header.RU %>"><%= list.list[i].header.RU %> </div></a>
                                     </div>
                                     <div class="bottom">
                                         <div class="new" data-content id="news">News</div>
@@ -94,7 +94,7 @@
                         <%}%>
                                 <div class="top"><img src="/pictures/news/<%= list.list[i].pic %>" alt=""></div>
                                 <div class="bottomTop">
-                                    <a href="news/<%= list.list[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="<%= list.list[i].header.TM %>" data-en="<%= list.list[i].header.EN %>" data-ru="<%= list.list[i].header.RU %>"><%= list.list[i].header.RU %></div></a>
+                                    <a href="/news/<%= list.list[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="<%= list.list[i].header.TM %>" data-en="<%= list.list[i].header.EN %>" data-ru="<%= list.list[i].header.RU %>"><%= list.list[i].header.RU %></div></a>
                                 </div>
                             <%if(i==len-1){%>
                                 <div class="bottom bottomLast">
@@ -124,10 +124,10 @@
                 <div class="fullLeft0">
                     <div class="fullLeft newsSectionContainer">
                         <% if (list.list2.length>0) { %>
-                            <div class="left"><a href="events/<%= list.list2[0].id %>"><img src="<%=host%>/events/<%= list.list2[0].pic %>" alt=""></a></div>
+                            <div class="left"><a href="/events/<%= list.list2[0].id %>"><img src="<%=host%>/events/<%= list.list2[0].pic %>" alt=""></a></div>
                             <div class="right">
                             <div class="top">
-                                <a href="events/<%= list.list2[0].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="<%= list.list2[0].header.TM %>" data-en="<%= list.list2[0].header.EN %>" data-ru="<%= list.list2[0].header.RU %>"><%= list.list2[0].header.RU %> </div></a>
+                                <a href="/events/<%= list.list2[0].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="<%= list.list2[0].header.TM %>" data-en="<%= list.list2[0].header.EN %>" data-ru="<%= list.list2[0].header.RU %>"><%= list.list2[0].header.RU %> </div></a>
                             </div>
                             <div class="bottom">
                                 <div class="new" data-content id="news">News</div>
@@ -140,9 +140,9 @@
                         <% for (let i = 1; i < 3; i++) {%>
                             <% if (list.list2.length > i) { %>
                                 <div class="newsContainer lowNews<%=i%>">
-                                    <div class="top"><a href="events/<%= list.list2[i].id %>"><img src="<%=host%>/events/<%= list.list2[i].pic %>" alt=""></a></div>
+                                    <div class="top"><a href="/events/<%= list.list2[i].id %>"><img src="<%=host%>/events/<%= list.list2[i].pic %>" alt=""></a></div>
                                     <div class="bottomTop">
-                                        <a href="events/<%= list.list2[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="<%= list.list2[i].header.TM %>" data-en="<%= list.list2[i].header.EN %>" data-ru="<%= list.list2[i].header.RU %>"><%= list.list2[i].header.RU %> </div></a>
+                                        <a href="/events/<%= list.list2[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="<%= list.list2[i].header.TM %>" data-en="<%= list.list2[i].header.EN %>" data-ru="<%= list.list2[i].header.RU %>"><%= list.list2[i].header.RU %> </div></a>
                                     </div>
                                     <div class="bottom">
                                         <div class="new" data-content id="news">News</div>
@@ -168,7 +168,7 @@
                         <%}%>
                                 <div class="top"><img src="<%=host%>/events/<%= list.list2[i].pic %>" alt=""></div>
                                 <div class="bottomTop">
-                                    <a href="events/<%= list.list2[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="<%= list.list2[i].header.TM %>" data-en="<%= list.list2[i].header.EN %>" data-ru="<%= list.list2[i].header.RU %>"><%= list.list2[i].header.RU %></div></a>
+                                    <a href="/events/<%= list.list2[i].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="<%= list.list2[i].header.TM %>" data-en="<%= list.list2[i].header.EN %>" data-ru="<%= list.list2[i].header.RU %>"><%= list.list2[i].header.RU %></div></a>
                                 </div>
                             <%if(i==len-1){%>
                                 <div class="bottom bottomLast">
@@ -363,8 +363,8 @@
                         <div class="lowNews" id="more">`
                 }
                 a +=     
-                        `<div class="surat"><a href="${data[i].tab}/${data[i].id}"><img src="<%=host%>/${data[i].tab}/${data[i].pic}" alt=""></a></div>
-                            <a href="${data[i].tab}/${data[i].id}" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="${data[i].header.TM}" data-ru="${data[i].header.RU}" data-en="${data[i].header.EN}">${data[i].header.RU}</div></a>
+                        `<div class="surat"><a href="/${data[i].tab}/${data[i].id}"><img src="<%=host%>/${data[i].tab}/${data[i].pic}" alt=""></a></div>
+                            <a href="/${data[i].tab}/${data[i].id}" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="${data[i].header.TM}" data-ru="${data[i].header.RU}" data-en="${data[i].header.EN}">${data[i].header.RU}</div></a>
                             <div class="bottom">
                                 <div class="news" data-content id="news">News</div>
                                 <div class="dot"></div>
@@ -395,8 +395,8 @@
                         <div class="lowNews" id="more">`
                 }
                 a +=     
-                        `<div class="surat"><a href="${data[i].tab}/${data[i].id}"><img src="<%=host%>/${data[i].tab}/${data[i].pic}" alt=""></a></div>
-                            <a href="${data[i].tab}/${data[i].id}" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="${data[i].header.TM}" data-ru="${data[i].header.RU}" data-en="${data[i].header.EN}">${data[i].header.RU}</div></a>
+                        `<div class="surat"><a href="/${data[i].tab}/${data[i].id}"><img src="<%=host%>/${data[i].tab}/${data[i].pic}" alt=""></a></div>
+                            <a href="/${data[i].tab}/${data[i].id}" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="${data[i].header.TM}" data-ru="${data[i].header.RU}" data-en="${data[i].header.EN}">${data[i].header.RU}</div></a>
                             <div class="bottom">
                                 <div class="news" data-content id="news">News</div>
                                 <div class="dot"></div>
@@ -427,8 +427,8 @@
                         <div class="lowNews" id="more">`
                 }
                 a +=     
-                        `<div class="surat"><a href="${data[i].tab}/${data[i].id}"><img src="<%=host%>/${data[i].tab}/${data[i].pic}" alt=""></a></div>
-                            <a href="${data[i].tab}/${data[i].id}" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="${data[i].header.TM}" data-ru="${data[i].header.RU}" data-en="${data[i].header.EN}">${data[i].header.RU}</div></a>
+                        `<div class="surat"><a href="/${data[i].tab}/${data[i].id}"><img src="<%=host%>/${data[i].tab}/${data[i].pic}" alt=""></a></div>
+                            <a href="/${data[i].tab}/${data[i].id}" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="${data[i].header.TM}" data-ru="${data[i].header.RU}" data-en="${data[i].header.EN}">${data[i].header.RU}</div></a>
                             <div class="bottom">
                                 <div class="news" data-content id="news">News</div>
                                 <div class="dot"></div>
@@ -453,8 +453,8 @@
                         <div class="lowNews" id="more">`
                 }
                 a +=     
-                        `<div class="surat"><a href="${data[i].tab}/${data[i].id}"><img src="<%=host%>/${data[i].tab}/${data[i].pic}" alt=""></a></div>
-                            <a href="${data[i].tab}/${data[i].id}" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="${data[i].header.TM}" data-ru="${data[i].header.RU}" data-en="${data[i].header.EN}">${data[i].header.RU}</div></a>
+                        `<div class="surat"><a href="/${data[i].tab}/${data[i].id}"><img src="<%=host%>/${data[i].tab}/${data[i].pic}" alt=""></a></div>
+                            <a href="/${data[i].tab}/${data[i].id}" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-tm="${data[i].header.TM}" data-ru="${data[i].header.RU}" data-en="${data[i].header.EN}">${data[i].header.RU}</div></a>
                             <div class="bottom">
                                 <div class="news" data-content id="news">News</div>
                                 <div class="dot"></div>
