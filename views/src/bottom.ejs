@@ -57,10 +57,10 @@
                 <div class="title" id="followDefinition" data-content>Oz email inizi girizin tazelikler ucin</div>
             </div>
             
-            <div class="inputCon">
-                <input type="email" id="pocta" data-content  placeholder="Email Address">
+            <form class="inputCon">
+                <input type="email" required id="pocta" data-content  placeholder="Email Address">
                 <input class="submit" type="submit" id="toFollow" data-content value="Goshulmak">
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -68,17 +68,15 @@
 
     <script src="/scripts/js/component/fileSend.js"></script>
     <script>
-        var submit = document.querySelector(".submit");
-        submit.addEventListener('click',async function(){
-            var input = document.querySelector('.inputCon input[type=email]');
-            var data = {
-                name:input.value
-            } 
+        var submit = document.querySelector('.inputCon');
+        submit.addEventListener("submit",async function(e){
+            e.preventDefault()
+            var val = document.querySelector('.inputCon input[type=email]');
             var status = await mail(`<%=host%>/mail`,data);
             if(status.status == 200){
-                alert("Siz goshuldynyz");
+                alert("Siz goşuldyňyz");
             }
-        });
+        })
     </script>
 
     <script src="/scripts/main.js"></script>

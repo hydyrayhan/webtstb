@@ -223,6 +223,10 @@
           searchPage.style.height = '0'
           search.style.width = '0';
           left.style.display = 'block'
+          let searchVal = document.querySelector('input#search');
+          searchVal.value = '';
+          let doc = document.querySelector(".docConCon");
+          doc.innerHTML = `<div class="docCon"></div>`
         })
 
         var searching = document.querySelector("input#search");

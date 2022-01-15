@@ -185,6 +185,7 @@
             color: $notBlack;
             font-size: 18px;
             padding: 14px 20px;
+            cursor: pointer;
             @include mobile{
                 width: 100%;
             }

@@ -55,9 +55,9 @@
             <% for( let k = 0; k < data.length; k++ ) { %>
                 <div class="listContainer">
                     <% for( let i = 0; i < data[k].length; i++ ) { %>
-                        <div class="agzalarList">
+                        <div class="agzalarList" id="id_<%= data[k][i].id %>">
                             <div class="welayatHide" style="display: none;"><%= data[k][i].category %> </div>
-                            <div class="main we<%= k %>" id="id_<%= data[k][i].id %>" style="background-color: white;">
+                            <div class="main we<%= k %>" style="background-color: white;">
                                 <div class="logo"><img src="<%= host %>/members/<%= data[k][i].id %>/<%= data[k][i].pic %>" alt="dsds"></div>
                                 <div class="text">
                                     <div class="listHead"><%= data[k][i].name %></div>
@@ -91,7 +91,7 @@
                                             <div class="file">
                                                 <div class="icon"><img src="/pictures/icon/file.svg" alt=""></div>
                                                 <div class="fileRight">
-                                                    <div class="name"><a href="<%= host %>/members/download?file=<%= data[k][i].files[j].filename %>&id=<%= data[k][i].id %>" download><%= data[k][i].files[j].filename %> </a></div>
+                                                    <div class="name"><a href="<%= host %>/members/download?file=<%= data[k][i].files[j].filename %>&id=<%= data[k][i].id %>" target="_blank" download><%= data[k][i].files[j].filename %> </a></div>
                                                     <div class="kb"><%= data[k][i].files[j].size %></div>
                                                 </div>
                                             </div>

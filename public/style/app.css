@@ -1646,6 +1646,7 @@
   color: #323C44;
   font-size: 18px;
   padding: 14px 20px;
+  cursor: pointer;
 }
 
 @media (max-width: 640px) {
@@ -3918,11 +3919,6 @@ section.consultation .container .text {
 
 .agzalar .container .mazmun {
   margin-bottom: 70px;
-}
-
-.agzalar .container .mazmun img {
-  margin-left: 10%;
-  width: 80%;
 }
 
 .agzalar .container .videoCon {
