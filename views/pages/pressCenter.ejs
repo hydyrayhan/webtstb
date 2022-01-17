@@ -14,8 +14,8 @@
         <div class="container">
             <div class="header" data-content id="newsCenter">Press-center</div>
             <div class="lineTop">
-                <div class="active" data-id0 data-content id="news"><span></span> News</div>
-                <div data-id1 data-content id="events"><span></span> Events announcements</div>
+                <div class="active newsForTag" data-id0 data-content id="news"><span></span> News</div>
+                <div data-id1 data-content class="newsForTag" id="events"><span></span> Events announcements</div>
                 <a href="/gazet?page=pressCenter"><div data-id2 data-content id="gazet"><span></span> About us</div></a>
             </div>
             <div class="teg">
@@ -23,7 +23,7 @@
                 <% var len = list.tegs.length>4 ? 5 : list.tegs.length %> 
                 <% var show = list.tegs.length>5 ? true : false %>
                 <% for( let i = 0; i < len ;i++ ) { %>
-                    <div><a href="/pressCenter/<%=list.tegs[i].TM%>" data-dynamic data-tm="<%= list.tegs[i].TM %>" data-en="<%= list.tegs[i].EN %>" data-ru="<%= list.tegs[i].RU %>"><%= list.tegs[i].RU %> </a></div>
+                    <div id="keepTegs"><a href="/pressCenter/<%=list.tegs[i].TM%>" data-dynamic data-tm="<%= list.tegs[i].TM %>" data-en="<%= list.tegs[i].EN %>" data-ru="<%= list.tegs[i].RU %>"><%= list.tegs[i].RU %> </a></div>
                 <% } %>    
                 <% if (show) { %>
                     <div class="dots three_dots">
@@ -36,7 +36,7 @@
             <div class="teg2" style="display: none;">
                 <div class="teg">
                     <% for( let i = len; i < list.tegs.length ; i++ ) { %>
-                    <div> <a href="/pressCenter/<%=list.tegs[i].TM%>" data-dynamic data-tm="<%= list.tegs[i].TM %>" data-en="<%= list.tegs[i].EN %>" data-ru="<%= list.tegs[i].RU %>"><%= list.tegs[i].RU %> </a></div>
+                    <div id="keepTegs"> <a href="/pressCenter/<%=list.tegs[i].TM%>" data-dynamic data-tm="<%= list.tegs[i].TM %>" data-en="<%= list.tegs[i].EN %>" data-ru="<%= list.tegs[i].RU %>"><%= list.tegs[i].RU %> </a></div>
                     <% } %>
                 </div>
             </div>
@@ -244,6 +244,39 @@
         
 
         <%- include ('../src/bottom.ejs') %>
+
+<!-- which news bottom the presscenter h1-->
+<script>
+    var whichTag = 'news'
+    var divs = document.querySelectorAll('.newsForTag');
+    for(var i =0; i<divs.length; i++){
+        divs[i].addEventListener("click",function(){
+            if(this.id == 'events'){
+                whichTag = 'events'
+            }else if(this.id == 'news'){
+                whichTag = 'news';
+            }
+            var tegKeeper = document.querySelectorAll("#keepTegs a");
+            for(var i = 0; i<tegKeeper.length; i++){
+                var att = tegKeeper[i].getAttribute("href");
+                att = att.split("/")
+                var newAtt = ''
+                for(var j =0 ; j<3; j++){
+                    newAtt = newAtt + att[j] + '/';
+                }
+                newAtt = newAtt+whichTag
+                tegKeeper[i].setAttribute('href',newAtt)
+            }
+        })
+    }
+    var tegKeeper = document.querySelectorAll("#keepTegs a");
+    for(var i = 0; i<tegKeeper.length; i++){
+        var att = tegKeeper[i].getAttribute("href");
+        att = att+'/'+whichTag
+        tegKeeper[i].setAttribute('href',att)
+    }
+</script>
+
 
 <!-- Tegler -->
     <script>

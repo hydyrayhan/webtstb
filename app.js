@@ -81,7 +81,7 @@ app.get('/',async function(req,res){
 
 app.get("/pressCenter",async function(req,res){
   var sl = req.query.sl;
-  
+  var news = 'news'
   var data;
   try{
     data = await axios.get(`${localHost}/news`);
@@ -89,7 +89,7 @@ app.get("/pressCenter",async function(req,res){
     console.log(error)
   }
   console.log(data.data);
-  res.render("pages/pressCenter.ejs",{list:data.data,host,sl,teg:'',follow,hostiso});
+  res.render("pages/pressCenter.ejs",{list:data.data,host,sl,teg:'',follow,hostiso,news});
 })
 
 
@@ -127,16 +127,22 @@ app.get('/pressCenterNews',async function(req,res){
   res.json(data.data)
 })
 
-app.get('/pressCenter/:teg', async function(req,res){
+app.get('/pressCenter/:teg/:news', async function(req,res){
   var teg = req.params.teg;
+  var news = req.params.news
+  var sl = 1;
+  if(news == 'news'){
+    sl = 1;
+  }else{
+    sl = 2;
+  }
   try{
     data = await axios.get(`${localHost}/news/tags?tag=${teg}`);
   }catch(error){
     console.log(error)
   }
-  console.log(data.data,'tagli ');
 
-  res.render("pages/pressCenter.ejs",{list:data.data,host,sl:1,teg,follow});
+  res.render("pages/pressCenter.ejs",{list:data.data,host,sl,teg,follow});
 })
 
 let dataKarhana;
@@ -149,10 +155,6 @@ app.get("/karhana/:id",async function(req,res){
   }catch(error){
     console.log(error)
   }
-
-  console.log(data.data);
-
-  console.log(id);
   res.render(`pages/karhana`,{data:data.data,id,pudak,host,follow,hostiso});
 })
 

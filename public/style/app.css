@@ -448,14 +448,15 @@
 }
 
 .newsSection .newsSectionContainer .right .title {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: -webkit-box !important;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
   white-space: normal;
   color: #999999;
-  margin-top: 20px;
+  margin-top: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  max-height: 228px;
 }
 
 .newsSection .newsSectionContainer .right .bottom {
@@ -633,6 +634,13 @@
 
 .newsSection .newsSectionContainer .splide5 ul li {
   margin: 0 20px;
+}
+
+.forTitle {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  overflow: hidden;
 }
 
 .swkSection {
@@ -3282,6 +3290,7 @@ section.agzalar .listContainer .agzalarList .main .text .textDots {
   -webkit-box-orient: vertical;
   white-space: normal;
   word-break: break-all;
+  max-height: 82px;
 }
 
 section.agzalar .listContainer .agzalarList .main .icon {
