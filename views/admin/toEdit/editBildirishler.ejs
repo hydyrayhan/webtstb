@@ -318,28 +318,33 @@
 
 
     <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+    <script src="/scripts/quill-image-resize/image-resize.min.js"></script>
+    <script src="/scripts/quill-image-drop-module/image-drop.min.js"></script>
  
     <!-- Initialize Quill editor -->
     <script>
       var editor = new Quill('#editor', {
-        modules: { 
+        modules: {
+            imageResize:{},
+            imageDrop:true,
             toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-
-        },
+         },
         theme: 'snow'
       });
       var editor = new Quill('#editor2', {
         modules: {
+            imageResize:{},
+            imageDrop:true,
             toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-
          },
         theme: 'snow'
       });
       var editor = new Quill('#editor3', {
-        modules: { 
+        modules: {
+            imageResize:{},
+            imageDrop:true,
             toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-
-        },
+         },
         theme: 'snow'
       });
 
