@@ -20,18 +20,16 @@
         </div>
     <form action="/admin/tstb" method="POST" id="identifier">
         <div class="adminTable">
-            <div class="formInputs addHabar form1" style="display: none;">
+            <div class="formInputs addHabar form1" >
                 <div class="box">
                     <div class="boxHeader">Türkmençe giriziň</div>
                     <div class="headerCon">
                         <label class="mazmuny" for="headtm">Mazmunyň headeri:</label>
-                        <input type="text" id="headtm" name="headerTM" class="header tm">
+                        <input type="text" id="headtm" name="headerTM" class="header tm inputs" value="<%= data.header.tm[0]%>" required>
                     </div>
                     <div class="mazmun">Mazmuny:</div>
                     <div class="editorCon">
-                        <div class="editor" id="editor">
-                            <p></p>
-                        </div>
+                        <textarea id="image-tools"></textarea>
                     </div>
                 
                 </div>
@@ -44,42 +42,30 @@
                     </div>
                     
                 
-
-                <div name="text" style="display: none;" id="hiddenArea" cols="30"  rows="10"></div>
-                <div name="text2" id="hiddenArea2" style="display: none;" cols="30"  rows="10"></div>
-                <div name="text3" id="hiddenArea3" cols="30" style="display: none;" rows="10"></div>
                 </div>
                 <div class="box">
                     <div class="boxHeader">Rusça giriziň</div>
                     <div class="headerCon">
                         <label class="mazmuny" for="headru">Mazmunyň headeri:</label>
-                        <input type="text" name="headerRU" id="headru" class="header ru">
+                        <input type="text" name="headerRU" id="headru" class="header ru inputs" value="<%=data.header.ru[0]%>" required>
                     </div>
                     <div class="mazmun">Mazmuny:</div>
                     <div class="editorCon">
-                        <div class="editor2" id="editor2">
-                            <p></p>
-                        </div>
+                        <textarea id="image-tools2"></textarea>
                     </div>
                 </div>
                 <div class="box">
                     <div class="boxHeader">Iňlisçe giriziň</div>
                     <div class="headerCon">
                         <label class="mazmuny" for="headen">Mazmunyň headeri:</label>
-                        <input type="text" name="headerEN" id="headen" class="header en">
+                        <input type="text" name="headerEN" id="headen" class="header en inputs" value="<%= data.header.en[0] %>" required>
                     </div>
                     <div class="mazmun">Mazmuny:</div>
                     <div class="editorCon">
-                        <div class="editor3" id="editor3">
-                            <p></p>
-                        </div>
+                        <textarea id="image-tools3"></textarea>
                     </div>
                 </div>
             </div>
-            <div class="formInputs addHabar form2">
-                
-            </div>
-
 
             <div class="submitCon">
                 <div class="more" onclick="moreBtn()" style="display: none;">Ýene maglumat goşmak</div>
@@ -92,326 +78,96 @@
     <div style="display: none;" class="hide2"></div>
     <div style="display: none;" class="hide3"></div>
     </div>
-    <% for( let i = 0; i < data.header.tm.length; i++ ) { %>
-        <div style="display: none;" class="exTM"><%=data.header.tm[i]%></div>
-        <div style="display: none;" class="exEN"><%=data.header.en[i]%></div>
-        <div style="display: none;" class="exRU"><%=data.header.ru[i]%></div>
-        <div style="display: none;" class="tmbody"><%= data.body.tm[i] %> </div>
-        <div style="display: none;" class="rubody"><%= data.body.ru[i] %> </div>
-        <div style="display: none;" class="enbody"><%= data.body.en[i] %> </div>
-    <% } %>
+    <div class="txt" style="display: none;"><%= data.body.tm[0] %></div>
+    <div class="txt" style="display: none;"><%= data.body.ru[0] %></div>
+    <div class="txt" style="display: none;"><%= data.body.en[0] %></div>
 
 
+    <!-- for left dropdown -->
+    <script>dropActive(2,1);</script>
 
-    <!-- picture show when i choose from file and send to node with fetch-->
+    <!-- when page loaded picture put input -->
     <script>
+        var pic = document.querySelectorAll(".imgLbCon");
+        var oldimg = '<%=data.pic%>';
         
+        pic[0].childNodes[0].setAttribute('src',`<%=host%>/menu/${oldimg}`);
+        pic[0].childNodes[0].setAttribute("width","100%");
+        pic[0].childNodes[0].setAttribute("height","100%");
+    </script>
 
-        var imgs = [];
+    <!-- Formdan maglumat jemlemek -->
+    <script>
+        var form = document.querySelector("#identifier");
+        var id = '<%=data.id%>'
+        var img;
         var loadFile = function(event,el) {
-            var image = document.querySelectorAll('#output');
-            image[el].src = URL.createObjectURL(event.target.files[0]);
-            image[el].style.width = "100%";
-            image[el].style.height = "100%";
-            var img = document.querySelectorAll(".inputs p input")[el];
-            var obj = {
-                id:el-1,
-                file:img.files[0]
-            }
-            if(imgs.length == 0){
-                imgs.push(obj);
-            }else{
-                for(var i = 0; i<imgs.length;i++){
-                    if(imgs[i].id == el-1){
-                        imgs.splice(i,1,obj);
-                    }else{
-                        imgs.push(obj);
-                    }
-                }
-            }
-        };
-
-        let sana=1
-        var imgBox = 3;
-        var form2 = document.querySelector("form .form2");
-        var extm = document.querySelectorAll(".exTM");
-        var exen = document.querySelectorAll(".exEN");
-        var exru = document.querySelectorAll(".exRU");
-        var tmbody = document.querySelectorAll(".tmbody");
-        var rubody = document.querySelectorAll(".rubody");
-        var enbody = document.querySelectorAll(".enbody");
-        
-        var headTm = []
-        var headru = []
-        var headen = []
-        var bodytm = []
-        var bodyru = []
-        var bodyen = []
-        // console.log(tmbody[0].textContent)
-        for(var i =0; i<extm.length; i++){
-            headTm.push(extm[i].textContent);
-            headru.push(exru[i].textContent);
-            headen.push(exen[i].textContent);
-            bodytm.push(tmbody[i].textContent)
-            bodyru.push(rubody[i].textContent)
-            bodyen.push(enbody[i].textContent)
-        }
-
-        
-        
-        var nache = 0;
-        var bool = false;
-        var globalYene = -7;
-        var squllSan = 3;
-        var cssSana = 0;
-        function moreBtn(){
-            if(nache==headTm.length+1){
-                bool = true; 
-            }
-            if(bool){ //backend den gelyan headerlerin ustune sonky goshulyan formlaryn header valuesyny goshyar
-                headTm.push(form2.childNodes[globalYene].childNodes[3].childNodes[3].value);
-                headru.push(form2.childNodes[globalYene+4].childNodes[3].childNodes[3].value);
-                headen.push(form2.childNodes[globalYene+6].childNodes[3].childNodes[3].value);
-            }
-            
-            var valSan = 0;
-            var yene = 1;
-            var form1 = document.querySelector("form .form1");
-            form2.innerHTML += form1.innerHTML;
-            //formdaky suratlara default surat goyyar
-            form2.childNodes[imgBox].childNodes[5].childNodes[1].childNodes[0].setAttribute("onchange",`loadFile(event,${sana})`);
-            form2.childNodes[imgBox].childNodes[5].childNodes[1].childNodes[0].setAttribute("id",`img${sana}`);
-            form2.childNodes[imgBox].childNodes[5].childNodes[3].setAttribute("for",`img${sana}`); 
-            form2.childNodes[imgBox].childNodes[5].childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/addPicture.svg")
-            form2.childNodes[imgBox].childNodes[5].childNodes[3].childNodes[0].setAttribute("style","")
-            imgBox+=8;
-            sana+=1
-
-            nache+=1;
-            // taze goshanda header valuesyny boshatyar barde shol value lary tazeden dakyp chykyas
-            for(var i = 0; i<nache; i++){
-                if(headTm.length>i){
-                    form2.childNodes[yene].childNodes[3].childNodes[3].value = headTm[valSan]
-                    form2.childNodes[yene+4].childNodes[3].childNodes[3].value = headru[valSan]
-                    form2.childNodes[yene+6].childNodes[3].childNodes[3].value = headen[valSan]
-                    valSan +=1;
-                    yene +=8;
-                }
-            }
-            globalYene +=8;
-
-            //herbir form ucin taze quill gerek bolyar we id lerem uytgeshik bolmaly;
-            var editor1 = document.querySelectorAll('.editorCon');
-            editor1[squllSan].innerHTML = `<div id="editor${squllSan}" class="editorr">
-                                            <p></p>
-                                        </div>`
-            editor1[squllSan+1].innerHTML = `<div id="editor${squllSan+1}" class="editorr">
-                                            <p></p>
-                                        </div>`
-            editor1[squllSan+2].innerHTML = `<div id="editor${squllSan+2}" class='editorr'>
-                                            <p></p>
-                                        </div>`
-
-
-            var edit = document.querySelectorAll(".editorr");
-            for(var i =0; i<cssSana; i++){
-                editor1[3+i].childNodes[0].remove();
-                
-            }
-            cssSana+=3;
-
-            var edit = document.querySelectorAll(".editorr");
-            for(var i = 0; i<edit.length; i++){
-                var editor = new Quill(edit[i], {
-                    modules: {
-                    imageResize:{},
-                    imageDrop:true,
-                    toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-                },
-                    theme: 'snow'
-                });
-            }
-            squllSan+=3;
-        }
+            var image = document.querySelector('#output');
+            image.src = URL.createObjectURL(event.target.files[0]);
+            image.style.width = "100%";
+            image.style.height = "100%";
+            img = document.querySelector(".inputs p input");
+            img = img.files[0];
+        }; 
 
         var oneTime = true;
-        var form = document.querySelector('#identifier');
         form.addEventListener("submit",async function(e){
             e.preventDefault();
             if(oneTime){
                 oneTime = false;
-                var tm = document.querySelectorAll("#identifier .tm");
-                var ru = document.querySelectorAll("#identifier .ru");
-                var en = document.querySelectorAll("#identifier .en");
-    
-                var text = document.querySelectorAll(".ql-editor");
-                
-                var hiddenText = document.querySelectorAll("#hiddenArea");
-                var hiddenText2 = document.querySelectorAll("#hiddenArea2");
-                var hiddenText3 = document.querySelectorAll("#hiddenArea3");
-    
-                
+                var inputs = document.querySelectorAll("#identifier .inputs");
+                console.log(inputs);
+
+                var content = tinymce.get("image-tools").getContent();
+                var content2 = tinymce.get("image-tools2").getContent();
+                var content3 = tinymce.get("image-tools3").getContent();
+
                 var data = {
-                    tmheader:[],
-                    ruheader:[],
-                    enheader:[],
-                    text:[],
-                    text2:[],
-                    text3:[],
-                    bosh:[]
-                }
-    
-                var headFull = true;
-                var san = 3;
-                for(var i = 1; i<tm.length; i++){
-                    if(tm[i].value=='' && ru[i].value == '' &&  en[i].value == ''){
-                        data.bosh.push(i-1);
-                    }else{
-                        data.tmheader.push(tm[i].value);
-                        data.ruheader.push(ru[i].value);
-                        data.enheader.push(en[i].value);
-                        data.text.push(text[san].innerHTML);
-                        data.text2.push(text[san+1].innerHTML);
-                        data.text3.push(text[san+2].innerHTML);
-                        // var newText = giveSpace(text[san].innerHTML);
-                        // data.text.push(newText);
-                        // var newText2 = giveSpace(text[san+1].innerHTML);
-                        // data.text2.push(newText2);
-                        // var newText3 = giveSpace(text[san+2].innerHTML);
-                        // data.text3.push(newText3);
-                    }
-                    san+=3;
-                    if(tm[i].value=='' || ru[i].value == '' ||  en[i].value == ''){
-                        if(tm[i].value=='' && ru[i].value == '' &&  en[i].value == ''){
-    
-                        }else{
-                            headFull = false;
-                        }
-                    }
-                }
-                
-    
-                
-                var arr = [];
-                for(var i = 0; i<data.tmheader.length; i++){
-                    if(imgs.length == 0){
-                        break;
-                    }else{
-                        var bool = false;
-                        for(var j = 0; j<imgs.length; j++){
-                            if(imgs[j].id == i){
-                                arr.push(imgs[j].file);
-                                bool = true;
-                                break;
-                            }
-                        }
-                        if(!bool){
-                            arr.push('');
-                        }
-                    }
+                    text: [content],
+                    text2: [content2],
+                    text3: [content3],
+                    bosh:[],
+                    tmheader:[inputs[0].value],
+                    ruheader:[inputs[2].value],
+                    enheader:[inputs[3].value]
                 }
 
-                console.log(data);
-                if(headFull){
-                    var res = await dataSend(data,'<%=host%>/menu/editAboutUs');
-                    
-                    if(typeof(res.id) == 'number'){
-                        if(arr.length>0){
-                            var data = await imgSend(arr,'<%=host%>/menu/addPic?id='+res.id);
-                            if(data.status == 200){
-                                alert("Ýatda saklandy suratam uytgedildi")
-                                oneTime = true
-                            }
-                        }else{
-                            alert("Ýatda saklandy");
-                            oneTime = true;
+                
+    
+                var arr = [];
+                if(img !== undefined){
+                    arr.push(img);
+                }
+                
+                var res = await dataSend(data,'<%=host%>/menu/editAboutUs');
+                if(typeof(res.id) == 'number'){
+                    console.log(140)
+                    if(arr.length>0){
+                        console.log(arr);
+                        var data = await imgSend(arr,'<%=host%>/menu/addPic?id='+res.id);
+                        if(data.status == 200){
+                            alert("Ýatda saklandy suratam uytgedildi")
+                            oneTime = true
                         }
+                    }else{
+                        console.log(148)
+                        alert("Ýatda saklandy");
+                        oneTime = true;
                     }
                 }else{
-                    alert("Headerlerin birini doldurmaly!!!");
+                    console.log("Error have")
                     oneTime = true;
                 }
-
             }
-            
         })
 
-        dropActive(2,1);
     </script>
- 
-    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
-    <script src="/scripts/quill-image-resize/image-resize.min.js"></script>
-    <script src="/scripts/quill-image-drop-module/image-drop.min.js"></script>
- 
-    <!-- Initialize Quill editor  3sany text area hidden inpuda hem salyar-->
+
+    <script src='https://cdn.tiny.cloud/1/hpf9h4802a6gu20q61xonxq5tg2r8ot8qw5bmkjuseuw4s9i/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+    <script src="/scripts/js/component/tinyEdit.js"></script>
     <script>
-        var editor = new Quill('#editor', {
-            modules: {
-                imageResize:{},
-                imageDrop:true,
-                toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-            },
-            theme: 'snow',
-        });
-
-        var editor = new Quill('#editor2', {
-            modules: {
-                imageResize:{},
-                imageDrop:true,
-                toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-            },
-            theme: 'snow'
-        });
-
-        var editor = new Quill('#editor3', {
-            modules: {
-                imageResize:{},
-                imageDrop:true,
-                toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-            },
-            theme: 'snow'
-        });
-    </script> 
-
-    <script>
-        var san = 4;
-        var a = '<%=data.body.tm.length%>'
-        for(var i = 0; i<Number(a); i++){
-            moreBtn();
-        }
-        var tm = document.querySelectorAll("#headtm");
-        var ru = document.querySelectorAll("#headru");
-        var en = document.querySelectorAll("#headen");
-        var hide = document.querySelector('.hide');
-        var hide2 = document.querySelector('.hide2');
-        var hide3 = document.querySelector('.hide3');
-        var text = document.querySelectorAll(".ql-editor");
-        
-
-        
-        var san = 3;
-        for(var i = 0; i<Number(a); i++){
-            hide.innerHTML = bodytm[i];
-            hide2.innerHTML = bodyru[i];
-            hide3.innerHTML = bodyen[i];
-            
-            text[san].innerHTML = hide.innerHTML;
-            text[san+1].innerHTML = hide2.innerHTML;
-            text[san+2].innerHTML = hide3.innerHTML;
-            san+=3;
-        }
-
-        var pic = document.querySelectorAll(".imgLbCon");
-        var img = '<%=data.pic%>';
-        img = img.split(",");
-
-        if(img[0] !== ''){
-            for(var i = 1; i<pic.length; i++){
-                pic[i].childNodes[0].setAttribute("src",`<%=host%>/menu/${img[i-1]}`)
-                pic[i].childNodes[0].setAttribute("width","100%");
-                pic[i].childNodes[0].setAttribute("height","100%");
-            }
-        }
+        var text = document.querySelectorAll(".txt");
+        setData(text[0].textContent,text[1].textContent,text[2].textContent);
     </script>
 </body>
 </html>

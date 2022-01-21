@@ -54,9 +54,7 @@
                     </div>
                     <div class="mazmun">Mazmuny:</div>
                     <div class="editorCon">
-                        <div id="editor">
-                            <p></p>
-                        </div>
+                        <textarea id="image-tools"></textarea>
                     </div>
                 
                 </div>
@@ -119,9 +117,7 @@
                 </div>
                 <div class="mazmun">Mazmuny:</div>
                 <div class="editorCon">
-                    <div id="editor2">
-                        <p></p>
-                    </div>
+                    <textarea id="image-tools2"></textarea>
                 </div>
             </div>
             <div class="box">
@@ -132,9 +128,7 @@
                 </div>
                 <div class="mazmun">Mazmuny:</div>
                 <div class="editorCon">
-                    <div id="editor3">
-                        <p></p>
-                    </div>
+                    <textarea id="image-tools3"></textarea>
                 </div>
             </div>
             <input class="save" type="submit" value="Ýatda sakla">
@@ -232,14 +226,15 @@
             if(oneTime){
                 oneTime = false;
                 var inputs = document.querySelectorAll("#identifier .inputs");
-                var area = document.querySelector(".editorCon #editor .ql-editor");
-                var area2 = document.querySelector(".editorCon #editor2 .ql-editor");
-                var area3 = document.querySelector(".editorCon #editor3 .ql-editor");
+
+                var content = tinymce.get("image-tools").getContent();
+                var content2 = tinymce.get("image-tools2").getContent();
+                var content3 = tinymce.get("image-tools3").getContent();
 
                 var data = {
-                    text:area.innerHTML,
-                    text2: area2.innerHTML,
-                    text3:area3.innerHTML,
+                    text: content,
+                    text2: content2,
+                    text3: content3,
                     tag:[],
                     headerTM:inputs[0].value,
                     headerRU:inputs[6].value,
@@ -256,7 +251,8 @@
     
                 var arr = [];
                 arr.push(img);
-                // console.log(data);
+                
+                
                 
                 var res = await dataSend(data,`${link}/news/edit?id=${id}`);
                 
@@ -317,51 +313,12 @@
         popup2();
     </script>
 
-
-    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
-    <script src="/scripts/quill-image-resize/image-resize.min.js"></script>
-    <script src="/scripts/quill-image-drop-module/image-drop.min.js"></script>
- 
-    <!-- Initialize Quill editor -->
+    <script src='https://cdn.tiny.cloud/1/hpf9h4802a6gu20q61xonxq5tg2r8ot8qw5bmkjuseuw4s9i/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+    <script src="/scripts/js/component/tinyEdit.js"></script>
     <script>
-      var editor = new Quill('#editor', {
-        modules: {
-            imageResize:{},
-            imageDrop:true,
-            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-         },
-        theme: 'snow'
-      });
-      var editor = new Quill('#editor2', {
-        modules: {
-            imageResize:{},
-            imageDrop:true,
-            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-         },
-        theme: 'snow'
-      });
-      var editor = new Quill('#editor3', {
-        modules: {
-            imageResize:{},
-            imageDrop:true,
-            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-         },
-        theme: 'snow'
-      });
-
-
-    //   3 sany textarea girizilen maglumatlary hidden textarea girizyar
-    var txt = document.querySelectorAll('.txt');
-    
-    var text = document.querySelector("#editor .ql-editor");
-    var text2 = document.querySelector("#editor2 .ql-editor");
-    var text3 = document.querySelector("#editor3 .ql-editor");
-    text.innerHTML = txt[0].textContent;
-    text2.innerHTML = txt[1].textContent;
-    text3.innerHTML = txt[2].textContent;
-        
-    </script> 
-
+        var text = document.querySelectorAll(".txt");
+        setData(text[0].textContent,text[1].textContent,text[2].textContent);
+    </script>
 </body>
 </html>
 

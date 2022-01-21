@@ -31,9 +31,7 @@
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
-                            <div id="editor">
-                                <p></p>
-                            </div>
+                            <textarea id="image-tools"></textarea>
                         </div>
                     
                     </div>
@@ -62,9 +60,7 @@
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
-                            <div id="editor2">
-                                <p></p>
-                            </div>
+                            <textarea id="image-tools2"></textarea>
                         </div>
                     </div>
                     <div class="box">
@@ -79,14 +75,9 @@
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
-                            <div id="editor3">
-                                <p></p>
-                            </div>
+                            <textarea id="image-tools3"></textarea>
                         </div>
                     </div>
-                </div>
-                <div class="formInputs addHabar form2">
-
                 </div>
 
 
@@ -114,40 +105,6 @@
         };
 
     </script>
- 
-    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
-    <script src="/scripts/quill-image-resize/image-resize.min.js"></script>
-    <script src="/scripts/quill-image-drop-module/image-drop.min.js"></script>
-    <!-- Initialize Quill editor  3sany text area hidden inpuda hem salyar-->
-    <script>
-        
-      var editor = new Quill('#editor', {
-        modules: {
-            imageResize:{},
-            imageDrop:true,
-            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-         },
-        theme: 'snow'
-      });
-      var editor = new Quill('#editor2', {
-        modules: {
-            imageResize:{},
-            imageDrop:true,
-            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-         },
-        theme: 'snow'
-      });
-      var editor = new Quill('#editor3', {
-        modules: {
-            imageResize:{},
-            imageDrop:true,
-            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-         },
-        theme: 'snow'
-      });
-
-
-    </script> 
 
     <script>
         linkActive(0)
@@ -162,9 +119,9 @@
             if(oneTime){
                 oneTime = false;
                 var inputs = document.querySelectorAll('#identifier .inputs');
-                var text = document.querySelector("#editor .ql-editor");
-                var text2 = document.querySelector("#editor2 .ql-editor");
-                var text3 = document.querySelector("#editor3 .ql-editor");
+                var content = tinymce.get("image-tools").getContent();
+                var content2 = tinymce.get("image-tools2").getContent();
+                var content3 = tinymce.get("image-tools3").getContent();
                 var data = {
                     tm:inputs[0].value,
                     tmheader:inputs[1].value,
@@ -172,11 +129,12 @@
                     ruheader:inputs[4].value,
                     en:inputs[5].value,
                     enheader:inputs[6].value,
-                    text:text.innerHTML,
-                    text2:text2.innerHTML,
-                    text3:text3.innerHTML
+                    text:content,
+                    text2: content2,
+                    text3:content3,
                 }        
 
+               
                 var arr = [];
                 if(img != undefined){
                     arr.push(img);
@@ -196,6 +154,10 @@
             }
         })
     </script>
+
+    
+<script src='https://cdn.tiny.cloud/1/hpf9h4802a6gu20q61xonxq5tg2r8ot8qw5bmkjuseuw4s9i/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+<script src="/scripts/js/component/tiny.js"></script>
 </body>
 </html>
 

@@ -17,11 +17,11 @@
         <div class="container">
           <div class="sectionHeader" id="bolumler" data-dynamic data-tm="Welaýat bölümleri" data-en="Regional departments" data-ru="Отделения в велаятах">Welayatdaky bolumler</div>
           <div class="welayatNames">
-            <div class="0" id="active" data-dynamic data-tm="Aşgabat we Ahal" data-ru="Ашхабад и Ахал" data-en="Ashgabat and Akhal">Ashgabat we Ahal</div>
-            <div class="2" data-content id="mary">Mary</div>
-            <div class="4" data-content id="dashoguz">Dashoguz</div>
-            <div class="3" data-content id="lebap">Lebap</div>
-            <div class="5" data-content id="balkan">Balkan</div>
+            <div class="0" style="cursor: pointer;" id="active" data-dynamic data-tm="Aşgabat we Ahal" data-ru="Ашхабад и Ахал" data-en="Ashgabat and Akhal">Ashgabat we Ahal</div>
+            <div class="2" data-content style="cursor: pointer;" id="mary">Mary</div>
+            <div class="4" data-content style="cursor: pointer;" id="dashoguz">Dashoguz</div>
+            <div class="3" data-content style="cursor: pointer;" id="lebap">Lebap</div>
+            <div class="5" data-content style="cursor: pointer;" id="balkan">Balkan</div>
           </div>
           <div class="location">
             <div class="map">
@@ -45,7 +45,7 @@
                       <div class="head change" id="mapHead" data-dynamic data-tm="Aşgabat" data-ru="Ашхабад" data-en="Ashgabat">Ashgabat</div>
                       <div class="title" id="mapAdress" data-dynamic data-tm="Salgysy" data-en="Address" data-ru="Адрес">Adress:</div>
                       <div class="information change" id="mapLocation" data-dynamic data-tm="<%=location[i-1].tmAddress%>" data-ru="<%=location[i-1].ruAddress%>" data-en="<%=location[i-1].enAddress%>"><%=location[i-1].tmAddress%></div>
-                      <div class="title" data-dynamic data-tm="Kabulahananyň telefon belgileri" data-en="Reception phones" data-ru="Телефоны приемной" id="mapPhones">Telefonlar:</div>
+                      <div class="title" data-dynamic data-tm="Kabulhananyň telefon belgileri" data-en="Reception phones" data-ru="Телефоны приемной" id="mapPhones">Telefonlar:</div>
                       <%for(var j = 0; j<location[i-1].phone.length; j++){%>
                         <div class="information change up"><%=location[i-1].phone[j]%></div>
                       <%}%>
@@ -58,7 +58,7 @@
                       <div class="head change" id="mapHead" data-dynamic data-tm="Ahal" data-ru="Ахал" data-en="Ahal">Ahal</div>
                       <div class="title" id="mapAdress" data-dynamic data-tm="Salgysy" data-en="Address" data-ru="Адрес">Adress:</div>
                       <div class="information change" id="mapLocation" data-dynamic data-tm="<%=location[i].tmAddress%>" data-ru="<%=location[i].ruAddress%>" data-en="<%=location[i].enAddress%>"><%=location[i].tmAddress%></div>
-                      <div class="title" data-dynamic data-tm="Kabulahananyň telefon belgileri" data-en="Reception phones" data-ru="Телефоны приемной" id="mapPhones">Telefonlar:</div>
+                      <div class="title" data-dynamic data-tm="Kabulhananyň telefon belgileri" data-en="Reception phones" data-ru="Телефоны приемной" id="mapPhones">Telefonlar:</div>
                       <%for(var j = 0; j<location[i].phone.length; j++){%>
                         <div class="information change up"><%=location[i].phone[j]%></div>
                       <%}%>
@@ -139,16 +139,16 @@
                 info[0].style.display ="block";
                 break;
               case(2):
-                info[1].style.display ="block";
+                info[2].style.display ="block";
                 break
               case(3):
-                info[2].style.display ="block";
+                info[4].style.display ="block";
                 break
               case(4):
                 info[3].style.display ="block";
                 break
               case(5):
-                info[4].style.display ="block";
+                info[1].style.display ="block";
                 break
             }
           })

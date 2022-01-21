@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/pictures/logo/logo.svg" type="image/icon type">
     <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.quilljs.com/2.0.0-dev.2/quill.snow.css">
     <style>
         .choosenTeg{
             margin-top: 20px;
@@ -22,7 +23,6 @@
             margin-right: 10px;
             cursor: pointer;
         }
-
     </style>
 </head>
 
@@ -54,9 +54,7 @@
                     </div>
                     <div class="mazmun">Mazmuny:</div>
                     <div class="editorCon">
-                        <div id="editor">
-                            <p></p>
-                        </div>
+                        <textarea id="image-tools"></textarea>
                     </div>
                 
                 </div>
@@ -115,9 +113,7 @@
                 </div>
                 <div class="mazmun">Mazmuny:</div>
                 <div class="editorCon">
-                    <div id="editor2">
-                        <p></p>
-                    </div>
+                    <textarea id="image-tools2"></textarea>
                 </div>
             </div>
             <div class="box">
@@ -128,9 +124,7 @@
                 </div>
                 <div class="mazmun">Mazmuny:</div>
                 <div class="editorCon">
-                    <div id="editor3">
-                        <p></p>
-                    </div>
+                    <textarea id="image-tools3"></textarea>
                 </div>
             </div>
             <input class="save" type="submit" value="Ýatda sakla">
@@ -162,6 +156,7 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/scripts/js/component/fileSend.js"></script>
+    
 
     <!-- selectden saylanany ashakda gorkezmek -->
     <script>
@@ -195,6 +190,8 @@
 
     </script>
 
+   
+
     <!-- formdan maglumatlary yygnamak -->
     <script>
         var form = document.querySelector("#identifier");
@@ -215,14 +212,15 @@
             if(oneTime){
                 oneTime = false;
                 var inputs = document.querySelectorAll("#identifier .inputs");
-                var area = document.querySelector(".editorCon #editor .ql-editor");
-                var area2 = document.querySelector(".editorCon #editor2 .ql-editor");
-                var area3 = document.querySelector(".editorCon #editor3 .ql-editor");
+                var content = tinymce.get("image-tools").getContent();
+                var content2 = tinymce.get("image-tools2").getContent();
+                var content3 = tinymce.get("image-tools3").getContent();
+
                 
                 var data = {
-                    text:area.innerHTML,
-                    text2: area2.innerHTML,
-                    text3:area3.innerHTML,
+                    text:content,
+                    text2: content2,
+                    text3:content3,
                     tag:[],
                     headerTM:inputs[0].value,
                     headerRU:inputs[6].value,
@@ -239,7 +237,7 @@
                 var arr = [];
                 arr.push(img);
                 
-                
+                tinymce.get('image-tools').setContent('<h1>Hello my dear</h1>');
                 if(img == undefined){
                     alert("Surat giriziň");
                     oneTime = true
@@ -296,39 +294,8 @@
         popup2();
     </script>
 
-    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
-    <script src="/scripts/quill-image-resize/image-resize.min.js"></script>
-    <script src="/scripts/quill-image-drop-module/image-drop.min.js"></script>
-    <!-- Initialize Quill editor -->
-    <script>
-      var editor = new Quill('#editor', {
-        modules: {
-            imageResize:{},
-            imageDrop:true,
-            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-         },
-        theme: 'snow'
-      });
-      
-
-      var editor = new Quill('#editor2', {
-        modules: {
-            imageResize:{},
-            imageDrop:true,
-            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-         },
-        theme: 'snow'
-      });
-      var editor = new Quill('#editor3', {
-        modules: {
-            imageResize:{},
-            imageDrop:true,
-            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-         },
-        theme: 'snow'
-      });
-    </script> 
-
+    <script src='https://cdn.tiny.cloud/1/hpf9h4802a6gu20q61xonxq5tg2r8ot8qw5bmkjuseuw4s9i/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+    <script src="/scripts/js/component/tiny.js"></script>
 </body>
 </html>
 

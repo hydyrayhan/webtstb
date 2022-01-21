@@ -23,7 +23,7 @@
                   </tr>
                   <% for( let i = 0; i < data.length; i++ ) { %>
                     <tr>
-                        <td style="width: 600px;"><%= data[i].name.tm %></td>
+                        <td style="width: 600px;"><a href="/admin/gazetlar/edit/<%=data[i].id%>"><%= data[i].name.tm %></a></td>
                         <td><%= data[i].date %> </td>
                         <% if (data[i].active == "true") { %>
                             <td style="max-width: 0px;" class="checkbox"><input style="cursor: pointer;" type="checkbox" checked  name="" id="<%=data[i].id%>"></td>

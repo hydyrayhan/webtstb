@@ -27,9 +27,7 @@
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
-                            <div id="editor">
-                                <p></p>
-                            </div>
+                            <textarea id="image-tools"></textarea>
                         </div>
                     
                     </div>
@@ -57,9 +55,7 @@
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
-                            <div id="editor2">
-                                <p></p>
-                            </div>
+                            <textarea id="image-tools2"></textarea>
                         </div>
                     </div>
                     <div class="box">
@@ -70,9 +66,7 @@
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
-                            <div id="editor3">
-                                <p></p>
-                            </div>
+                            <textarea id="image-tools3"></textarea>
                         </div>
                     </div>
                 </div>
@@ -88,9 +82,9 @@
     </form>
     </div>
 
-    <div class="val" style="display: none;"><%= data.body.tm %></div>
-    <div class="val2" style="display: none;"><%=data.body.ru%></div>
-    <div class="val3" style="display: none;"><%=data.body.en%></div>
+    <div class="txt" style="display: none;"><%= data.body.tm %></div>
+    <div class="txt" style="display: none;"><%=data.body.ru%></div>
+    <div class="txt" style="display: none;"><%=data.body.en%></div>
 
     <% if (data.files != null) { %>
         <% for(var i =0 ; i<data.files.length; i++) {%>
@@ -223,17 +217,19 @@
             e.preventDefault();
             if(oneTime){
                 var inputs = document.querySelectorAll("#identifier .inputs");
-                var area = document.querySelector(".editorCon #editor .ql-editor");
-                var area2 = document.querySelector(".editorCon #editor2 .ql-editor");
-                var area3 = document.querySelector(".editorCon #editor3 .ql-editor");
+                var content = tinymce.get("image-tools").getContent();
+                var content2 = tinymce.get("image-tools2").getContent();
+                var content3 = tinymce.get("image-tools3").getContent();
                 var data = {
                     tmheader:inputs[0].value,
                     ruheader:inputs[1].value,
                     enheader:inputs[2].value,
-                    text:area.innerHTML,
-                    text2:area2.innerHTML,
-                    text3:area3.innerHTML
+                    text: content,
+                    text2: content2,
+                    text3: content3,
                 }
+
+
                 var arr = []
 
                 for(var i = 0; i<imgs.length; i++){
@@ -242,96 +238,35 @@
                     }
                 }
 
-                // if(imgs.length !== 0){
-                    var res = await dataSend(data,'<%=host%>/menu/editLicense?id=<%=data.id%>');
-                    if(typeof(res.id) == 'number'){
-                        if(arr.length>0){
-                            var data = await imgSend(arr,'<%=host%>/menu/addLicenseFile?id='+res.id);
-                            if(data.status == 200){
-                                location.replace('/admin/ygtyyarnama');
-                            }
-                        }else{
-                            location.replace('/admin/ygtyyarnama')
+                var res = await dataSend(data,'<%=host%>/menu/editLicense?id=<%=data.id%>');
+                if(typeof(res.id) == 'number'){
+                    if(arr.length>0){
+                        var data = await imgSend(arr,'<%=host%>/menu/addLicenseFile?id='+res.id);
+                        if(data.status == 200){
+                            location.replace('/admin/ygtyyarnama');
                         }
+                    }else{
+                        location.replace('/admin/ygtyyarnama')
                     }
-                // }else{
-                //     alert('Surat ýok')
-                //     oneTime=true;
-                // }
+                }
             }
             
         })
     </script>
  
-    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
-    <script src="/scripts/quill-image-resize/image-resize.min.js"></script>
-    <script src="/scripts/quill-image-drop-module/image-drop.min.js"></script>
- 
-    <!-- Initialize Quill editor  3sany text area hidden inpuda hem salyar-->
+   
+
+
+<!-- for left drop down -->
     <script>
-        
-      var editor = new Quill('#editor', {
-        modules: {
-            imageResize:{},
-            imageDrop:true,
-            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-         },
-        theme: 'snow'
-      });
-      var editor = new Quill('#editor2', {
-        modules: {
-            imageResize:{},
-            imageDrop:true,
-            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-         },
-        theme: 'snow'
-      });
-      var editor = new Quill('#editor3', {
-        modules: {
-            imageResize:{},
-            imageDrop:true,
-            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-         },
-        theme: 'snow'
-      });
-
-    //   3 sany textarea girizilen maglumatlary hidden textarea girizyar
-    
-    var idForm = document.querySelector("#identifier");
-    idForm.addEventListener("submit",function(){
-        var hiddenText = document.querySelectorAll("#hiddenArea");
-        var hiddenText2 = document.querySelectorAll("#hiddenArea2");
-        var hiddenText3 = document.querySelectorAll("#hiddenArea3");
-        var text = document.querySelectorAll("#editor .ql-editor");
-        var text2 = document.querySelectorAll("#editor2 .ql-editor");
-        var text3 = document.querySelectorAll("#editor3 .ql-editor");
-        for(var i = 0; i<hiddenText.length; i++){
-            hiddenText[i].value = text[i].innerHTML;
-            hiddenText2[i].value = text2[i].innerHTML;
-            hiddenText3[i].value = text3[i].innerHTML;
-        }
-    })
-    </script> 
-
-
-<!-- backenden gelyan text leri textarea yerleshdiryar -->
-    <script>
-        var text = document.querySelector("#editor .ql-editor");
-        var text2 = document.querySelector("#editor2 .ql-editor");
-        var text3 = document.querySelector("#editor3 .ql-editor");
-
-        var editText = document.querySelector(".val")
-        var editText2 = document.querySelector(".val2")
-        var editText3 = document.querySelector(".val3")
-
-        text.innerHTML = editText.textContent;
-        text2.innerHTML = editText2.textContent;
-        text3.innerHTML = editText3.textContent;
-
-
         dropActive(2,6);
     </script>
-
+    <script src='https://cdn.tiny.cloud/1/hpf9h4802a6gu20q61xonxq5tg2r8ot8qw5bmkjuseuw4s9i/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+    <script src="/scripts/js/component/tinyEdit.js"></script>
+    <script>
+        var text = document.querySelectorAll(".txt");
+        setData(text[0].textContent,text[1].textContent,text[2].textContent);
+    </script>
 </body>
 </html>
 

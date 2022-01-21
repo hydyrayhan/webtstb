@@ -27,7 +27,7 @@
                   <% if (data !=null) { %>
                     <% for( let i = 0; i < data.length; i++ ) { %>
                       <tr>
-                          <td style="width: 600px;"><%= data[i].name%></td>
+                          <td style="width: 600px;"><a href="/admin/banner2/edit/<%=i%>"><%= data[i].name%></a></td>
                           <% if (data[i].active) { %>
                               <td style="max-width: 0px;" class="checkbox"><input style="cursor: pointer;" type="checkbox" checked  name="" id="<%=i%>"></td>
                           <% }else{%>

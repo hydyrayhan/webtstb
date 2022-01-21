@@ -18,18 +18,16 @@
         </div>
     <form  method="POST" id="identifier">
         <div class="adminTable">
-                <div class="formInputs addHabar form1" style="display: none;">
+                <div class="formInputs addHabar form1">
                     <div class="box">
                         <div class="boxHeader">Türkmençe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                            <input type="text" name="headerTM" class="header tm">
+                            <input type="text" name="headerTM" class="header tm" value="<%= data.header.TM[0] %>">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
-                            <div id="editor">
-                                <p></p>
-                            </div>
+                            <textarea id="image-tools"></textarea>
                         </div>
                     </div>
                     <div class="box imgBox">
@@ -37,91 +35,34 @@
                         <div class="mazmun">Suraty giriziň:</div>
                         <div class="inputs">
                             <p><input type="file"  accept="image/*" name="image" id="img0" onchange="loadFile2(event,0)" class="1" style="display: none;"></p>
-                            <label class="imgLbCon" for="img0"><img id="output" src="/pictures/icon/addPicture.svg" /></label>
+                            <label class="imgLbCon" for="img0"><img id="output" width="100%" height="335px" src="<%=host%>/constructor/<%= id %>/<%= data.pic[0] %>" /></label>
                         </div>
                    </div>
                     <div class="box">
                         <div class="boxHeader">Rusça giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                            <input type="text" name="headerRU" id="topTa" class="header ru">
+                            <input type="text" name="headerRU" id="topTa" class="header ru" value="<%= data.header.RU[0] %>">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
-                            <div id="editor2">
-                                <p></p>
-                            </div>
+                            <textarea id="image-tools2"></textarea>
                         </div>
                     </div>
                     <div class="box">
                         <div class="boxHeader">Iňlisçe giriziň</div>
                         <div class="headerCon">
                             <label class="mazmuny" for="topTas">Mazmunyň headeri:</label>
-                            <input type="text" name="headerEN" id="topTas" class="header en">
+                            <input type="text" name="headerEN" id="topTas" class="header en" value="<%= data.header.EN[0] %>">
                         </div>
                         <div class="mazmun">Mazmuny:</div>
                         <div class="editorCon">
-                            <div id="editor3">
-                                <p></p>
-                            </div>
+                            <textarea id="image-tools3"></textarea>
                         </div>
                     </div>
                 </div>
 
 
-
-                <div class="formInputs addHabar form2">
-
-                    <% for( let i = 2; i <= data.header.TM.length+1; i++ ) { %>
-                        <div class="box">
-                            <div class="boxHeader">Türkmençe giriziň</div>
-                            <div class="headerCon">
-                                <label class="mazmuny" for="">Mazmunyň headeri:</label>
-                                <input type="text" name="headerTM" class="header tm" value="<%= data.header.TM[i-2] %>">
-                            </div>
-                            <div class="mazmun">Mazmuny:</div>
-                            <div class="editorCon">
-                                <div id="editor">
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box imgBox">
-                            <div class="boxHeader">Suraty giriziň</div>
-                            <div class="mazmun">Suraty giriziň:</div>
-                            <div class="inputs">
-                                <p><input type="file"  accept="image/*" name="image" id="img<%=i-1%>" onchange="loadFile2(event,'<%=i-1%>')" class="1" style="display: none;"></p>
-                                <label class="imgLbCon" for="img<%=i-1%>"><img id="output" width="100%" height="335px" src="<%=host%>/constructor/<%= id %>/<%= data.pic[i-2] %>" /></label>
-                            </div>
-                       </div>
-                        <div class="box">
-                            <div class="boxHeader">Rusça giriziň</div>
-                            <div class="headerCon">
-                                <label class="mazmuny" for="topTa">Mazmunyň headeri:</label>
-                                <input type="text" name="headerRU" id="topTa" class="header ru" value="<%= data.header.RU[i-2] %>">
-                            </div>
-                            <div class="mazmun">Mazmuny:</div>
-                            <div class="editorCon">
-                                <div id="editor2">
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box">
-                            <div class="boxHeader">Iňlisçe giriziň</div>
-                            <div class="headerCon">
-                                <label class="mazmuny" for="topTas">Mazmunyň headeri:</label>
-                                <input type="text" name="headerEN" id="topTas" class="header en" value="<%= data.header.EN[i-2] %>">
-                            </div>
-                            <div class="mazmun">Mazmuny:</div>
-                            <div class="editorCon">
-                                <div id="editor3">
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
-                        <% } %>
-                    </div>
                     <div style="display: none;" class="hide"></div>
                     <div style="display: none;" class="hide2"></div>
                     <div style="display: none;" class="hide3"></div>
@@ -188,7 +129,6 @@
 
 
             <div class="submitCon">
-                <div class="more">Ýene maglumat goşmak</div>
                 <input class="save" type="submit" value="Ýatda sakla">
             </div>
 
@@ -197,11 +137,9 @@
     </form>
     </div>
 
-    <% for( let i = 0; i < data.header.TM.length; i++ ) { %>
-        <div style="display: none;" class="tmbody"><%= data.body.TM[i] %> </div>
-        <div style="display: none;" class="rubody"><%= data.body.RU[i] %> </div>
-        <div style="display: none;" class="enbody"><%= data.body.EN[i] %> </div>
-    <% } %>
+    <div style="display: none;" class="txt"><%= data.body.TM[0] %> </div>
+    <div style="display: none;" class="txt"><%= data.body.RU[0] %> </div>
+    <div style="display: none;" class="txt"><%= data.body.EN[0] %> </div>
 
     <!-- selecte saylatmak -->
     <script>
@@ -380,87 +318,6 @@
     </script>
 
 
-<!-- load more -->
-    <script>
-        var form2 = document.querySelector("form .form2");
-        var form1 = document.querySelector("form .form1");
-
-        var moreBtn = document.querySelector(".more");
-        var pic = '<%=data.pic%>'
-        pic = pic.split(',');
-        var suratId = 1+pic.length;
-        var suratPlace = 3+(pic.length*8);
-        var tmheader = [];
-        var ruheader = [];
-        var enheader = [];
-        var squllSan = 3;
-        var cssSana = 0;
-        moreBtn.addEventListener("click",function(){
-            var tm = document.querySelectorAll(".tm");
-            var ru = document.querySelectorAll('.ru');
-            var en = document.querySelectorAll('.en');
-            for(var i = 1; i<tm.length; i++){
-                tmheader[i-1] = tm[i].value;
-                ruheader[i-1] = ru[i].value;
-                enheader[i-1] = en[i].value;
-            }
-            form2.innerHTML += form1.innerHTML;
-
-            // more button basylanda surat ishlar yaly edyar;
-            form2.childNodes[suratPlace].childNodes[5].childNodes[3].setAttribute('for','img'+suratId);
-            form2.childNodes[suratPlace].childNodes[5].childNodes[3].childNodes[0].setAttribute("src","/pictures/icon/addPicture.svg")
-            form2.childNodes[suratPlace].childNodes[5].childNodes[3].childNodes[0].setAttribute("style","")
-            form2.childNodes[suratPlace].childNodes[5].childNodes[1].childNodes[0].setAttribute("id",'img'+suratId);
-            form2.childNodes[suratPlace].childNodes[5].childNodes[1].childNodes[0].setAttribute("onchange",'loadFile2(event,'+suratId+')');
-            suratPlace +=8;
-
-            // header valuelaryny goyup beryar;
-            var tm = document.querySelectorAll(".tm");
-            var ru = document.querySelectorAll('.ru');
-            var en = document.querySelectorAll('.en');
-            for(var i = 1; i<tm.length-1; i++){
-                tm[i].value = tmheader[i-1];
-                ru[i].value = ruheader[i-1];
-                en[i].value = enheader[i-1];
-            }
-
-
-            //quill ishletmek uchin
-            var editor1 = document.querySelectorAll('.editorCon');
-            editor1[squllSan].innerHTML = `<div id="editor${squllSan}" class="editorr">
-                                            <p></p>
-                                        </div>`
-            editor1[squllSan+1].innerHTML = `<div id="editor${squllSan+1}" class="editorr">
-                                            <p></p>
-                                        </div>`
-            editor1[squllSan+2].innerHTML = `<div id="editor${squllSan+2}" class='editorr'>
-                                            <p></p>
-                                        </div>`
-
-
-            var edit = document.querySelectorAll(".editorr");
-            for(var i =0; i<cssSana; i++){
-                editor1[3+i].childNodes[0].remove();
-                
-            }
-            cssSana+=3;
-
-            var edit = document.querySelectorAll(".editorr");
-            for(var i = 0; i<edit.length; i++){
-                var editor = new Quill(edit[i], {
-                    modules: {
-                        imageResize:{},
-                        imageDrop:true,
-                        toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-                    },
-                    theme: 'snow'
-                });
-            }
-            squllSan+=3;
-        })
-    </script>
-
-
 <!-- formdan maglumat jemlemek -->
     <script>
         var submit = document.querySelector("#identifier");
@@ -471,26 +328,29 @@
                 var inputs = document.querySelectorAll("#identifier input");
                 var bash = document.querySelectorAll(".bash input");
                 var select = document.querySelector('.welayatSelect');
+                
+                var tm = document.querySelectorAll('.tm');
+                var ru = document.querySelectorAll('.ru');
+                var en = document.querySelectorAll('.en');
+                var content = tinymce.get("image-tools").getContent();
+                var content2 = tinymce.get("image-tools2").getContent();
+                var content3 = tinymce.get("image-tools3").getContent();
                 var data = {
                     tm:bash[0].value,
                     ru:bash[1].value,
                     en:bash[2].value,
                     banner:select.value,
                     shablon:'<%=data.page%>',
-                    tmheader:[],
-                    ruheader:[],
-                    enheader:[],
-                    text:[],
-                    text2:[],
-                    text3:[],
+                    tmheader:[tm[0].value],
+                    ruheader:[ru[0].value],
+                    enheader:[en[0].value],
+                    text:[content],
+                    text2:[content2],
+                    text3:[content3],
                     category:'<%=data.constructorId%>',
                     bosh:[]
                 }
-    
-                var tm = document.querySelectorAll('.tm');
-                var ru = document.querySelectorAll('.ru');
-                var en = document.querySelectorAll('.en');
-                var text = document.querySelectorAll(".ql-editor");
+                
     
     
                 var headFull = true;
@@ -581,99 +441,12 @@
         linkActive(2);
     </script>
  
-    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
-    <script src="/scripts/quill-image-resize/image-resize.min.js"></script>
-    <script src="/scripts/quill-image-drop-module/image-drop.min.js"></script>
- 
-    <!-- Initialize Quill editor  3sany text area hidden inpuda hem salyar-->
+    <script src='https://cdn.tiny.cloud/1/hpf9h4802a6gu20q61xonxq5tg2r8ot8qw5bmkjuseuw4s9i/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+    <script src="/scripts/js/component/tinyEdit.js"></script>
     <script>
-      var editor = new Quill('#editor', {
-        modules: {
-            imageResize:{},
-            imageDrop:true,
-            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-         },
-        theme: 'snow'
-      });
-      var editor = new Quill('#editor2', {
-        modules: {
-            imageResize:{},
-            imageDrop:true,
-            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-         },
-        theme: 'snow'
-      });
-      var editor = new Quill('#editor3', {
-        modules: {
-            imageResize:{},
-            imageDrop:true,
-            toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-         },
-        theme: 'snow'
-      });
-    </script> 
-
-
-        <!-- first -->
-        <script>
-            function first(){
-                var editor1 = document.querySelectorAll('.editorCon');
-                var len = document.querySelectorAll(".tmbody");
-                for(var i = 0; i<len.length; i++){
-                    editor1[squllSan].innerHTML = `<div id="editor${squllSan}" class="editorr">
-                                                    <p></p>
-                                                </div>`
-                    editor1[squllSan+1].innerHTML = `<div id="editor${squllSan+1}" class="editorr">
-                                                    <p></p>
-                                                </div>`
-                    editor1[squllSan+2].innerHTML = `<div id="editor${squllSan+2}" class='editorr'>
-                                                    <p></p>
-                                                </div>`
-        
-        
-                    var edit = document.querySelectorAll(".editorr");
-                    for(var j =0; j<cssSana; j++){
-                        editor1[3+j].childNodes[0].remove();
-                    }
-                    cssSana+=3;
-        
-                    var edit = document.querySelectorAll(".editorr");
-                    for(var j = 0; j<edit.length; j++){
-                        var editor = new Quill(edit[j], {
-                            modules: {
-                                imageResize:{},
-                                imageDrop:true,
-                                toolbar: [[{'header':[1,2,3,4,5,6,false]}],['bold','italic','underline'],['link','image'],[{'size':['small',false,'large','huge']}],[{'align':'justify'},{'align':'center'},{'align':'right'}]]
-                            },
-                            theme: 'snow'
-                        });
-                    }
-                    squllSan+=3;
-                }
-    
-    
-                var hide = document.querySelector(".hide");
-                var hide2 = document.querySelector(".hide2");
-                var hide3 = document.querySelector(".hide3");
-                var text = document.querySelectorAll(".ql-editor");
-                
-                var tmbody = document.querySelectorAll(".tmbody");
-                var rubody = document.querySelectorAll(".rubody");
-                var enbody = document.querySelectorAll(".enbody");
-                
-                var sana = 3;
-                
-                for(var i = 0; i<tmbody.length; i++){
-                    text[sana].innerHTML = tmbody[i].textContent;
-                    text[sana+1].innerHTML = rubody[i].textContent;
-                    text[sana+2].innerHTML = enbody[i].textContent;
-                    sana+=3;
-                }
-            }
-            first();
-    
-        </script>
-
+        var text = document.querySelectorAll(".txt");
+        setData(text[0].textContent,text[1].textContent,text[2].textContent);
+    </script>
 </body>
 </html>
 
