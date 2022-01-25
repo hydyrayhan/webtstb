@@ -3307,8 +3307,8 @@ section.agzalar .listContainer .agzalarList .main .text .textDots {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   white-space: normal;
-  word-break: break-all;
-  max-height: 82px;
+  word-break: break-word;
+  max-height: 79px;
 }
 
 section.agzalar .listContainer .agzalarList .main .icon {
