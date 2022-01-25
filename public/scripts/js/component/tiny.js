@@ -2,19 +2,25 @@
 tinymce.init({
   selector: 'textarea#image-tools',
   height: 500,
-  // content_css:'dark',
-  plugins: [
-    'advlist autolink lists link image charmap print preview anchor',
-    'searchreplace visualblocks code fullscreen',
-    'insertdatetime media table paste imagetools wordcount',
+  cleanup_on_startup: false,
+  trim_span_elements: false,
+  verify_html: false,
+  cleanup: false,
+
+  valid_elements: '*[*]',
+  height: "480",
+  relative_urls: false,
+  remove_script_host: true,
+  convert_urls: true,
+  image_advtab: true,
+  plugins: 'print preview code searchreplace autolink directionality visualblocks visualchars image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount  imagetools  contextmenu colorpicker textpattern help',
+  toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+  file_browser_callback_types: 'file image media',
+  toolbar: "forecolor backcolor toc charmap",
+  templates: [
+      { title: 'Standart content', content: '<div class="container"><div class="row"></div></div>' }
   ],
-  toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-  image_title: true,
-  
-  automatic_uploads: true,
-  
-  file_picker_types: 'image',
-  
+  file_picker_types: 'file image media',
   file_picker_callback: function (cb, value, meta) {
     var input = document.createElement('input');
     input.setAttribute('type', 'file');
@@ -39,7 +45,6 @@ tinymce.init({
 
     input.click();
   },
-  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
 });
 
 
@@ -48,19 +53,25 @@ tinymce.init({
 tinymce.init({
   selector: 'textarea#image-tools2',
   height: 500,
-  // content_css:'dark',
-  plugins: [
-    'advlist autolink lists link image charmap print preview anchor',
-    'searchreplace visualblocks code fullscreen',
-    'insertdatetime media table paste imagetools wordcount',
+  cleanup_on_startup: false,
+  trim_span_elements: false,
+  verify_html: false,
+  cleanup: false,
+
+  valid_elements: '*[*]',
+  height: "480",
+  relative_urls: false,
+  remove_script_host: true,
+  convert_urls: true,
+  image_advtab: true,
+  plugins: 'print preview code searchreplace autolink directionality visualblocks visualchars image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount  imagetools  contextmenu colorpicker textpattern help',
+  toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+  file_browser_callback_types: 'file image media',
+  toolbar: "forecolor backcolor toc charmap",
+  templates: [
+      { title: 'Standart content', content: '<div class="container"><div class="row"></div></div>' }
   ],
-  toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-  image_title: true,
-  
-  automatic_uploads: true,
-  
-  file_picker_types: 'image',
-  
+  file_picker_types: 'file image media',
   file_picker_callback: function (cb, value, meta) {
     var input = document.createElement('input');
     input.setAttribute('type', 'file');
@@ -85,7 +96,6 @@ tinymce.init({
 
     input.click();
   },
-  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
 });
 
 
@@ -96,19 +106,25 @@ tinymce.init({
 tinymce.init({
   selector: 'textarea#image-tools3',
   height: 500,
-  // content_css:'dark',
-  plugins: [
-    'advlist autolink lists link image charmap print preview anchor',
-    'searchreplace visualblocks code fullscreen',
-    'insertdatetime media table paste imagetools wordcount',
+  cleanup_on_startup: false,
+  trim_span_elements: false,
+  verify_html: false,
+  cleanup: false,
+
+  valid_elements: '*[*]',
+  height: "480",
+  relative_urls: false,
+  remove_script_host: true,
+  convert_urls: true,
+  image_advtab: true,
+  plugins: 'print preview code searchreplace autolink directionality visualblocks visualchars image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount  imagetools  contextmenu colorpicker textpattern help',
+  toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+  file_browser_callback_types: 'file image media',
+  toolbar: "forecolor backcolor toc charmap",
+  templates: [
+      { title: 'Standart content', content: '<div class="container"><div class="row"></div></div>' }
   ],
-  toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-  image_title: true,
-  
-  automatic_uploads: true,
-  
-  file_picker_types: 'image',
-  
+  file_picker_types: 'file image media',
   file_picker_callback: function (cb, value, meta) {
     var input = document.createElement('input');
     input.setAttribute('type', 'file');
@@ -133,5 +149,4 @@ tinymce.init({
 
     input.click();
   },
-  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
 });
