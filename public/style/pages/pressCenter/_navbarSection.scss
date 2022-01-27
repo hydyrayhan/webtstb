@@ -30,6 +30,7 @@
                 justify-content: center;
                 position: relative;
                 width: fit-content;
+                font-size: $fontSize;
                 @include mobile{
                     margin-right: 5px;
                     width: 100px;
@@ -161,7 +162,7 @@
                     }
                 }
                 .name{
-                    font-size: 16px;
+                    font-size: $fontSize;
                     font-weight: 600;
                     @include mobile{
                         font-size: 24px;
@@ -240,6 +241,7 @@
                         font-weight: 600;
                         margin-bottom: 30px;
                         color: $black;
+                        font-size: $fontSize;
                     }
                 }
                 .bottom{

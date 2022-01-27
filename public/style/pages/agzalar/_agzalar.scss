@@ -82,11 +82,13 @@ section.agzalar{
                         font-weight: 600;
                         color: $notBlack;
                         margin-bottom: 5px;
+                        font-size: $fontSize;
                     }
                     .listText{
                         color: $notBlack;
                         p{
                             background: none !important;
+                            font-size: $fontSize;
                         }
                     }
                     .textDots{
@@ -97,7 +99,7 @@ section.agzalar{
                         -webkit-box-orient: vertical;
                         white-space: normal;
                         word-break: break-word; 
-                        max-height: 79px;
+                        // max-height: 79px;
                     }
                 }
                 .icon{

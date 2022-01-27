@@ -41,11 +41,11 @@
             <div class="followers">
                 <div class="title" id="watched" data-content>Followers</div>
                 <div class="followCounts">
-                    <div class="day"> <span></span> <span data-content id="gunlik">a day</span></div>
+                    <div class="day">  <span data-content id="gunlik">a day</span><span></span></div>
                     <div>|</div>
-                    <div class="month"><span></span> <span data-content id="aylyk">a month</span></div>
+                    <div class="month"> <span data-content id="aylyk">a month</span><span></span></div>
                     <div>|</div>
-                    <div class="year"><span></span> <span id="yyllyk" data-content>a year</span></div>
+                    <div class="year"> <span id="yyllyk" data-content>a year</span><span></span></div>
                 </div>
             </div>
         </div>
@@ -85,9 +85,9 @@
         async function statistika(){
           var data2;
           data2 = await statistikaTake(host);
-          var day = document.querySelectorAll(".day span")[0];
-          var month = document.querySelectorAll(".month span")[0];
-          var year = document.querySelectorAll(".year span")[0];
+          var day = document.querySelectorAll(".day span")[1];
+          var month = document.querySelectorAll(".month span")[1];
+          var year = document.querySelectorAll(".year span")[1];
           day.textContent = data2.today;
           month.textContent = data2.week;
           year.textContent = data2.month;
