@@ -24,7 +24,7 @@
         .location{
             @include center(space-between,flex-start);
             .map{
-                margin-bottom:50px;
+                margin-bottom:50px; 
                 width: 70%;
                 fill:#C4C4C4;
                 @include mobile{
