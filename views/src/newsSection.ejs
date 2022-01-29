@@ -36,7 +36,7 @@
                           <div class="right">
                             <div class="top">
                               <a href="news/<%= list.list[0].id %>" style="text-decoration: none; color: #10181F;"><div class="name" data-dynamic data-ru="<%=list.list[0].header.RU%>" data-tm="<%=list.list[0].header.TM%>" data-en="<%=list.list[0].header.EN%>" id="name"></div></a>
-                              <div class="title" data-dynamic data-ru="<%=list.list[0].body.RU%>" data-tm="<%=list.list[0].body.TM%>" data-en="<%=list.list[0].body.EN%>" id="title"><%=list.list[0].body.RU%></div>
+                              <div class="title" data-dynamic data-ru="<%=list.list[0].body.RU%>" data-tm="<%=list.list[0].body.TM%>" data-en="<%=list.list[0].body.EN%>" id="title"></div>
                             </div>
                             <div class="bottom">
                               <div class="new" data-content id="newss">News</div>
@@ -127,6 +127,11 @@
                 </div>
               </div>
         </section>
+
+
+
+
+
         <script src="/scripts/src/materialize/splide.js"></script>
         <!-- splide Banner -->
         <script>
@@ -189,5 +194,30 @@
           }
 
         </script>
+
+        <script>
+          let userAgent = navigator.userAgent;
+         let browserName;
+         
+         if(userAgent.match(/chrome|chromium|crios/i)){
+             browserName = "chrome";
+           }else if(userAgent.match(/firefox|fxios/i)){
+             browserName = "firefox";
+             var title = document.querySelectorAll(".title")[1];
+             title.style.maxHeight = '267px';
+           }  else if(userAgent.match(/safari/i)){
+             browserName = "safari";
+           }else if(userAgent.match(/opr\//i)){
+             browserName = "opera";
+           } else if(userAgent.match(/edg/i)){
+             browserName = "edge";
+           }else{
+             browserName="No browser detection";
+           }
+
+           
+        </script>
   </body>
 </html>
+
+<!-- &lt; = < , &gt; = > -->
