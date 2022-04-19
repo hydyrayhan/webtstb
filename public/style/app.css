@@ -472,14 +472,14 @@
 }
 
 .newsSection .newsSectionContainer .right .title {
-  white-space: normal;
   color: #999999;
   margin-top: 10px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
   display: -webkit-box;
-  -webkit-line-clamp: 10;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 10;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .newsSection .newsSectionContainer .right .bottom {
@@ -662,9 +662,13 @@
 }
 
 .forTitle {
+  color: #999999;
+  margin-top: 10px;
+  white-space: normal;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 10;
+  text-overflow: ellipsis;
   overflow: hidden;
 }
 
