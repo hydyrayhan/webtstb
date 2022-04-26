@@ -18,10 +18,9 @@ async function imgSend(data,link){
         formData.append(`pic${i}`,data[i]);
     }
 
-    var status = await axios({
+    var status = await fetch(link,{
         method: 'post',
-        url: link,
-        data: formData
+        body: formData
     });
     
     return status;
